@@ -1,56 +1,156 @@
 ---
 ---
 
-<section id="n8n-studio" class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-  <div class="text-center mb-12">
-    <h2 class="text-3xl font-bold font-mono text-white mb-3" data-i18n="section_n8n_title">🤖 n8n AI Story Generator</h2>
-    <p class="text-emerald-200/70 max-w-2xl mx-auto text-sm" data-i18n="section_n8n_subtitle">Input a prompt and observe how multi-agent workflow nodes transform it into a narrative</p>
-  </div>
+<section id="n8n-studio" class="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+  <!-- VS Code Workstation Outer Container (Double-Bezel) -->
+  <div class="w-full rounded-2xl bg-black/80 border border-purple-500/30 p-2 shadow-[0_0_80px_rgba(168,85,247,0.15)] backdrop-blur-xl">
+    
+    <!-- VS Code Inner Editor Frame -->
+    <div class="w-full rounded-xl bg-[#0b0c13]/95 border border-purple-500/20 overflow-hidden font-mono">
+      
+      <!-- Window Title Bar -->
+      <div class="px-4 py-2 bg-[#121420] border-b border-purple-500/20 flex items-center justify-between text-xs text-purple-300/80">
+        <div class="flex items-center gap-2">
+          <div class="flex items-center gap-1.5 mr-2">
+            <span class="w-3 h-3 rounded-full bg-red-500/80 inline-block"></span>
+            <span class="w-3 h-3 rounded-full bg-yellow-500/80 inline-block"></span>
+            <span class="w-3 h-3 rounded-full bg-green-500/80 inline-block"></span>
+          </div>
+          <span class="font-bold text-purple-400">🤖 05_n8n_workflow.py</span>
+          <span class="text-[10px] text-purple-500/60">— workspace/pipelines</span>
+        </div>
 
-  <div class="max-w-4xl mx-auto rounded-xl bg-black/80 border border-emerald-500/40 p-6 backdrop-blur-md shadow-2xl">
-    <div class="flex flex-col sm:flex-row gap-3 mb-6">
-      <input
-        type="text"
-        id="n8n-prompt-input"
-        placeholder="Enter story prompt (e.g. A developer discovers a hidden AI node at midnight...)"
-        class="flex-1 px-4 py-3 rounded-lg bg-black/90 border border-emerald-500/30 text-white font-sans text-sm focus:outline-none focus:border-emerald-400"
-      />
-      <button
-        id="n8n-gen-btn"
-        class="px-6 py-3 rounded-lg bg-emerald-500 text-black font-mono font-bold text-sm hover:bg-emerald-400 transition"
-        data-i18n="btn_gen_workflow"
-      >
-        Generate Story Workflow ⚡
-      </button>
-    </div>
+        <div class="hidden sm:flex items-center gap-4 text-[11px] text-purple-400/60">
+          <span>n8n Webhook Engine</span>
+          <span>Async Stream</span>
+          <span> main*</span>
+        </div>
+      </div>
 
-    <!-- Animated 5 Workflow Nodes Diagram -->
-    <div class="grid grid-cols-2 sm:grid-cols-5 gap-2 mb-6 font-mono text-xs text-center">
-      <div id="node-input" class="p-3 rounded-lg bg-emerald-950/40 border border-emerald-500/20 text-emerald-400 transition">
-        <div class="text-base mb-1">📥</div>
-        <div>User Input</div>
+      <!-- File Tabs Header -->
+      <div class="flex items-center gap-1 px-3 pt-2 bg-[#0e101a] border-b border-purple-500/20 text-xs overflow-x-auto">
+        <a href="#skill-studio" class="px-3 py-1.5 rounded-t text-emerald-300/60 hover:bg-[#121420] transition flex items-center gap-2">
+          <span class="text-blue-400">⚡</span> 04_skill_studio.cpp
+        </a>
+        <div class="px-3 py-1.5 rounded-t bg-[#0b0c13] border-t-2 border-purple-400 text-purple-300 font-bold flex items-center gap-2">
+          <span>🤖</span> 05_n8n_workflow.py <span class="text-[10px] opacity-60">✕</span>
+        </div>
+        <a href="#micro-tools" class="px-3 py-1.5 rounded-t text-emerald-300/60 hover:bg-[#121420] transition flex items-center gap-2">
+          <span class="text-emerald-400">🛠️</span> 06_micro_tools.css
+        </a>
       </div>
-      <div id="node-n8n" class="p-3 rounded-lg bg-emerald-950/40 border border-emerald-500/20 text-emerald-400 transition">
-        <div class="text-base mb-1">⚡</div>
-        <div>n8n Webhook</div>
-      </div>
-      <div id="node-classifier" class="p-3 rounded-lg bg-emerald-950/40 border border-emerald-500/20 text-emerald-400 transition">
-        <div class="text-base mb-1">🔍</div>
-        <div>Genre Classifier</div>
-      </div>
-      <div id="node-rag" class="p-3 rounded-lg bg-emerald-950/40 border border-emerald-500/20 text-emerald-400 transition">
-        <div class="text-base mb-1">📖</div>
-        <div>RAG Node</div>
-      </div>
-      <div id="node-llm" class="p-3 rounded-lg bg-emerald-950/40 border border-emerald-500/20 text-emerald-400 transition">
-        <div class="text-base mb-1">🪄</div>
-        <div>Story Agent</div>
-      </div>
-    </div>
 
-    <!-- Output Stream Box -->
-    <div class="p-4 rounded-lg bg-black/90 border border-emerald-500/20 font-mono text-xs text-emerald-300 min-h-[140px] whitespace-pre-wrap">
-      <div id="n8n-output-stream">&gt; Click button above to trigger n8n node scheduling stream...</div>
+      <!-- Section Title Inside IDE Comment -->
+      <div class="p-6 pb-2 text-center sm:text-left border-b border-purple-500/10 bg-[#0c0d16]">
+        <h2 class="text-xl sm:text-2xl font-bold text-white mb-1 flex items-center gap-2 justify-center sm:justify-start" data-i18n="section_n8n_title">
+          <span class="text-purple-400">//</span> 🤖 n8n AI Story Generator
+        </h2>
+        <p class="text-xs sm:text-sm text-purple-300/70" data-i18n="section_n8n_subtitle">
+          Input a prompt and observe how multi-agent workflow nodes transform it into a narrative
+        </p>
+      </div>
+
+      <!-- Main Interactive Panel -->
+      <div class="p-4 sm:p-8 space-y-6">
+        
+        <!-- Prompt Input Line & Preset Chips -->
+        <div class="space-y-3">
+          <div class="flex flex-col sm:flex-row gap-3">
+            <div class="relative flex-1">
+              <span class="absolute left-4 top-3.5 text-purple-400 font-bold">⚡</span>
+              <input
+                type="text"
+                id="n8n-prompt-input"
+                value="A developer discovers a hidden AI node at midnight..."
+                placeholder="Enter story prompt (e.g. A developer discovers a hidden AI node at midnight...)"
+                class="w-full pl-9 pr-4 py-3 rounded-xl bg-[#090a10] border border-purple-500/30 text-white font-sans text-xs sm:text-sm focus:outline-none focus:border-purple-400 transition"
+              />
+            </div>
+            <button
+              id="n8n-gen-btn"
+              class="px-6 py-3 rounded-xl bg-purple-600 text-white font-mono font-bold text-xs sm:text-sm hover:bg-purple-500 transition shadow-lg shadow-purple-600/25 flex items-center justify-center gap-2 flex-shrink-0"
+              data-i18n="btn_gen_workflow"
+            >
+              <span>⚡</span> Generate Story Workflow
+            </button>
+          </div>
+
+          <!-- Quick Preset Prompts -->
+          <div class="flex flex-wrap items-center gap-2 text-[11px] text-purple-300/70 font-mono">
+            <span class="text-purple-400 font-bold">Try Presets:</span>
+            <button class="preset-chip px-2.5 py-1 rounded-full bg-purple-950/60 border border-purple-500/30 hover:border-purple-400 hover:text-white transition">
+              🌙 Midnight AI Node
+            </button>
+            <button class="preset-chip px-2.5 py-1 rounded-full bg-purple-950/60 border border-purple-500/30 hover:border-purple-400 hover:text-white transition">
+              🤖 Multi-Agent Refactor
+            </button>
+            <button class="preset-chip px-2.5 py-1 rounded-full bg-purple-950/60 border border-purple-500/30 hover:border-purple-400 hover:text-white transition">
+              🕵️ Cyber Detective Neo-KL
+            </button>
+          </div>
+        </div>
+
+        <!-- n8n Interactive Flow Node Canvas (5 Connected Nodes) -->
+        <div class="p-4 rounded-xl bg-[#08090f] border border-purple-500/20 relative">
+          <div class="text-[11px] font-bold text-purple-400/60 uppercase tracking-wider mb-3 flex items-center justify-between">
+            <span>n8n Multi-Agent Node Execution Flow</span>
+            <span id="pipeline-status" class="text-emerald-400">🟢 Pipeline Idle</span>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-5 gap-3 relative z-10">
+            <!-- Node 1: Input -->
+            <div id="node-input" class="node-card p-3 rounded-xl bg-[#0e101b] border border-purple-500/30 text-center transition-all duration-300">
+              <div class="text-xl mb-1">📥</div>
+              <div class="text-xs font-bold text-white mb-0.5">1. User Input</div>
+              <div class="text-[10px] text-purple-300/60">Webhook Trigger</div>
+            </div>
+
+            <!-- Node 2: Webhook -->
+            <div id="node-n8n" class="node-card p-3 rounded-xl bg-[#0e101b] border border-purple-500/30 text-center transition-all duration-300">
+              <div class="text-xl mb-1">⚡</div>
+              <div class="text-xs font-bold text-white mb-0.5">2. n8n Webhook</div>
+              <div class="text-[10px] text-purple-300/60">REST Endpoint</div>
+            </div>
+
+            <!-- Node 3: Classifier -->
+            <div id="node-classifier" class="node-card p-3 rounded-xl bg-[#0e101b] border border-purple-500/30 text-center transition-all duration-300">
+              <div class="text-xl mb-1">🔍</div>
+              <div class="text-xs font-bold text-white mb-0.5">3. Genre Classifier</div>
+              <div class="text-[10px] text-purple-300/60">Agent Classifier</div>
+            </div>
+
+            <!-- Node 4: RAG -->
+            <div id="node-rag" class="node-card p-3 rounded-xl bg-[#0e101b] border border-purple-500/30 text-center transition-all duration-300">
+              <div class="text-xl mb-1">📖</div>
+              <div class="text-xs font-bold text-white mb-0.5">4. RAG Node</div>
+              <div class="text-[10px] text-purple-300/60">ChromaDB Store</div>
+            </div>
+
+            <!-- Node 5: LLM -->
+            <div id="node-llm" class="node-card p-3 rounded-xl bg-[#0e101b] border border-purple-500/30 text-center transition-all duration-300">
+              <div class="text-xl mb-1">🪄</div>
+              <div class="text-xs font-bold text-white mb-0.5">5. Story Agent</div>
+              <div class="text-[10px] text-purple-300/60">LLM Streaming</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Integrated Output Stream Console -->
+        <div class="p-4 bg-[#08090f] border border-purple-500/20 rounded-xl font-mono text-xs">
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-purple-400 font-bold flex items-center gap-1.5">
+              <span>📄</span> Generated Story Stream Console:
+            </span>
+            <span class="text-[10px] text-purple-400/50">live websocket stream</span>
+          </div>
+
+          <div id="n8n-output-stream" class="p-4 rounded-lg bg-black/60 border border-purple-500/15 text-purple-200/90 leading-relaxed min-h-[140px] max-h-[220px] overflow-y-auto font-sans text-xs sm:text-sm">
+            &gt; Click "Generate Story Workflow ⚡" above to trigger n8n node scheduling stream...
+          </div>
+        </div>
+
+      </div>
+
     </div>
   </div>
 </section>
@@ -58,21 +158,39 @@
 <script>
   import { generateStoryWorkflow } from '../scripts/n8n-client';
 
-  document.getElementById('n8n-gen-btn')?.addEventListener('click', async () => {
-    const input = document.getElementById('n8n-prompt-input') as HTMLInputElement;
-    const stream = document.getElementById('n8n-output-stream');
+  const promptInput = document.getElementById('n8n-prompt-input') as HTMLInputElement;
+  const genBtn = document.getElementById('n8n-gen-btn');
+  const stream = document.getElementById('n8n-output-stream');
+  const statusEl = document.getElementById('pipeline-status');
+
+  // Preset Chips Listener
+  document.querySelectorAll('.preset-chip').forEach(chip => {
+    chip.addEventListener('click', () => {
+      const text = chip.textContent?.trim() || '';
+      if (text.includes('Midnight AI Node')) {
+        promptInput.value = 'A developer discovers a hidden AI node at midnight...';
+      } else if (text.includes('Multi-Agent Refactor')) {
+        promptInput.value = 'An autonomous multi-agent swarm refactors a legacy codebase...';
+      } else if (text.includes('Cyber Detective Neo-KL')) {
+        promptInput.value = 'A cyber detective investigates a ghost algorithm in Neo-KL...';
+      }
+    });
+  });
+
+  const nodeIds = ['node-input', 'node-n8n', 'node-classifier', 'node-rag', 'node-llm'];
+
+  genBtn?.addEventListener('click', async () => {
     if (!stream) return;
 
-    const prompt = input.value.trim() || 'A developer discovers a hidden AI node at midnight...';
-    stream.innerHTML = '> Initializing n8n node pipeline...';
-
-    const nodeIds = ['node-input', 'node-n8n', 'node-classifier', 'node-rag', 'node-llm'];
+    const prompt = promptInput.value.trim() || 'A developer discovers a hidden AI node at midnight...';
+    stream.innerHTML = '<span class="text-purple-400 font-mono font-bold">&gt; Initializing n8n webhook pipeline...</span><br><br>';
+    if (statusEl) statusEl.innerHTML = '⚡ Pipeline Executing...';
 
     // Reset node highlights
     nodeIds.forEach(id => {
       const node = document.getElementById(id);
       if (node) {
-        node.className = 'p-3 rounded-lg bg-emerald-950/40 border border-emerald-500/20 text-emerald-400 transition';
+        node.className = 'node-card p-3 rounded-xl bg-[#0e101b] border border-purple-500/30 text-center transition-all duration-300';
       }
     });
 
@@ -81,12 +199,15 @@
       (nodeId) => {
         const node = document.getElementById(nodeId);
         if (node) {
-          node.className = 'p-3 rounded-lg bg-emerald-500 border border-emerald-400 text-black font-bold shadow-lg shadow-emerald-500/30 transition scale-105';
+          node.className = 'node-card p-3 rounded-xl bg-purple-600 border border-purple-400 text-white font-bold shadow-lg shadow-purple-600/40 text-center transition-all duration-300 scale-105';
         }
       },
       (chunk) => {
         stream.innerHTML += chunk;
+        stream.scrollTop = stream.scrollHeight;
       }
     );
+
+    if (statusEl) statusEl.innerHTML = '🟢 Pipeline Complete (Exit Code: 0)';
   });
 </script>
