@@ -287,7 +287,7 @@ html[data-theme="ide"] .navbar-wrapper {
   display: none !important;
 }
 
-/* VS Code Top Menu Bar (IDE Theme Specific Clean Top Control) */
+/* VS Code Top Menu Bar (100% Working Interactive Dropdowns) */
 .ide-top-menu {
   display: none;
   background: #181825;
@@ -311,52 +311,96 @@ html[data-theme="ide"] .ide-top-menu {
 .ide-top-menu .menu-items {
   display: flex;
   align-items: center;
-  gap: 0.8rem;
+  gap: 0.4rem;
+}
+
+.menu-dropdown-wrapper {
+  position: relative;
+  display: inline-block;
 }
 
 .ide-top-menu .menu-item {
   color: #a6adc8;
   cursor: pointer;
-  padding: 0.15rem 0.4rem;
+  padding: 0.2rem 0.5rem;
   border-radius: 4px;
+  display: inline-block;
 }
 
-.ide-top-menu .menu-item:hover, .ide-top-menu .menu-item.active {
+.ide-top-menu .menu-item.highlight-item {
+  color: #89b4fa;
+  font-weight: 700;
+}
+
+.menu-dropdown-wrapper:hover .menu-item,
+.menu-dropdown-wrapper:focus-within .menu-item {
   color: #cdd6f4;
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.12);
 }
 
-.top-theme-pills {
+/* VS Code Dropdown Menu Container */
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 240px;
+  background: #1e1e2e;
+  border: 1px solid #89b4fa;
+  border-radius: 6px;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.85), 0 0 15px rgba(137, 180, 250, 0.2);
+  padding: 0.4rem 0;
+  z-index: 9999;
+}
+
+.menu-dropdown-wrapper:hover .dropdown-menu,
+.menu-dropdown-wrapper:focus-within .dropdown-menu {
   display: flex;
-  align-items: center;
-  gap: 0.3rem;
-  background: rgba(0, 0, 0, 0.3);
-  padding: 0.15rem 0.4rem;
-  border-radius: 20px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  flex-direction: column;
 }
 
-.top-theme-pills .theme-btn {
+.dropdown-header {
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: #a6adc8;
+  padding: 0.35rem 1rem 0.15rem;
+  letter-spacing: 0.5px;
+}
+
+.dropdown-option {
   background: transparent;
   border: none;
-  color: #a6adc8;
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  padding: 0.15rem 0.5rem;
-  border-radius: 12px;
-  cursor: pointer;
-  white-space: nowrap;
-}
-
-.top-theme-pills .theme-btn:hover {
   color: #cdd6f4;
-  background: rgba(255, 255, 255, 0.1);
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  padding: 0.45rem 1rem;
+  text-align: left;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-decoration: none;
+  width: 100%;
+  box-sizing: border-box;
 }
 
-.top-theme-pills .theme-btn.active {
+.dropdown-option:hover,
+.dropdown-option.active {
   background: #89b4fa;
-  color: #111;
+  color: #111 !important;
   font-weight: 700;
+}
+
+.dropdown-option .shortcut {
+  font-size: 0.7rem;
+  opacity: 0.65;
+  margin-left: 1rem;
+}
+
+.dropdown-divider {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.12);
+  margin: 0.35rem 0;
 }
 
 .ide-top-menu .menu-center {
@@ -367,7 +411,7 @@ html[data-theme="ide"] .ide-top-menu {
 .ide-top-menu .menu-right {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 0.8rem;
 }
 
 .git-branch {

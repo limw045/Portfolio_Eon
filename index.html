@@ -38,20 +38,109 @@
   <!-- Dynamic Theme-Aware HTML5 Canvas -->
   <canvas id="bg-canvas"></canvas>
 
-  <!-- VS Code Top Menu Bar (IDE Theme Specific Clean Control) -->
+  <!-- VS Code Top Menu Bar (100% Working Interactive Dropdowns) -->
   <div class="ide-top-menu" id="ide-top-menu">
     <div class="menu-items">
+      <!-- 1. Explorer Toggle Button -->
       <button class="ide-sidebar-toggle" id="ide-sidebar-toggle" title="展开/折叠文件树 (Ctrl+B)">
         📂 Explorer
       </button>
-      <span class="menu-item active">File</span>
-      <span class="menu-item">Edit</span>
-      <span class="menu-item">Selection</span>
-      <span class="menu-item">View</span>
-      <span class="menu-item">Go</span>
-      <span class="menu-item">Run</span>
-      <span class="menu-item">Terminal</span>
-      <span class="menu-item">Help</span>
+
+      <!-- 2. File Menu -->
+      <div class="menu-dropdown-wrapper">
+        <span class="menu-item">File</span>
+        <div class="dropdown-menu">
+          <button class="dropdown-option" id="menu-file-new">📄 New File <span class="shortcut">Ctrl+N</span></button>
+          <button class="dropdown-option" id="menu-file-print">💼 Export Resume (PDF/Print) <span class="shortcut">Ctrl+P</span></button>
+          <button class="dropdown-option" id="menu-file-copy-url">🌐 Copy Online Portfolio Link</button>
+          <div class="dropdown-divider"></div>
+          <button class="dropdown-option" id="menu-file-close">✕ Close Workspace</button>
+        </div>
+      </div>
+
+      <!-- 3. Edit Menu -->
+      <div class="menu-dropdown-wrapper">
+        <span class="menu-item">Edit</span>
+        <div class="dropdown-menu">
+          <button class="dropdown-option" id="menu-edit-undo">↩ Undo <span class="shortcut">Ctrl+Z</span></button>
+          <button class="dropdown-option" id="menu-edit-redo">↪ Redo <span class="shortcut">Ctrl+Y</span></button>
+          <div class="dropdown-divider"></div>
+          <button class="dropdown-option" id="menu-edit-cut">✂ Cut <span class="shortcut">Ctrl+X</span></button>
+          <button class="dropdown-option" id="menu-edit-copy">📋 Copy <span class="shortcut">Ctrl+C</span></button>
+          <button class="dropdown-option" id="menu-edit-find">🔍 Find in Terminal <span class="shortcut">Ctrl+F</span></button>
+        </div>
+      </div>
+
+      <!-- 4. Selection Menu -->
+      <div class="menu-dropdown-wrapper">
+        <span class="menu-item">Selection</span>
+        <div class="dropdown-menu">
+          <button class="dropdown-option" id="menu-select-all">Select All <span class="shortcut">Ctrl+A</span></button>
+          <button class="dropdown-option" id="menu-select-expand">Expand Selection</button>
+        </div>
+      </div>
+
+      <!-- 5. View Menu (CONTAINS ALL 5 THEMES) -->
+      <div class="menu-dropdown-wrapper">
+        <span class="menu-item highlight-item">View ▾</span>
+        <div class="dropdown-menu">
+          <div class="dropdown-header">🎨 COLOR THEMES</div>
+          <button class="dropdown-option theme-opt active" data-theme-target="ide">💻 IDE Cyber Code (暗黑极客)</button>
+          <button class="dropdown-option theme-opt" data-theme-target="football">⚽ Green Pitch (足球战术)</button>
+          <button class="dropdown-option theme-opt" data-theme-target="cinema">🎬 Cinema Noir (暗黑电影)</button>
+          <button class="dropdown-option theme-opt" data-theme-target="swiss">📜 Swiss Editorial (瑞士杂志)</button>
+          <button class="dropdown-option theme-opt" data-theme-target="travel">✈️ Travel Story Log (旅行手帐)</button>
+          <div class="dropdown-divider"></div>
+          <div class="dropdown-header">📐 APPEARANCE & LAYOUT</div>
+          <button class="dropdown-option" id="menu-view-explorer">📂 Toggle Explorer Sidebar <span class="shortcut">Ctrl+B</span></button>
+          <button class="dropdown-option" id="menu-view-terminal">💻 Toggle Integrated Terminal</button>
+          <button class="dropdown-option" id="menu-view-fullscreen">⛶ Toggle Fullscreen <span class="shortcut">F11</span></button>
+        </div>
+      </div>
+
+      <!-- 6. Go Menu -->
+      <div class="menu-dropdown-wrapper">
+        <span class="menu-item">Go</span>
+        <div class="dropdown-menu">
+          <a href="#hero" class="dropdown-option">📄 01_origin_story.md (Hero)</a>
+          <a href="#academic" class="dropdown-option">📄 02_academic_journey.json</a>
+          <a href="#culture" class="dropdown-option">📄 03_culture_hub.config</a>
+          <a href="#skill-studio" class="dropdown-option">📄 04_skill_studio.cpp</a>
+          <a href="#n8n-studio" class="dropdown-option">📄 05_n8n_workflow.py</a>
+          <a href="#micro-tools" class="dropdown-option">📄 06_micro_tools.css</a>
+        </div>
+      </div>
+
+      <!-- 7. Run Menu -->
+      <div class="menu-dropdown-wrapper">
+        <span class="menu-item">Run</span>
+        <div class="dropdown-menu">
+          <button class="dropdown-option" id="menu-run-code">▶ Run Current Code Snippet</button>
+          <button class="dropdown-option" id="menu-run-n8n">⚡ Run n8n AI Story Workflow</button>
+          <button class="dropdown-option" id="menu-run-sound">🔊 Toggle Audio Feedback</button>
+        </div>
+      </div>
+
+      <!-- 8. Terminal Menu -->
+      <div class="menu-dropdown-wrapper">
+        <span class="menu-item">Terminal</span>
+        <div class="dropdown-menu">
+          <button class="dropdown-option" id="menu-term-toggle">💻 Toggle Terminal Panel</button>
+          <button class="dropdown-option" id="menu-term-matrix">💚 Activate Matrix Code Rain</button>
+          <button class="dropdown-option" id="menu-term-clear">🧹 Clear Terminal Console</button>
+        </div>
+      </div>
+
+      <!-- 9. Help Menu -->
+      <div class="menu-dropdown-wrapper">
+        <span class="menu-item">Help</span>
+        <div class="dropdown-menu">
+          <a href="#hero" class="dropdown-option">👤 About Lim Wei Jian (林伟健)</a>
+          <button class="dropdown-option" id="menu-help-shortcuts">⌨️ Keyboard Shortcuts Info</button>
+          <a href="https://www.linkedin.com/in/jian-wei-65b342304/" target="_blank" class="dropdown-option">💼 LinkedIn Profile</a>
+          <a href="mailto:Limw045@gmail.com" class="dropdown-option">📧 Email Contact</a>
+        </div>
+      </div>
     </div>
 
     <div class="menu-center">weijian_portfolio — VS Code Workspace</div>
@@ -61,14 +150,6 @@
       <button class="lang-toggle-btn" id="lang-toggle-ide" title="切换语言 (English / 中文)">
         🌐 EN
       </button>
-      <!-- Integrated Theme Pill Buttons -->
-      <div class="top-theme-pills">
-        <button class="theme-btn active" data-theme-target="ide">💻 IDE</button>
-        <button class="theme-btn" data-theme-target="football">⚽ 足球</button>
-        <button class="theme-btn" data-theme-target="cinema">🎬 电影</button>
-        <button class="theme-btn" data-theme-target="swiss">📜 瑞士</button>
-        <button class="theme-btn" data-theme-target="travel">✈️ 旅行</button>
-      </div>
       <span class="git-branch"> main*</span>
       <span class="window-controls"><span class="w-btn min">―</span><span class="w-btn max">□</span><span class="w-btn close">✕</span></span>
     </div>
