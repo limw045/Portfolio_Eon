@@ -6,7 +6,13 @@
 <script>
   import { BackgroundCanvas } from '../../js/background-canvas.js';
 
-  document.addEventListener('DOMContentLoaded', () => {
+  function startEngine() {
     new BackgroundCanvas();
-  });
+  }
+
+  if (document.readyState === 'complete' || document.readyState === 'interactive') {
+    startEngine();
+  } else {
+    document.addEventListener('DOMContentLoaded', startEngine);
+  }
 </script>

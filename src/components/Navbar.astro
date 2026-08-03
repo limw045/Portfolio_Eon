@@ -1,43 +1,18 @@
 ---
 ---
 
-<!-- Single Unified VS Code Header -->
-<header class="sticky top-0 z-50 bg-[#12131c]/90 backdrop-blur-md border-b border-emerald-500/30 text-xs font-mono text-emerald-300">
-  <div class="max-w-7xl mx-auto px-4 h-12 flex items-center justify-between">
-    <!-- Left Section: VS Code Branding & Dropdowns -->
-    <div class="flex items-center gap-3">
-      <a href="#" class="font-bold text-emerald-400 hover:text-emerald-300 transition flex items-center gap-1.5 text-sm">
-        <span>⚡</span> Lim Wei Jian
-      </a>
+<!-- High-End Floating Glass Pill Navbar (Linear / Apple Tier) -->
+<header class="sticky top-4 z-50 max-w-5xl mx-auto px-4 w-full">
+  <div class="rounded-full bg-[#0a0b12]/80 backdrop-blur-2xl border border-emerald-500/30 px-5 py-2.5 shadow-[0_10px_35px_rgba(0,0,0,0.8)] flex items-center justify-between font-mono text-xs text-emerald-300 transition duration-300 hover:border-emerald-500/50">
+    
+    <!-- Left: Brand Logo Pill -->
+    <a href="#" class="font-bold text-emerald-400 hover:text-emerald-300 transition flex items-center gap-2 text-sm">
+      <span class="w-6 h-6 rounded-full bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 font-extrabold text-[11px] flex items-center justify-center">⚡</span>
+      <span>Lim Wei Jian</span>
+    </a>
 
-      <div class="hidden sm:flex items-center gap-2 text-[11px] text-emerald-300/80">
-        <span class="hover:text-emerald-200 cursor-pointer">File</span>
-        <span class="hover:text-emerald-200 cursor-pointer">Edit</span>
-        
-        <!-- View Menu Dropdown -->
-        <div class="relative group">
-          <button class="hover:text-emerald-200 cursor-pointer text-emerald-300 font-bold">View ▾</button>
-          <div class="absolute left-0 mt-1 w-52 py-2 rounded bg-black/95 border border-emerald-500/40 shadow-xl opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto transition z-50">
-            <div class="px-4 py-1 text-[10px] font-bold text-emerald-400/60 uppercase">🎨 Color Themes</div>
-            <button data-theme-target="ide" class="w-full text-left px-4 py-1.5 hover:bg-emerald-950 text-emerald-300">💻 IDE Cyber Code</button>
-            <button data-theme-target="football" class="w-full text-left px-4 py-1.5 hover:bg-emerald-950 text-amber-300">⚽ Green Pitch (Football)</button>
-            <button data-theme-target="cinema" class="w-full text-left px-4 py-1.5 hover:bg-emerald-950 text-yellow-400">🎬 Cinema Noir</button>
-            <button data-theme-target="swiss" class="w-full text-left px-4 py-1.5 hover:bg-emerald-950 text-red-400">📜 Swiss Editorial</button>
-            <button data-theme-target="travel" class="w-full text-left px-4 py-1.5 hover:bg-emerald-950 text-orange-300">✈️ Travel Story Log</button>
-            <div class="my-1 border-t border-emerald-500/20"></div>
-            <button id="menu-matrix-toggle" class="w-full text-left px-4 py-1.5 hover:bg-emerald-950 text-emerald-300">
-              🟢 Toggle Matrix Rain <span class="float-right text-[10px] opacity-60">Ctrl+Alt+M</span>
-            </button>
-            <button id="menu-toggle-sidebar" class="w-full text-left px-4 py-1.5 hover:bg-emerald-950 text-emerald-300">
-              📂 Toggle Explorer <span class="float-right text-[10px] opacity-60">Ctrl+B</span>
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Center Section: Navigation Links -->
-    <nav class="hidden lg:flex items-center gap-5 text-xs">
+    <!-- Center: Navigation Links -->
+    <nav class="hidden md:flex items-center gap-5 text-xs">
       <a href="#hero" class="text-emerald-200/80 hover:text-emerald-400 transition" data-i18n="nav_story">Origin Story</a>
       <a href="#academic" class="text-emerald-200/80 hover:text-emerald-400 transition" data-i18n="nav_academic">Academic Journey</a>
       <a href="#culture" class="text-emerald-200/80 hover:text-emerald-400 transition" data-i18n="nav_culture">Cultural Hub</a>
@@ -45,34 +20,38 @@
       <a href="#micro-tools" class="text-emerald-200/80 hover:text-emerald-400 transition" data-i18n="nav_tools">Micro-Tools</a>
     </nav>
 
-    <!-- Right Section: Language, Theme Dropdown & Window Buttons -->
-    <div class="flex items-center gap-3 text-xs">
-      <!-- Theme Switcher Quick Button -->
+    <!-- Right: Theme, Matrix Rain, Language Toggle Pill -->
+    <div class="flex items-center gap-2 text-xs">
+      
+      <!-- Quick Matrix Rain Toggle Button -->
+      <button id="quick-matrix-btn" class="px-2.5 py-1 rounded-full bg-emerald-950/80 border border-emerald-500/30 text-emerald-400 hover:bg-emerald-900/60 transition text-[11px] flex items-center gap-1 font-bold">
+        <span>🟢</span> <span class="hidden sm:inline">Rain</span>
+      </button>
+
+      <!-- 5 Themes Selector Dropdown -->
       <div class="relative group">
-        <button class="px-2.5 py-1 rounded bg-emerald-950/80 border border-emerald-500/30 text-emerald-300 hover:bg-emerald-900/60 transition text-[11px]">
+        <button class="px-3 py-1 rounded-full bg-emerald-950/80 border border-emerald-500/30 text-emerald-300 hover:bg-emerald-900/60 transition text-[11px] flex items-center gap-1 font-bold">
           🎨 Theme ▾
         </button>
-        <div class="absolute right-0 mt-1 w-44 py-2 rounded bg-black/95 border border-emerald-500/40 shadow-xl opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto transition z-50">
-          <button data-theme-target="ide" class="w-full text-left px-4 py-1.5 hover:bg-emerald-950 text-emerald-300">💻 IDE Cyber Code</button>
-          <button data-theme-target="football" class="w-full text-left px-4 py-1.5 hover:bg-emerald-950 text-amber-300">⚽ Football</button>
-          <button data-theme-target="cinema" class="w-full text-left px-4 py-1.5 hover:bg-emerald-950 text-yellow-400">🎬 Cinema Noir</button>
-          <button data-theme-target="swiss" class="w-full text-left px-4 py-1.5 hover:bg-emerald-950 text-red-400">📜 Swiss Editorial</button>
-          <button data-theme-target="travel" class="w-full text-left px-4 py-1.5 hover:bg-emerald-950 text-orange-300">✈️ Travel Story Log</button>
+        <div class="absolute right-0 mt-2 w-48 py-2 rounded-xl bg-[#090a10]/95 border border-emerald-500/40 shadow-2xl opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto transition duration-200 z-50 backdrop-blur-xl">
+          <div class="px-4 py-1 text-[10px] font-bold text-emerald-400/60 uppercase">🎨 5 Master Themes</div>
+          <button data-theme-target="ide" class="w-full text-left px-4 py-1.5 hover:bg-emerald-950 text-emerald-300 transition">💻 IDE Cyber Code</button>
+          <button data-theme-target="football" class="w-full text-left px-4 py-1.5 hover:bg-emerald-950 text-amber-300 transition">⚽ Football Pitch</button>
+          <button data-theme-target="cinema" class="w-full text-left px-4 py-1.5 hover:bg-emerald-950 text-yellow-400 transition">🎬 Cinema Noir</button>
+          <button data-theme-target="swiss" class="w-full text-left px-4 py-1.5 hover:bg-emerald-950 text-red-400 transition">📜 Swiss Editorial</button>
+          <button data-theme-target="travel" class="w-full text-left px-4 py-1.5 hover:bg-emerald-950 text-orange-300 transition">✈️ Travel Story Log</button>
         </div>
       </div>
 
       <!-- Language Toggle -->
-      <button id="lang-btn" class="px-2.5 py-1 rounded bg-emerald-950/80 border border-emerald-500/30 text-emerald-300 hover:bg-emerald-900/60 transition text-[11px]">
+      <button id="lang-btn" class="px-3 py-1 rounded-full bg-emerald-950/80 border border-emerald-500/30 text-emerald-300 hover:bg-emerald-900/60 transition text-[11px] font-bold">
         🌐 EN / 中文
       </button>
 
-      <span class="text-emerald-400 text-[11px] hidden sm:inline"> main*</span>
-
-      <div class="hidden sm:flex items-center gap-1 text-emerald-400/70 text-[10px]">
-        <span class="px-1 hover:bg-emerald-950 cursor-pointer">―</span>
-        <span class="px-1 hover:bg-emerald-950 cursor-pointer">□</span>
-        <span class="px-1 hover:bg-red-950 hover:text-red-400 cursor-pointer">✕</span>
-      </div>
+      <!-- Sidebar Toggle -->
+      <button id="sidebar-pill-btn" class="px-2.5 py-1 rounded-full bg-emerald-950/80 border border-emerald-500/30 text-emerald-300 hover:bg-emerald-900/60 transition text-[11px] font-bold">
+        📂
+      </button>
     </div>
   </div>
 </header>
@@ -110,15 +89,16 @@
     });
   });
 
-  // Top Menu Actions
-  document.getElementById('menu-matrix-toggle')?.addEventListener('click', () => {
+  // Quick Matrix Rain Toggle
+  document.getElementById('quick-matrix-btn')?.addEventListener('click', () => {
     window.dispatchEvent(new CustomEvent('matrixmode'));
   });
 
-  document.addEventListener('keydown', (e) => {
-    if (e.ctrlKey && e.altKey && e.key.toLowerCase() === 'm') {
-      e.preventDefault();
-      window.dispatchEvent(new CustomEvent('matrixmode'));
+  // Sidebar Toggle
+  document.getElementById('sidebar-pill-btn')?.addEventListener('click', () => {
+    const sidebar = document.getElementById('ide-sidebar');
+    if (sidebar) {
+      sidebar.classList.toggle('-translate-x-full');
     }
   });
 
