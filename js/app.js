@@ -1,6 +1,6 @@
 /**
  * app.js - Main Application Entry Point
- * Initializes i18n, theme engine, IDE simulator, n8n workflow simulator, background canvas, CSS tweaker, and 3D tilt card physics.
+ * Initializes Lenis Smooth Scroll, i18n, theme engine, IDE simulator, n8n workflow simulator, background canvas, CSS tweaker, and 3D tilt card physics.
  */
 
 import { I18nEngine } from './i18n.js';
@@ -11,6 +11,9 @@ import { BackgroundCanvas } from './background-canvas.js';
 import { CSSTweaker } from './css-tweaker.js';
 
 document.addEventListener('DOMContentLoaded', () => {
+  // Initialize Lenis Smooth Scroll Engine
+  const lenis = initLenisSmoothScroll();
+
   // Initialize Core Modules
   const i18nEngine = new I18nEngine();
   const themeEngine = new ThemeEngine();
@@ -22,8 +25,50 @@ document.addEventListener('DOMContentLoaded', () => {
   // Initialize 3D Tilt Mouse Physics for Cards
   init3DTiltPhysics();
 
-  console.log('🚀 Lim Wei Jian Portfolio initialized successfully with i18n support.');
+  console.log('🚀 Lim Wei Jian Portfolio initialized successfully with Lenis Smooth Scroll.');
 });
+
+/**
+ * Initializes Lenis Smooth Scroll & RequestAnimationFrame Loop
+ */
+function initLenisSmoothScroll() {
+  if (typeof window.Lenis === 'undefined') {
+    console.warn('Lenis CDN not loaded, falling back to native scroll.');
+    return null;
+  }
+
+  const lenis = new window.Lenis({
+    duration: 1.2,
+    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+    smoothWheel: true,
+    smoothTouch: false,
+    touchMultiplier: 1.5
+  });
+
+  function raf(time) {
+    lenis.raf(time);
+    requestAnimationFrame(raf);
+  }
+
+  requestAnimationFrame(raf);
+
+  // Wire anchor links to Lenis smooth scroll
+  const navAnchors = document.querySelectorAll('a[href^="#"]');
+  navAnchors.forEach(anchor => {
+    anchor.addEventListener('click', (e) => {
+      e.preventDefault();
+      const targetId = anchor.getAttribute('href');
+      if (targetId && targetId !== '#') {
+        const targetEl = document.querySelector(targetId);
+        if (targetEl) {
+          lenis.scrollTo(targetEl, { offset: -80, duration: 1.2 });
+        }
+      }
+    });
+  });
+
+  return lenis;
+}
 
 /**
  * Hardware-accelerated 3D Tilt Card Physics
