@@ -1,6 +1,7 @@
 /**
- * background-canvas.js - Pixel-Perfect Authentic Classic Matrix Digital Rain Engine
- * 1:1 pixel rendering with zero stretching, crisp monospace characters, and natural fading trails.
+ * background-canvas.js - Authentic Clear-Canvas Matrix Digital Rain Engine
+ * Uses clearRect() to prevent solid black alpha accumulation and renders 12-character fading streams
+ * for 100% continuous digital rain coverage across the entire viewport from top to bottom.
  */
 
 export class BackgroundCanvas {
@@ -135,9 +136,8 @@ export class BackgroundCanvas {
     const fontSize = 16;
     const totalRows = Math.ceil(this.height / fontSize) || 1;
 
-    // Semi-transparent black fade trail for natural matrix trailing
-    this.ctx.fillStyle = 'rgba(0, 0, 0, 0.08)';
-    this.ctx.fillRect(0, 0, this.width, this.height);
+    // Clear canvas cleanly to guarantee transparent background without black accumulation!
+    this.ctx.clearRect(0, 0, this.width, this.height);
 
     this.ctx.font = '15px "JetBrains Mono", monospace';
     const chars = this.matrixChars || '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZλπΣΩ<>{}[]/*=&$#@!';
@@ -145,26 +145,32 @@ export class BackgroundCanvas {
     this.frameIndex = (this.frameIndex || 0) + 1;
     const shouldStep = this.frameIndex % (this.matrixSpeedStep || 2) === 0;
 
-    // Dual-head modulo stream algorithm for full-height coverage from 0% to 100%
+    const streamLength = 12; // Length of fading tail
+    const offsets = [0, Math.floor(totalRows / 2)]; // Dual-head staggered streams
+
     for (let i = 0; i < this.matrixDrops.length; i++) {
       const x = i * fontSize;
-      const offsets = [0, Math.floor(totalRows / 2)];
 
       for (let k = 0; k < offsets.length; k++) {
         const headRow = Math.floor((this.matrixDrops[i] + offsets[k]) % totalRows);
-        const headY = (headRow + 1) * fontSize;
 
-        // Bright neon mint leading head character
-        this.ctx.fillStyle = 'rgba(220, 255, 230, 0.65)';
-        const headText = chars.charAt(Math.floor(Math.random() * chars.length));
-        this.ctx.fillText(headText, x, headY);
+        // Render head + trailing characters with explicit fading alphas
+        for (let j = 0; j < streamLength; j++) {
+          const charRow = (headRow - j + totalRows) % totalRows;
+          const charY = (charRow + 1) * fontSize;
 
-        // Soft classic matrix green trailing character right behind head
-        const trailRow = (headRow - 1 + totalRows) % totalRows;
-        const trailY = (trailRow + 1) * fontSize;
-        this.ctx.fillStyle = 'rgba(0, 255, 102, 0.25)';
-        const trailText = chars.charAt(Math.floor(Math.random() * chars.length));
-        this.ctx.fillText(trailText, x, trailY);
+          if (j === 0) {
+            // Hot neon mint leading head
+            this.ctx.fillStyle = 'rgba(220, 255, 230, 0.75)';
+          } else {
+            // Fading trail alpha
+            const alpha = Math.max(0.04, (1 - j / streamLength) * 0.35);
+            this.ctx.fillStyle = `rgba(0, 255, 102, ${alpha})`;
+          }
+
+          const charText = chars.charAt((i * 7 + charRow * 3 + j) % chars.length);
+          this.ctx.fillText(charText, x, charY);
+        }
       }
 
       if (shouldStep) {
