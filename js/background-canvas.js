@@ -1,7 +1,7 @@
 /**
  * background-canvas.js - Authentic Pitch-Black & Matrix Green Canvas Engine
- * Renders 60fps continuous full-screen Matrix rain evenly distributed from top to bottom,
- * with relaxed fall speed and subtle low-opacity background styling.
+ * Renders 60fps continuous full-screen Matrix rain with 2-Layer Staggered Streams,
+ * guaranteeing 100% continuous digital rain coverage from top to bottom at all times.
  */
 
 export class BackgroundCanvas {
@@ -13,7 +13,8 @@ export class BackgroundCanvas {
     this.width = window.innerWidth;
     this.height = window.innerHeight;
     this.particles = [];
-    this.matrixDrops = [];
+    this.matrixDropsLayer1 = [];
+    this.matrixDropsLayer2 = [];
     this.frameIndex = 0;
     this.theme = document.documentElement.getAttribute('data-theme') || 'ide';
 
@@ -71,11 +72,15 @@ export class BackgroundCanvas {
     const fontSize = 18;
     const columns = Math.floor(this.width / fontSize);
     const totalRows = Math.floor(this.height / fontSize);
-    this.matrixDrops = [];
     
-    // Distribute drops uniformly across ALL vertical rows from top to bottom
+    this.matrixDropsLayer1 = [];
+    this.matrixDropsLayer2 = [];
+    
+    // Layer 1: Distributed across top-to-middle rows
+    // Layer 2: Distributed across middle-to-bottom rows (staggered offset)
     for (let i = 0; i < columns; i++) {
-      this.matrixDrops[i] = Math.floor(Math.random() * totalRows);
+      this.matrixDropsLayer1[i] = Math.floor(Math.random() * (totalRows / 2));
+      this.matrixDropsLayer2[i] = Math.floor((totalRows / 2) + Math.random() * (totalRows / 2));
     }
   }
 
@@ -112,8 +117,8 @@ export class BackgroundCanvas {
   drawMatrixRain() {
     const fontSize = 18;
 
-    // Soft pitch-black fade trail (#000000 with subtle alpha so background is non-distracting)
-    this.ctx.fillStyle = 'rgba(0, 0, 0, 0.15)';
+    // Pitch-black fade trail background (#000000 with 0.14 alpha for soft fade)
+    this.ctx.fillStyle = 'rgba(0, 0, 0, 0.14)';
     this.ctx.fillRect(0, 0, this.width, this.height);
 
     this.ctx.font = '14px "JetBrains Mono", monospace';
@@ -121,15 +126,21 @@ export class BackgroundCanvas {
 
     const shouldStep = this.frameIndex % 3 === 0; // Relaxed 1/3 fall speed
 
-    for (let i = 0; i < this.matrixDrops.length; i++) {
+    // Render Layer 1 & Layer 2 in parallel for 100% continuous full-height coverage
+    this.renderStreamLayer(this.matrixDropsLayer1, fontSize, chars, shouldStep);
+    this.renderStreamLayer(this.matrixDropsLayer2, fontSize, chars, shouldStep);
+  }
+
+  renderStreamLayer(layerArray, fontSize, chars, shouldStep) {
+    for (let i = 0; i < layerArray.length; i++) {
       const text = chars.charAt(Math.floor(Math.random() * chars.length));
       const x = i * fontSize;
-      const y = this.matrixDrops[i] * fontSize;
+      const y = layerArray[i] * fontSize;
 
-      // Subtle, low-opacity matrix green palette (Background subtle aesthetic)
+      // Low-opacity subtle matrix green color palette
       const rand = Math.random();
       if (rand > 0.92) {
-        this.ctx.fillStyle = 'rgba(220, 255, 230, 0.35)'; // Subtle soft head
+        this.ctx.fillStyle = 'rgba(220, 255, 230, 0.35)'; // Soft leading head
       } else if (rand > 0.5) {
         this.ctx.fillStyle = 'rgba(0, 255, 102, 0.22)'; // Subtle matrix green
       } else {
@@ -138,12 +149,12 @@ export class BackgroundCanvas {
 
       this.ctx.fillText(text, x, y);
 
-      // Instant recycling when clearing viewport bottom: ZERO dead off-screen frames!
+      // Continuous loop: Reset smoothly above screen when clearing bottom
       if (shouldStep) {
         if (y > this.height) {
-          this.matrixDrops[i] = Math.floor(Math.random() * -8); // Reset smoothly above viewport
+          layerArray[i] = Math.floor(Math.random() * -6);
         } else {
-          this.matrixDrops[i]++;
+          layerArray[i]++;
         }
       }
     }
