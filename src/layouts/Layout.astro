@@ -1,7 +1,6 @@
 ---
-import VscodeTopMenu from '../components/VscodeTopMenu.astro';
-import VscodeSidebar from '../components/VscodeSidebar.astro';
 import Navbar from '../components/Navbar.astro';
+import VscodeSidebar from '../components/VscodeSidebar.astro';
 import LetterGlitchCanvas from '../components/LetterGlitchCanvas.astro';
 import TerminalDrawer from '../components/TerminalDrawer.astro';
 import '../styles/global.css';
@@ -27,13 +26,12 @@ const {
     <meta name="description" content={description} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Outfit:wght@300;400;600;700&family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap" rel="stylesheet" />
   </head>
   <body class="relative min-h-screen font-sans bg-black antialiased selection:bg-emerald-500 selection:text-black">
     <LetterGlitchCanvas />
-    <VscodeTopMenu />
-    <VscodeSidebar />
     <Navbar />
+    <VscodeSidebar />
     <main>
       <slot />
     </main>

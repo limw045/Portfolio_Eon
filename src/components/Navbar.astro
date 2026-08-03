@@ -1,38 +1,43 @@
 ---
 ---
 
-<!-- VS Code Style Top Bar & Navigation -->
-<header class="sticky top-0 z-50 bg-black/90 backdrop-blur-md border-b border-emerald-500/30">
-  <!-- Top Menu Row (File, Edit, View, Run, Terminal, Help) -->
-  <div class="px-4 py-1.5 border-b border-emerald-500/20 flex items-center justify-between text-xs font-mono text-emerald-300/80 bg-black/60">
-    <div class="flex items-center gap-4">
-      <span class="font-bold text-emerald-400">VS Code Portfolio</span>
-      <span class="hover:text-emerald-200 cursor-pointer hidden sm:inline">File</span>
-      <span class="hover:text-emerald-200 cursor-pointer hidden sm:inline">Edit</span>
-      <div class="relative group inline-block">
-        <span class="hover:text-emerald-200 cursor-pointer text-emerald-300 font-bold">View ▼</span>
-        <div class="absolute left-0 mt-1 w-56 py-2 rounded bg-black/95 border border-emerald-500/40 shadow-xl opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto transition z-50">
-          <button id="menu-matrix-toggle" class="w-full text-left px-4 py-1.5 hover:bg-emerald-950/80 text-emerald-300 transition" data-i18n="menu_matrix_toggle">
-            🟢 Toggle Matrix Rain <span class="text-[10px] opacity-60">Ctrl+Alt+M</span>
-          </button>
+<!-- Single Unified VS Code Header -->
+<header class="sticky top-0 z-50 bg-[#12131c]/90 backdrop-blur-md border-b border-emerald-500/30 text-xs font-mono text-emerald-300">
+  <div class="max-w-7xl mx-auto px-4 h-12 flex items-center justify-between">
+    <!-- Left Section: VS Code Branding & Dropdowns -->
+    <div class="flex items-center gap-3">
+      <a href="#" class="font-bold text-emerald-400 hover:text-emerald-300 transition flex items-center gap-1.5 text-sm">
+        <span>⚡</span> Lim Wei Jian
+      </a>
+
+      <div class="hidden sm:flex items-center gap-2 text-[11px] text-emerald-300/80">
+        <span class="hover:text-emerald-200 cursor-pointer">File</span>
+        <span class="hover:text-emerald-200 cursor-pointer">Edit</span>
+        
+        <!-- View Menu Dropdown -->
+        <div class="relative group">
+          <button class="hover:text-emerald-200 cursor-pointer text-emerald-300 font-bold">View ▾</button>
+          <div class="absolute left-0 mt-1 w-52 py-2 rounded bg-black/95 border border-emerald-500/40 shadow-xl opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto transition z-50">
+            <div class="px-4 py-1 text-[10px] font-bold text-emerald-400/60 uppercase">🎨 Color Themes</div>
+            <button data-theme-target="ide" class="w-full text-left px-4 py-1.5 hover:bg-emerald-950 text-emerald-300">💻 IDE Cyber Code</button>
+            <button data-theme-target="football" class="w-full text-left px-4 py-1.5 hover:bg-emerald-950 text-amber-300">⚽ Green Pitch (Football)</button>
+            <button data-theme-target="cinema" class="w-full text-left px-4 py-1.5 hover:bg-emerald-950 text-yellow-400">🎬 Cinema Noir</button>
+            <button data-theme-target="swiss" class="w-full text-left px-4 py-1.5 hover:bg-emerald-950 text-red-400">📜 Swiss Editorial</button>
+            <button data-theme-target="travel" class="w-full text-left px-4 py-1.5 hover:bg-emerald-950 text-orange-300">✈️ Travel Story Log</button>
+            <div class="my-1 border-t border-emerald-500/20"></div>
+            <button id="menu-matrix-toggle" class="w-full text-left px-4 py-1.5 hover:bg-emerald-950 text-emerald-300">
+              🟢 Toggle Matrix Rain <span class="float-right text-[10px] opacity-60">Ctrl+Alt+M</span>
+            </button>
+            <button id="menu-toggle-sidebar" class="w-full text-left px-4 py-1.5 hover:bg-emerald-950 text-emerald-300">
+              📂 Toggle Explorer <span class="float-right text-[10px] opacity-60">Ctrl+B</span>
+            </button>
+          </div>
         </div>
       </div>
-      <span id="menu-run-code" class="hover:text-emerald-200 cursor-pointer hidden sm:inline">Run</span>
-      <span id="menu-toggle-terminal" class="hover:text-emerald-200 cursor-pointer hidden sm:inline">Terminal</span>
-      <span class="hover:text-emerald-200 cursor-pointer hidden sm:inline">Help</span>
     </div>
-    <div class="text-[11px] text-emerald-400/60 hidden md:inline">
-      Lim Wei Jian — Senior AI Student @ MMU
-    </div>
-  </div>
 
-  <!-- Primary Navbar Row -->
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-14 flex items-center justify-between">
-    <a href="#" class="font-mono font-bold text-lg text-emerald-400 hover:text-emerald-300 transition">
-      Lim Wei Jian<span class="text-xs ml-2 px-2 py-0.5 rounded bg-emerald-500/20 border border-emerald-500/30">AI & Full-Stack</span>
-    </a>
-
-    <nav class="hidden lg:flex items-center gap-6 font-mono text-sm">
+    <!-- Center Section: Navigation Links -->
+    <nav class="hidden lg:flex items-center gap-5 text-xs">
       <a href="#hero" class="text-emerald-200/80 hover:text-emerald-400 transition" data-i18n="nav_story">Origin Story</a>
       <a href="#academic" class="text-emerald-200/80 hover:text-emerald-400 transition" data-i18n="nav_academic">Academic Journey</a>
       <a href="#culture" class="text-emerald-200/80 hover:text-emerald-400 transition" data-i18n="nav_culture">Cultural Hub</a>
@@ -40,25 +45,34 @@
       <a href="#micro-tools" class="text-emerald-200/80 hover:text-emerald-400 transition" data-i18n="nav_tools">Micro-Tools</a>
     </nav>
 
-    <div class="flex items-center gap-3 font-mono text-xs">
-      <!-- 5 Themes Selector Dropdown -->
+    <!-- Right Section: Language, Theme Dropdown & Window Buttons -->
+    <div class="flex items-center gap-3 text-xs">
+      <!-- Theme Switcher Quick Button -->
       <div class="relative group">
-        <button class="px-3 py-1.5 rounded bg-emerald-950/60 border border-emerald-500/30 text-emerald-300 hover:bg-emerald-900/50 transition">
-          🎨 Theme <span class="text-[10px]">▼</span>
+        <button class="px-2.5 py-1 rounded bg-emerald-950/80 border border-emerald-500/30 text-emerald-300 hover:bg-emerald-900/60 transition text-[11px]">
+          🎨 Theme ▾
         </button>
-        <div class="absolute right-0 mt-2 w-44 py-2 rounded-lg bg-black/95 border border-emerald-500/40 shadow-xl opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto transition duration-200 z-50">
-          <button data-theme-target="ide" class="w-full text-left px-4 py-1.5 hover:bg-emerald-950/80 text-emerald-300 transition">💻 Cyber IDE</button>
-          <button data-theme-target="football" class="w-full text-left px-4 py-1.5 hover:bg-emerald-950/80 text-amber-300 transition">⚽ Football</button>
-          <button data-theme-target="cinema" class="w-full text-left px-4 py-1.5 hover:bg-emerald-950/80 text-yellow-400 transition">🎬 Cinema Noir</button>
-          <button data-theme-target="swiss" class="w-full text-left px-4 py-1.5 hover:bg-emerald-950/80 text-red-400 transition">🇨🇭 Swiss Paper</button>
-          <button data-theme-target="travel" class="w-full text-left px-4 py-1.5 hover:bg-emerald-950/80 text-orange-300 transition">🧭 Travel Log</button>
+        <div class="absolute right-0 mt-1 w-44 py-2 rounded bg-black/95 border border-emerald-500/40 shadow-xl opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto transition z-50">
+          <button data-theme-target="ide" class="w-full text-left px-4 py-1.5 hover:bg-emerald-950 text-emerald-300">💻 IDE Cyber Code</button>
+          <button data-theme-target="football" class="w-full text-left px-4 py-1.5 hover:bg-emerald-950 text-amber-300">⚽ Football</button>
+          <button data-theme-target="cinema" class="w-full text-left px-4 py-1.5 hover:bg-emerald-950 text-yellow-400">🎬 Cinema Noir</button>
+          <button data-theme-target="swiss" class="w-full text-left px-4 py-1.5 hover:bg-emerald-950 text-red-400">📜 Swiss Editorial</button>
+          <button data-theme-target="travel" class="w-full text-left px-4 py-1.5 hover:bg-emerald-950 text-orange-300">✈️ Travel Story Log</button>
         </div>
       </div>
 
-      <!-- Language Switcher -->
-      <button id="lang-btn" class="px-3 py-1.5 rounded bg-emerald-950/60 border border-emerald-500/30 text-emerald-300 hover:bg-emerald-900/50 transition">
+      <!-- Language Toggle -->
+      <button id="lang-btn" class="px-2.5 py-1 rounded bg-emerald-950/80 border border-emerald-500/30 text-emerald-300 hover:bg-emerald-900/60 transition text-[11px]">
         🌐 EN / 中文
       </button>
+
+      <span class="text-emerald-400 text-[11px] hidden sm:inline"> main*</span>
+
+      <div class="hidden sm:flex items-center gap-1 text-emerald-400/70 text-[10px]">
+        <span class="px-1 hover:bg-emerald-950 cursor-pointer">―</span>
+        <span class="px-1 hover:bg-emerald-950 cursor-pointer">□</span>
+        <span class="px-1 hover:bg-red-950 hover:text-red-400 cursor-pointer">✕</span>
+      </div>
     </div>
   </div>
 </header>

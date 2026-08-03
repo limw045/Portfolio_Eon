@@ -1,26 +1,97 @@
 ---
 ---
 
-<section id="hero" class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 text-center">
-  <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-950/60 border border-emerald-500/30 text-emerald-400 font-mono text-xs mb-8">
-    <span>✨</span>
-    <span data-i18n="hero_badge">Final Year AI Student @ MMU | CGPA 3.74</span>
+<section id="hero" class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-24 flex flex-col items-center text-center">
+  <!-- Status Pill Badge -->
+  <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-950/80 border border-emerald-500/40 text-emerald-400 text-xs font-mono mb-8 backdrop-blur-md shadow-lg shadow-emerald-500/10">
+    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+    <span data-i18n="badge_status">Final Year AI Student @ MMU | CGPA 3.74</span>
   </div>
 
-  <h1 class="text-4xl sm:text-6xl font-bold font-mono text-white tracking-tight mb-6" data-i18n="hero_title">
-    Exploring Infinite<br><span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-400">Possibilities of Code & AI</span>
-  </h1>
+  <!-- Sleek Dark Glassmorphism Hero Container Card -->
+  <div id="vp-container" class="relative max-w-4xl mx-auto backdrop-blur-xl bg-black/75 border border-emerald-500/30 rounded-3xl p-8 sm:p-12 shadow-[0_0_50px_rgba(16,185,129,0.15)] transition duration-300 hover:border-emerald-500/50">
+    
+    <!-- React Bits VariableProximity Interactive Headline -->
+    <h1 class="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight mb-6 leading-tight select-none cursor-default font-['Roboto_Flex']">
+      <span class="vp-word text-white" data-word="Exploring">Exploring</span>{" "}
+      <span class="vp-word text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-300 to-emerald-500 font-extrabold" data-word="Infinite">Infinite</span>{" "}
+      <span class="vp-word text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-300 to-emerald-500 font-extrabold" data-word="Possibilities">Possibilities</span>{" "}
+      <br class="hidden sm:inline" />
+      <span class="vp-word text-white" data-word="of">of</span>{" "}
+      <span class="vp-word text-white" data-word="Code">Code</span>{" "}
+      <span class="vp-word text-white" data-word="&">&amp;</span>{" "}
+      <span class="vp-word text-amber-400 font-extrabold" data-word="AI">AI</span>
+    </h1>
 
-  <p class="max-w-3xl mx-auto text-base sm:text-lg text-emerald-100/80 mb-10 leading-relaxed font-sans" data-i18n="hero_desc">
-    I'm <strong>Lim Wei Jian</strong>, a Senior AI Student specializing in Multi-Agent RAG Architectures, Computer Vision, and Full-Stack Systems. I craft high-performance, elegant software tools to solve complex real-world challenges.
-  </p>
+    <p class="text-base sm:text-lg text-emerald-200/80 max-w-2xl mx-auto mb-8 font-sans leading-relaxed" data-i18n="hero_desc">
+      I'm <strong class="text-emerald-400 font-mono">Lim Wei Jian</strong>, a Senior AI Student specializing in Multi-Agent RAG Architectures, Computer Vision, and Full-Stack Systems. I craft high-performance, elegant software tools to solve complex real-world challenges.
+    </p>
 
-  <div class="flex flex-wrap justify-center gap-4 font-mono text-sm">
-    <a href="#skill-studio" class="px-6 py-3 rounded-lg bg-emerald-500 text-black font-semibold hover:bg-emerald-400 transition shadow-lg shadow-emerald-500/20" data-i18n="btn_exp_skills">
-      Explore Skill Studio 🚀
-    </a>
-    <a href="#n8n-studio" class="px-6 py-3 rounded-lg bg-emerald-950/80 border border-emerald-500/40 text-emerald-300 hover:bg-emerald-900/60 transition" data-i18n="btn_try_n8n">
-      Try AI Workflow 🤖
-    </a>
+    <div class="flex flex-wrap items-center justify-center gap-4 font-mono text-sm">
+      <a href="#skill-studio" class="px-6 py-3 rounded-xl bg-emerald-500 text-black font-bold hover:bg-emerald-400 transition shadow-lg shadow-emerald-500/25 flex items-center gap-2" data-i18n="btn_skills">
+        Explore Skill Studio 🚀
+      </a>
+      <a href="#n8n-studio" class="px-6 py-3 rounded-xl bg-emerald-950/80 border border-emerald-500/40 text-emerald-300 font-bold hover:bg-emerald-900/60 transition flex items-center gap-2" data-i18n="btn_workflow">
+        Try AI Workflow 🤖
+      </a>
+    </div>
   </div>
 </section>
+
+<script>
+  // VariableProximity Algorithm for Roboto Flex Variable Font
+  const container = document.getElementById('vp-container');
+  const words = document.querySelectorAll('.vp-word');
+  const radius = 120; // proximity radius in px
+
+  // Wrap letters in spans if not already wrapped
+  words.forEach(word => {
+    const text = word.textContent || '';
+    word.innerHTML = '';
+    text.split('').forEach(char => {
+      const span = document.createElement('span');
+      span.className = 'vp-letter inline-block transition-transform duration-75';
+      span.style.fontVariationSettings = "'wght' 400, 'opsz' 9";
+      span.textContent = char;
+      word.appendChild(span);
+    });
+  });
+
+  const letters = document.querySelectorAll('.vp-letter');
+  let mouseX = -999;
+  let mouseY = -999;
+
+  window.addEventListener('mousemove', (e) => {
+    if (!container) return;
+    const rect = container.getBoundingClientRect();
+    mouseX = e.clientX - rect.left;
+    mouseY = e.clientY - rect.top;
+  });
+
+  function animateProximity() {
+    if (container) {
+      const containerRect = container.getBoundingClientRect();
+
+      letters.forEach(letter => {
+        const el = letter as HTMLElement;
+        const rect = el.getBoundingClientRect();
+        const letterX = rect.left + rect.width / 2 - containerRect.left;
+        const letterY = rect.top + rect.height / 2 - containerRect.top;
+
+        const dist = Math.sqrt((mouseX - letterX) ** 2 + (mouseY - letterY) ** 2);
+
+        if (dist < radius) {
+          const norm = 1 - dist / radius; // linear falloff
+          const wght = Math.round(400 + norm * 600); // 400 to 1000
+          const opsz = Math.round(9 + norm * 31);   // 9 to 40
+          el.style.fontVariationSettings = `'wght' ${wght}, 'opsz' ${opsz}`;
+        } else {
+          el.style.fontVariationSettings = "'wght' 400, 'opsz' 9";
+        }
+      });
+    }
+    requestAnimationFrame(animateProximity);
+  }
+
+  requestAnimationFrame(animateProximity);
+</script>
