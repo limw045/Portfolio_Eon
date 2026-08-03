@@ -7,16 +7,16 @@
    -------------------------------------------------------------------------- */
 html[data-theme="ide"] {
   --bg-primary: #000000;
-  --bg-secondary: #050b05;
-  --bg-card: rgba(0, 18, 8, 0.65);
-  --border-color: rgba(0, 255, 102, 0.35);
+  --bg-secondary: #040a04;
+  --bg-card: rgba(0, 16, 7, 0.78);
+  --border-color: rgba(0, 255, 102, 0.25);
   --text-primary: #e0ffe8;
   --text-secondary: #85d697;
   --accent-color: #00ff66;
   --accent-secondary: #00cc44;
   --font-heading: 'JetBrains Mono', monospace;
   --font-body: 'JetBrains Mono', monospace;
-  --card-shadow: 0 10px 30px rgba(0, 255, 102, 0.15);
+  --card-shadow: 0 10px 30px rgba(0, 255, 102, 0.1);
   --border-radius: 8px;
 }
 
@@ -43,18 +43,18 @@ html[data-theme="ide"] .n8n-container,
 html[data-theme="ide"] .tool-card,
 html[data-theme="ide"] .hero-card,
 html[data-theme="ide"] .project-highlight-box {
-  border: 1px solid rgba(0, 255, 102, 0.35) !important;
+  border: 1px solid rgba(0, 255, 102, 0.25) !important;
   border-radius: 8px;
-  background: rgba(0, 18, 8, 0.65) !important;
-  backdrop-filter: blur(6px) !important;
-  -webkit-backdrop-filter: blur(6px) !important;
-  box-shadow: 0 8px 32px rgba(0, 255, 102, 0.12) !important;
+  background: rgba(0, 16, 7, 0.78) !important;
+  backdrop-filter: blur(8px) !important;
+  -webkit-backdrop-filter: blur(8px) !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.8) !important;
 }
 
 html[data-theme="ide"] .ide-body,
 html[data-theme="ide"] .ide-console,
 html[data-theme="ide"] .story-output-box {
-  background: rgba(0, 12, 5, 0.75) !important;
+  background: rgba(0, 10, 4, 0.85) !important;
 }
 
 html[data-theme="ide"] .section-title::before {

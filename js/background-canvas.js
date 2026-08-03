@@ -1,6 +1,7 @@
 /**
  * background-canvas.js - Authentic Pitch-Black & Matrix Green Canvas Engine
- * Renders 60fps continuous full-screen Matrix rain evenly distributed from top to bottom.
+ * Renders 60fps continuous full-screen Matrix rain evenly distributed from top to bottom,
+ * with relaxed fall speed and subtle low-opacity background styling.
  */
 
 export class BackgroundCanvas {
@@ -13,6 +14,7 @@ export class BackgroundCanvas {
     this.height = window.innerHeight;
     this.particles = [];
     this.matrixDrops = [];
+    this.frameIndex = 0;
     this.theme = document.documentElement.getAttribute('data-theme') || 'ide';
 
     this.init();
@@ -66,18 +68,20 @@ export class BackgroundCanvas {
   }
 
   initMatrixRain() {
-    const fontSize = 16;
+    const fontSize = 18;
     const columns = Math.floor(this.width / fontSize);
+    const totalRows = Math.floor(this.height / fontSize);
     this.matrixDrops = [];
     
-    // Initialize drops randomly distributed across the FULL HEIGHT from top to bottom
-    const totalRows = Math.floor(this.height / fontSize);
+    // Distribute drops uniformly across ALL vertical rows from top to bottom
     for (let i = 0; i < columns; i++) {
       this.matrixDrops[i] = Math.floor(Math.random() * totalRows);
     }
   }
 
   animate() {
+    this.frameIndex++;
+
     // Render theme-specific background dynamics
     switch (this.theme) {
       case 'football':
@@ -106,38 +110,42 @@ export class BackgroundCanvas {
   }
 
   drawMatrixRain() {
-    const fontSize = 16;
+    const fontSize = 18;
 
-    // Pitch Black background fade trail (#000000 with 0.08 alpha for authentic matrix trailing)
-    this.ctx.fillStyle = 'rgba(0, 0, 0, 0.08)';
+    // Soft pitch-black fade trail (#000000 with subtle alpha so background is non-distracting)
+    this.ctx.fillStyle = 'rgba(0, 0, 0, 0.15)';
     this.ctx.fillRect(0, 0, this.width, this.height);
 
-    this.ctx.font = '15px "JetBrains Mono", monospace';
+    this.ctx.font = '14px "JetBrains Mono", monospace';
     const chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZλπΣΩ<>{}[]/*=&$#@!';
+
+    const shouldStep = this.frameIndex % 3 === 0; // Relaxed 1/3 fall speed
 
     for (let i = 0; i < this.matrixDrops.length; i++) {
       const text = chars.charAt(Math.floor(Math.random() * chars.length));
       const x = i * fontSize;
       const y = this.matrixDrops[i] * fontSize;
 
-      // Matrix Green Palette: White hot leading character, Neon Green body
+      // Subtle, low-opacity matrix green palette (Background subtle aesthetic)
       const rand = Math.random();
-      if (rand > 0.88) {
-        this.ctx.fillStyle = '#ffffff'; // White leading head
-      } else if (rand > 0.45) {
-        this.ctx.fillStyle = '#00ff66'; // Neon Matrix Green
+      if (rand > 0.92) {
+        this.ctx.fillStyle = 'rgba(220, 255, 230, 0.35)'; // Subtle soft head
+      } else if (rand > 0.5) {
+        this.ctx.fillStyle = 'rgba(0, 255, 102, 0.22)'; // Subtle matrix green
       } else {
-        this.ctx.fillStyle = '#00cc44'; // Classic Matrix Green
+        this.ctx.fillStyle = 'rgba(0, 180, 60, 0.12)'; // Faded tail green
       }
 
       this.ctx.fillText(text, x, y);
 
-      // Reset drop when reaching screen bottom with random probability to maintain uniform density from top to bottom
-      if (y > this.height && Math.random() > 0.975) {
-        this.matrixDrops[i] = 0;
+      // Instant recycling when clearing viewport bottom: ZERO dead off-screen frames!
+      if (shouldStep) {
+        if (y > this.height) {
+          this.matrixDrops[i] = Math.floor(Math.random() * -8); // Reset smoothly above viewport
+        } else {
+          this.matrixDrops[i]++;
+        }
       }
-
-      this.matrixDrops[i]++;
     }
   }
 
