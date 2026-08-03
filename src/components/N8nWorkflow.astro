@@ -1,0 +1,82 @@
+---
+---
+
+<section id="n8n-studio" class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+  <div class="text-center mb-12">
+    <h2 class="text-3xl font-bold font-mono text-white mb-3" data-i18n="section_n8n_title">🤖 n8n AI Story Generator</h2>
+    <p class="text-emerald-200/70 max-w-2xl mx-auto text-sm" data-i18n="section_n8n_subtitle">Input a prompt and observe how multi-agent workflow nodes transform it into a narrative</p>
+  </div>
+
+  <div class="max-w-4xl mx-auto rounded-xl bg-black/80 border border-emerald-500/40 p-6 backdrop-blur-md shadow-2xl">
+    <div class="flex flex-col sm:flex-row gap-3 mb-6">
+      <input
+        type="text"
+        id="n8n-prompt-input"
+        placeholder="Enter story prompt (e.g. A developer discovers a hidden AI node at midnight...)"
+        class="flex-1 px-4 py-3 rounded-lg bg-black/90 border border-emerald-500/30 text-white font-sans text-sm focus:outline-none focus:border-emerald-400"
+      />
+      <button
+        id="n8n-gen-btn"
+        class="px-6 py-3 rounded-lg bg-emerald-500 text-black font-mono font-bold text-sm hover:bg-emerald-400 transition"
+        data-i18n="btn_gen_workflow"
+      >
+        Generate Story Workflow ⚡
+      </button>
+    </div>
+
+    <!-- Node diagram visualizer -->
+    <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6 font-mono text-xs text-center">
+      <div id="n8n-node-1" class="p-3 rounded-lg bg-emerald-950/40 border border-emerald-500/20 text-emerald-400 transition">
+        1. Webhook Trigger ⚡
+      </div>
+      <div id="n8n-node-2" class="p-3 rounded-lg bg-emerald-950/40 border border-emerald-500/20 text-emerald-400 transition">
+        2. Prompt Parser 🧠
+      </div>
+      <div id="n8n-node-3" class="p-3 rounded-lg bg-emerald-950/40 border border-emerald-500/20 text-emerald-400 transition">
+        3. Agent Router 🤖
+      </div>
+      <div id="n8n-node-4" class="p-3 rounded-lg bg-emerald-950/40 border border-emerald-500/20 text-emerald-400 transition">
+        4. Stream Output 📜
+      </div>
+    </div>
+
+    <!-- Output Stream Box -->
+    <div class="p-4 rounded-lg bg-black/90 border border-emerald-500/20 font-mono text-xs text-emerald-300 min-h-[140px] whitespace-pre-wrap">
+      <div id="n8n-output-stream">&gt; Click button above to trigger n8n node scheduling stream...</div>
+    </div>
+  </div>
+</section>
+
+<script>
+  import { generateStoryWorkflow } from '../scripts/n8n-client';
+
+  document.getElementById('n8n-gen-btn')?.addEventListener('click', async () => {
+    const input = document.getElementById('n8n-prompt-input') as HTMLInputElement;
+    const stream = document.getElementById('n8n-output-stream');
+    if (!stream) return;
+
+    const prompt = input.value.trim() || 'A developer discovers a hidden AI node at midnight...';
+    stream.innerHTML = '> Initializing n8n node pipeline...';
+
+    // Reset node highlights
+    ['n8n-node-1', 'n8n-node-2', 'n8n-node-3', 'n8n-node-4'].forEach(id => {
+      const node = document.getElementById(id);
+      if (node) {
+        node.className = 'p-3 rounded-lg bg-emerald-950/40 border border-emerald-500/20 text-emerald-400 transition';
+      }
+    });
+
+    await generateStoryWorkflow(
+      prompt,
+      (nodeId) => {
+        const node = document.getElementById(nodeId);
+        if (node) {
+          node.className = 'p-3 rounded-lg bg-emerald-500 border border-emerald-400 text-black font-bold shadow-lg shadow-emerald-500/30 transition scale-105';
+        }
+      },
+      (chunk) => {
+        stream.innerHTML += chunk;
+      }
+    );
+  });
+</script>

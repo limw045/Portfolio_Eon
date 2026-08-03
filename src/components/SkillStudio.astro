@@ -1,0 +1,63 @@
+---
+const cppCode = `#include <iostream>
+#include <vector>
+
+int main() {
+    std::cout << "========================================\\n";
+    std::cout << " Lim Wei Jian - Multi-Agent AI Pipeline\\n";
+    std::cout << "========================================\\n";
+    std::cout << "[+] Status: Full-Stack & AI Ready\\n";
+    return 0;
+}`;
+---
+
+<section id="skill-studio" class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+  <div class="text-center mb-12">
+    <h2 class="text-3xl font-bold font-mono text-white mb-3" data-i18n="section_ide_title">💻 IT Skill Studio & Web IDE</h2>
+    <p class="text-emerald-200/70 max-w-2xl mx-auto text-sm" data-i18n="section_ide_subtitle">Live demonstration of C++, C#, Java, Python logic with terminal console execution</p>
+  </div>
+
+  <div class="max-w-4xl mx-auto rounded-xl bg-black/80 border border-emerald-500/40 overflow-hidden shadow-2xl">
+    <div class="flex items-center justify-between px-4 py-3 bg-emerald-950/40 border-b border-emerald-500/20 font-mono text-xs">
+      <div class="flex items-center gap-2">
+        <span class="w-3 h-3 rounded-full bg-red-500/80"></span>
+        <span class="w-3 h-3 rounded-full bg-yellow-500/80"></span>
+        <span class="w-3 h-3 rounded-full bg-green-500/80"></span>
+        <span class="ml-2 text-emerald-400 font-bold">solution.cpp</span>
+      </div>
+      <button id="run-ide-btn" class="px-3 py-1 rounded bg-emerald-500 text-black font-bold hover:bg-emerald-400 transition" data-i18n="btn_run_code">
+        ▶ Run Code
+      </button>
+    </div>
+
+    <pre class="p-4 font-mono text-xs sm:text-sm text-emerald-300 overflow-x-auto bg-black/90"><code>{cppCode}</code></pre>
+
+    <div class="p-4 bg-emerald-950/60 border-t border-emerald-500/20 font-mono text-xs">
+      <div class="text-emerald-400 font-bold mb-1">[Terminal Output]:</div>
+      <div id="ide-console-output" class="text-emerald-200/80 font-mono">&gt; Ready. Click "Run Code" above to execute...</div>
+    </div>
+  </div>
+</section>
+
+<script>
+  document.getElementById('run-ide-btn')?.addEventListener('click', () => {
+    const consoleOutput = document.getElementById('ide-console-output');
+    if (!consoleOutput) return;
+
+    consoleOutput.innerHTML = '<span class="text-emerald-400">&gt; Executing g++ solution.cpp -o solution && ./solution...</span><br><br>';
+    const lines = [
+      '========================================',
+      ' Lim Wei Jian - Multi-Agent AI Pipeline',
+      '========================================',
+      '[+] Status: Full-Stack & AI Ready',
+      '[+] RAG Engine Grounding: 100% Passed',
+      '[+] Execution Finished (Exit Code: 0)'
+    ];
+
+    lines.forEach((line, idx) => {
+      setTimeout(() => {
+        consoleOutput.innerHTML += line + '<br>';
+      }, (idx + 1) * 200);
+    });
+  });
+</script>

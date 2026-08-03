@@ -1,30 +1,27 @@
 @echo off
 chcp 65001 >nul
-title 部署更新至 Cloudflare Pages
+title 编译并部署 Astro 项目至 Cloudflare Pages
 
 echo ===================================================
-echo   🚀 正在上传并部署更新至 Cloudflare Pages...
+echo   🚀 正在编译 Astro SSG 静态产物...
 echo ===================================================
 echo.
 
-rem 请在运行此脚本前，通过环境变量提供 CLOUDFLARE_API_TOKEN。
-if not defined CLOUDFLARE_API_TOKEN if not exist ".env" (
-    echo [错误] 未检测到 CLOUDFLARE_API_TOKEN 环境变量。
-    echo 请设置环境变量或在项目根目录创建 .env 后再重试。
+call npx -y astro build
+
+if %ERRORLEVEL% NEQ 0 (
+    echo ❌ Astro 编译失败，终止上传。
     pause
-    exit /b 1
+    exit /b %ERRORLEVEL%
 )
 
-if exist ".env" (
-    npx -y wrangler pages deploy . --project-name=weijian-portfolio --branch=main --commit-dirty=true --env-file .env
-) else (
-    npx -y wrangler pages deploy . --project-name=weijian-portfolio --branch=main --commit-dirty=true
-)
+echo.
+echo ===================================================
+echo   🌎 正在上传并部署 dist/ 至 Cloudflare Pages...
+echo ===================================================
+echo.
 
-if errorlevel 1 (
-    echo [错误] 部署失败。
-    exit /b 1
-)
+call npx -y wrangler pages deploy dist --project-name=weijian-portfolio --branch=main --commit-dirty=true
 
 echo.
 echo ===================================================

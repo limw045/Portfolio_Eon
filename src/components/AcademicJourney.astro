@@ -1,0 +1,46 @@
+---
+import { getCollection } from 'astro:content';
+
+const academicEntries = await getCollection('academic');
+const sortedAcademic = academicEntries.sort((a, b) => a.data.order - b.data.order);
+---
+
+<section id="academic" class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+  <div class="text-center mb-16">
+    <h2 class="text-3xl font-bold font-mono text-white mb-3" data-i18n="section_acad_title">🎓 Academic Journey & Project Research</h2>
+    <p class="text-emerald-200/70 max-w-2xl mx-auto text-sm" data-i18n="section_acad_subtitle">From STEM foundation to Diploma Full-Stack Team Lead and Degree AI breakthroughs</p>
+  </div>
+
+  <div class="space-y-8 max-w-4xl mx-auto">
+    {sortedAcademic.map(async (entry) => {
+      const { Content } = await entry.render();
+      return (
+        <div class="p-6 rounded-xl bg-black/60 border border-emerald-500/30 backdrop-blur-sm shadow-xl">
+          <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+            <span class="px-3 py-1 rounded-full bg-emerald-950/80 border border-emerald-500/40 text-emerald-400 font-mono text-xs font-semibold">
+              {entry.data.period}
+            </span>
+            {entry.data.cgpa && (
+              <span class="text-xs font-mono text-emerald-300">
+                CGPA: <strong class="text-emerald-400">{entry.data.cgpa}</strong>
+              </span>
+            )}
+          </div>
+          <h3 class="text-xl font-bold font-mono text-white mb-1">{entry.data.title}</h3>
+          <h4 class="text-sm font-mono text-emerald-400/80 mb-4">{entry.data.institution}</h4>
+          
+          <div class="text-sm text-emerald-100/90 leading-relaxed font-sans mb-4">
+            <Content />
+          </div>
+
+          {entry.data.fypTitle && (
+            <div class="mt-4 p-4 rounded-lg bg-emerald-950/40 border border-emerald-500/20">
+              <div class="font-mono text-xs font-bold text-emerald-300 mb-1">{entry.data.fypTitle}</div>
+              <div class="text-xs text-emerald-200/80">{entry.data.fypDesc}</div>
+            </div>
+          )}
+        </div>
+      );
+    })}
+  </div>
+</section>

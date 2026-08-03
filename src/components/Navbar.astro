@@ -1,0 +1,46 @@
+---
+---
+
+<header class="sticky top-0 z-50 bg-black/80 backdrop-blur-md border-b border-emerald-500/20">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+    <a href="#" class="font-mono font-bold text-lg text-emerald-400 hover:text-emerald-300 transition">
+      Lim Wei Jian<span class="text-xs ml-2 px-2 py-0.5 rounded bg-emerald-500/20 border border-emerald-500/30">AI & Full-Stack</span>
+    </a>
+
+    <nav class="hidden md:flex items-center gap-6 font-mono text-sm">
+      <a href="#hero" class="text-emerald-200/80 hover:text-emerald-400 transition" data-i18n="nav_story">Origin Story</a>
+      <a href="#academic" class="text-emerald-200/80 hover:text-emerald-400 transition" data-i18n="nav_academic">Academic Journey</a>
+      <a href="#culture" class="text-emerald-200/80 hover:text-emerald-400 transition" data-i18n="nav_culture">Cultural Hub</a>
+      <a href="#skill-studio" class="text-emerald-200/80 hover:text-emerald-400 transition" data-i18n="nav_skills">Skill Studio</a>
+      <a href="#micro-tools" class="text-emerald-200/80 hover:text-emerald-400 transition" data-i18n="nav_tools">Micro-Tools</a>
+    </nav>
+
+    <div class="flex items-center gap-3 font-mono text-xs">
+      <button id="lang-btn" class="px-3 py-1.5 rounded bg-emerald-950/60 border border-emerald-500/30 text-emerald-300 hover:bg-emerald-900/50 transition">
+        🌐 EN / 中文
+      </button>
+    </div>
+  </div>
+</header>
+
+<script>
+  import { dictionaries, type Language } from '../scripts/i18n';
+
+  let currentLang: Language = 'en';
+
+  function updateLanguage(lang: Language) {
+    currentLang = lang;
+    document.documentElement.lang = lang;
+    const dict = dictionaries[lang];
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n') as keyof typeof dict;
+      if (key && dict[key]) {
+        el.innerHTML = dict[key];
+      }
+    });
+  }
+
+  document.getElementById('lang-btn')?.addEventListener('click', () => {
+    updateLanguage(currentLang === 'en' ? 'zh' : 'en');
+  });
+</script>

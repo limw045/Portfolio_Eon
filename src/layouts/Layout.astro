@@ -1,0 +1,39 @@
+---
+import Navbar from '../components/Navbar.astro';
+import LetterGlitchCanvas from '../components/LetterGlitchCanvas.astro';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = "Lim Wei Jian | Senior AI Student & Full-Stack Developer",
+  description = "Personal Portfolio of Lim Wei Jian. Senior AI Student @ MMU, specializing in Multi-Agent RAG Architectures and Full-Stack Systems."
+} = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth bg-black text-emerald-100">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  </head>
+  <body class="relative min-h-screen font-sans bg-black antialiased selection:bg-emerald-500 selection:text-black">
+    <LetterGlitchCanvas />
+    <Navbar />
+    <main>
+      <slot />
+    </main>
+
+    <footer class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 text-center font-mono text-xs text-emerald-400/60 border-t border-emerald-500/20 mt-20">
+      <p data-i18n="copyright">© 2026 Lim Wei Jian. Built with Astro + TypeScript + Content Collections. Hosted on Cloudflare Pages.</p>
+    </footer>
+  </body>
+</html>

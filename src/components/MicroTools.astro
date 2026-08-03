@@ -1,0 +1,61 @@
+---
+---
+
+<section id="micro-tools" class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+  <div class="text-center mb-12">
+    <h2 class="text-3xl font-bold font-mono text-white mb-3" data-i18n="section_tools_title">🛠️ Micro-Tools Playground</h2>
+    <p class="text-emerald-200/70 max-w-2xl mx-auto text-sm" data-i18n="section_tools_subtitle">Interactive micro-tools and extensible slots</p>
+  </div>
+
+  <div class="max-w-4xl mx-auto p-6 rounded-xl bg-black/80 border border-emerald-500/40 backdrop-blur-md shadow-2xl">
+    <div class="flex items-center gap-3 mb-4">
+      <span class="text-2xl">🎨</span>
+      <div>
+        <h3 class="text-lg font-bold font-mono text-white" data-i18n="tool_tweaker_title">Live CSS Variable Tweaker</h3>
+        <p class="text-xs text-emerald-200/70" data-i18n="tool_tweaker_desc">Adjust glass blur, border radius, and glow intensity live, then export clean CSS!</p>
+      </div>
+    </div>
+
+    <div class="space-y-4 font-mono text-xs mb-6">
+      <div>
+        <label class="block text-emerald-300 mb-1" data-i18n="label_blur">Glass Blur (10px - 30px): <span id="val-blur" class="text-emerald-400">12px</span></label>
+        <input type="range" id="slider-blur" min="4" max="30" value="12" class="w-full accent-emerald-400" />
+      </div>
+      <div>
+        <label class="block text-emerald-300 mb-1" data-i18n="label_radius">Border Radius (4px - 24px): <span id="val-radius" class="text-emerald-400">12px</span></label>
+        <input type="range" id="slider-radius" min="4" max="24" value="12" class="w-full accent-emerald-400" />
+      </div>
+    </div>
+
+    <button id="export-css-btn" class="px-4 py-2 rounded bg-emerald-500 text-black font-mono font-bold text-xs hover:bg-emerald-400 transition" data-i18n="btn_export_css">
+      Export CSS Variables 📋
+    </button>
+  </div>
+</section>
+
+<script>
+  const sliderBlur = document.getElementById('slider-blur') as HTMLInputElement;
+  const sliderRadius = document.getElementById('slider-radius') as HTMLInputElement;
+
+  sliderBlur?.addEventListener('input', (e) => {
+    const val = (e.target as HTMLInputElement).value + 'px';
+    const disp = document.getElementById('val-blur');
+    if (disp) disp.innerText = val;
+    document.documentElement.style.setProperty('--glass-blur', val);
+  });
+
+  sliderRadius?.addEventListener('input', (e) => {
+    const val = (e.target as HTMLInputElement).value + 'px';
+    const disp = document.getElementById('val-radius');
+    if (disp) disp.innerText = val;
+    document.documentElement.style.setProperty('--card-radius', val);
+  });
+
+  document.getElementById('export-css-btn')?.addEventListener('click', () => {
+    const blur = sliderBlur?.value || '12';
+    const radius = sliderRadius?.value || '12';
+    const code = `:root {\n  --glass-blur: ${blur}px;\n  --card-radius: ${radius}px;\n}`;
+    navigator.clipboard.writeText(code);
+    alert('CSS copied to clipboard!\n\n' + code);
+  });
+</script>
