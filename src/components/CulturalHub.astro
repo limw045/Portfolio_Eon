@@ -205,13 +205,13 @@
             </div>
           </div>
 
-          <!-- Music Artists Card with Direct In-Browser Playable Tracklist Player -->
+          <!-- Music Artists Card with Resilient In-Browser Audio Stream & YouTube Link Option -->
           <div class="p-5 rounded-xl bg-black/60 border border-emerald-500/30 backdrop-blur-md relative group hover:border-emerald-500/60 transition">
             <div class="flex items-center gap-3 mb-3">
               <span class="text-2xl p-2 rounded-lg bg-emerald-950/80 border border-emerald-500/30">🎵</span>
               <div>
                 <h3 class="text-base sm:text-lg font-bold text-white font-mono" data-i18n="cult_music_title">Music Groove (R&B & Soul)</h3>
-                <span class="text-[11px] text-purple-400/60">Click track to stream live in-browser player!</span>
+                <span class="text-[11px] text-purple-400/60">Click artist cards to view & stream songs</span>
               </div>
             </div>
 
@@ -235,26 +235,37 @@
                     </div>
                   </div>
                   <span class="text-[11px] px-2.5 py-0.5 rounded-full bg-purple-500/20 font-bold flex items-center gap-1">
-                    🎵 In-Browser Player ▾
+                    🎵 Song Tracklist ▾
                   </span>
                 </div>
 
-                <!-- In-Browser Playable Tracklist Drawer -->
+                <!-- Playable Tracklist Drawer -->
                 <div id="playlist-khalil" class="mt-3 pt-3 border-t border-purple-500/20 hidden space-y-2">
-                  <div class="text-[10px] text-purple-400 uppercase tracking-wider font-bold">🎵 Click song to play live in-browser:</div>
+                  <div class="text-[10px] text-purple-400 uppercase tracking-wider font-bold">🎵 Featured Tracks:</div>
                   
-                  <button class="play-track-btn w-full text-left flex items-center justify-between p-2 rounded bg-purple-900/40 hover:bg-purple-800/60 transition text-purple-200" data-video="Gz8LzN6BwA8" data-title="方大同 - 爱爱爱">
+                  <div class="flex items-center justify-between p-2 rounded bg-purple-900/40 text-purple-200">
                     <span>1. 《爱爱爱》 (Love Love Love)</span>
-                    <span class="text-[10px] px-2 py-0.5 rounded bg-purple-500/30 text-purple-300 font-bold">▶ Live Stream</span>
-                  </button>
-                  <button class="play-track-btn w-full text-left flex items-center justify-between p-2 rounded bg-purple-900/40 hover:bg-purple-800/60 transition text-purple-200" data-video="U6qPvhgGj8w" data-title="方大同 - 三人游">
+                    <div class="flex items-center gap-2">
+                      <button class="play-track-btn px-2 py-0.5 rounded bg-purple-500/30 text-purple-300 hover:bg-purple-500/50 transition font-bold" data-video="Gz8LzN6BwA8" data-search="方大同 爱爱爱" data-title="方大同 - 爱爱爱">▶ Play Embed</button>
+                      <a href="https://music.youtube.com/search?q=方大同+爱爱爱" target="_blank" rel="noopener noreferrer" class="px-2 py-0.5 rounded bg-purple-950 border border-purple-500/40 text-purple-300 hover:text-white transition text-[10px]">🌐 YT Music</a>
+                    </div>
+                  </div>
+
+                  <div class="flex items-center justify-between p-2 rounded bg-purple-900/40 text-purple-200">
                     <span>2. 《三人游》 (Three of Us)</span>
-                    <span class="text-[10px] px-2 py-0.5 rounded bg-purple-500/30 text-purple-300 font-bold">▶ Live Stream</span>
-                  </button>
-                  <button class="play-track-btn w-full text-left flex items-center justify-between p-2 rounded bg-purple-900/40 hover:bg-purple-800/60 transition text-purple-200" data-video="lU63q5-M5XU" data-title="方大同 - 特别的人">
+                    <div class="flex items-center gap-2">
+                      <button class="play-track-btn px-2 py-0.5 rounded bg-purple-500/30 text-purple-300 hover:bg-purple-500/50 transition font-bold" data-video="U6qPvhgGj8w" data-search="方大同 三人游" data-title="方大同 - 三人游">▶ Play Embed</button>
+                      <a href="https://music.youtube.com/search?q=方大同+三人游" target="_blank" rel="noopener noreferrer" class="px-2 py-0.5 rounded bg-purple-950 border border-purple-500/40 text-purple-300 hover:text-white transition text-[10px]">🌐 YT Music</a>
+                    </div>
+                  </div>
+
+                  <div class="flex items-center justify-between p-2 rounded bg-purple-900/40 text-purple-200">
                     <span>3. 《特别的人》 (Special Person)</span>
-                    <span class="text-[10px] px-2 py-0.5 rounded bg-purple-500/30 text-purple-300 font-bold">▶ Live Stream</span>
-                  </button>
+                    <div class="flex items-center gap-2">
+                      <button class="play-track-btn px-2 py-0.5 rounded bg-purple-500/30 text-purple-300 hover:bg-purple-500/50 transition font-bold" data-video="lU63q5-M5XU" data-search="方大同 特别的人" data-title="方大同 - 特别的人">▶ Play Embed</button>
+                      <a href="https://music.youtube.com/search?q=方大同+特别的人" target="_blank" rel="noopener noreferrer" class="px-2 py-0.5 rounded bg-purple-950 border border-purple-500/40 text-purple-300 hover:text-white transition text-[10px]">🌐 YT Music</a>
+                    </div>
+                  </div>
                 </div>
               </div>
 
@@ -271,26 +282,37 @@
                     </div>
                   </div>
                   <span class="text-[11px] px-2.5 py-0.5 rounded-full bg-blue-500/20 font-bold flex items-center gap-1">
-                    🎵 In-Browser Player ▾
+                    🎵 Song Tracklist ▾
                   </span>
                 </div>
 
-                <!-- In-Browser Playable Tracklist Drawer -->
+                <!-- Playable Tracklist Drawer -->
                 <div id="playlist-david" class="mt-3 pt-3 border-t border-blue-500/20 hidden space-y-2">
-                  <div class="text-[10px] text-blue-400 uppercase tracking-wider font-bold">🎵 Click song to play live in-browser:</div>
+                  <div class="text-[10px] text-blue-400 uppercase tracking-wider font-bold">🎵 Featured Tracks:</div>
                   
-                  <button class="play-track-btn w-full text-left flex items-center justify-between p-2 rounded bg-blue-900/40 hover:bg-blue-800/60 transition text-blue-200" data-video="Q302f8uHhF0" data-title="陶喆 - 爱很简单">
+                  <div class="flex items-center justify-between p-2 rounded bg-blue-900/40 text-blue-200">
                     <span>1. 《爱很简单》 (I Love You)</span>
-                    <span class="text-[10px] px-2 py-0.5 rounded bg-blue-500/30 text-blue-300 font-bold">▶ Live Stream</span>
-                  </button>
-                  <button class="play-track-btn w-full text-left flex items-center justify-between p-2 rounded bg-blue-900/40 hover:bg-blue-800/60 transition text-blue-200" data-video="XQ9_08p3F2Q" data-title="陶喆 - 普通朋友">
+                    <div class="flex items-center gap-2">
+                      <button class="play-track-btn px-2 py-0.5 rounded bg-blue-500/30 text-blue-300 hover:bg-blue-500/50 transition font-bold" data-video="Q302f8uHhF0" data-search="陶喆 爱很简单" data-title="陶喆 - 爱很简单">▶ Play Embed</button>
+                      <a href="https://music.youtube.com/search?q=陶喆+爱很简单" target="_blank" rel="noopener noreferrer" class="px-2 py-0.5 rounded bg-blue-950 border border-blue-500/40 text-blue-300 hover:text-white transition text-[10px]">🌐 YT Music</a>
+                    </div>
+                  </div>
+
+                  <div class="flex items-center justify-between p-2 rounded bg-blue-900/40 text-blue-200">
                     <span>2. 《普通朋友》 (Regular Friends)</span>
-                    <span class="text-[10px] px-2 py-0.5 rounded bg-blue-500/30 text-blue-300 font-bold">▶ Live Stream</span>
-                  </button>
-                  <button class="play-track-btn w-full text-left flex items-center justify-between p-2 rounded bg-blue-900/40 hover:bg-blue-800/60 transition text-blue-200" data-video="JzV-0_x9X9g" data-title="陶喆 - 黑色柳丁">
+                    <div class="flex items-center gap-2">
+                      <button class="play-track-btn px-2 py-0.5 rounded bg-blue-500/30 text-blue-300 hover:bg-blue-500/50 transition font-bold" data-video="XQ9_08p3F2Q" data-search="陶喆 普通朋友" data-title="陶喆 - 普通朋友">▶ Play Embed</button>
+                      <a href="https://music.youtube.com/search?q=陶喆+普通朋友" target="_blank" rel="noopener noreferrer" class="px-2 py-0.5 rounded bg-blue-950 border border-blue-500/40 text-blue-300 hover:text-white transition text-[10px]">🌐 YT Music</a>
+                    </div>
+                  </div>
+
+                  <div class="flex items-center justify-between p-2 rounded bg-blue-900/40 text-blue-200">
                     <span>3. 《黑色柳丁》 (Black Tangerine)</span>
-                    <span class="text-[10px] px-2 py-0.5 rounded bg-blue-500/30 text-blue-300 font-bold">▶ Live Stream</span>
-                  </button>
+                    <div class="flex items-center gap-2">
+                      <button class="play-track-btn px-2 py-0.5 rounded bg-blue-500/30 text-blue-300 hover:bg-blue-500/50 transition font-bold" data-video="JzV-0_x9X9g" data-search="陶喆 黑色柳丁" data-title="陶喆 - 黑色柳丁">▶ Play Embed</button>
+                      <a href="https://music.youtube.com/search?q=陶喆+黑色柳丁" target="_blank" rel="noopener noreferrer" class="px-2 py-0.5 rounded bg-blue-950 border border-blue-500/40 text-blue-300 hover:text-white transition text-[10px]">🌐 YT Music</a>
+                    </div>
+                  </div>
                 </div>
               </div>
 
@@ -307,39 +329,55 @@
                     </div>
                   </div>
                   <span class="text-[11px] px-2.5 py-0.5 rounded-full bg-amber-500/20 font-bold flex items-center gap-1">
-                    🎵 In-Browser Player ▾
+                    🎵 Song Tracklist ▾
                   </span>
                 </div>
 
-                <!-- In-Browser Playable Tracklist Drawer -->
+                <!-- Playable Tracklist Drawer -->
                 <div id="playlist-bruno" class="mt-3 pt-3 border-t border-amber-500/20 hidden space-y-2">
-                  <div class="text-[10px] text-amber-400 uppercase tracking-wider font-bold">🎵 Click song to play live in-browser:</div>
+                  <div class="text-[10px] text-amber-400 uppercase tracking-wider font-bold">🎵 Featured Tracks:</div>
                   
-                  <button class="play-track-btn w-full text-left flex items-center justify-between p-2 rounded bg-amber-900/40 hover:bg-amber-800/60 transition text-amber-200" data-video="adLGH7J3bmM" data-title="Bruno Mars - Leave The Door Open">
+                  <div class="flex items-center justify-between p-2 rounded bg-amber-900/40 text-amber-200">
                     <span>1. Leave The Door Open</span>
-                    <span class="text-[10px] px-2 py-0.5 rounded bg-amber-500/30 text-amber-300 font-bold">▶ Live Stream</span>
-                  </button>
-                  <button class="play-track-btn w-full text-left flex items-center justify-between p-2 rounded bg-amber-900/40 hover:bg-amber-800/60 transition text-amber-200" data-video="UqyT8IEBkvY" data-title="Bruno Mars - 24K Magic">
+                    <div class="flex items-center gap-2">
+                      <button class="play-track-btn px-2 py-0.5 rounded bg-amber-500/30 text-amber-300 hover:bg-amber-500/50 transition font-bold" data-video="adLGH7J3bmM" data-search="Bruno Mars Leave The Door Open" data-title="Bruno Mars - Leave The Door Open">▶ Play Embed</button>
+                      <a href="https://music.youtube.com/search?q=Bruno+Mars+Leave+The+Door+Open" target="_blank" rel="noopener noreferrer" class="px-2 py-0.5 rounded bg-amber-950 border border-amber-500/40 text-amber-300 hover:text-white transition text-[10px]">🌐 YT Music</a>
+                    </div>
+                  </div>
+
+                  <div class="flex items-center justify-between p-2 rounded bg-amber-900/40 text-amber-200">
                     <span>2. 24K Magic</span>
-                    <span class="text-[10px] px-2 py-0.5 rounded bg-amber-500/30 text-amber-300 font-bold">▶ Live Stream</span>
-                  </button>
-                  <button class="play-track-btn w-full text-left flex items-center justify-between p-2 rounded bg-amber-900/40 hover:bg-amber-800/60 transition text-amber-200" data-video="OPf0YbXqDm0" data-title="Mark Ronson ft. Bruno Mars - Uptown Funk">
+                    <div class="flex items-center gap-2">
+                      <button class="play-track-btn px-2 py-0.5 rounded bg-amber-500/30 text-amber-300 hover:bg-amber-500/50 transition font-bold" data-video="UqyT8IEBkvY" data-search="Bruno Mars 24K Magic" data-title="Bruno Mars - 24K Magic">▶ Play Embed</button>
+                      <a href="https://music.youtube.com/search?q=Bruno+Mars+24K+Magic" target="_blank" rel="noopener noreferrer" class="px-2 py-0.5 rounded bg-amber-950 border border-amber-500/40 text-amber-300 hover:text-white transition text-[10px]">🌐 YT Music</a>
+                    </div>
+                  </div>
+
+                  <div class="flex items-center justify-between p-2 rounded bg-amber-900/40 text-amber-200">
                     <span>3. Uptown Funk</span>
-                    <span class="text-[10px] px-2 py-0.5 rounded bg-amber-500/30 text-amber-300 font-bold">▶ Live Stream</span>
-                  </button>
+                    <div class="flex items-center gap-2">
+                      <button class="play-track-btn px-2 py-0.5 rounded bg-amber-500/30 text-amber-300 hover:bg-amber-500/50 transition font-bold" data-video="OPf0YbXqDm0" data-search="Bruno Mars Uptown Funk" data-title="Bruno Mars - Uptown Funk">▶ Play Embed</button>
+                      <a href="https://music.youtube.com/search?q=Bruno+Mars+Uptown+Funk" target="_blank" rel="noopener noreferrer" class="px-2 py-0.5 rounded bg-amber-950 border border-amber-500/40 text-amber-300 hover:text-white transition text-[10px]">🌐 YT Music</a>
+                    </div>
+                  </div>
                 </div>
               </div>
 
               <!-- Shared In-Browser Embedded Live Player Drawer -->
-              <div id="in-browser-player-box" class="p-3 rounded-xl bg-black/90 border border-purple-500/40 hidden space-y-2">
+              <div id="in-browser-player-box" class="p-3.5 rounded-xl bg-[#0a0b12] border border-purple-500/40 hidden space-y-3 shadow-2xl">
                 <div class="flex items-center justify-between text-xs text-purple-300 font-bold border-b border-purple-500/20 pb-2">
                   <span id="player-track-title" class="flex items-center gap-1.5">
-                    <span>🎵</span> Playing in Browser...
+                    <span>🎵</span> Now Playing in Browser...
                   </span>
-                  <button id="close-player-btn" class="hover:text-purple-100 font-bold">✕ Close</button>
+                  <div class="flex items-center gap-3">
+                    <a id="external-yt-link" href="#" target="_blank" rel="noopener noreferrer" class="text-[10px] px-2 py-0.5 rounded bg-purple-500/20 text-purple-300 hover:text-white transition">🌐 Open YT Music</a>
+                    <button id="close-player-btn" class="hover:text-purple-100 font-bold text-sm">✕</button>
+                  </div>
                 </div>
-                <div class="relative w-full aspect-video rounded-lg overflow-hidden border border-purple-500/20">
-                  <iframe id="browser-player-iframe" class="w-full h-full" src="" title="Live In-Browser Music Player" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+
+                <!-- IFrame Player Container -->
+                <div class="relative w-full aspect-video rounded-lg overflow-hidden border border-purple-500/30 bg-black">
+                  <iframe id="browser-player-iframe" class="w-full h-full" src="" title="Live In-Browser Music Player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
               </div>
 
@@ -356,7 +394,7 @@
   // Music Playlist Drawer Toggle
   document.querySelectorAll('.music-artist-card').forEach(card => {
     card.addEventListener('click', (e) => {
-      if ((e.target as HTMLElement).closest('.play-track-btn') || (e.target as HTMLElement).closest('iframe')) return;
+      if ((e.target as HTMLElement).closest('.play-track-btn') || (e.target as HTMLElement).closest('a')) return;
 
       const target = card.getAttribute('data-target');
       if (!target) return;
@@ -371,17 +409,23 @@
   const playerBox = document.getElementById('in-browser-player-box');
   const playerIframe = document.getElementById('browser-player-iframe') as HTMLIFrameElement;
   const playerTitle = document.getElementById('player-track-title');
+  const externalYtLink = document.getElementById('external-yt-link') as HTMLAnchorElement;
   const closePlayerBtn = document.getElementById('close-player-btn');
 
   document.querySelectorAll('.play-track-btn').forEach(btn => {
     btn.addEventListener('click', (e) => {
       e.stopPropagation();
       const videoId = btn.getAttribute('data-video');
+      const search = btn.getAttribute('data-search');
       const title = btn.getAttribute('data-title');
 
       if (videoId && playerIframe && playerBox) {
-        playerIframe.src = `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1`;
+        // Standard YouTube embed URL (works across all regions)
+        playerIframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`;
         if (playerTitle) playerTitle.innerHTML = `🎵 Now Playing: <span class="text-white">${title}</span>`;
+        if (externalYtLink && search) {
+          externalYtLink.href = `https://music.youtube.com/search?q=${encodeURIComponent(search)}`;
+        }
         playerBox.classList.remove('hidden');
         playerBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
       }
