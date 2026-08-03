@@ -1,7 +1,7 @@
 /**
- * background-canvas.js - Ultra-Performance 60FPS Interactive Matrix Rain Engine
- * Optimized for zero frame drops: avoids expensive canvas shadow state changes,
- * uses fast bounding-box distance pre-filtering, and maintains silk-smooth 60fps.
+ * background-canvas.js - LetterGlitch Engine Adaptation
+ * Ported from React Bits <LetterGlitch /> for Vanilla HTML5 Canvas.
+ * Renders full-screen letter glitch grid with smooth RGB color transitions and controlled opacity.
  */
 
 export class BackgroundCanvas {
@@ -13,17 +13,24 @@ export class BackgroundCanvas {
     this.width = window.innerWidth;
     this.height = Math.max(document.documentElement.scrollHeight, document.body.scrollHeight, window.innerHeight);
     
-    this.particles = [];
-    this.matrixDrops = [];
-    this.matrixChars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZλπΣΩ<>{}[]/*=&$#@!';
-    this.matrixSpeedStep = 2;
-    this.frameIndex = 0;
-    this.theme = document.documentElement.getAttribute('data-theme') || 'ide';
+    // Config properties corresponding to React Bits LetterGlitch Props
+    this.glitchColors = ['#2b4539', '#61dca3', '#61b3dc']; // Greenish cyan glitch palette
+    this.glitchSpeed = 50; // ms per glitch tick
+    this.smooth = true;
+    this.characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$&*()-_+=/[]{};:<>.,0123456789';
+    this.subtleOpacity = 0.35; // Lower opacity as requested for background subtlety
 
-    // Interactive Mouse Tracking
-    this.mouseX = -1000;
-    this.mouseY = -1000;
-    this.pulses = [];
+    this.fontSize = 16;
+    this.charWidth = 12;
+    this.charHeight = 20;
+
+    this.letters = [];
+    this.grid = { columns: 0, rows: 0 };
+    this.lastGlitchTime = Date.now();
+    this.theme = document.documentElement.getAttribute('data-theme') || 'ide';
+    this.particles = [];
+
+    this.lettersAndSymbols = Array.from(this.characters);
 
     this.init();
   }
@@ -32,116 +39,160 @@ export class BackgroundCanvas {
     this.resize();
     window.addEventListener('resize', () => this.resize());
     
-    // Recalculate full document height after page load & dynamic component renders
     window.addEventListener('load', () => this.resize());
     setTimeout(() => this.resize(), 600);
 
-    // Mouse interactivity listeners (throttled scroll offset)
-    window.addEventListener('mousemove', (e) => {
-      this.mouseX = e.clientX;
-      this.mouseY = e.clientY + window.scrollY;
-    });
-
-    window.addEventListener('mouseleave', () => {
-      this.mouseX = -1000;
-      this.mouseY = -1000;
-    });
-
-    window.addEventListener('click', (e) => {
-      if (this.pulses.length < 3) { // Limit active pulses to max 3
-        this.pulses.push({
-          x: e.clientX,
-          y: e.clientY + window.scrollY,
-          radius: 10,
-          maxRadius: 180,
-          alpha: 0.8
-        });
-      }
-    });
-
-    // Listen for live theme changes & custom matrix trigger/config
     window.addEventListener('themechange', (e) => {
       this.theme = e.detail.theme;
       this.createParticles();
-      this.initMatrixRain();
+      this.resize();
     });
 
     window.addEventListener('matrixmode', () => {
       this.theme = 'ide';
       document.documentElement.setAttribute('data-theme', 'ide');
-      this.initMatrixRain();
-    });
-
-    window.addEventListener('matrixconfig', (e) => {
-      if (e.detail) {
-        if (e.detail.speed) {
-          if (e.detail.speed === 'slow') this.matrixSpeedStep = 4;
-          else if (e.detail.speed === 'fast') this.matrixSpeedStep = 1;
-          else this.matrixSpeedStep = 2;
-        }
-        if (e.detail.charset) {
-          if (e.detail.charset === 'binary') this.matrixChars = '01';
-          else if (e.detail.charset === 'hex') this.matrixChars = '0123456789ABCDEF';
-          else this.matrixChars = e.detail.charset;
-        }
-        if (e.detail.density) {
-          this.initMatrixRain(e.detail.density);
-        }
-      }
+      this.resize();
     });
 
     this.createParticles();
-    this.initMatrixRain();
     this.animate();
   }
 
   resize() {
     this.width = window.innerWidth;
-    const docHeight = Math.max(
+    this.height = Math.max(
       document.documentElement.scrollHeight,
       document.body.scrollHeight,
       window.innerHeight
     );
-    this.height = docHeight;
     this.canvas.width = this.width;
     this.canvas.height = this.height;
-    this.initMatrixRain();
+
+    const columns = Math.ceil(this.width / this.charWidth);
+    const rows = Math.ceil(this.height / this.charHeight);
+    this.initializeLetters(columns, rows);
   }
 
-  createParticles() {
-    this.particles = [];
-    const count = Math.floor((this.width * this.height) / 25000);
+  getRandomChar() {
+    return this.lettersAndSymbols[Math.floor(Math.random() * this.lettersAndSymbols.length)];
+  }
 
-    for (let i = 0; i < Math.min(count, 50); i++) {
-      this.particles.push({
-        x: Math.random() * this.width,
-        y: Math.random() * this.height,
-        radius: Math.random() * 2.5 + 1,
-        vx: (Math.random() - 0.5) * 0.6,
-        vy: (Math.random() - 0.5) * 0.6,
-        alpha: Math.random() * 0.5 + 0.2
-      });
+  getRandomColor() {
+    return this.glitchColors[Math.floor(Math.random() * this.glitchColors.length)];
+  }
+
+  hexToRgb(hex) {
+    if (!hex) return null;
+    const shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
+    hex = hex.replace(shorthandRegex, (m, r, g, b) => r + r + g + g + b + b);
+    const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+    return result
+      ? {
+          r: parseInt(result[1], 16),
+          g: parseInt(result[2], 16),
+          b: parseInt(result[3], 16)
+        }
+      : null;
+  }
+
+  interpolateColor(start, end, factor) {
+    const result = {
+      r: Math.round(start.r + (end.r - start.r) * factor),
+      g: Math.round(start.g + (end.g - start.g) * factor),
+      b: Math.round(start.b + (end.b - start.b) * factor)
+    };
+    return `rgba(${result.r}, ${result.g}, ${result.b}, ${this.subtleOpacity})`;
+  }
+
+  initializeLetters(columns, rows) {
+    this.grid = { columns, rows };
+    const totalLetters = columns * rows;
+    this.letters = Array.from({ length: totalLetters }, () => {
+      const color = this.getRandomColor();
+      return {
+        char: this.getRandomChar(),
+        colorHex: color,
+        color: color,
+        targetColorHex: this.getRandomColor(),
+        colorProgress: 1
+      };
+    });
+  }
+
+  drawLetters() {
+    if (!this.ctx || this.letters.length === 0) return;
+    this.ctx.clearRect(0, 0, this.width, this.height);
+    this.ctx.font = `${this.fontSize}px "JetBrains Mono", monospace`;
+    this.ctx.textBaseline = 'top';
+
+    const cols = this.grid.columns;
+    const opacity = this.subtleOpacity;
+
+    for (let index = 0; index < this.letters.length; index++) {
+      const letter = this.letters[index];
+      const x = (index % cols) * this.charWidth;
+      const y = Math.floor(index / cols) * this.charHeight;
+
+      // Apply subtle opacity styling so it serves as non-distracting background
+      this.ctx.fillStyle = letter.colorRgb || this.formatRgbWithOpacity(letter.color, opacity);
+      this.ctx.fillText(letter.char, x, y);
     }
   }
 
-  initMatrixRain(density = 'normal') {
-    const fontSize = 15;
-    let colWidth = fontSize * 1.1;
-    if (density === 'low') colWidth = fontSize * 2.2;
-    if (density === 'high') colWidth = fontSize * 0.9;
+  formatRgbWithOpacity(colorStr, opacity) {
+    const rgb = this.hexToRgb(colorStr);
+    if (rgb) {
+      return `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, ${opacity})`;
+    }
+    return colorStr;
+  }
 
-    const columns = Math.floor(this.width / colWidth);
-    const totalRows = Math.ceil(this.height / fontSize) || 1;
-    
-    this.matrixDrops = [];
-    
-    for (let i = 0; i < columns; i++) {
-      this.matrixDrops[i] = Math.floor(Math.random() * totalRows);
+  updateLetters() {
+    if (!this.letters || this.letters.length === 0) return;
+
+    const updateCount = Math.max(1, Math.floor(this.letters.length * 0.04));
+
+    for (let i = 0; i < updateCount; i++) {
+      const index = Math.floor(Math.random() * this.letters.length);
+      if (!this.letters[index]) continue;
+
+      const letter = this.letters[index];
+      letter.char = this.getRandomChar();
+      letter.targetColorHex = this.getRandomColor();
+
+      if (!this.smooth) {
+        letter.colorHex = letter.targetColorHex;
+        letter.colorRgb = this.formatRgbWithOpacity(letter.colorHex, this.subtleOpacity);
+        letter.colorProgress = 1;
+      } else {
+        letter.colorProgress = 0;
+      }
+    }
+  }
+
+  handleSmoothTransitions() {
+    let needsRedraw = false;
+    for (let i = 0; i < this.letters.length; i++) {
+      const letter = this.letters[i];
+      if (letter.colorProgress < 1) {
+        letter.colorProgress += 0.08;
+        if (letter.colorProgress > 1) letter.colorProgress = 1;
+
+        const startRgb = this.hexToRgb(letter.colorHex);
+        const endRgb = this.hexToRgb(letter.targetColorHex);
+        if (startRgb && endRgb) {
+          letter.colorRgb = this.interpolateColor(startRgb, endRgb, letter.colorProgress);
+          needsRedraw = true;
+        }
+      }
+    }
+
+    if (needsRedraw) {
+      this.drawLetters();
     }
   }
 
   animate() {
-    // Render theme-specific background dynamics
     switch (this.theme) {
       case 'football':
         this.ctx.clearRect(0, 0, this.width, this.height);
@@ -161,89 +212,35 @@ export class BackgroundCanvas {
         break;
       case 'ide':
       default:
-        this.drawMatrixRain();
-        if (this.pulses.length > 0) this.drawShockwavePulses();
+        const now = Date.now();
+        if (now - this.lastGlitchTime >= this.glitchSpeed) {
+          this.updateLetters();
+          this.drawLetters();
+          this.lastGlitchTime = now;
+        }
+
+        if (this.smooth) {
+          this.handleSmoothTransitions();
+        }
         break;
     }
 
     requestAnimationFrame(() => this.animate());
   }
 
-  drawMatrixRain() {
-    const fontSize = 15;
-    const colWidth = fontSize * 1.1;
-    const totalRows = Math.ceil(this.height / fontSize) || 1;
+  createParticles() {
+    this.particles = [];
+    const count = Math.floor((this.width * this.height) / 25000);
 
-    // Fast clear
-    this.ctx.clearRect(0, 0, this.width, this.height);
-
-    this.ctx.font = '14px "JetBrains Mono", monospace';
-    const chars = this.matrixChars || '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZλπΣΩ<>{}[]/*=&$#@!';
-    
-    this.frameIndex = (this.frameIndex || 0) + 1;
-    const shouldStep = this.frameIndex % (this.matrixSpeedStep || 2) === 0;
-
-    const streamLength = 10;
-    const offsets = [0, Math.floor(totalRows / 2)];
-
-    const mx = this.mouseX;
-    const my = this.mouseY;
-    const hasMouse = mx > 0 && my > 0;
-
-    for (let i = 0; i < this.matrixDrops.length; i++) {
-      const x = i * colWidth;
-
-      // Fast X bounding check for cursor proximity
-      const isXNear = hasMouse && Math.abs(x - mx) < 100;
-
-      for (let k = 0; k < offsets.length; k++) {
-        const headRow = Math.floor((this.matrixDrops[i] + offsets[k]) % totalRows);
-
-        for (let j = 0; j < streamLength; j++) {
-          const charRow = (headRow - j + totalRows) % totalRows;
-          const charY = (charRow + 1) * fontSize;
-
-          let charText = chars.charAt((i * 7 + charRow * 3 + j) % chars.length);
-
-          // Ultra-fast mouse proximity highlight (zero shadow state change overhead!)
-          if (isXNear && Math.abs(charY - my) < 100) {
-            this.ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
-            if (Math.random() < 0.2) {
-              charText = chars.charAt(Math.floor(Math.random() * chars.length));
-            }
-          } else if (j === 0) {
-            this.ctx.fillStyle = 'rgba(220, 255, 230, 0.75)';
-          } else {
-            const alpha = Math.max(0.04, (1 - j / streamLength) * 0.32);
-            this.ctx.fillStyle = `rgba(0, 255, 102, ${alpha})`;
-          }
-
-          this.ctx.fillText(charText, x, charY);
-        }
-      }
-
-      if (shouldStep) {
-        this.matrixDrops[i]++;
-      }
-    }
-  }
-
-  drawShockwavePulses() {
-    for (let i = this.pulses.length - 1; i >= 0; i--) {
-      const p = this.pulses[i];
-      
-      this.ctx.beginPath();
-      this.ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-      this.ctx.strokeStyle = `rgba(0, 255, 102, ${p.alpha})`;
-      this.ctx.lineWidth = 2;
-      this.ctx.stroke();
-
-      p.radius += 10;
-      p.alpha -= 0.03;
-
-      if (p.alpha <= 0 || p.radius >= p.maxRadius) {
-        this.pulses.splice(i, 1);
-      }
+    for (let i = 0; i < Math.min(count, 50); i++) {
+      this.particles.push({
+        x: Math.random() * this.width,
+        y: Math.random() * this.height,
+        radius: Math.random() * 2.5 + 1,
+        vx: (Math.random() - 0.5) * 0.6,
+        vy: (Math.random() - 0.5) * 0.6,
+        alpha: Math.random() * 0.5 + 0.2
+      });
     }
   }
 
