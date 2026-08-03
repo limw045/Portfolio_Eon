@@ -7,7 +7,7 @@
       Lim Wei Jian<span class="text-xs ml-2 px-2 py-0.5 rounded bg-emerald-500/20 border border-emerald-500/30">AI & Full-Stack</span>
     </a>
 
-    <nav class="hidden md:flex items-center gap-6 font-mono text-sm">
+    <nav class="hidden lg:flex items-center gap-6 font-mono text-sm">
       <a href="#hero" class="text-emerald-200/80 hover:text-emerald-400 transition" data-i18n="nav_story">Origin Story</a>
       <a href="#academic" class="text-emerald-200/80 hover:text-emerald-400 transition" data-i18n="nav_academic">Academic Journey</a>
       <a href="#culture" class="text-emerald-200/80 hover:text-emerald-400 transition" data-i18n="nav_culture">Cultural Hub</a>
@@ -16,6 +16,21 @@
     </nav>
 
     <div class="flex items-center gap-3 font-mono text-xs">
+      <!-- 5 Themes Selector Dropdown -->
+      <div class="relative group">
+        <button class="px-3 py-1.5 rounded bg-emerald-950/60 border border-emerald-500/30 text-emerald-300 hover:bg-emerald-900/50 transition">
+          🎨 Theme <span class="text-[10px]">▼</span>
+        </button>
+        <div class="absolute right-0 mt-2 w-40 py-2 rounded-lg bg-black/90 border border-emerald-500/40 shadow-xl opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto transition duration-200 z-50">
+          <button data-theme-target="ide" class="w-full text-left px-4 py-1.5 hover:bg-emerald-950/80 text-emerald-300 transition">💻 Cyber IDE</button>
+          <button data-theme-target="football" class="w-full text-left px-4 py-1.5 hover:bg-emerald-950/80 text-amber-300 transition">⚽ Football</button>
+          <button data-theme-target="cinema" class="w-full text-left px-4 py-1.5 hover:bg-emerald-950/80 text-yellow-400 transition">🎬 Cinema Noir</button>
+          <button data-theme-target="swiss" class="w-full text-left px-4 py-1.5 hover:bg-emerald-950/80 text-red-400 transition">🇨🇭 Swiss Paper</button>
+          <button data-theme-target="travel" class="w-full text-left px-4 py-1.5 hover:bg-emerald-950/80 text-orange-300 transition">🧭 Travel Log</button>
+        </div>
+      </div>
+
+      <!-- Language Switcher -->
       <button id="lang-btn" class="px-3 py-1.5 rounded bg-emerald-950/60 border border-emerald-500/30 text-emerald-300 hover:bg-emerald-900/50 transition">
         🌐 EN / 中文
       </button>
@@ -43,4 +58,20 @@
   document.getElementById('lang-btn')?.addEventListener('click', () => {
     updateLanguage(currentLang === 'en' ? 'zh' : 'en');
   });
+
+  // 5 Theme Switching Listener
+  document.querySelectorAll('[data-theme-target]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const theme = btn.getAttribute('data-theme-target');
+      if (theme) {
+        document.documentElement.setAttribute('data-theme', theme);
+        localStorage.setItem('weijian_portfolio_theme', theme);
+        window.dispatchEvent(new CustomEvent('themechange', { detail: { theme } }));
+      }
+    });
+  });
+
+  // Restore saved theme on load
+  const savedTheme = localStorage.getItem('weijian_portfolio_theme') || 'ide';
+  document.documentElement.setAttribute('data-theme', savedTheme);
 </script>
