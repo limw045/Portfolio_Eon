@@ -41,7 +41,7 @@ export class I18nEngine {
 
         acad_spm_title: "马来西亚教育文凭 (SPM)",
         acad_spm_loc: "SMK Dato Abdul Rahman Yassin, 新山",
-        acad_spm_desc: "成绩优异（1 A+, 1 A, 1 A-），在校期间积极参与组织活动，培养了扎实的理科逻辑与团队领导力。",
+        acad_spm_desc: "成绩优异（1 A+, 7 A, 1 A-, 1 B），在校期间积极参与组织活动，培养了扎实的理科逻辑与团队领导力。",
 
         section_cult_title: "✨ 精神角落与文化品味",
         section_cult_subtitle: "代码之外的灵感源泉：绿茵狂热、律动 Groove、硬核科幻与战术竞技",
@@ -114,7 +114,7 @@ export class I18nEngine {
 
         acad_spm_title: "Sijil Pelajaran Malaysia (SPM)",
         acad_spm_loc: "SMK Dato Abdul Rahman Yassin, Johor Bahru",
-        acad_spm_desc: "Graduated with honors (1 A+, 1 A, 1 A-), building strong analytical logic and team leadership.",
+        acad_spm_desc: "Graduated with honors (1 A+, 7 A, 1 A-, 1 B), building strong analytical logic and team leadership.",
 
         section_cult_title: "✨ Cultural Tastes & Inspirations",
         section_cult_subtitle: "Inspirations beyond code: Football tactics, R&B Groove, Sci-Fi, and competitive gaming",
