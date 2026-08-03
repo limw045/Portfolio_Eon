@@ -909,7 +909,12 @@ html[data-theme="ide"] .ide-terminal-drawer {
 
 /* 3. Hero Section Components */
 .hero-section {
-  padding: 5rem 0 3rem 0;
+  padding: 4rem 0 5rem 0;
+  min-height: calc(85vh - 80px);
+  display: flex;
+  align-items: center;
+  margin-bottom: 3rem;
+  position: relative;
 }
 
 .hero-grid {
