@@ -122,6 +122,16 @@
     </div>
   </aside>
 
+  <!-- VS Code Open Editor Tab Bar (IDE Theme Specific) -->
+  <div class="ide-editor-tab-bar" id="ide-editor-tab-bar">
+    <div class="tab-item active"><a href="#hero">📄 01_origin_story.md <span class="tab-close">✕</span></a></div>
+    <div class="tab-item"><a href="#academic">📄 02_academic_journey.json <span class="tab-close">✕</span></a></div>
+    <div class="tab-item"><a href="#culture">📄 03_culture_hub.config <span class="tab-close">✕</span></a></div>
+    <div class="tab-item"><a href="#skill-studio">📄 04_skill_studio.cpp <span class="tab-close">✕</span></a></div>
+    <div class="tab-item"><a href="#n8n-studio">📄 05_n8n_workflow.py <span class="tab-close">✕</span></a></div>
+    <div class="tab-item"><a href="#micro-tools">📄 06_micro_tools.css <span class="tab-close">✕</span></a></div>
+  </div>
+
   <!-- Main Content Container -->
   <main class="main-container">
 
@@ -445,6 +455,25 @@
     </section>
 
   </main>
+
+  <!-- Interactive Hacker CLI Terminal Drawer (IDE Theme Specific) -->
+  <div class="ide-terminal-drawer collapsed" id="ide-terminal-drawer">
+    <div class="terminal-drawer-header">
+      <div class="header-title">
+        <button class="terminal-toggle-btn" id="btn-toggle-terminal">💻 Terminal (CLI)</button>
+        <span class="help-hint">Type '<span class="cmd-highlight">help</span>' or '<span class="cmd-highlight">skills</span>'</span>
+      </div>
+      <span class="term-status">🟢 ONLINE (zsh)</span>
+    </div>
+    <div class="terminal-cli-body" id="terminal-cli-body">
+      <div class="term-line">Welcome to Lim Wei Jian CLI Node v2026.8.3</div>
+      <div class="term-line">Type '<span class="cmd-highlight">help</span>' for commands or '<span class="cmd-highlight">matrix</span>' for code rain.</div>
+    </div>
+    <div class="terminal-cli-input-line">
+      <span class="prompt-user">weijian@mmu-ai-node:~$</span>
+      <input type="text" id="terminal-cli-input" class="cli-input" placeholder="Type a command (e.g. help, skills, cat resume)..." autocomplete="off">
+    </div>
+  </div>
 
   <!-- VS Code Bottom Status Bar (IDE Theme Specific) -->
   <footer class="ide-status-bar" id="ide-status-bar">

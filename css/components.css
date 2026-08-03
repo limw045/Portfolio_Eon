@@ -199,11 +199,162 @@ html[data-theme="ide"] .ide-status-bar {
   gap: 1rem;
 }
 
-.status-item.bg-blue {
+/* VS Code Open Editor Tab Bar (IDE Theme Specific) */
+.ide-editor-tab-bar {
+  display: none;
+  background: #1e1e2e;
+  border-bottom: 1px solid var(--border-color);
+  padding: 0 1rem;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  overflow-x: auto;
+}
+
+html[data-theme="ide"] .ide-editor-tab-bar {
+  display: flex;
+  gap: 0.2rem;
+}
+
+.ide-editor-tab-bar .tab-item {
+  background: rgba(0, 0, 0, 0.25);
+  border-top: 2px solid transparent;
+  padding: 0.4rem 0.8rem;
+  border-right: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.ide-editor-tab-bar .tab-item.active {
+  background: #11111b;
+  border-top-color: #89b4fa;
+}
+
+.ide-editor-tab-bar .tab-item a {
+  color: #a6adc8;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.ide-editor-tab-bar .tab-item.active a {
+  color: #cdd6f4;
+  font-weight: 600;
+}
+
+.tab-close {
+  font-size: 0.75rem;
+  color: #6c7086;
+}
+
+.tab-close:hover {
+  color: #f38ba8;
+}
+
+/* Interactive Hacker CLI Terminal Drawer */
+.ide-terminal-drawer {
+  display: none;
+  position: fixed;
+  bottom: 25px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  max-width: 950px;
+  background: rgba(17, 17, 27, 0.95);
+  border: 1px solid #89b4fa;
+  border-radius: 12px;
+  box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.8), 0 0 15px rgba(137, 180, 250, 0.3);
+  z-index: 99;
+  font-family: var(--font-mono);
+  overflow: hidden;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+html[data-theme="ide"] .ide-terminal-drawer {
+  display: block;
+}
+
+.ide-terminal-drawer.collapsed {
+  transform: translateX(-50%) translateY(calc(100% - 40px));
+}
+
+.terminal-drawer-header {
+  background: #181825;
+  padding: 0.5rem 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.terminal-toggle-btn {
   background: #89b4fa;
   color: #111;
-  padding: 0.1rem 0.4rem;
   font-weight: 700;
+  border: none;
+  padding: 0.2rem 0.7rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.85rem;
+}
+
+.help-hint {
+  font-size: 0.75rem;
+  color: #a6adc8;
+  margin-left: 0.8rem;
+}
+
+.cmd-highlight {
+  color: #a6e3a1;
+  font-weight: 700;
+}
+
+.term-status {
+  font-size: 0.75rem;
+  color: #a6e3a1;
+}
+
+.terminal-cli-body {
+  height: 140px;
+  padding: 0.8rem 1rem;
+  overflow-y: auto;
+  font-size: 0.85rem;
+  color: #cdd6f4;
+}
+
+.term-line {
+  margin: 0.2rem 0;
+}
+
+.term-cmd {
+  color: #89b4fa;
+  font-weight: 600;
+}
+
+.term-error {
+  color: #f38ba8;
+}
+
+.terminal-cli-input-line {
+  display: flex;
+  align-items: center;
+  background: #11111b;
+  padding: 0.5rem 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.prompt-user {
+  color: #a6e3a1;
+  font-weight: 700;
+  font-size: 0.85rem;
+  margin-right: 0.6rem;
+}
+
+.cli-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: #cdd6f4;
+  outline: none;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
 }
 
 .navbar {

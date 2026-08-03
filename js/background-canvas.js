@@ -1,6 +1,6 @@
 /**
- * background-canvas.js - Theme-Aware Dynamic HTML5 Background Canvas
- * Renders 60fps interactive particle shaders matching the 5 portfolio themes.
+ * background-canvas.js - Theme-Aware Dynamic HTML5 Background Canvas & Matrix Rain Engine
+ * Renders 60fps interactive particle shaders & matrix rain matching portfolio themes.
  */
 
 export class BackgroundCanvas {
@@ -12,6 +12,7 @@ export class BackgroundCanvas {
     this.width = window.innerWidth;
     this.height = window.innerHeight;
     this.particles = [];
+    this.matrixDrops = [];
     this.theme = document.documentElement.getAttribute('data-theme') || 'ide';
 
     this.init();
@@ -25,9 +26,11 @@ export class BackgroundCanvas {
     window.addEventListener('themechange', (e) => {
       this.theme = e.detail.theme;
       this.createParticles();
+      this.initMatrixRain();
     });
 
     this.createParticles();
+    this.initMatrixRain();
     this.animate();
   }
 
@@ -37,6 +40,7 @@ export class BackgroundCanvas {
     this.canvas.width = this.width;
     this.canvas.height = this.height;
     this.createParticles();
+    this.initMatrixRain();
   }
 
   createParticles() {
@@ -52,6 +56,14 @@ export class BackgroundCanvas {
         vy: (Math.random() - 0.5) * 0.6,
         alpha: Math.random() * 0.5 + 0.2
       });
+    }
+  }
+
+  initMatrixRain() {
+    const columns = Math.floor(this.width / 20);
+    this.matrixDrops = [];
+    for (let i = 0; i < columns; i++) {
+      this.matrixDrops.push(Math.random() * -50);
     }
   }
 
@@ -74,41 +86,38 @@ export class BackgroundCanvas {
         break;
       case 'ide':
       default:
-        this.drawCyberGrid();
+        this.drawMatrixRain();
         break;
     }
 
     requestAnimationFrame(() => this.animate());
   }
 
-  drawCyberGrid() {
-    this.ctx.strokeStyle = 'rgba(137, 180, 250, 0.04)';
-    this.ctx.lineWidth = 1;
+  drawMatrixRain() {
+    // Cyber Matrix Code Rain Effect
+    this.ctx.fillStyle = 'rgba(17, 17, 27, 0.2)';
+    this.ctx.fillRect(0, 0, this.width, this.height);
 
-    const size = 50;
-    for (let x = 0; x < this.width; x += size) {
-      this.ctx.beginPath();
-      this.ctx.moveTo(x, 0);
-      this.ctx.lineTo(x, this.height);
-      this.ctx.stroke();
+    this.ctx.fillStyle = '#89b4fa';
+    this.ctx.font = '14px "JetBrains Mono", monospace';
+
+    const chars = '01ABCDEFGHIJKLMNOPQRSTUVWXYZλπΣΩ<>{}[]/*=&';
+
+    for (let i = 0; i < this.matrixDrops.length; i++) {
+      const text = chars.charAt(Math.floor(Math.random() * chars.length));
+      const x = i * 20;
+      const y = this.matrixDrops[i] * 20;
+
+      this.ctx.fillText(text, x, y);
+
+      if (y > this.height && Math.random() > 0.975) {
+        this.matrixDrops[i] = 0;
+      }
+      this.matrixDrops[i]++;
     }
-
-    this.particles.forEach(p => {
-      p.x += p.vx;
-      p.y += p.vy;
-
-      if (p.x < 0 || p.x > this.width) p.vx *= -1;
-      if (p.y < 0 || p.y > this.height) p.vy *= -1;
-
-      this.ctx.fillStyle = `rgba(137, 180, 250, ${p.alpha})`;
-      this.ctx.beginPath();
-      this.ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-      this.ctx.fill();
-    });
   }
 
   drawFootballGrid() {
-    // Stadium tactic lines
     this.ctx.strokeStyle = 'rgba(240, 240, 240, 0.03)';
     this.ctx.lineWidth = 2;
     this.ctx.beginPath();
@@ -122,7 +131,7 @@ export class BackgroundCanvas {
       if (p.x < 0 || p.x > this.width) p.vx *= -1;
       if (p.y < 0 || p.y > this.height) p.vy *= -1;
 
-      this.ctx.fillStyle = `rgba(253, 225, 0, ${p.alpha * 0.8})`; // BVB Yellow tint
+      this.ctx.fillStyle = `rgba(253, 225, 0, ${p.alpha * 0.8})`;
       this.ctx.beginPath();
       this.ctx.arc(p.x, p.y, p.radius * 1.2, 0, Math.PI * 2);
       this.ctx.fill();
@@ -130,7 +139,6 @@ export class BackgroundCanvas {
   }
 
   drawCinemaFlares() {
-    // Cinema golden ambient flares
     const grad = this.ctx.createRadialGradient(this.width * 0.8, this.height * 0.2, 50, this.width * 0.8, this.height * 0.2, 400);
     grad.addColorStop(0, 'rgba(197, 160, 89, 0.08)');
     grad.addColorStop(1, 'transparent');
@@ -149,7 +157,6 @@ export class BackgroundCanvas {
   }
 
   drawSwissGrid() {
-    // Minimal 16-column grid lines
     this.ctx.strokeStyle = 'rgba(28, 28, 28, 0.03)';
     this.ctx.lineWidth = 1;
     const colWidth = this.width / 12;
