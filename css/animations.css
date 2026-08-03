@@ -1,0 +1,65 @@
+/* ==========================================================================
+   ANIMATIONS.CSS - 3D Tilt Physics, Keyframe Animations & Glow Effects
+   ========================================================================== */
+
+/* 1. 3D Perspective Card Setup */
+body {
+  perspective: 1200px;
+}
+
+/* 2. Keyframe Animations */
+@keyframes pulseGlow {
+  0% {
+    box-shadow: 0 0 5px var(--accent-color);
+  }
+  50% {
+    box-shadow: 0 0 20px var(--accent-color);
+  }
+  100% {
+    box-shadow: 0 0 5px var(--accent-color);
+  }
+}
+
+@keyframes floatBadge {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+@keyframes typeCursor {
+  0%, 100% { border-color: transparent; }
+  50% { border-color: var(--accent-color); }
+}
+
+/* 3. Utility Classes */
+.pulse-glow {
+  animation: pulseGlow 3s infinite ease-in-out;
+}
+
+.float-badge {
+  animation: floatBadge 4s infinite ease-in-out;
+}
+
+/* 4. Typewriter Effect Line */
+.typewriter-text {
+  border-right: 2px solid var(--accent-color);
+  animation: typeCursor 0.8s step-end infinite;
+}
+
+/* 5. Smooth Transition for Theme Switcher Elements */
+.tilt-card, .btn, .theme-btn, .node-item {
+  will-change: transform, opacity;
+}
+
+/* Reduced Motion Fallback */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

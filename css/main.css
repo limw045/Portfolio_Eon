@@ -1,0 +1,129 @@
+/* ==========================================================================
+   MAIN.CSS - Global Design Tokens, Reset & Grid Architecture
+   ========================================================================== */
+
+/* 1. Global Box-Sizing & CSS Variables Defaults */
+:root {
+  /* Default Font Families */
+  --font-sans: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-serif: 'Cormorant Garamond', Georgia, serif;
+  --font-mono: 'JetBrains Mono', Consolas, monospace;
+  --font-handwriting: 'Courier Prime', monospace;
+
+  /* Default Spacing & Radius */
+  --border-radius: 16px;
+  --glass-blur: 12px;
+  --glow-intensity: 0.6;
+  --max-width: 1300px;
+  --transition-speed: 0.4s;
+  
+  /* Fallback Color Palette (IDE Default) */
+  --bg-primary: #1e1e2e;
+  --bg-secondary: #181825;
+  --bg-card: rgba(30, 30, 46, 0.75);
+  --border-color: rgba(137, 180, 250, 0.2);
+  --text-primary: #cdd6f4;
+  --text-secondary: #a6adc8;
+  --accent-color: #89b4fa;
+  --accent-secondary: #cba6f7;
+  --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+/* 2. Resets */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.6;
+  overflow-x: hidden;
+  transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease;
+}
+
+/* 3. Typography Defaults */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--text-primary);
+}
+
+a {
+  color: var(--accent-color);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  opacity: 0.85;
+}
+
+ul {
+  list-style: none;
+}
+
+button, input, select, textarea {
+  font-family: inherit;
+  font-size: inherit;
+}
+
+/* 4. Canvas Positioning */
+#bg-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* 5. Layout Containers */
+.main-container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.section-padding {
+  padding: 6rem 0;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 3.5rem;
+}
+
+.section-title {
+  font-size: 2.25rem;
+  margin-bottom: 0.75rem;
+  background: linear-gradient(135deg, var(--text-primary), var(--accent-color));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.section-subtitle {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  max-width: 65ch;
+  margin: 0 auto;
+}
+
+/* 6. Utility Grid & Responsive Layouts */
+@media (max-width: 768px) {
+  html {
+    font-size: 14px;
+  }
+  .section-padding {
+    padding: 4rem 0;
+  }
+}
