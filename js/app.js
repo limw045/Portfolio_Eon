@@ -29,8 +29,40 @@ document.addEventListener('DOMContentLoaded', () => {
   // Initialize 3D Tilt Mouse Physics for Cards
   init3DTiltPhysics();
 
+  // Initialize Collapsible IDE Sidebar Controls
+  initIDESidebarControls();
+
   console.log('🚀 Lim Wei Jian Portfolio initialized successfully with Lenis Parallax & Reveal Animations.');
 });
+
+/**
+ * Handles Collapsible IDE Explorer Sidebar & Keyboard Shortcut (Ctrl+B)
+ */
+function initIDESidebarControls() {
+  const sidebar = document.getElementById('ide-sidebar');
+  const toggleBtn = document.getElementById('ide-sidebar-toggle');
+  const closeBtn = document.getElementById('sidebar-close-btn');
+
+  if (!sidebar) return;
+
+  const toggleSidebar = () => {
+    sidebar.classList.toggle('collapsed');
+  };
+
+  if (toggleBtn) toggleBtn.addEventListener('click', toggleSidebar);
+  if (closeBtn) closeBtn.addEventListener('click', () => sidebar.classList.add('collapsed'));
+
+  // Keyboard shortcut Ctrl+B or Cmd+B to toggle Explorer
+  window.addEventListener('keydown', (e) => {
+    if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'b') {
+      const currentTheme = document.documentElement.getAttribute('data-theme');
+      if (currentTheme === 'ide') {
+        e.preventDefault();
+        toggleSidebar();
+      }
+    }
+  });
+}
 
 /**
  * Initializes Lenis Smooth Scroll & RequestAnimationFrame Loop

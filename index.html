@@ -19,7 +19,7 @@
   <!-- Google Fonts Preconnect -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=JetBrains+Mono:wght@400;500;700&family=Outfit:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=JetBrains+Mono:ital,wght@0,400;0,500;0,700;1,400&family=Outfit:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 
   <!-- Stylesheets -->
   <link rel="stylesheet" href="css/main.css">
@@ -38,9 +38,33 @@
   <!-- Dynamic Theme-Aware HTML5 Canvas -->
   <canvas id="bg-canvas"></canvas>
 
+  <!-- VS Code Top Menu Bar (IDE Theme Specific) -->
+  <div class="ide-top-menu" id="ide-top-menu">
+    <div class="menu-items">
+      <span class="menu-item active">File</span>
+      <span class="menu-item">Edit</span>
+      <span class="menu-item">Selection</span>
+      <span class="menu-item">View</span>
+      <span class="menu-item">Go</span>
+      <span class="menu-item">Run</span>
+      <span class="menu-item">Terminal</span>
+      <span class="menu-item">Help</span>
+    </div>
+    <div class="menu-center">weijian_portfolio — VS Code Workspace</div>
+    <div class="menu-right">
+      <span class="git-branch"> main*</span>
+      <span class="window-controls"><span class="w-btn min">―</span><span class="w-btn max">□</span><span class="w-btn close">✕</span></span>
+    </div>
+  </div>
+
   <!-- Sticky Top Navigation & Live Theme Engine Switcher -->
   <header class="navbar-wrapper">
     <nav class="navbar">
+      <!-- Toggle File Explorer Button for IDE Theme -->
+      <button class="ide-sidebar-toggle" id="ide-sidebar-toggle" title="展开/折叠文件树 (Ctrl+B)">
+        📂 <span class="sidebar-toggle-text">Explorer</span>
+      </button>
+
       <a href="#hero" class="brand-logo">
         <span class="logo-accent">&lt;/&gt;</span>
         <span class="logo-text">Lim Wei Jian</span>
@@ -76,6 +100,27 @@
       </div>
     </nav>
   </header>
+
+  <!-- Collapsible IDE File Explorer Sidebar (IDE Theme Specific) -->
+  <aside class="ide-sidebar collapsed" id="ide-sidebar">
+    <div class="sidebar-header">
+      <span>EXPLORER: PORTFOLIO</span>
+      <button class="sidebar-close-btn" id="sidebar-close-btn">✕</button>
+    </div>
+    <div class="sidebar-tree">
+      <div class="tree-folder open">
+        <span class="folder-name">📁 src/workspace/</span>
+        <ul class="tree-files">
+          <li class="tree-file active"><a href="#hero">📄 01_origin_story.md</a></li>
+          <li class="tree-file"><a href="#academic">📄 02_academic_journey.json</a></li>
+          <li class="tree-file"><a href="#culture">📄 03_culture_hub.config</a></li>
+          <li class="tree-file"><a href="#skill-studio">📄 04_skill_studio.cpp</a></li>
+          <li class="tree-file"><a href="#n8n-studio">📄 05_n8n_workflow.py</a></li>
+          <li class="tree-file"><a href="#micro-tools">📄 06_micro_tools.css</a></li>
+        </ul>
+      </div>
+    </div>
+  </aside>
 
   <!-- Main Content Container -->
   <main class="main-container">
@@ -400,6 +445,21 @@
     </section>
 
   </main>
+
+  <!-- VS Code Bottom Status Bar (IDE Theme Specific) -->
+  <footer class="ide-status-bar" id="ide-status-bar">
+    <div class="status-left">
+      <span class="status-item bg-blue"> main*</span>
+      <span class="status-item">🟢 0 Errors, 0 Warnings</span>
+    </div>
+    <div class="status-right">
+      <span class="status-item">Ln 42, Col 1</span>
+      <span class="status-item">Spaces: 2</span>
+      <span class="status-item">UTF-8</span>
+      <span class="status-item">Python 3.12</span>
+      <span class="status-item">Prettier</span>
+    </div>
+  </footer>
 
   <!-- FOOTER & CONTACT -->
   <footer class="footer-section scroll-reveal">

@@ -14,6 +14,198 @@
   transition: all 0.3s ease;
 }
 
+/* VS Code Top Menu Bar (IDE Theme Specific) */
+.ide-top-menu {
+  display: none;
+  background: #181825;
+  color: #a6adc8;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  padding: 0.25rem 0.8rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  justify-content: space-between;
+  align-items: center;
+  user-select: none;
+}
+
+html[data-theme="ide"] .ide-top-menu {
+  display: flex;
+}
+
+.ide-top-menu .menu-items {
+  display: flex;
+  gap: 0.8rem;
+}
+
+.ide-top-menu .menu-item {
+  cursor: pointer;
+  padding: 0.1rem 0.3rem;
+  border-radius: 3px;
+}
+
+.ide-top-menu .menu-item:hover, .ide-top-menu .menu-item.active {
+  background: rgba(255, 255, 255, 0.1);
+  color: #cdd6f4;
+}
+
+.ide-top-menu .menu-center {
+  font-weight: 500;
+  color: #cdd6f4;
+}
+
+.ide-top-menu .menu-right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.git-branch {
+  color: #89b4fa;
+}
+
+.window-controls .w-btn {
+  margin-left: 0.5rem;
+  cursor: pointer;
+  color: #6c7086;
+}
+
+.window-controls .w-btn:hover {
+  color: #cdd6f4;
+}
+
+/* Collapsible IDE Sidebar Toggle Button */
+.ide-sidebar-toggle {
+  display: none;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--border-color);
+  color: var(--accent-color);
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  padding: 0.3rem 0.65rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+html[data-theme="ide"] .ide-sidebar-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.ide-sidebar-toggle:hover {
+  background: var(--accent-color);
+  color: #111;
+}
+
+/* Collapsible File Explorer Sidebar */
+.ide-sidebar {
+  display: none;
+  position: fixed;
+  top: 70px;
+  left: 0;
+  width: 250px;
+  height: calc(100vh - 70px);
+  background: #11111b;
+  border-right: 1px solid var(--border-color);
+  z-index: 95;
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  padding: 1rem;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 5px 0 20px rgba(0, 0, 0, 0.4);
+}
+
+html[data-theme="ide"] .ide-sidebar {
+  display: block;
+}
+
+.ide-sidebar.collapsed {
+  transform: translateX(-100%);
+}
+
+.sidebar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.75rem;
+  color: #a6adc8;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding-bottom: 0.5rem;
+}
+
+.sidebar-close-btn {
+  background: transparent;
+  border: none;
+  color: #a6adc8;
+  cursor: pointer;
+}
+
+.sidebar-tree .folder-name {
+  color: #89b4fa;
+  font-weight: 600;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.tree-files {
+  padding-left: 0.8rem;
+}
+
+.tree-file {
+  margin: 0.4rem 0;
+}
+
+.tree-file a {
+  color: #a6adc8;
+  display: block;
+  padding: 0.25rem 0.4rem;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+.tree-file a:hover, .tree-file.active a {
+  background: #1e1e2e;
+  color: #89b4fa;
+}
+
+/* VS Code Bottom Status Bar */
+.ide-status-bar {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100vw;
+  background: #181825;
+  color: #a6adc8;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  padding: 0.25rem 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  z-index: 100;
+  justify-content: space-between;
+  align-items: center;
+  user-select: none;
+}
+
+html[data-theme="ide"] .ide-status-bar {
+  display: flex;
+}
+
+.ide-status-bar .status-left, .ide-status-bar .status-right {
+  display: flex;
+  gap: 1rem;
+}
+
+.status-item.bg-blue {
+  background: #89b4fa;
+  color: #111;
+  padding: 0.1rem 0.4rem;
+  font-weight: 700;
+}
+
 .navbar {
   max-width: var(--max-width);
   margin: 0 auto;

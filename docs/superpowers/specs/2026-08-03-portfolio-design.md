@@ -27,7 +27,7 @@ The site includes a floating/header **Live Theme Engine Switcher**. Switching th
 | :--- | :--- | :--- | :--- |
 | `football` | **Green Pitch & Tactics** | Grass Green (`#0F380F`), Stadium White (`#F0F0F0`), BVB Yellow (`#FDE100`), Arsenal Red (`#EF0107`), Man City Sky Blue (`#6CABDD`) | Chalkboard tactic lines, scoreboard font, card corners with field grid lines. |
 | `cinema` | **Cinema Noir** | Movie Dark (`#0B0C10`), Projection Gold (`#C5A059`), Neon Red (`#E50914`) | Lens flare ambient sheen, film strip borders, movie ticket card styling. |
-| `ide` | **Cyber Code IDE** | Terminal Dark (`#1E1E2E`), Electric Cyan (`#89B4FA`), Neon Purple (`#CBA6F7`) | Monospace code font, glowing terminal borders, code line numbers, syntax accents. |
+| `ide` | **Cyber Code IDE (Full Structural Transformation)** | Terminal Dark (`#1E1E2E`), Electric Cyan (`#89B4FA`), Neon Purple (`#CBA6F7`) | **Full Layout Overhaul**: Navbar morphs into VS Code menu bar (`File Edit View Git: main*`), left side features a **Collapsible File Explorer Sidebar** (`Ctrl+B` toggle), main view transforms into syntax-highlighted code files with line numbers, code gutter, and IDE status bar (`UTF-8`, `Ln 42`, `Python 3.12`). |
 | `swiss` | **Swiss Editorial Paper** | Warm Parchment (`#F5F2EB`), Ink Black (`#1C1C1C`), Crimson (`#9E2A2B`) | Serif typography, strong 16-column grid lines, paper texture, elegant editorial layout. |
 | `travel` | **Travel Story Log** | Leather Brown (`#2C1D11`), Warm Sand (`#EEDCBE`), Stamp Gold (`#D4AF37`) | Passport stamp badges, Polaroid photo stack shadow tilt, vintage compass accent. |
 
