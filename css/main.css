@@ -88,12 +88,24 @@ button, input, select, textarea {
 }
 
 /* 5. Layout Containers */
+main,
+section,
+.hero-section,
+.section-padding,
+.footer-section,
+.timeline-container,
+.culture-grid,
+.tools-grid,
+.main-container {
+  background: transparent !important;
+  position: relative;
+  z-index: 2;
+}
+
 .main-container {
   max-width: var(--max-width);
   margin: 0 auto;
   padding: 0 1.5rem;
-  position: relative;
-  z-index: 2;
 }
 
 .section-padding {

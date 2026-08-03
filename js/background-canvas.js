@@ -13,6 +13,9 @@ export class BackgroundCanvas {
     this.height = window.innerHeight;
     this.particles = [];
     this.matrixDrops = [];
+    this.matrixChars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZλπΣΩ<>{}[]/*=&$#@!';
+    this.matrixSpeedStep = 2;
+    this.frameIndex = 0;
     this.theme = document.documentElement.getAttribute('data-theme') || 'ide';
 
     this.init();
@@ -22,7 +25,7 @@ export class BackgroundCanvas {
     this.resize();
     window.addEventListener('resize', () => this.resize());
     
-    // Listen for live theme changes & custom matrix trigger
+    // Listen for live theme changes & custom matrix trigger/config
     window.addEventListener('themechange', (e) => {
       this.theme = e.detail.theme;
       this.createParticles();
@@ -33,6 +36,24 @@ export class BackgroundCanvas {
       this.theme = 'ide';
       document.documentElement.setAttribute('data-theme', 'ide');
       this.initMatrixRain();
+    });
+
+    window.addEventListener('matrixconfig', (e) => {
+      if (e.detail) {
+        if (e.detail.speed) {
+          if (e.detail.speed === 'slow') this.matrixSpeedStep = 4;
+          else if (e.detail.speed === 'fast') this.matrixSpeedStep = 1;
+          else this.matrixSpeedStep = 2;
+        }
+        if (e.detail.charset) {
+          if (e.detail.charset === 'binary') this.matrixChars = '01';
+          else if (e.detail.charset === 'hex') this.matrixChars = '0123456789ABCDEF';
+          else this.matrixChars = e.detail.charset;
+        }
+        if (e.detail.density) {
+          this.initMatrixRain(e.detail.density);
+        }
+      }
     });
 
     this.createParticles();
@@ -65,14 +86,18 @@ export class BackgroundCanvas {
     }
   }
 
-  initMatrixRain() {
+  initMatrixRain(density = 'normal') {
     const fontSize = 16;
-    const columns = Math.floor(this.width / fontSize);
-    const totalRows = Math.floor(this.height / fontSize);
+    let colWidth = fontSize;
+    if (density === 'low') colWidth = fontSize * 2;
+    if (density === 'high') colWidth = Math.floor(fontSize * 0.75);
+
+    const columns = Math.floor(this.width / colWidth);
+    const totalRows = Math.ceil(this.height / fontSize) || 1;
     
     this.matrixDrops = [];
     
-    // Distribute initial drops randomly across the full screen height
+    // Distribute initial drops randomly across total screen height
     for (let i = 0; i < columns; i++) {
       this.matrixDrops[i] = Math.floor(Math.random() * totalRows);
     }
@@ -108,34 +133,43 @@ export class BackgroundCanvas {
 
   drawMatrixRain() {
     const fontSize = 16;
+    const totalRows = Math.ceil(this.height / fontSize) || 1;
 
-    // 1. Semi-transparent black fade trail for natural matrix trailing
+    // Semi-transparent black fade trail for natural matrix trailing
     this.ctx.fillStyle = 'rgba(0, 0, 0, 0.08)';
     this.ctx.fillRect(0, 0, this.width, this.height);
 
     this.ctx.font = '15px "JetBrains Mono", monospace';
-    const chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZλπΣΩ<>{}[]/*=&$#@!';
+    const chars = this.matrixChars || '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZλπΣΩ<>{}[]/*=&$#@!';
+    
+    this.frameIndex = (this.frameIndex || 0) + 1;
+    const shouldStep = this.frameIndex % (this.matrixSpeedStep || 2) === 0;
 
+    // Dual-head modulo stream algorithm for full-height coverage from 0% to 100%
     for (let i = 0; i < this.matrixDrops.length; i++) {
-      const text = chars.charAt(Math.floor(Math.random() * chars.length));
       const x = i * fontSize;
-      const y = this.matrixDrops[i] * fontSize;
+      const offsets = [0, Math.floor(totalRows / 2)];
 
-      // Crisp, subtle green palette (Non-distracting background level)
-      if (Math.random() > 0.94) {
-        this.ctx.fillStyle = 'rgba(220, 255, 230, 0.65)'; // Soft hot leading character
-      } else {
-        this.ctx.fillStyle = 'rgba(0, 255, 102, 0.32)'; // Classic matrix green
+      for (let k = 0; k < offsets.length; k++) {
+        const headRow = Math.floor((this.matrixDrops[i] + offsets[k]) % totalRows);
+        const headY = (headRow + 1) * fontSize;
+
+        // Bright neon mint leading head character
+        this.ctx.fillStyle = 'rgba(220, 255, 230, 0.65)';
+        const headText = chars.charAt(Math.floor(Math.random() * chars.length));
+        this.ctx.fillText(headText, x, headY);
+
+        // Soft classic matrix green trailing character right behind head
+        const trailRow = (headRow - 1 + totalRows) % totalRows;
+        const trailY = (trailRow + 1) * fontSize;
+        this.ctx.fillStyle = 'rgba(0, 255, 102, 0.25)';
+        const trailText = chars.charAt(Math.floor(Math.random() * chars.length));
+        this.ctx.fillText(trailText, x, trailY);
       }
 
-      this.ctx.fillText(text, x, y);
-
-      // Reset when drop clears bottom of screen with small random delay
-      if (y > this.height && Math.random() > 0.975) {
-        this.matrixDrops[i] = 0;
+      if (shouldStep) {
+        this.matrixDrops[i]++;
       }
-
-      this.matrixDrops[i]++;
     }
   }
 
