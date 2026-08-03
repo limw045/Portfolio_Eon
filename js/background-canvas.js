@@ -1,7 +1,7 @@
 /**
- * background-canvas.js - Authentic Clear-Canvas Matrix Digital Rain Engine
- * Uses clearRect() to prevent solid black alpha accumulation and renders 12-character fading streams
- * for 100% continuous digital rain coverage across the entire viewport from top to bottom.
+ * background-canvas.js - Full-Document Absolute Canvas Matrix Engine
+ * Spans the full document height (0px to 3500px+) with 1:1 pixel rendering,
+ * guaranteeing crisp JetBrains Mono characters with zero stretching across the entire page.
  */
 
 export class BackgroundCanvas {
@@ -11,7 +11,7 @@ export class BackgroundCanvas {
     
     this.ctx = this.canvas.getContext('2d');
     this.width = window.innerWidth;
-    this.height = window.innerHeight;
+    this.height = Math.max(document.documentElement.scrollHeight, document.body.scrollHeight, window.innerHeight);
     this.particles = [];
     this.matrixDrops = [];
     this.matrixChars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZλπΣΩ<>{}[]/*=&$#@!';
@@ -26,6 +26,10 @@ export class BackgroundCanvas {
     this.resize();
     window.addEventListener('resize', () => this.resize());
     
+    // Recalculate full document height after page load & dynamic component renders
+    window.addEventListener('load', () => this.resize());
+    setTimeout(() => this.resize(), 600);
+
     // Listen for live theme changes & custom matrix trigger/config
     window.addEventListener('themechange', (e) => {
       this.theme = e.detail.theme;
@@ -64,10 +68,15 @@ export class BackgroundCanvas {
 
   resize() {
     this.width = window.innerWidth;
-    this.height = window.innerHeight;
+    // Calculate full document scroll height so canvas covers the entire 3500px page from top to footer!
+    const docHeight = Math.max(
+      document.documentElement.scrollHeight,
+      document.body.scrollHeight,
+      window.innerHeight
+    );
+    this.height = docHeight;
     this.canvas.width = this.width;
     this.canvas.height = this.height;
-    this.createParticles();
     this.initMatrixRain();
   }
 
@@ -98,7 +107,7 @@ export class BackgroundCanvas {
     
     this.matrixDrops = [];
     
-    // Distribute initial drops randomly across total screen height
+    // Distribute initial drops randomly across total document height (0px to 3500px+)
     for (let i = 0; i < columns; i++) {
       this.matrixDrops[i] = Math.floor(Math.random() * totalRows);
     }
@@ -136,7 +145,7 @@ export class BackgroundCanvas {
     const fontSize = 16;
     const totalRows = Math.ceil(this.height / fontSize) || 1;
 
-    // Clear canvas cleanly to guarantee transparent background without black accumulation!
+    // Clear canvas cleanly every frame to ensure 100% transparent background
     this.ctx.clearRect(0, 0, this.width, this.height);
 
     this.ctx.font = '15px "JetBrains Mono", monospace';
@@ -145,32 +154,28 @@ export class BackgroundCanvas {
     this.frameIndex = (this.frameIndex || 0) + 1;
     const shouldStep = this.frameIndex % (this.matrixSpeedStep || 2) === 0;
 
-    const streamLength = 12; // Length of fading tail
-    const offsets = [0, Math.floor(totalRows / 2)]; // Dual-head staggered streams
+    const streamLength = 12; // 12-character fading tail stream
 
     for (let i = 0; i < this.matrixDrops.length; i++) {
       const x = i * fontSize;
+      const headRow = Math.floor(this.matrixDrops[i] % totalRows);
 
-      for (let k = 0; k < offsets.length; k++) {
-        const headRow = Math.floor((this.matrixDrops[i] + offsets[k]) % totalRows);
+      // Render 12-character fading tail stream across full document height
+      for (let j = 0; j < streamLength; j++) {
+        const charRow = (headRow - j + totalRows) % totalRows;
+        const charY = (charRow + 1) * fontSize;
 
-        // Render head + trailing characters with explicit fading alphas
-        for (let j = 0; j < streamLength; j++) {
-          const charRow = (headRow - j + totalRows) % totalRows;
-          const charY = (charRow + 1) * fontSize;
-
-          if (j === 0) {
-            // Hot neon mint leading head
-            this.ctx.fillStyle = 'rgba(220, 255, 230, 0.75)';
-          } else {
-            // Fading trail alpha
-            const alpha = Math.max(0.04, (1 - j / streamLength) * 0.35);
-            this.ctx.fillStyle = `rgba(0, 255, 102, ${alpha})`;
-          }
-
-          const charText = chars.charAt((i * 7 + charRow * 3 + j) % chars.length);
-          this.ctx.fillText(charText, x, charY);
+        if (j === 0) {
+          // Hot neon mint leading head
+          this.ctx.fillStyle = 'rgba(220, 255, 230, 0.75)';
+        } else {
+          // Fading trail alpha
+          const alpha = Math.max(0.04, (1 - j / streamLength) * 0.35);
+          this.ctx.fillStyle = `rgba(0, 255, 102, ${alpha})`;
         }
+
+        const charText = chars.charAt((i * 7 + charRow * 3 + j) % chars.length);
+        this.ctx.fillText(charText, x, charY);
       }
 
       if (shouldStep) {
