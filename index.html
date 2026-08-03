@@ -32,6 +32,9 @@
 </head>
 <body>
 
+  <!-- Top Scroll Progress Bar -->
+  <div class="scroll-progress-bar" id="scroll-progress"></div>
+
   <!-- Dynamic Theme-Aware HTML5 Canvas -->
   <canvas id="bg-canvas"></canvas>
 
@@ -80,8 +83,8 @@
     <!-- SECTION 1: HERO & TOWN ORIGIN STORY -->
     <section id="hero" class="hero-section">
       <div class="hero-grid">
-        <div class="hero-content">
-          <div class="hero-badge">
+        <div class="hero-content scroll-reveal stagger-1">
+          <div class="hero-badge float-badge">
             <span class="pulse-dot"></span>
             <span data-i18n="hero_badge">Final Year AI Student @ MMU | CGPA 3.74</span>
           </div>
@@ -113,8 +116,8 @@
           </div>
         </div>
 
-        <!-- Hero Card (3D Tilt Effect) -->
-        <div class="hero-visual">
+        <!-- Hero Card (3D Tilt Effect + Parallax) -->
+        <div class="hero-visual scroll-reveal stagger-2" data-parallax-speed="0.15">
           <div class="tilt-card hero-card">
             <div class="card-glass-header">
               <div class="window-dots">
@@ -161,14 +164,14 @@
 
     <!-- SECTION 2: ACADEMIC JOURNEY TIMELINE -->
     <section id="academic" class="section-padding">
-      <div class="section-header">
+      <div class="section-header scroll-reveal stagger-1">
         <h2 class="section-title" data-i18n="section_acad_title">🎓 读书生涯与项目求索</h2>
         <p class="section-subtitle" data-i18n="section_acad_subtitle">从 SPM 理工启蒙，到 Diploma 独立全栈全能队长，再到 Degree AI 课题的前沿突破</p>
       </div>
 
       <div class="timeline-container">
         <!-- Milestone 1 -->
-        <div class="timeline-card tilt-card">
+        <div class="timeline-card tilt-card scroll-reveal stagger-1" data-parallax-speed="0.08">
           <div class="timeline-badge">2024 - 2026</div>
           <h3 class="timeline-role" data-i18n="acad_degree_title">Artificial Intelligence (B.S. Degree)</h3>
           <h4 class="timeline-location" data-i18n="acad_degree_loc">Multimedia University (Melaka Campus) — CGPA: 3.74</h4>
@@ -182,7 +185,7 @@
         </div>
 
         <!-- Milestone 2 -->
-        <div class="timeline-card tilt-card">
+        <div class="timeline-card tilt-card scroll-reveal stagger-2" data-parallax-speed="0.08">
           <div class="timeline-badge">2022 - 2024</div>
           <h3 class="timeline-role" data-i18n="acad_diploma_title">Diploma in Information Technology</h3>
           <h4 class="timeline-location" data-i18n="acad_diploma_loc">Multimedia University (Melaka Campus) — CGPA: 3.78</h4>
@@ -196,7 +199,7 @@
         </div>
 
         <!-- Milestone 3 -->
-        <div class="timeline-card tilt-card">
+        <div class="timeline-card tilt-card scroll-reveal stagger-3" data-parallax-speed="0.08">
           <div class="timeline-badge">2017 - 2022</div>
           <h3 class="timeline-role" data-i18n="acad_spm_title">Sijil Pelajaran Malaysia (SPM)</h3>
           <h4 class="timeline-location" data-i18n="acad_spm_loc">SMK Dato Abdul Rahman Yassin, Johor Bahru</h4>
@@ -209,14 +212,14 @@
 
     <!-- SECTION 3: CULTURAL & PERSONAL TASTES HUB -->
     <section id="culture" class="section-padding">
-      <div class="section-header">
+      <div class="section-header scroll-reveal stagger-1">
         <h2 class="section-title" data-i18n="section_cult_title">✨ 精神角落与文化品味</h2>
         <p class="section-subtitle" data-i18n="section_cult_subtitle">代码之外的灵感源泉：绿茵狂热、律动 Groove、硬核科幻与战术竞技</p>
       </div>
 
       <div class="culture-grid">
         <!-- Football Pitch Hub -->
-        <div class="culture-card tilt-card theme-accent-card football-style">
+        <div class="culture-card tilt-card theme-accent-card football-style scroll-reveal stagger-1">
           <div class="card-icon">⚽</div>
           <h3 data-i18n="cult_football_title">足球主队 (Football Pitch)</h3>
           <div class="team-tags">
@@ -228,7 +231,7 @@
         </div>
 
         <!-- Music & Groove Hub -->
-        <div class="culture-card tilt-card theme-accent-card music-style">
+        <div class="culture-card tilt-card theme-accent-card music-style scroll-reveal stagger-2">
           <div class="card-icon">🎵</div>
           <h3 data-i18n="cult_music_title">音乐 Groove (R&B & Soul)</h3>
           <div class="artist-list">
@@ -240,7 +243,7 @@
         </div>
 
         <!-- Novels Hub -->
-        <div class="culture-card tilt-card theme-accent-card novel-style">
+        <div class="culture-card tilt-card theme-accent-card novel-style scroll-reveal stagger-3">
           <div class="card-icon">📚</div>
           <h3 data-i18n="cult_novel_title">小说与思想 (Novels)</h3>
           <ul>
@@ -251,7 +254,7 @@
         </div>
 
         <!-- Games & Movies Hub -->
-        <div class="culture-card tilt-card theme-accent-card media-style">
+        <div class="culture-card tilt-card theme-accent-card media-style scroll-reveal stagger-4">
           <div class="card-icon">🎬🎮</div>
           <h3 data-i18n="cult_media_title">游戏与电影 (Games & Movies)</h3>
           <div class="media-tags">
@@ -269,12 +272,12 @@
 
     <!-- SECTION 4: IT SKILL STUDIO & WEB IDE TERMINAL -->
     <section id="skill-studio" class="section-padding">
-      <div class="section-header">
+      <div class="section-header scroll-reveal stagger-1">
         <h2 class="section-title" data-i18n="section_ide_title">💻 IT 技能实验室 & Web IDE</h2>
         <p class="section-subtitle" data-i18n="section_ide_subtitle">切身演示 C++, C#, Java, Python 代码逻辑与控制台运行输出</p>
       </div>
 
-      <div class="ide-container tilt-card">
+      <div class="ide-container tilt-card scroll-reveal stagger-2">
         <!-- Editor Header / Tabs -->
         <div class="ide-header">
           <div class="ide-tabs" id="ide-tabs">
@@ -306,12 +309,12 @@
 
     <!-- SECTION 4.5: INTERACTIVE n8n MULTI-AGENT STORY SIMULATOR -->
     <section id="n8n-studio" class="section-padding">
-      <div class="section-header">
+      <div class="section-header scroll-reveal stagger-1">
         <h2 class="section-title" data-i18n="section_n8n_title">🤖 n8n AI 故事交互流程图</h2>
         <p class="section-subtitle" data-i18n="section_n8n_subtitle">输入一段想法，观察多智能体工作流节点如何将其转化为一段精彩故事</p>
       </div>
 
-      <div class="n8n-container tilt-card">
+      <div class="n8n-container tilt-card scroll-reveal stagger-2">
         <div class="n8n-input-group">
           <input type="text" id="n8n-prompt-input" class="n8n-input" data-i18n-placeholder="n8n_placeholder" placeholder="输入故事提示（如：新山的小镇程序员在深夜发现了一个秘密 AI 节点...）" value="新山的小镇程序员在深夜发现了一个秘密 AI 节点">
           <button id="btn-trigger-n8n" class="btn btn-primary" data-i18n="btn_gen_workflow">生成故事工作流 ⚡</button>
@@ -357,14 +360,14 @@
 
     <!-- SECTION 5: EXTENSIBLE MICRO-TOOLS PLAYGROUND -->
     <section id="micro-tools" class="section-padding">
-      <div class="section-header">
+      <div class="section-header scroll-reveal stagger-1">
         <h2 class="section-title" data-i18n="section_tools_title">🛠️ 炫技微工具区 (Micro-Tools)</h2>
         <p class="section-subtitle" data-i18n="section_tools_subtitle">可实时互动的轻量小工具 & 扩展插槽</p>
       </div>
 
       <div class="tools-grid">
         <!-- Built-in Tool 1: Live CSS Variable Tweaker -->
-        <div class="tool-card tilt-card">
+        <div class="tool-card tilt-card scroll-reveal stagger-1">
           <h3 data-i18n="tool_tweaker_title">🎨 Live CSS Variable Tweaker</h3>
           <p data-i18n="tool_tweaker_desc">拖动滑块实时调节本站的圆角、玻璃模糊度与光晕强弱，并导出 CSS 代码！</p>
 
@@ -387,7 +390,7 @@
         </div>
 
         <!-- Slot Card 1 (Coming Soon) -->
-        <div class="tool-card tilt-card slot-card">
+        <div class="tool-card tilt-card slot-card scroll-reveal stagger-2">
           <div class="slot-badge" data-i18n="slot_badge">Extensible Slot</div>
           <h3 data-i18n="slot_title">🔧 Micro-Tool Slot #2</h3>
           <p data-i18n="slot_desc">预留插槽：后续挂载你的算法可视化器或新 Web 小工具！</p>
@@ -399,7 +402,7 @@
   </main>
 
   <!-- FOOTER & CONTACT -->
-  <footer class="footer-section">
+  <footer class="footer-section scroll-reveal">
     <div class="footer-content">
       <h2 data-i18n="footer_title">准备好一起构建下一个精彩项目了吗？</h2>
       <p data-i18n="footer_subtitle">目前开放寻求 AI 工程、Multi-Agent RAG 与全栈开发方向机会。</p>

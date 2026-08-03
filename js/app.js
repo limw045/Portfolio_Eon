@@ -1,6 +1,6 @@
 /**
  * app.js - Main Application Entry Point
- * Initializes Lenis Smooth Scroll, i18n, theme engine, IDE simulator, n8n workflow simulator, background canvas, CSS tweaker, and 3D tilt card physics.
+ * Initializes Lenis Smooth Scroll, Scroll Animations & Parallax Engine, i18n, theme engine, IDE simulator, n8n workflow simulator, background canvas, CSS tweaker, and 3D tilt card physics.
  */
 
 import { I18nEngine } from './i18n.js';
@@ -9,10 +9,14 @@ import { IDESimulator } from './ide-simulator.js';
 import { N8nSimulator } from './n8n-simulator.js';
 import { BackgroundCanvas } from './background-canvas.js';
 import { CSSTweaker } from './css-tweaker.js';
+import { ScrollAnimations } from './scroll-animations.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   // Initialize Lenis Smooth Scroll Engine
   const lenis = initLenisSmoothScroll();
+
+  // Initialize Scroll Reveal & Parallax Animations
+  const scrollAnimations = new ScrollAnimations(lenis);
 
   // Initialize Core Modules
   const i18nEngine = new I18nEngine();
@@ -25,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Initialize 3D Tilt Mouse Physics for Cards
   init3DTiltPhysics();
 
-  console.log('🚀 Lim Wei Jian Portfolio initialized successfully with Lenis Smooth Scroll.');
+  console.log('🚀 Lim Wei Jian Portfolio initialized successfully with Lenis Parallax & Reveal Animations.');
 });
 
 /**
