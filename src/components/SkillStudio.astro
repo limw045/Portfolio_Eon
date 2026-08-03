@@ -1,39 +1,152 @@
 ---
 const initialCppCode = `#include <iostream>
+#include <vector>
+#include <thread>
 
+// Lim Wei Jian - High-Performance C++ Parallel Engine
 int main() {
-    std::cout << "Lim Wei Jian - Multi-Agent AI Pipeline\\n";
+    std::cout << "[+] Initializing Multi-Threaded Engine..." << std::endl;
+    std::vector<std::string> cores = {"CPU_Worker_1", "GPU_CUDA_Core", "AI_RAG_Pipeline"};
+    
+    for (const auto& core : cores) {
+        std::cout << "  -> Spawning: " << core << " [OK]" << std::endl;
+    }
+    std::cout << "[✓] Execution Finished Successfully." << std::endl;
     return 0;
 }`;
 ---
 
-<section id="skill-studio" class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-  <div class="text-center mb-12">
-    <h2 class="text-3xl font-bold font-mono text-white mb-3" data-i18n="section_ide_title">💻 IT Skill Studio & Web IDE</h2>
-    <p class="text-emerald-200/70 max-w-2xl mx-auto text-sm" data-i18n="section_ide_subtitle">Live demonstration of C++, C#, Java, Python logic with terminal console execution</p>
-  </div>
+<section id="skill-studio" class="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+  <!-- VS Code Workstation Outer Container (Double-Bezel) -->
+  <div class="w-full rounded-2xl bg-black/80 border border-blue-500/30 p-2 shadow-[0_0_80px_rgba(59,130,246,0.15)] backdrop-blur-xl">
+    
+    <!-- VS Code Inner Editor Frame -->
+    <div class="w-full rounded-xl bg-[#0b0c13]/95 border border-blue-500/20 overflow-hidden font-mono">
+      
+      <!-- Window Title Bar -->
+      <div class="px-4 py-2 bg-[#121420] border-b border-blue-500/20 flex items-center justify-between text-xs text-blue-300/80">
+        <div class="flex items-center gap-2">
+          <div class="flex items-center gap-1.5 mr-2">
+            <span class="w-3 h-3 rounded-full bg-red-500/80 inline-block"></span>
+            <span class="w-3 h-3 rounded-full bg-yellow-500/80 inline-block"></span>
+            <span class="w-3 h-3 rounded-full bg-green-500/80 inline-block"></span>
+          </div>
+          <span class="font-bold text-blue-400">⚡ 04_skill_studio.cpp</span>
+          <span class="text-[10px] text-blue-500/60">— workspace/src</span>
+        </div>
 
-  <div class="max-w-4xl mx-auto rounded-xl bg-black/80 border border-emerald-500/40 overflow-hidden shadow-2xl">
-    <!-- File Tabs Header -->
-    <div class="flex items-center justify-between px-4 py-2 bg-emerald-950/60 border-b border-emerald-500/20 font-mono text-xs overflow-x-auto">
-      <div class="flex items-center gap-2">
-        <button data-lang-tab="cpp" class="tab-btn active px-3 py-1.5 rounded-t bg-black border-t-2 border-emerald-400 text-emerald-400 font-bold">solution.cpp</button>
-        <button data-lang-tab="cs" class="tab-btn px-3 py-1.5 rounded-t hover:bg-emerald-950/40 text-emerald-300/70">solution.cs</button>
-        <button data-lang-tab="java" class="tab-btn px-3 py-1.5 rounded-t hover:bg-emerald-950/40 text-emerald-300/70">Solution.java</button>
-        <button data-lang-tab="py" class="tab-btn px-3 py-1.5 rounded-t hover:bg-emerald-950/40 text-emerald-300/70">solution.py</button>
+        <div class="hidden sm:flex items-center gap-4 text-[11px] text-blue-400/60">
+          <span>C++ 20 / PyTorch</span>
+          <span>UTF-8</span>
+          <span> main*</span>
+        </div>
       </div>
-      <button id="run-ide-btn" class="px-3 py-1.5 rounded bg-emerald-500 text-black font-bold hover:bg-emerald-400 transition" data-i18n="btn_run_code">
-        ▶ Run Code
-      </button>
-    </div>
 
-    <!-- Code Block Container -->
-    <pre class="p-4 font-mono text-xs sm:text-sm text-emerald-300 overflow-x-auto bg-black/95 min-h-[160px]"><code id="ide-code-display">{initialCppCode}</code></pre>
+      <!-- File Tabs Header -->
+      <div class="flex items-center justify-between px-3 pt-2 bg-[#0e101a] border-b border-blue-500/20 text-xs overflow-x-auto">
+        <div class="flex items-center gap-1">
+          <button data-lang-tab="cpp" class="tab-btn active px-3 py-1.5 rounded-t bg-[#0b0c13] border-t-2 border-blue-400 text-blue-400 font-bold flex items-center gap-2">
+            <span>⚡</span> solution.cpp <span class="text-[10px] opacity-60">✕</span>
+          </button>
+          <button data-lang-tab="py" class="tab-btn px-3 py-1.5 rounded-t text-emerald-300/60 hover:bg-[#121420] transition flex items-center gap-2">
+            <span>🐍</span> solution.py
+          </button>
+          <button data-lang-tab="java" class="tab-btn px-3 py-1.5 rounded-t text-emerald-300/60 hover:bg-[#121420] transition flex items-center gap-2">
+            <span>☕</span> Solution.java
+          </button>
+          <button data-lang-tab="cs" class="tab-btn px-3 py-1.5 rounded-t text-emerald-300/60 hover:bg-[#121420] transition flex items-center gap-2">
+            <span>🔷</span> solution.cs
+          </button>
+        </div>
 
-    <!-- Terminal Console Output Box -->
-    <div class="p-4 bg-emerald-950/60 border-t border-emerald-500/20 font-mono text-xs">
-      <div class="text-emerald-400 font-bold mb-1">[Terminal Output]:</div>
-      <div id="ide-console-output" class="text-emerald-200/80 font-mono">&gt; Ready. Click "Run Code" above to execute...</div>
+        <button id="run-ide-btn" class="px-3.5 py-1 rounded bg-blue-500 text-black font-bold hover:bg-blue-400 transition shadow-lg shadow-blue-500/20 text-xs flex items-center gap-1.5 my-1" data-i18n="btn_run_code">
+          <span>▶</span> Run Code
+        </button>
+      </div>
+
+      <!-- Section Title Inside IDE Comment -->
+      <div class="p-6 pb-2 text-center sm:text-left border-b border-blue-500/10 bg-[#0c0d16]">
+        <h2 class="text-xl sm:text-2xl font-bold text-white mb-1 flex items-center gap-2 justify-center sm:justify-start" data-i18n="section_ide_title">
+          <span class="text-blue-400">//</span> 💻 IT Skill Studio & Web IDE
+        </h2>
+        <p class="text-xs sm:text-sm text-blue-300/70" data-i18n="section_ide_subtitle">
+          Live demonstration of C++, C#, Java, Python logic with terminal console execution
+        </p>
+      </div>
+
+      <!-- IDE Workspace Body: Tech Inventory Sidebar + Editor Panel -->
+      <div class="grid grid-cols-1 lg:grid-cols-4 border-b border-blue-500/10">
+        
+        <!-- Left Sidebar: Tech Stack Arsenal -->
+        <div class="p-4 bg-[#0a0b12] border-r border-blue-500/15 text-xs space-y-4 font-mono">
+          <div>
+            <div class="text-[11px] font-bold text-blue-400/70 uppercase tracking-wider mb-2">🤖 AI & Vision</div>
+            <div class="flex flex-wrap gap-1.5">
+              <span class="px-2 py-0.5 rounded bg-blue-950/80 border border-blue-500/30 text-blue-300">PyTorch</span>
+              <span class="px-2 py-0.5 rounded bg-blue-950/80 border border-blue-500/30 text-blue-300">YOLOv8</span>
+              <span class="px-2 py-0.5 rounded bg-blue-950/80 border border-blue-500/30 text-blue-300">RAG</span>
+              <span class="px-2 py-0.5 rounded bg-blue-950/80 border border-blue-500/30 text-blue-300">OpenCV</span>
+            </div>
+          </div>
+
+          <div>
+            <div class="text-[11px] font-bold text-emerald-400/70 uppercase tracking-wider mb-2">💻 Languages</div>
+            <div class="flex flex-wrap gap-1.5">
+              <span class="px-2 py-0.5 rounded bg-emerald-950/80 border border-emerald-500/30 text-emerald-300 font-bold">C++</span>
+              <span class="px-2 py-0.5 rounded bg-emerald-950/80 border border-emerald-500/30 text-emerald-300">Python</span>
+              <span class="px-2 py-0.5 rounded bg-emerald-950/80 border border-emerald-500/30 text-emerald-300">TypeScript</span>
+              <span class="px-2 py-0.5 rounded bg-emerald-950/80 border border-emerald-500/30 text-emerald-300">Java</span>
+              <span class="px-2 py-0.5 rounded bg-emerald-950/80 border border-emerald-500/30 text-emerald-300">C#</span>
+            </div>
+          </div>
+
+          <div>
+            <div class="text-[11px] font-bold text-amber-400/70 uppercase tracking-wider mb-2">🌐 Full-Stack</div>
+            <div class="flex flex-wrap gap-1.5">
+              <span class="px-2 py-0.5 rounded bg-amber-950/80 border border-amber-500/30 text-amber-300">Astro</span>
+              <span class="px-2 py-0.5 rounded bg-amber-950/80 border border-amber-500/30 text-amber-300">React</span>
+              <span class="px-2 py-0.5 rounded bg-amber-950/80 border border-amber-500/30 text-amber-300">Tailwind</span>
+              <span class="px-2 py-0.5 rounded bg-amber-950/80 border border-amber-500/30 text-amber-300">MySQL</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Main Editor: Line Numbers + Code Container -->
+        <div class="lg:col-span-3 p-4 sm:p-6 flex gap-3 sm:gap-4 bg-[#0b0c13] min-h-[220px]">
+          <!-- Line Numbers Column -->
+          <div class="select-none text-blue-500/30 text-xs sm:text-sm font-mono space-y-2 pt-0.5 text-right w-6 sm:w-8 flex-shrink-0">
+            <div>01</div>
+            <div>02</div>
+            <div>03</div>
+            <div>04</div>
+            <div>05</div>
+            <div>06</div>
+            <div>07</div>
+            <div>08</div>
+            <div>09</div>
+            <div>10</div>
+          </div>
+
+          <!-- Code Display Box -->
+          <div class="flex-1 min-w-0 overflow-x-auto">
+            <pre class="font-mono text-xs sm:text-sm text-blue-200 leading-relaxed bg-transparent p-0"><code id="ide-code-display">{initialCppCode}</code></pre>
+          </div>
+        </div>
+      </div>
+
+      <!-- Integrated IDE Console Output Drawer -->
+      <div class="p-4 bg-[#08090f] border-t border-blue-500/20 font-mono text-xs">
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-blue-400 font-bold flex items-center gap-1.5">
+            <span>💻</span> [Console Output]:
+          </span>
+          <span class="text-[10px] text-blue-400/50">stdout / stderr</span>
+        </div>
+        <div id="ide-console-output" class="text-blue-300/80 font-mono space-y-1 bg-black/50 p-3 rounded-lg border border-blue-500/15 min-h-[80px]">
+          &gt; Ready for execution. Click "▶ Run Code" above to compile &amp; run...
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
@@ -41,41 +154,46 @@ int main() {
 <script>
   const codeSnippets: Record<string, { code: string; cmd: string; output: string[] }> = {
     cpp: {
-      code: `#include <iostream>\n\nint main() {\n    std::cout << "Lim Wei Jian - Multi-Agent AI Pipeline\\n";\n    return 0;\n}`,
-      cmd: 'g++ solution.cpp -o solution && ./solution',
+      code: `#include <iostream>\n#include <vector>\n#include <thread>\n\n// Lim Wei Jian - High-Performance C++ Parallel Engine\nint main() {\n    std::cout << "[+] Initializing Multi-Threaded Engine..." << std::endl;\n    std::vector<std::string> cores = {"CPU_Worker_1", "GPU_CUDA_Core", "AI_RAG_Pipeline"};\n    \n    for (const auto& core : cores) {\n        std::cout << "  -> Spawning: " << core << " [OK]" << std::endl;\n    }\n    std::cout << "[✓] Execution Finished Successfully." << std::endl;\n    return 0;\n}`,
+      cmd: 'g++ solution.cpp -O3 -std=c++20 -o main && ./main',
       output: [
-        '========================================',
-        ' Lim Wei Jian - Multi-Agent AI Pipeline',
-        '========================================',
-        '[+] C++ High Performance Engine Ready',
-        '[+] Execution Finished (Exit Code: 0)'
-      ]
-    },
-    cs: {
-      code: `using System;\n\nclass Program {\n    static void Main() {\n        Console.WriteLine("Lim Wei Jian - C# Enterprise Systems");\n    }\n}`,
-      cmd: 'dotnet run --project Solution.csproj',
-      output: [
-        'Build succeeded.',
-        '[+] C# Enterprise Architecture Loaded',
-        '[+] Exit Code: 0'
-      ]
-    },
-    java: {
-      code: `public class Solution {\n    public static void main(String[] args) {\n        System.out.println("Lim Wei Jian - Java OOP Architect");\n    }\n}`,
-      cmd: 'javac Solution.java && java Solution',
-      output: [
-        'Compiled Solution.class successfully.',
-        '[+] Java Enterprise Stack Initialized',
-        '[+] Execution Complete'
+        '[+] Compiling C++20 Optimizations (-O3)...',
+        '[+] Initializing Multi-Threaded Engine...',
+        '  -> Spawning: CPU_Worker_1 [OK]',
+        '  -> Spawning: GPU_CUDA_Core [OK]',
+        '  -> Spawning: AI_RAG_Pipeline [OK]',
+        '[✓] Execution Finished Successfully (Exit Code: 0)'
       ]
     },
     py: {
-      code: `import torch\nimport numpy as np\n\nprint("Lim Wei Jian - PyTorch & YOLO AI Vision Engine")`,
+      code: `import torch\nimport numpy as np\n\n# Lim Wei Jian - PyTorch & YOLO AI Vision Pipeline\nprint("[+] Loading PyTorch 2.4.0 CUDA Engine...")\ndevice = "cuda" if torch.cuda.is_available() else "cpu"\nprint(f"[+] Active Acceleration Device: {device.upper()}")\n\n# Simulating Vector RAG Grounding\nprint("[✓] YOLOv8 Target Detected: Confidence 98.4%")`,
       cmd: 'python solution.py',
       output: [
-        '[+] CUDA Device: NVIDIA RTX Detected',
-        '[+] PyTorch 2.4.0 & YOLO Pipeline Active',
-        '[+] Output: AI Vision Grounding Passed'
+        '[+] Loading PyTorch 2.4.0 CUDA Engine...',
+        '[+] Active Acceleration Device: CUDA (NVIDIA RTX)',
+        '[+] Running Vector RAG Similarity Query...',
+        '[✓] YOLOv8 Target Detected: Confidence 98.4%',
+        '[✓] Inference Latency: 4.2ms'
+      ]
+    },
+    java: {
+      code: `public class Solution {\n    public static void main(String[] args) {\n        System.out.println("[+] Starting Spring Boot Enterprise Service...");\n        System.out.println("[+] Injection Context: Full-Stack Architecture");\n        System.out.println("[✓] Microservices Ready on Port 8080");\n    }\n}`,
+      cmd: 'javac Solution.java && java Solution',
+      output: [
+        '[+] Compiling Solution.java with javac...',
+        '[+] Starting Spring Boot Enterprise Service...',
+        '[+] Injection Context: Full-Stack Architecture',
+        '[✓] Microservices Ready on Port 8080'
+      ]
+    },
+    cs: {
+      code: `using System;\n\nclass Program {\n    static void Main() {\n        Console.WriteLine("[+] Initializing .NET Core 8.0 Runtime...");\n        Console.WriteLine("[✓] Async LINQ Query Engine Active.");\n    }\n}`,
+      cmd: 'dotnet run --configuration Release',
+      output: [
+        'Build succeeded (0.3s).',
+        '[+] Initializing .NET Core 8.0 Runtime...',
+        '[✓] Async LINQ Query Engine Active.',
+        '[✓] Process exited with code 0.'
       ]
     }
   };
@@ -87,9 +205,9 @@ int main() {
       activeLang = btn.getAttribute('data-lang-tab') || 'cpp';
 
       document.querySelectorAll('[data-lang-tab]').forEach(b => {
-        b.className = 'tab-btn px-3 py-1.5 rounded-t hover:bg-emerald-950/40 text-emerald-300/70';
+        b.className = 'tab-btn px-3 py-1.5 rounded-t text-emerald-300/60 hover:bg-[#121420] transition flex items-center gap-2';
       });
-      btn.className = 'tab-btn active px-3 py-1.5 rounded-t bg-black border-t-2 border-emerald-400 text-emerald-400 font-bold';
+      btn.className = 'tab-btn active px-3 py-1.5 rounded-t bg-[#0b0c13] border-t-2 border-blue-400 text-blue-400 font-bold flex items-center gap-2';
 
       const codeDisplay = document.getElementById('ide-code-display');
       if (codeDisplay && codeSnippets[activeLang]) {
@@ -103,12 +221,12 @@ int main() {
     if (!consoleOutput || !codeSnippets[activeLang]) return;
 
     const snippet = codeSnippets[activeLang];
-    consoleOutput.innerHTML = `<span class="text-emerald-400">&gt; Executing ${snippet.cmd}...</span><br><br>`;
+    consoleOutput.innerHTML = `<span class="text-blue-400 font-bold">&gt; Executing ${snippet.cmd}...</span><br>`;
 
     snippet.output.forEach((line, idx) => {
       setTimeout(() => {
-        consoleOutput.innerHTML += line + '<br>';
-      }, (idx + 1) * 200);
+        consoleOutput.innerHTML += `<div class="text-blue-200/90">${line}</div>`;
+      }, (idx + 1) * 180);
     });
   });
 </script>
