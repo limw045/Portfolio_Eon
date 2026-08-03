@@ -15,6 +15,8 @@ export class I18nEngine {
         nav_skills: "技能实验室",
         nav_tools: "炫技工具",
         theme_label: "主题:",
+        menu_matrix_header: "🟢 MATRIX 矩阵控制",
+        menu_matrix_toggle: "🟢 切换 Matrix 代码雨 <span class=\"shortcut\">Ctrl+Alt+M</span>",
 
         hero_badge: "MMU 人工智能专业大四生 | CGPA 3.74",
         hero_title: "探索代码与 AI 的<br><span class=\"gradient-text\">无限可能</span>",
@@ -86,6 +88,8 @@ export class I18nEngine {
         nav_skills: "Skill Studio",
         nav_tools: "Micro-Tools",
         theme_label: "Theme:",
+        menu_matrix_header: "🟢 MATRIX CONTROL",
+        menu_matrix_toggle: "🟢 Toggle Matrix Rain <span class=\"shortcut\">Ctrl+Alt+M</span>",
 
         hero_badge: "Final Year AI Student @ MMU | CGPA 3.74",
         hero_title: "Exploring Infinite<br>Possibilities of <span class=\"gradient-text\">Code & AI</span>",

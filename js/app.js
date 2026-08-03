@@ -93,6 +93,16 @@ function initVSCodeMenuActions() {
       if (document.exitFullscreen) document.exitFullscreen();
     }
   });
+  bind('menu-view-matrix', () => {
+    window.dispatchEvent(new CustomEvent('matrixmode'));
+  });
+
+  // Bind all matrix-toggle actions across UI
+  document.querySelectorAll('[data-action="matrix-toggle"], .matrix-toggle').forEach(btn => {
+    btn.addEventListener('click', () => {
+      window.dispatchEvent(new CustomEvent('matrixmode'));
+    });
+  });
 
   // 5. Run Menu
   bind('menu-run-code', () => {
@@ -147,7 +157,7 @@ function initIDESidebarControls() {
   if (toggleBtn) toggleBtn.addEventListener('click', toggleSidebar);
   if (closeBtn) closeBtn.addEventListener('click', () => sidebar.classList.add('collapsed'));
 
-  // Keyboard shortcut Ctrl+B or Cmd+B to toggle Explorer
+  // Keyboard shortcut Ctrl+B or Cmd+B to toggle Explorer, Ctrl+Alt+M to toggle Matrix
   window.addEventListener('keydown', (e) => {
     if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'b') {
       const currentTheme = document.documentElement.getAttribute('data-theme');
@@ -155,6 +165,9 @@ function initIDESidebarControls() {
         e.preventDefault();
         toggleSidebar();
       }
+    } else if ((e.ctrlKey || e.metaKey) && e.altKey && e.key.toLowerCase() === 'm') {
+      e.preventDefault();
+      window.dispatchEvent(new CustomEvent('matrixmode'));
     }
   });
 }

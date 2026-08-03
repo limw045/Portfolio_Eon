@@ -95,6 +95,9 @@
           <button class="dropdown-option" id="menu-view-explorer">📂 Toggle Explorer Sidebar <span class="shortcut">Ctrl+B</span></button>
           <button class="dropdown-option" id="menu-view-terminal">💻 Toggle Integrated Terminal</button>
           <button class="dropdown-option" id="menu-view-fullscreen">⛶ Toggle Fullscreen <span class="shortcut">F11</span></button>
+          <div class="dropdown-divider"></div>
+          <div class="dropdown-header" data-i18n="menu_matrix_header">🟢 MATRIX CONTROL</div>
+          <button class="dropdown-option matrix-toggle" id="menu-view-matrix" data-action="matrix-toggle" data-i18n="menu_matrix_toggle">🟢 Toggle Matrix Rain <span class="shortcut">Ctrl+Alt+M</span></button>
         </div>
       </div>
 
@@ -126,7 +129,7 @@
         <span class="menu-item">Terminal</span>
         <div class="dropdown-menu">
           <button class="dropdown-option" id="menu-term-toggle">💻 Toggle Terminal Panel</button>
-          <button class="dropdown-option" id="menu-term-matrix">💚 Activate Matrix Code Rain</button>
+          <button class="dropdown-option matrix-toggle" id="menu-term-matrix" data-action="matrix-toggle">💚 Activate Matrix Code Rain</button>
           <button class="dropdown-option" id="menu-term-clear">🧹 Clear Terminal Console</button>
         </div>
       </div>

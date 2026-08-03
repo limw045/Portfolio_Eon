@@ -106,9 +106,34 @@ Available CLI Commands:
       } else {
         printLine(`Unknown theme. Choose from: ${validThemes.join(', ')}`, 'error');
       }
-    } else if (cleanCmd === 'matrix') {
-      printLine('[Matrix Engine] Activating Binary Code Rain Protocol...');
-      window.dispatchEvent(new CustomEvent('matrixmode'));
+    } else if (cleanCmd === 'matrix' || cleanCmd.startsWith('matrix ')) {
+      if (cleanCmd === 'matrix') {
+        const line = document.createElement('div');
+        line.className = 'term-line cmd-highlight';
+        outputBody.appendChild(line);
+        const text = 'Wake up, Neo... The Matrix has you. 🐇';
+        let i = 0;
+        const typeInterval = setInterval(() => {
+          if (i < text.length) {
+            line.textContent += text.charAt(i);
+            i++;
+            outputBody.scrollTop = outputBody.scrollHeight;
+          } else {
+            clearInterval(typeInterval);
+          }
+        }, 45);
+        window.dispatchEvent(new CustomEvent('matrixmode'));
+      } else if (cleanCmd.startsWith('matrix speed ')) {
+        const speed = cleanCmd.replace('matrix speed ', '').trim();
+        printLine(`[Matrix Engine] Rain speed updated to '${speed}'.`, 'cmd-highlight');
+        window.dispatchEvent(new CustomEvent('matrixconfig', { detail: { speed } }));
+      } else if (cleanCmd.startsWith('matrix density ')) {
+        const density = cleanCmd.replace('matrix density ', '').trim();
+        printLine(`[Matrix Engine] Column density updated to '${density}'.`, 'cmd-highlight');
+        window.dispatchEvent(new CustomEvent('matrixconfig', { detail: { density } }));
+      } else {
+        printLine(`[Matrix Engine] Options: 'matrix' (activate & typewriter easter egg), 'matrix speed slow|normal|fast', 'matrix density low|normal|high'.`, 'cmd-highlight');
+      }
     } else if (cleanCmd === 'clear') {
       outputBody.innerHTML = '';
     } else {
