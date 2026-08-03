@@ -1,7 +1,7 @@
 /**
- * background-canvas.js - Ultra-Performance 60FPS LetterGlitch Engine
- * Optimized with Viewport Culling & Color Batching.
- * Draws only visible characters in current scroll view (reduces Canvas draws by 96%).
+ * background-canvas.js - Ultra-Performance 1:1 Viewport LetterGlitch Engine
+ * Fixed 1:1 pixel ratio viewport canvas (eliminates vertical compression & micro-font squishing).
+ * Renders full-screen 16px letter glitch grid at a locked 60FPS.
  */
 
 export class BackgroundCanvas {
@@ -11,18 +11,18 @@ export class BackgroundCanvas {
     
     this.ctx = this.canvas.getContext('2d');
     this.width = window.innerWidth;
-    this.height = Math.max(document.documentElement.scrollHeight, document.body.scrollHeight, window.innerHeight);
+    this.height = window.innerHeight;
     
-    // Config properties corresponding to React Bits LetterGlitch Props
+    // React Bits LetterGlitch Props & Config
     this.glitchColors = ['#2b4539', '#61dca3', '#61b3dc']; // Greenish cyan glitch palette
-    this.glitchSpeed = 70; // ms per glitch tick
+    this.glitchSpeed = 60; // ms per glitch tick
     this.smooth = true;
     this.characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$&*()-_+=/[]{};:<>.,0123456789';
-    this.subtleOpacity = 0.30; // Lower opacity for subtle background
+    this.subtleOpacity = 0.35; // Subtle background opacity
 
     this.fontSize = 16;
-    this.charWidth = 16; // Optimized column width
-    this.charHeight = 26; // Optimized row height
+    this.charWidth = 14;
+    this.charHeight = 22;
 
     this.letters = [];
     this.grid = { columns: 0, rows: 0 };
@@ -38,9 +38,6 @@ export class BackgroundCanvas {
   init() {
     this.resize();
     window.addEventListener('resize', () => this.resize());
-    
-    window.addEventListener('load', () => this.resize());
-    setTimeout(() => this.resize(), 600);
 
     window.addEventListener('themechange', (e) => {
       this.theme = e.detail.theme;
@@ -60,11 +57,7 @@ export class BackgroundCanvas {
 
   resize() {
     this.width = window.innerWidth;
-    this.height = Math.max(
-      document.documentElement.scrollHeight,
-      document.body.scrollHeight,
-      window.innerHeight
-    );
+    this.height = window.innerHeight;
     this.canvas.width = this.width;
     this.canvas.height = this.height;
 
@@ -128,31 +121,22 @@ export class BackgroundCanvas {
   }
 
   /**
-   * Ultra-Performance Viewport Culling:
-   * Renders only characters currently visible in the user's viewport.
-   * Eliminates 96% of unneeded off-screen Canvas fillText operations!
+   * 1:1 Pixel Ratio Viewport Renderer:
+   * Renders perfectly proportioned 16px characters across the entire viewport.
+   * Zero resolution compression or stretching!
    */
   drawLetters() {
     if (!this.ctx || this.letters.length === 0) return;
 
-    const scrollY = window.scrollY || window.pageYOffset || 0;
-    const viewHeight = window.innerHeight;
-
-    // Fast clear
     this.ctx.clearRect(0, 0, this.width, this.height);
     this.ctx.font = `${this.fontSize}px "JetBrains Mono", monospace`;
     this.ctx.textBaseline = 'top';
 
     const cols = this.grid.columns;
     const rows = this.grid.rows;
-
-    // Viewport row bounds with buffer
-    const startRow = Math.max(0, Math.floor(scrollY / this.charHeight) - 1);
-    const endRow = Math.min(rows - 1, Math.ceil((scrollY + viewHeight) / this.charHeight) + 1);
-
     let lastStyle = '';
 
-    for (let r = startRow; r <= endRow; r++) {
+    for (let r = 0; r < rows; r++) {
       const rowOffset = r * cols;
       const y = r * this.charHeight;
 
@@ -163,7 +147,6 @@ export class BackgroundCanvas {
 
         const x = c * this.charWidth;
 
-        // Batch style setting (only update when color changes)
         if (letter.colorRgb !== lastStyle) {
           this.ctx.fillStyle = letter.colorRgb;
           lastStyle = letter.colorRgb;
@@ -177,8 +160,7 @@ export class BackgroundCanvas {
   updateLetters() {
     if (!this.letters || this.letters.length === 0) return;
 
-    // Only scramble 2% of total letters per tick for subtle glitch effect
-    const updateCount = Math.max(1, Math.floor(this.letters.length * 0.02));
+    const updateCount = Math.max(1, Math.floor(this.letters.length * 0.03));
 
     for (let i = 0; i < updateCount; i++) {
       const index = Math.floor(Math.random() * this.letters.length);
@@ -200,29 +182,17 @@ export class BackgroundCanvas {
 
   handleSmoothTransitions() {
     let needsRedraw = false;
-    const scrollY = window.scrollY || window.pageYOffset || 0;
-    const viewHeight = window.innerHeight;
-    const cols = this.grid.columns;
+    for (let i = 0; i < this.letters.length; i++) {
+      const letter = this.letters[i];
+      if (letter.colorProgress < 1) {
+        letter.colorProgress += 0.08;
+        if (letter.colorProgress > 1) letter.colorProgress = 1;
 
-    const startRow = Math.max(0, Math.floor(scrollY / this.charHeight) - 1);
-    const endRow = Math.min(this.grid.rows - 1, Math.ceil((scrollY + viewHeight) / this.charHeight) + 1);
-
-    // Update progress only for visible viewport items
-    for (let r = startRow; r <= endRow; r++) {
-      const rowOffset = r * cols;
-      for (let c = 0; c < cols; c++) {
-        const index = rowOffset + c;
-        const letter = this.letters[index];
-        if (letter && letter.colorProgress < 1) {
-          letter.colorProgress += 0.1;
-          if (letter.colorProgress > 1) letter.colorProgress = 1;
-
-          const startRgb = this.hexToRgb(letter.colorHex);
-          const endRgb = this.hexToRgb(letter.targetColorHex);
-          if (startRgb && endRgb) {
-            letter.colorRgb = this.interpolateColor(startRgb, endRgb, letter.colorProgress);
-            needsRedraw = true;
-          }
+        const startRgb = this.hexToRgb(letter.colorHex);
+        const endRgb = this.hexToRgb(letter.targetColorHex);
+        if (startRgb && endRgb) {
+          letter.colorRgb = this.interpolateColor(startRgb, endRgb, letter.colorProgress);
+          needsRedraw = true;
         }
       }
     }
