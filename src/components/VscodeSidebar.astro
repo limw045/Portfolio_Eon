@@ -1,0 +1,53 @@
+---
+---
+
+<!-- Collapsible IDE File Explorer Sidebar -->
+<aside id="ide-sidebar" class="fixed top-14 left-0 bottom-7 w-64 bg-black/95 border-r border-emerald-500/30 z-40 transition-transform duration-300 transform -translate-x-full shadow-2xl font-mono text-xs text-emerald-300">
+  <div class="flex items-center justify-between px-4 py-2 bg-emerald-950/60 border-b border-emerald-500/20 font-bold text-emerald-400">
+    <span>EXPLORER: PORTFOLIO</span>
+    <button id="sidebar-close-btn" class="hover:text-emerald-200 font-bold">✕</button>
+  </div>
+  
+  <div class="p-3">
+    <div class="font-bold text-emerald-400 mb-2 flex items-center gap-1">
+      <span>📁</span> src/workspace/
+    </div>
+    <ul class="pl-4 space-y-2 text-emerald-200/80">
+      <li class="hover:text-emerald-400 transition"><a href="#hero" class="block py-1">📄 01_origin_story.md</a></li>
+      <li class="hover:text-emerald-400 transition"><a href="#academic" class="block py-1">📄 02_academic_journey.json</a></li>
+      <li class="hover:text-emerald-400 transition"><a href="#culture" class="block py-1">📄 03_culture_hub.config</a></li>
+      <li class="hover:text-emerald-400 transition"><a href="#skill-studio" class="block py-1">📄 04_skill_studio.cpp</a></li>
+      <li class="hover:text-emerald-400 transition"><a href="#n8n-studio" class="block py-1">📄 05_n8n_workflow.py</a></li>
+      <li class="hover:text-emerald-400 transition"><a href="#micro-tools" class="block py-1">📄 06_micro_tools.css</a></li>
+    </ul>
+  </div>
+</aside>
+
+<script>
+  const sidebar = document.getElementById('ide-sidebar');
+  const closeBtn = document.getElementById('sidebar-close-btn');
+  const toggleBtn = document.getElementById('menu-toggle-sidebar');
+
+  let isSidebarOpen = false;
+
+  function toggleSidebar() {
+    isSidebarOpen = !isSidebarOpen;
+    if (sidebar) {
+      if (isSidebarOpen) {
+        sidebar.classList.remove('-translate-x-full');
+      } else {
+        sidebar.classList.add('-translate-x-full');
+      }
+    }
+  }
+
+  closeBtn?.addEventListener('click', toggleSidebar);
+  toggleBtn?.addEventListener('click', toggleSidebar);
+
+  document.addEventListener('keydown', (e) => {
+    if (e.ctrlKey && e.key.toLowerCase() === 'b') {
+      e.preventDefault();
+      toggleSidebar();
+    }
+  });
+</script>

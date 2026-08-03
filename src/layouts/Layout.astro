@@ -1,4 +1,6 @@
 ---
+import VscodeTopMenu from '../components/VscodeTopMenu.astro';
+import VscodeSidebar from '../components/VscodeSidebar.astro';
 import Navbar from '../components/Navbar.astro';
 import LetterGlitchCanvas from '../components/LetterGlitchCanvas.astro';
 import TerminalDrawer from '../components/TerminalDrawer.astro';
@@ -29,6 +31,8 @@ const {
   </head>
   <body class="relative min-h-screen font-sans bg-black antialiased selection:bg-emerald-500 selection:text-black">
     <LetterGlitchCanvas />
+    <VscodeTopMenu />
+    <VscodeSidebar />
     <Navbar />
     <main>
       <slot />

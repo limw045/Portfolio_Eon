@@ -1,0 +1,84 @@
+---
+---
+
+<!-- VS Code Integrated Top Menu Bar -->
+<div id="vscode-top-menu" class="sticky top-0 z-50 bg-[#181825] border-b border-emerald-500/30 text-xs font-mono text-emerald-300/80 selection:bg-emerald-500 selection:text-black">
+  <div class="px-3 py-1 flex items-center justify-between">
+    <!-- Left: Menu Items (File, Edit, Selection, View, Go, Run, Terminal, Help) -->
+    <div class="flex items-center gap-1 sm:gap-2">
+      <span class="font-bold text-emerald-400 mr-2 flex items-center gap-1">
+        <span class="text-sm">⚡</span> VS Code
+      </span>
+
+      <!-- File Menu -->
+      <div class="relative group">
+        <button class="px-2 py-0.5 rounded hover:bg-emerald-950/60 transition">File</button>
+        <div class="absolute left-0 mt-1 w-48 py-1.5 rounded bg-black/95 border border-emerald-500/40 shadow-xl opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto transition z-50">
+          <a href="#hero" class="block px-4 py-1 hover:bg-emerald-950 text-emerald-300">📄 New File</a>
+          <button id="menu-file-save" class="w-full text-left px-4 py-1 hover:bg-emerald-950 text-emerald-300">💾 Save <span class="float-right text-[10px] opacity-60">Ctrl+S</span></button>
+        </div>
+      </div>
+
+      <!-- View Menu -->
+      <div class="relative group">
+        <button class="px-2 py-0.5 rounded hover:bg-emerald-950/60 font-bold text-emerald-300 transition">View ▾</button>
+        <div class="absolute left-0 mt-1 w-56 py-2 rounded bg-black/95 border border-emerald-500/40 shadow-xl opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto transition z-50">
+          <div class="px-4 py-1 text-[10px] font-bold text-emerald-400/60 uppercase">🎨 Color Themes</div>
+          <button data-theme-target="ide" class="w-full text-left px-4 py-1 hover:bg-emerald-950 text-emerald-300">💻 IDE Cyber Code</button>
+          <button data-theme-target="football" class="w-full text-left px-4 py-1 hover:bg-emerald-950 text-amber-300">⚽ Green Pitch (Football)</button>
+          <button data-theme-target="cinema" class="w-full text-left px-4 py-1 hover:bg-emerald-950 text-yellow-400">🎬 Cinema Noir</button>
+          <button data-theme-target="swiss" class="w-full text-left px-4 py-1 hover:bg-emerald-950 text-red-400">📜 Swiss Editorial</button>
+          <button data-theme-target="travel" class="w-full text-left px-4 py-1 hover:bg-emerald-950 text-orange-300">✈️ Travel Story Log</button>
+          <div class="my-1 border-t border-emerald-500/20"></div>
+          <div class="px-4 py-1 text-[10px] font-bold text-emerald-400/60 uppercase">🟢 Matrix Control</div>
+          <button id="menu-matrix-toggle" class="w-full text-left px-4 py-1 hover:bg-emerald-950 text-emerald-300">
+            🟢 Toggle Matrix Rain <span class="float-right text-[10px] opacity-60">Ctrl+Alt+M</span>
+          </button>
+          <button id="menu-toggle-sidebar" class="w-full text-left px-4 py-1 hover:bg-emerald-950 text-emerald-300">
+            📂 Toggle Explorer <span class="float-right text-[10px] opacity-60">Ctrl+B</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Go Menu -->
+      <div class="relative group">
+        <button class="px-2 py-0.5 rounded hover:bg-emerald-950/60 transition">Go</button>
+        <div class="absolute left-0 mt-1 w-56 py-1.5 rounded bg-black/95 border border-emerald-500/40 shadow-xl opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto transition z-50">
+          <a href="#hero" class="block px-4 py-1 hover:bg-emerald-950 text-emerald-300">📄 01_origin_story.md</a>
+          <a href="#academic" class="block px-4 py-1 hover:bg-emerald-950 text-emerald-300">📄 02_academic_journey.json</a>
+          <a href="#culture" class="block px-4 py-1 hover:bg-emerald-950 text-emerald-300">📄 03_culture_hub.config</a>
+          <a href="#skill-studio" class="block px-4 py-1 hover:bg-emerald-950 text-emerald-300">📄 04_skill_studio.cpp</a>
+          <a href="#n8n-studio" class="block px-4 py-1 hover:bg-emerald-950 text-emerald-300">📄 05_n8n_workflow.py</a>
+          <a href="#micro-tools" class="block px-4 py-1 hover:bg-emerald-950 text-emerald-300">📄 06_micro_tools.css</a>
+        </div>
+      </div>
+
+      <!-- Run Menu -->
+      <div class="relative group">
+        <button class="px-2 py-0.5 rounded hover:bg-emerald-950/60 transition">Run</button>
+        <div class="absolute left-0 mt-1 w-48 py-1.5 rounded bg-black/95 border border-emerald-500/40 shadow-xl opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto transition z-50">
+          <a href="#skill-studio" class="block px-4 py-1 hover:bg-emerald-950 text-emerald-300">▶ Run Code Snippet</a>
+          <a href="#n8n-studio" class="block px-4 py-1 hover:bg-emerald-950 text-emerald-300">⚡ Run n8n AI Story</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Center: Title -->
+    <div class="hidden md:block text-emerald-400/70 font-mono text-[11px]">
+      weijian_portfolio — VS Code Workspace
+    </div>
+
+    <!-- Right: Controls -->
+    <div class="flex items-center gap-3">
+      <button id="lang-toggle-btn" class="px-2 py-0.5 rounded bg-emerald-950/80 border border-emerald-500/30 text-emerald-300 hover:bg-emerald-900/50 transition text-[11px]">
+        🌐 EN / 中文
+      </button>
+      <span class="text-emerald-400 font-mono text-[11px] hidden sm:inline"> main*</span>
+      <div class="flex items-center gap-1 font-mono text-emerald-400/80 text-[10px]">
+        <span class="px-1 hover:bg-emerald-950 cursor-pointer">―</span>
+        <span class="px-1 hover:bg-emerald-950 cursor-pointer">□</span>
+        <span class="px-1 hover:bg-red-950 hover:text-red-400 cursor-pointer">✕</span>
+      </div>
+    </div>
+  </div>
+</div>
