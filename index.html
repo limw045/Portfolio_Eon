@@ -38,33 +38,46 @@
   <!-- Dynamic Theme-Aware HTML5 Canvas -->
   <canvas id="bg-canvas"></canvas>
 
-  <!-- VS Code Top Menu Bar (IDE Theme Specific) -->
+  <!-- VS Code Top Menu Bar (IDE Theme Specific Clean Top Control) -->
   <div class="ide-top-menu" id="ide-top-menu">
     <div class="menu-items">
+      <button class="ide-sidebar-toggle" id="ide-sidebar-toggle" title="展开/折叠文件树 (Ctrl+B)">
+        📂 Explorer
+      </button>
       <span class="menu-item active">File</span>
       <span class="menu-item">Edit</span>
       <span class="menu-item">Selection</span>
-      <span class="menu-item">View</span>
+      <!-- Theme Selection Dropdown integrated in View Menu -->
+      <div class="menu-item theme-dropdown-container">
+        <span>View (Theme) ▾</span>
+        <div class="theme-dropdown-menu">
+          <button data-theme-target="ide">💻 IDE Cyber Code</button>
+          <button data-theme-target="football">⚽ Green Pitch (足球)</button>
+          <button data-theme-target="cinema">🎬 Cinema Noir (电影)</button>
+          <button data-theme-target="swiss">📜 Swiss Editorial (瑞士)</button>
+          <button data-theme-target="travel">✈️ Travel Story Log (旅行)</button>
+        </div>
+      </div>
       <span class="menu-item">Go</span>
       <span class="menu-item">Run</span>
       <span class="menu-item">Terminal</span>
-      <span class="menu-item">Help</span>
     </div>
+
     <div class="menu-center">weijian_portfolio — VS Code Workspace</div>
+
     <div class="menu-right">
+      <!-- Integrated Language Switcher for IDE Menu -->
+      <button class="lang-toggle-btn" id="lang-toggle-ide" title="切换语言 (English / 中文)">
+        🌐 EN
+      </button>
       <span class="git-branch"> main*</span>
       <span class="window-controls"><span class="w-btn min">―</span><span class="w-btn max">□</span><span class="w-btn close">✕</span></span>
     </div>
   </div>
 
-  <!-- Sticky Top Navigation & Live Theme Engine Switcher -->
+  <!-- Sticky Top Navigation & Live Theme Engine Switcher (Shown in Standard Themes, Hidden in IDE Theme) -->
   <header class="navbar-wrapper">
     <nav class="navbar">
-      <!-- Toggle File Explorer Button for IDE Theme -->
-      <button class="ide-sidebar-toggle" id="ide-sidebar-toggle" title="展开/折叠文件树 (Ctrl+B)">
-        📂 <span class="sidebar-toggle-text">Explorer</span>
-      </button>
-
       <a href="#hero" class="brand-logo">
         <span class="logo-accent">&lt;/&gt;</span>
         <span class="logo-text">Lim Wei Jian</span>

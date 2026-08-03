@@ -282,18 +282,26 @@ html[data-theme="ide"] .ide-bottom-panel {
   height: 40px;
 }
 
-/* VS Code Top Menu Bar (IDE Theme Specific) */
+/* Hide standard website navbar in IDE mode (Ultra-Clean VS Code Workspace Layout) */
+html[data-theme="ide"] .navbar-wrapper {
+  display: none !important;
+}
+
+/* VS Code Top Menu Bar (IDE Theme Specific Clean Top Control) */
 .ide-top-menu {
   display: none;
   background: #181825;
   color: #a6adc8;
   font-family: var(--font-mono);
-  font-size: 0.75rem;
-  padding: 0.25rem 0.8rem;
+  font-size: 0.8rem;
+  padding: 0.35rem 1rem;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   justify-content: space-between;
   align-items: center;
   user-select: none;
+  position: sticky;
+  top: 0;
+  z-index: 110;
 }
 
 html[data-theme="ide"] .ide-top-menu {
@@ -302,13 +310,16 @@ html[data-theme="ide"] .ide-top-menu {
 
 .ide-top-menu .menu-items {
   display: flex;
+  align-items: center;
   gap: 0.8rem;
 }
 
 .ide-top-menu .menu-item {
+  color: #a6adc8;
   cursor: pointer;
-  padding: 0.1rem 0.3rem;
-  border-radius: 3px;
+  padding: 0.15rem 0.4rem;
+  border-radius: 4px;
+  position: relative;
 }
 
 .ide-top-menu .menu-item:hover, .ide-top-menu .menu-item.active {

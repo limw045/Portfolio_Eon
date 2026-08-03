@@ -177,15 +177,22 @@ export class I18nEngine {
     this.applyLang(this.currentLang);
 
     // Bind language toggle button in navbar
-    const langBtn = document.getElementById('lang-toggle');
-    if (langBtn) {
-      this.updateLangUI(langBtn);
-      langBtn.addEventListener('click', () => {
-        this.currentLang = this.currentLang === 'zh' ? 'en' : 'zh';
-        localStorage.setItem('weijian_portfolio_lang', this.currentLang);
-        this.applyLang(this.currentLang);
-        this.updateLangUI(langBtn);
-      });
+    const btn = document.getElementById('lang-toggle');
+    const btnIde = document.getElementById('lang-toggle-ide');
+    
+    const toggleHandler = () => {
+      this.currentLang = this.currentLang === 'zh' ? 'en' : 'zh';
+      localStorage.setItem('weijian_portfolio_lang', this.currentLang);
+      this.applyLang(this.currentLang);
+      if (btn) this.updateLangUI(btn);
+    };
+
+    if (btn) {
+      this.updateLangUI(btn);
+      btn.addEventListener('click', toggleHandler);
+    }
+    if (btnIde) {
+      btnIde.addEventListener('click', toggleHandler);
     }
   }
 
