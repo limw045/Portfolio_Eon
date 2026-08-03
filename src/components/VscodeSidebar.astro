@@ -1,70 +1,52 @@
 ---
 ---
 
-<!-- Authentic VS Code Explorer Sidebar with Tree Indent Guides & File Icons -->
-<aside id="ide-sidebar" class="fixed top-16 left-4 bottom-10 w-64 bg-[#0d0e17]/95 border border-emerald-500/30 rounded-2xl z-40 transition-transform duration-300 transform -translate-x-[110%] shadow-2xl backdrop-blur-2xl font-mono text-xs text-emerald-300 overflow-hidden">
+<!-- Authentic VS Code Integrated Sidebar with Activity Bar -->
+<aside id="ide-sidebar" class="fixed top-20 left-4 bottom-10 w-72 bg-[#090a10]/95 backdrop-blur-2xl border border-emerald-500/30 rounded-2xl z-40 transition-transform duration-300 transform -translate-x-[calc(100%+2rem)] shadow-[0_20px_50px_rgba(0,0,0,0.9)] font-mono text-xs text-emerald-300 overflow-hidden flex">
   
-  <!-- Sidebar Window Header -->
-  <div class="flex items-center justify-between px-4 py-2.5 bg-[#131522] border-b border-emerald-500/20 text-xs font-bold text-emerald-400">
-    <span class="flex items-center gap-1.5">
-      <span class="text-emerald-400">📂</span> EXPLORER: PORTFOLIO
-    </span>
-    <button id="sidebar-close-btn" class="hover:text-emerald-200 font-bold p-1 rounded hover:bg-emerald-950/60 transition">✕</button>
-  </div>
-  
-  <!-- Tree Explorer View -->
-  <div class="p-3">
-    <!-- Folder Row -->
-    <div class="font-bold text-emerald-300/90 mb-2 flex items-center gap-1.5 text-xs select-none">
-      <span class="text-[10px] text-emerald-500/60">▼</span>
-      <span>📁</span>
-      <span class="text-emerald-400">src/workspace/</span>
+  <!-- Activity Bar (Far Left 48px) -->
+  <div class="w-12 bg-[#06070a] border-r border-emerald-500/20 flex flex-col items-center py-4 justify-between text-base">
+    <div class="space-y-4 text-emerald-400/60">
+      <button class="w-8 h-8 rounded-lg bg-emerald-500/20 text-emerald-300 flex items-center justify-center border border-emerald-500/40" title="Explorer">📂</button>
+      <button class="w-8 h-8 rounded-lg hover:bg-emerald-950 text-emerald-400/60 hover:text-emerald-300 flex items-center justify-center transition" title="Search">🔍</button>
+      <button class="w-8 h-8 rounded-lg hover:bg-emerald-950 text-emerald-400/60 hover:text-emerald-300 flex items-center justify-center transition" title="Source Control"></button>
+      <button class="w-8 h-8 rounded-lg hover:bg-emerald-950 text-emerald-400/60 hover:text-emerald-300 flex items-center justify-center transition" title="Run and Debug">🐞</button>
+      <button class="w-8 h-8 rounded-lg hover:bg-emerald-950 text-emerald-400/60 hover:text-emerald-300 flex items-center justify-center transition" title="Extensions">🧩</button>
     </div>
-
-    <!-- Tree File List with Indent Guide Lines -->
-    <ul class="ml-4 pl-3.5 border-l border-emerald-500/20 space-y-1 text-xs">
-      <li>
-        <a href="#hero" class="sidebar-item flex items-center gap-2 px-2 py-1.5 rounded hover:bg-emerald-500/10 transition group text-emerald-200/90">
-          <span class="text-blue-400 text-xs">📝</span>
-          <span class="group-hover:text-emerald-300">01_origin_story.md</span>
-        </a>
-      </li>
-      <li>
-        <a href="#academic" class="sidebar-item flex items-center gap-2 px-2 py-1.5 rounded hover:bg-emerald-500/10 transition group text-emerald-200/90">
-          <span class="text-amber-400 text-xs">⚙️</span>
-          <span class="group-hover:text-emerald-300">02_academic_journey.json</span>
-        </a>
-      </li>
-      <li>
-        <a href="#culture" class="sidebar-item flex items-center gap-2 px-2 py-1.5 rounded hover:bg-emerald-500/10 transition group text-emerald-200/90">
-          <span class="text-teal-400 text-xs">✨</span>
-          <span class="group-hover:text-emerald-300">03_culture_hub.config</span>
-        </a>
-      </li>
-      <li>
-        <a href="#skill-studio" class="sidebar-item flex items-center gap-2 px-2 py-1.5 rounded hover:bg-emerald-500/10 transition group text-emerald-200/90">
-          <span class="text-cyan-400 text-xs">⚡</span>
-          <span class="group-hover:text-emerald-300">04_skill_studio.cpp</span>
-        </a>
-      </li>
-      <li>
-        <a href="#n8n-studio" class="sidebar-item flex items-center gap-2 px-2 py-1.5 rounded hover:bg-emerald-500/10 transition group text-emerald-200/90">
-          <span class="text-purple-400 text-xs">🐍</span>
-          <span class="group-hover:text-emerald-300">05_n8n_workflow.py</span>
-        </a>
-      </li>
-      <li>
-        <a href="#micro-tools" class="sidebar-item flex items-center gap-2 px-2 py-1.5 rounded hover:bg-emerald-500/10 transition group text-emerald-200/90">
-          <span class="text-pink-400 text-xs">🛠️</span>
-          <span class="group-hover:text-emerald-300">06_micro_tools.css</span>
-        </a>
-      </li>
-    </ul>
+    <div class="text-xs text-emerald-500/40">⚙️</div>
   </div>
 
-  <!-- Sidebar Footer Note -->
-  <div class="absolute bottom-0 left-0 right-0 p-3 bg-[#0a0b12] border-t border-emerald-500/20 text-[10px] text-emerald-500/60 font-mono text-center">
-    Press <kbd class="px-1 py-0.5 rounded bg-emerald-950 border border-emerald-500/30 text-emerald-300">Ctrl+B</kbd> to toggle
+  <!-- Main Explorer Tree Panel -->
+  <div class="flex-1 flex flex-col">
+    <!-- Header -->
+    <div class="flex items-center justify-between px-4 py-3 bg-[#0d0e16] border-b border-emerald-500/20 font-bold text-emerald-400">
+      <span>EXPLORER: PORTFOLIO</span>
+      <button id="sidebar-close-btn" class="hover:text-emerald-200 font-bold text-sm">✕</button>
+    </div>
+    
+    <!-- Tree Content -->
+    <div class="p-4 flex-1 overflow-y-auto space-y-3">
+      <div class="font-bold text-emerald-400 flex items-center gap-1.5 text-xs">
+        <span class="text-amber-400">📁</span> src/workspace/
+      </div>
+      <ul class="pl-4 space-y-2 text-emerald-200/80 text-xs">
+        <li class="hover:text-emerald-400 transition"><a href="#hero" class="block py-1">📄 01_origin_story.md</a></li>
+        <li class="hover:text-emerald-400 transition"><a href="#academic" class="block py-1">📄 02_academic_journey.json</a></li>
+        <li class="hover:text-emerald-400 transition"><a href="#culture" class="block py-1">📄 03_culture_hub.config</a></li>
+        <li class="hover:text-emerald-400 transition"><a href="#skill-studio" class="block py-1">📄 04_skill_studio.cpp</a></li>
+        <li class="hover:text-emerald-400 transition"><a href="#n8n-studio" class="block py-1">📄 05_n8n_workflow.py</a></li>
+        <li class="hover:text-emerald-400 transition"><a href="#micro-tools" class="block py-1">📄 06_micro_tools.css</a></li>
+      </ul>
+
+      <div class="pt-4 border-t border-emerald-500/15">
+        <div class="text-[10px] font-bold text-emerald-400/50 uppercase tracking-wider mb-2">Workspace Stats</div>
+        <div class="text-[11px] text-emerald-300/70 space-y-1">
+          <div>• Active Branch: <span class="text-emerald-400 font-bold">main</span></div>
+          <div>• System: <span class="text-emerald-400">Astro SSG</span></div>
+          <div>• Status: <span class="text-emerald-400">Deployed</span></div>
+        </div>
+      </div>
+    </div>
   </div>
 </aside>
 
@@ -72,28 +54,14 @@
   const sidebar = document.getElementById('ide-sidebar');
   const closeBtn = document.getElementById('sidebar-close-btn');
 
-  function toggleSidebar() {
-    if (sidebar) {
-      sidebar.classList.toggle('-translate-x-[110%]');
-    }
-  }
-
-  closeBtn?.addEventListener('click', toggleSidebar);
+  closeBtn?.addEventListener('click', () => {
+    sidebar?.classList.add('-translate-x-[calc(100%+2rem)]');
+  });
 
   document.addEventListener('keydown', (e) => {
     if (e.ctrlKey && e.key.toLowerCase() === 'b') {
       e.preventDefault();
-      toggleSidebar();
+      sidebar?.classList.toggle('-translate-x-[calc(100%+2rem)]');
     }
-  });
-
-  // Highlight active file on click
-  document.querySelectorAll('.sidebar-item').forEach(item => {
-    item.addEventListener('click', () => {
-      document.querySelectorAll('.sidebar-item').forEach(el => {
-        el.classList.remove('bg-emerald-500/20', 'border-l-2', 'border-emerald-400', 'text-emerald-300', 'font-bold');
-      });
-      item.classList.add('bg-emerald-500/20', 'border-l-2', 'border-emerald-400', 'text-emerald-300', 'font-bold');
-    });
   });
 </script>

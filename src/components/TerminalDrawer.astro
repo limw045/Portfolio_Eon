@@ -1,61 +1,71 @@
 ---
 ---
 
-<!-- Integrated VS Code Terminal Drawer (Collapsible) -->
-<div id="ide-terminal-drawer" class="fixed bottom-7 left-0 right-0 z-40 bg-[#0c0d15]/95 border-t border-emerald-500/30 transition-all duration-300 transform translate-y-full max-h-[300px] flex flex-col shadow-2xl backdrop-blur-2xl font-mono text-xs">
-  <!-- Tabs Row -->
-  <div class="flex items-center justify-between px-4 py-1.5 bg-[#121420] border-b border-emerald-500/20">
-    <div class="flex items-center gap-2">
-      <button class="px-3 py-1 rounded bg-blue-600 text-white font-bold shadow-md">💻 TERMINAL</button>
-      <button class="px-3 py-1 rounded hover:bg-emerald-950/40 text-emerald-300/70 transition">⚙️ OUTPUT</button>
-      <button class="px-3 py-1 rounded hover:bg-emerald-950/40 text-emerald-300/70 transition">🔍 PROBLEMS (0)</button>
-      <button class="px-3 py-1 rounded hover:bg-emerald-950/40 text-emerald-300/70 transition">🐛 DEBUG CONSOLE</button>
+<!-- Integrated VS Code Terminal Drawer (Bottom Dock) -->
+<div id="ide-terminal-drawer" class="fixed bottom-7 left-0 right-0 z-40 bg-[#090a10]/95 border-t border-emerald-500/30 transition-all duration-300 transform translate-y-full max-h-[300px] flex flex-col shadow-[0_-10px_40px_rgba(0,0,0,0.9)] font-mono text-xs backdrop-blur-2xl">
+  <!-- Terminal Header Bar -->
+  <div class="flex items-center justify-between px-4 py-2 bg-[#10121d] border-b border-emerald-500/20 text-xs">
+    <div class="flex items-center gap-2 sm:gap-3 overflow-x-auto">
+      <button class="px-3 py-1 rounded-md bg-emerald-500 text-black font-bold flex items-center gap-1.5 shadow">
+        <span>💻</span> TERMINAL
+      </button>
+      <button class="px-3 py-1 rounded-md hover:bg-emerald-950/60 text-emerald-300/70 transition flex items-center gap-1.5">
+        <span>⚙️</span> OUTPUT
+      </button>
+      <button class="px-3 py-1 rounded-md hover:bg-emerald-950/60 text-emerald-300/70 transition flex items-center gap-1.5">
+        <span>🔍</span> PROBLEMS <span class="px-1.5 py-0.2 rounded bg-emerald-500/20 text-emerald-300 text-[10px]">0</span>
+      </button>
+      <button class="px-3 py-1 rounded-md hover:bg-emerald-950/60 text-emerald-300/70 transition flex items-center gap-1.5 hidden sm:flex">
+        <span>🐛</span> DEBUG CONSOLE
+      </button>
     </div>
-    <div class="flex items-center gap-4 text-emerald-400/80">
-      <span>Type '<span class="text-emerald-300 font-bold">help</span>' or '<span class="text-emerald-300 font-bold">skills</span>'</span>
-      <span class="text-emerald-400">🟢 zsh</span>
-      <button id="close-terminal-btn" class="hover:text-emerald-200 text-base font-bold p-1 rounded hover:bg-emerald-950/60 transition">✕</button>
+    
+    <div class="flex items-center gap-3 text-emerald-400/80 text-xs flex-shrink-0">
+      <span class="hidden md:inline text-[11px] text-emerald-300/60">Type '<span class="text-emerald-400 font-bold">help</span>' for commands</span>
+      <span class="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 text-[11px] font-bold border border-emerald-500/30">🟢 zsh</span>
+      <button id="close-terminal-btn" class="hover:text-emerald-200 text-sm font-bold px-1">✕</button>
     </div>
   </div>
 
-  <!-- CLI Terminal Output Log -->
-  <div id="terminal-cli-body" class="flex-1 p-4 overflow-y-auto font-mono text-xs space-y-1 text-emerald-300 bg-black/90">
-    <div>Welcome to Lim Wei Jian CLI Node v2026.8.3</div>
-    <div>Type '<span class="text-emerald-400 font-bold">help</span>' for commands or '<span class="text-emerald-400 font-bold">matrix</span>' for code rain.</div>
+  <!-- CLI Terminal Output Body -->
+  <div id="terminal-cli-body" class="flex-1 p-4 overflow-y-auto font-mono text-xs space-y-1.5 text-emerald-300 bg-[#06070b]/90 leading-relaxed">
+    <div class="text-emerald-400 font-bold">&gt;&gt; Lim Wei Jian Interactive Workstation Terminal v2026.8.3</div>
+    <div class="text-emerald-200/80">Type '<span class="text-emerald-400 font-bold">help</span>' for commands or '<span class="text-emerald-400 font-bold">matrix</span>' to trigger code rain.</div>
   </div>
 
   <!-- CLI Command Input Line -->
-  <div class="flex items-center px-4 py-2 bg-black border-t border-emerald-500/20">
-    <span class="text-emerald-400 font-bold mr-2">weijian@mmu-ai-node:~$</span>
+  <div class="flex items-center px-4 py-2.5 bg-[#090a10] border-t border-emerald-500/20">
+    <span class="text-emerald-400 font-bold mr-2 text-xs sm:text-sm flex-shrink-0">weijian@mmu-ai-node:~$</span>
     <input
       type="text"
       id="terminal-cli-input"
-      placeholder="Type a command (e.g. help, skills, cat resume, matrix)..."
-      class="flex-1 bg-transparent border-none text-white font-mono text-xs focus:outline-none"
+      placeholder="Type command (help, skills, cat resume, matrix, clear)..."
+      class="flex-1 bg-transparent border-none text-white font-mono text-xs sm:text-sm focus:outline-none placeholder:text-emerald-500/40"
       autocomplete="off"
     />
   </div>
 </div>
 
-<!-- Refined Fixed VS Code Bottom Status Bar (Height 28px, z-index 50) -->
-<footer class="fixed bottom-0 left-0 right-0 z-50 h-7 bg-[#11121c] border-t border-emerald-500/20 flex items-center justify-between px-4 font-mono text-[11px] text-emerald-300/80 selection:bg-emerald-500 selection:text-black">
-  <div class="flex items-center gap-3">
-    <button id="toggle-terminal-btn" class="flex items-center gap-1.5 px-2.5 py-0.5 rounded bg-blue-600/90 text-white font-bold hover:bg-blue-500 transition text-[11px] shadow-sm">
-      💻 Terminal
+<!-- Fixed VS Code Bottom Status Bar (Height 28px, z-index 50) -->
+<footer class="fixed bottom-0 left-0 right-0 z-50 h-7 bg-[#08090f] border-t border-emerald-500/30 flex items-center justify-between px-4 font-mono text-[11px] text-emerald-300 backdrop-blur-md">
+  <div class="flex items-center gap-3 sm:gap-5">
+    <button id="toggle-terminal-btn" class="flex items-center gap-1.5 px-2.5 py-0.5 rounded bg-emerald-600/90 text-white font-bold hover:bg-emerald-500 transition shadow">
+      <span>💻</span> Terminal
     </button>
-    <span class="text-emerald-400 font-bold"> main*</span>
-    <span class="text-emerald-400/90 flex items-center gap-1">
-      <span class="w-2 h-2 rounded-full bg-emerald-400 inline-block animate-pulse"></span>
-      0 Errors, 0 Warnings
+    <span class="flex items-center gap-1 text-emerald-300/80">
+      <span class="text-amber-400"></span> main*
+    </span>
+    <span class="text-emerald-400 flex items-center gap-1">
+      <span class="w-2 h-2 rounded-full bg-emerald-400 inline-block"></span> 0 Errors, 0 Warnings
     </span>
   </div>
 
-  <div class="hidden sm:flex items-center gap-4 text-emerald-400/60 text-[11px]">
+  <div class="hidden sm:flex items-center gap-4 text-emerald-400/60">
     <span>Ln 42, Col 1</span>
     <span>Spaces: 2</span>
     <span>UTF-8</span>
     <span>Python 3.12</span>
-    <span class="text-emerald-300 font-bold">Prettier</span>
+    <span class="text-emerald-400 font-bold">Prettier ✓</span>
   </div>
 </footer>
 
@@ -96,11 +106,11 @@
         cliBody.innerHTML += `
           <div class="text-emerald-200/80">Available commands:</div>
           <div class="pl-4 text-emerald-300">
-            • <span class="font-bold">skills</span> - Display AI & Full-Stack tech stack<br>
-            • <span class="font-bold">matrix</span> - Wake up, Neo... (Code rain easter egg)<br>
-            • <span class="font-bold">cat resume</span> - Print resume summary<br>
-            • <span class="font-bold">clear</span> - Clear terminal screen<br>
-            • <span class="font-bold">help</span> - Show this help menu
+            • <span class="font-bold text-amber-300">skills</span> - Display AI & Full-Stack tech stack<br>
+            • <span class="font-bold text-amber-300">matrix</span> - Trigger Matrix code rain<br>
+            • <span class="font-bold text-amber-300">cat resume</span> - Print resume summary<br>
+            • <span class="font-bold text-amber-300">clear</span> - Clear terminal screen<br>
+            • <span class="font-bold text-amber-300">help</span> - Show this help menu
           </div>`;
       } else if (cmd === 'skills') {
         cliBody.innerHTML += `
@@ -114,7 +124,7 @@
       } else if (cmd === 'cat resume') {
         cliBody.innerHTML += `
           <div class="text-emerald-300">
-            Lim Wei Jian | Senior AI Student @ MMU | CGPA 3.74<br>
+            Lim Wei Jian | AI Graduate @ MMU | CGPA 3.74<br>
             Specialized in Multi-Agent RAG & Full-Stack Systems.<br>
             Degree FYP: JKR-Compliant TIA Generator (+70% efficiency).
           </div>`;
