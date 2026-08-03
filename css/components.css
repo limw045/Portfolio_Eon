@@ -139,11 +139,6 @@
   white-space: nowrap;
 }
 
-/* IDE Mode Body Bottom Padding Fix (Prevents Status Bar Overlap) */
-html[data-theme="ide"] body {
-  padding-bottom: 90px;
-}
-
 /* VS Code Bottom Status Bar (Fixed at bottom 0, height 30px, z-index 200) */
 .ide-status-bar {
   display: none;
@@ -170,45 +165,121 @@ html[data-theme="ide"] .ide-status-bar {
 
 .ide-status-bar .status-left, .ide-status-bar .status-right {
   display: flex;
-  gap: 1.2rem;
+  align-items: center;
+  gap: 1rem;
 }
 
 .status-item {
   white-space: nowrap;
 }
 
-.status-item.bg-blue {
+#status-toggle-panel {
   background: #89b4fa;
   color: #111;
-  padding: 0.1rem 0.4rem;
+  border: none;
   font-weight: 700;
+  padding: 0.15rem 0.6rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.75rem;
 }
 
-/* Interactive Hacker CLI Terminal Drawer (Fixed at bottom 30px, z-index 190) */
-.ide-terminal-drawer {
+#status-toggle-panel:hover {
+  filter: brightness(1.1);
+}
+
+/* Official VS Code Integrated Bottom Panel (Docked directly above Status Bar at bottom: 30px) */
+.ide-bottom-panel {
   display: none;
   position: fixed;
   bottom: 30px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 92%;
-  max-width: 980px;
-  background: rgba(17, 17, 27, 0.98);
-  border: 1px solid #89b4fa;
-  border-radius: 12px 12px 0 0;
-  box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.85), 0 0 20px rgba(137, 180, 250, 0.35);
+  left: 0;
+  width: 100vw;
+  height: 220px;
+  background: #11111b;
+  border-top: 2px solid #89b4fa;
   z-index: 190;
   font-family: var(--font-mono);
   overflow: hidden;
-  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.7);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-html[data-theme="ide"] .ide-terminal-drawer {
+html[data-theme="ide"] .ide-bottom-panel {
   display: block;
 }
 
-.ide-terminal-drawer.collapsed {
-  transform: translateX(-50%) translateY(calc(100% - 38px));
+.ide-bottom-panel.collapsed {
+  transform: translateY(100%); /* Completely hidden below status bar when closed */
+}
+
+.panel-header-tabs {
+  background: #181825;
+  padding: 0 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  height: 35px;
+}
+
+.tab-group {
+  display: flex;
+  gap: 0.2rem;
+}
+
+.panel-tab {
+  background: transparent;
+  border: none;
+  color: #a6adc8;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  padding: 0.4rem 0.8rem;
+  cursor: pointer;
+  border-top: 2px solid transparent;
+}
+
+.panel-tab.active {
+  color: #89b4fa;
+  border-top-color: #89b4fa;
+  background: #11111b;
+  font-weight: 700;
+}
+
+.panel-controls {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.panel-close-btn {
+  background: transparent;
+  border: none;
+  color: #a6adc8;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.panel-close-btn:hover {
+  color: #f38ba8;
+}
+
+.terminal-cli-body {
+  height: calc(220px - 75px);
+  padding: 0.6rem 1.2rem;
+  overflow-y: auto;
+  font-size: 0.85rem;
+  color: #cdd6f4;
+  background: #11111b;
+}
+
+.terminal-cli-input-line {
+  display: flex;
+  align-items: center;
+  background: #181825;
+  padding: 0.4rem 1.2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  height: 40px;
 }
 
 /* VS Code Top Menu Bar (IDE Theme Specific) */

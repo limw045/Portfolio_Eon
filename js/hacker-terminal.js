@@ -1,5 +1,5 @@
 /**
- * hacker-terminal.js - Interactive Hacker CLI Terminal Module
+ * hacker-terminal.js - VS Code Integrated Terminal Panel Module
  * Allows visitors to type commands like 'help', 'skills', 'cat resume', 'theme', 'matrix', 'clear'.
  */
 
@@ -14,13 +14,19 @@ export class HackerTerminal {
     const input = document.getElementById('terminal-cli-input');
     const body = document.getElementById('terminal-cli-body');
     const toggleBtn = document.getElementById('btn-toggle-terminal');
+    const statusToggleBtn = document.getElementById('status-toggle-panel');
+    const closeBtn = document.getElementById('btn-panel-close');
     const termDrawer = document.getElementById('ide-terminal-drawer');
 
-    if (toggleBtn && termDrawer) {
-      toggleBtn.addEventListener('click', () => {
-        termDrawer.classList.toggle('collapsed');
-      });
-    }
+    const togglePanel = () => {
+      if (termDrawer) termDrawer.classList.toggle('collapsed');
+    };
+
+    if (toggleBtn) toggleBtn.addEventListener('click', togglePanel);
+    if (statusToggleBtn) statusToggleBtn.addEventListener('click', togglePanel);
+    if (closeBtn) closeBtn.addEventListener('click', () => {
+      if (termDrawer) termDrawer.classList.add('collapsed');
+    });
 
     if (input && body) {
       input.addEventListener('keydown', (e) => {

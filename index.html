@@ -456,14 +456,20 @@
 
   </main>
 
-  <!-- Interactive Hacker CLI Terminal Drawer (IDE Theme Specific) -->
-  <div class="ide-terminal-drawer collapsed" id="ide-terminal-drawer">
-    <div class="terminal-drawer-header">
-      <div class="header-title">
-        <button class="terminal-toggle-btn" id="btn-toggle-terminal">💻 Terminal (CLI)</button>
-        <span class="help-hint">Type '<span class="cmd-highlight">help</span>' or '<span class="cmd-highlight">skills</span>'</span>
+  <!-- Official VS Code Integrated Bottom Panel (Docker Directly Above Status Bar) -->
+  <div class="ide-bottom-panel collapsed" id="ide-terminal-drawer">
+    <div class="panel-header-tabs">
+      <div class="tab-group">
+        <button class="panel-tab active" id="btn-toggle-terminal">💻 TERMINAL</button>
+        <button class="panel-tab">⚙️ OUTPUT</button>
+        <button class="panel-tab">🔍 PROBLEMS (0)</button>
+        <button class="panel-tab">🐛 DEBUG CONSOLE</button>
       </div>
-      <span class="term-status">🟢 ONLINE (zsh)</span>
+      <div class="panel-controls">
+        <span class="help-hint">Type '<span class="cmd-highlight">help</span>' or '<span class="cmd-highlight">skills</span>'</span>
+        <span class="term-status">🟢 zsh</span>
+        <button class="panel-close-btn" id="btn-panel-close">✕</button>
+      </div>
     </div>
     <div class="terminal-cli-body" id="terminal-cli-body">
       <div class="term-line">Welcome to Lim Wei Jian CLI Node v2026.8.3</div>
@@ -475,10 +481,11 @@
     </div>
   </div>
 
-  <!-- VS Code Bottom Status Bar (IDE Theme Specific) -->
+  <!-- VS Code Bottom Status Bar (Fixed at very bottom 0, height 30px, z-index 200) -->
   <footer class="ide-status-bar" id="ide-status-bar">
     <div class="status-left">
-      <span class="status-item bg-blue"> main*</span>
+      <button class="status-item bg-blue" id="status-toggle-panel" title="点击展开/折叠 Integrated Terminal Panel">💻 Terminal</button>
+      <span class="status-item"> main*</span>
       <span class="status-item">🟢 0 Errors, 0 Warnings</span>
     </div>
     <div class="status-right">
