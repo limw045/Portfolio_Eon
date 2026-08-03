@@ -1,7 +1,7 @@
 /**
- * background-canvas.js - Full-Document Absolute Canvas Matrix Engine
- * Spans the full document height (0px to 3500px+) with 1:1 pixel rendering,
- * guaranteeing crisp JetBrains Mono characters with zero stretching across the entire page.
+ * background-canvas.js - High-Density Interactive Full-Document Matrix Rain Engine
+ * Features dense 14px matrix streams, cursor proximity character glowing/mutation,
+ * and mouse-click shockwave pulse energy rings across full document height.
  */
 
 export class BackgroundCanvas {
@@ -12,12 +12,18 @@ export class BackgroundCanvas {
     this.ctx = this.canvas.getContext('2d');
     this.width = window.innerWidth;
     this.height = Math.max(document.documentElement.scrollHeight, document.body.scrollHeight, window.innerHeight);
+    
     this.particles = [];
     this.matrixDrops = [];
     this.matrixChars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZλπΣΩ<>{}[]/*=&$#@!';
     this.matrixSpeedStep = 2;
     this.frameIndex = 0;
     this.theme = document.documentElement.getAttribute('data-theme') || 'ide';
+
+    // Interactive Mouse Tracking
+    this.mouseX = -1000;
+    this.mouseY = -1000;
+    this.pulses = [];
 
     this.init();
   }
@@ -29,6 +35,28 @@ export class BackgroundCanvas {
     // Recalculate full document height after page load & dynamic component renders
     window.addEventListener('load', () => this.resize());
     setTimeout(() => this.resize(), 600);
+
+    // Mouse interactivity listeners
+    window.addEventListener('mousemove', (e) => {
+      this.mouseX = e.clientX;
+      this.mouseY = e.clientY + window.scrollY;
+    });
+
+    window.addEventListener('mouseleave', () => {
+      this.mouseX = -1000;
+      this.mouseY = -1000;
+    });
+
+    window.addEventListener('click', (e) => {
+      // Trigger shockwave pulse on click
+      this.pulses.push({
+        x: e.clientX,
+        y: e.clientY + window.scrollY,
+        radius: 10,
+        maxRadius: 220,
+        alpha: 0.8
+      });
+    });
 
     // Listen for live theme changes & custom matrix trigger/config
     window.addEventListener('themechange', (e) => {
@@ -68,7 +96,6 @@ export class BackgroundCanvas {
 
   resize() {
     this.width = window.innerWidth;
-    // Calculate full document scroll height so canvas covers the entire 3500px page from top to footer!
     const docHeight = Math.max(
       document.documentElement.scrollHeight,
       document.body.scrollHeight,
@@ -96,18 +123,18 @@ export class BackgroundCanvas {
     }
   }
 
-  initMatrixRain(density = 'normal') {
-    const fontSize = 16;
+  initMatrixRain(density = 'high') {
+    const fontSize = 14; // High-density 14px grid
     let colWidth = fontSize;
-    if (density === 'low') colWidth = fontSize * 2;
-    if (density === 'high') colWidth = Math.floor(fontSize * 0.75);
+    if (density === 'low') colWidth = fontSize * 2.2;
+    if (density === 'high') colWidth = fontSize * 0.95;
 
     const columns = Math.floor(this.width / colWidth);
     const totalRows = Math.ceil(this.height / fontSize) || 1;
     
     this.matrixDrops = [];
     
-    // Distribute initial drops randomly across total document height (0px to 3500px+)
+    // Distribute initial drops randomly across total document height
     for (let i = 0; i < columns; i++) {
       this.matrixDrops[i] = Math.floor(Math.random() * totalRows);
     }
@@ -135,6 +162,7 @@ export class BackgroundCanvas {
       case 'ide':
       default:
         this.drawMatrixRain();
+        this.drawShockwavePulses();
         break;
     }
 
@@ -142,44 +170,90 @@ export class BackgroundCanvas {
   }
 
   drawMatrixRain() {
-    const fontSize = 16;
+    const fontSize = 14;
     const totalRows = Math.ceil(this.height / fontSize) || 1;
 
-    // Clear canvas cleanly every frame to ensure 100% transparent background
+    // Clear canvas cleanly every frame
     this.ctx.clearRect(0, 0, this.width, this.height);
 
-    this.ctx.font = '15px "JetBrains Mono", monospace';
+    this.ctx.font = '13px "JetBrains Mono", monospace';
     const chars = this.matrixChars || '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZλπΣΩ<>{}[]/*=&$#@!';
     
     this.frameIndex = (this.frameIndex || 0) + 1;
     const shouldStep = this.frameIndex % (this.matrixSpeedStep || 2) === 0;
 
-    const streamLength = 12; // 12-character fading tail stream
+    const streamLength = 14; // High-density tail length
+    const offsets = [0, Math.floor(totalRows / 2)]; // Dual-head staggered streams
 
     for (let i = 0; i < this.matrixDrops.length; i++) {
-      const x = i * fontSize;
-      const headRow = Math.floor(this.matrixDrops[i] % totalRows);
+      const x = i * (fontSize * 0.95);
 
-      // Render 12-character fading tail stream across full document height
-      for (let j = 0; j < streamLength; j++) {
-        const charRow = (headRow - j + totalRows) % totalRows;
-        const charY = (charRow + 1) * fontSize;
+      for (let k = 0; k < offsets.length; k++) {
+        const headRow = Math.floor((this.matrixDrops[i] + offsets[k]) % totalRows);
 
-        if (j === 0) {
-          // Hot neon mint leading head
-          this.ctx.fillStyle = 'rgba(220, 255, 230, 0.75)';
-        } else {
-          // Fading trail alpha
-          const alpha = Math.max(0.04, (1 - j / streamLength) * 0.35);
-          this.ctx.fillStyle = `rgba(0, 255, 102, ${alpha})`;
+        for (let j = 0; j < streamLength; j++) {
+          const charRow = (headRow - j + totalRows) % totalRows;
+          const charY = (charRow + 1) * fontSize;
+
+          // Mouse Proximity Interactivity Check
+          const dx = x - this.mouseX;
+          const dy = charY - this.mouseY;
+          const dist = Math.hypot(dx, dy);
+
+          let charText = chars.charAt((i * 7 + charRow * 3 + j) % chars.length);
+
+          if (dist < 110) {
+            // Cursor Proximity Highlight & Dynamic Code Mutation!
+            this.ctx.fillStyle = `rgba(255, 255, 255, ${Math.max(0.7, 1 - dist / 110)})`;
+            this.ctx.shadowColor = '#00ff66';
+            this.ctx.shadowBlur = 8;
+
+            // Mutate character live under cursor
+            if (Math.random() < 0.3) {
+              charText = chars.charAt(Math.floor(Math.random() * chars.length));
+            }
+          } else if (j === 0) {
+            // Hot neon mint leading head
+            this.ctx.fillStyle = 'rgba(220, 255, 230, 0.8)';
+            this.ctx.shadowColor = 'transparent';
+            this.ctx.shadowBlur = 0;
+          } else {
+            // Fading trail alpha
+            const alpha = Math.max(0.04, (1 - j / streamLength) * 0.38);
+            this.ctx.fillStyle = `rgba(0, 255, 102, ${alpha})`;
+            this.ctx.shadowColor = 'transparent';
+            this.ctx.shadowBlur = 0;
+          }
+
+          this.ctx.fillText(charText, x, charY);
         }
-
-        const charText = chars.charAt((i * 7 + charRow * 3 + j) % chars.length);
-        this.ctx.fillText(charText, x, charY);
       }
 
       if (shouldStep) {
         this.matrixDrops[i]++;
+      }
+    }
+
+    // Reset shadow after loop
+    this.ctx.shadowColor = 'transparent';
+    this.ctx.shadowBlur = 0;
+  }
+
+  drawShockwavePulses() {
+    for (let i = this.pulses.length - 1; i >= 0; i--) {
+      const p = this.pulses[i];
+      
+      this.ctx.beginPath();
+      this.ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+      this.ctx.strokeStyle = `rgba(0, 255, 102, ${p.alpha})`;
+      this.ctx.lineWidth = 2.5;
+      this.ctx.stroke();
+
+      p.radius += 8;
+      p.alpha -= 0.025;
+
+      if (p.alpha <= 0 || p.radius >= p.maxRadius) {
+        this.pulses.splice(i, 1);
       }
     }
   }
