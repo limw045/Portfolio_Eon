@@ -1,6 +1,6 @@
 /**
  * background-canvas.js - Theme-Aware Dynamic HTML5 Background Canvas & Matrix Rain Engine
- * Renders 60fps interactive particle shaders & matrix rain matching portfolio themes.
+ * Renders 60fps interactive particle shaders & full-screen cascading matrix rain.
  */
 
 export class BackgroundCanvas {
@@ -22,10 +22,16 @@ export class BackgroundCanvas {
     this.resize();
     window.addEventListener('resize', () => this.resize());
     
-    // Listen for live theme changes
+    // Listen for live theme changes & custom matrix trigger
     window.addEventListener('themechange', (e) => {
       this.theme = e.detail.theme;
       this.createParticles();
+      this.initMatrixRain();
+    });
+
+    window.addEventListener('matrixmode', () => {
+      this.theme = 'ide';
+      document.documentElement.setAttribute('data-theme', 'ide');
       this.initMatrixRain();
     });
 
@@ -60,28 +66,33 @@ export class BackgroundCanvas {
   }
 
   initMatrixRain() {
-    const columns = Math.floor(this.width / 20);
+    const fontSize = 16;
+    const columns = Math.floor(this.width / fontSize);
     this.matrixDrops = [];
+    
+    // Randomize initial drop positions across the FULL HEIGHT of the viewport
     for (let i = 0; i < columns; i++) {
-      this.matrixDrops.push(Math.random() * -50);
+      this.matrixDrops.push(Math.floor(Math.random() * (this.height / fontSize)));
     }
   }
 
   animate() {
-    this.ctx.clearRect(0, 0, this.width, this.height);
-
     // Render theme-specific background dynamics
     switch (this.theme) {
       case 'football':
+        this.ctx.clearRect(0, 0, this.width, this.height);
         this.drawFootballGrid();
         break;
       case 'cinema':
+        this.ctx.clearRect(0, 0, this.width, this.height);
         this.drawCinemaFlares();
         break;
       case 'swiss':
+        this.ctx.clearRect(0, 0, this.width, this.height);
         this.drawSwissGrid();
         break;
       case 'travel':
+        this.ctx.clearRect(0, 0, this.width, this.height);
         this.drawTravelConstellations();
         break;
       case 'ide':
@@ -94,23 +105,31 @@ export class BackgroundCanvas {
   }
 
   drawMatrixRain() {
-    // Cyber Matrix Code Rain Effect
-    this.ctx.fillStyle = 'rgba(17, 17, 27, 0.2)';
+    const fontSize = 16;
+
+    // Semi-transparent fade trail effect
+    this.ctx.fillStyle = 'rgba(17, 17, 27, 0.12)';
     this.ctx.fillRect(0, 0, this.width, this.height);
 
-    this.ctx.fillStyle = '#89b4fa';
     this.ctx.font = '14px "JetBrains Mono", monospace';
-
-    const chars = '01ABCDEFGHIJKLMNOPQRSTUVWXYZλπΣΩ<>{}[]/*=&';
+    const chars = '01ABCDEFGHIJKLMNOPQRSTUVWXYZλπΣΩ<>{}[]/*=&$#@!';
 
     for (let i = 0; i < this.matrixDrops.length; i++) {
       const text = chars.charAt(Math.floor(Math.random() * chars.length));
-      const x = i * 20;
-      const y = this.matrixDrops[i] * 20;
+      const x = i * fontSize;
+      const y = this.matrixDrops[i] * fontSize;
+
+      // Glow head character
+      if (Math.random() > 0.85) {
+        this.ctx.fillStyle = '#a6e3a1'; // Glowing Cyber Green Head
+      } else {
+        this.ctx.fillStyle = '#89b4fa'; // Catppuccin Cyan Body
+      }
 
       this.ctx.fillText(text, x, y);
 
-      if (y > this.height && Math.random() > 0.975) {
+      // Reset drop when it reaches bottom with random delay
+      if (y > this.height && Math.random() > 0.96) {
         this.matrixDrops[i] = 0;
       }
       this.matrixDrops[i]++;
