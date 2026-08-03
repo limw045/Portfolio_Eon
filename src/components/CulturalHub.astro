@@ -80,7 +80,7 @@
               <span class="text-2xl p-2 rounded-lg bg-emerald-950/80 border border-emerald-500/30">⚽</span>
               <div>
                 <h3 class="text-base sm:text-lg font-bold text-white font-mono" data-i18n="cult_football_title">Football Pitch (Favorite Clubs)</h3>
-                <span class="text-[11px] text-emerald-400/60">Tactical Precision & High Press</span>
+                <span class="text-[11px] text-emerald-400/60">Hover club cards to reveal star icons</span>
               </div>
             </div>
 
@@ -88,59 +88,97 @@
               Passionate about tactical precision, fluid passing, and execution excellence on the pitch — just like writing high-performance code.
             </p>
 
-            <!-- Club Crest Badges -->
-            <div class="space-y-2.5 font-mono text-xs">
-              <!-- BVB -->
-              <div class="flex items-center justify-between p-2.5 rounded-lg bg-[#fde100]/10 border border-[#fde100]/30 text-[#fde100]">
-                <div class="flex items-center gap-2.5">
-                  <div class="w-7 h-7 rounded-full bg-[#fde100] text-black font-extrabold flex items-center justify-center text-[10px] shadow-md border border-black/40">
-                    BVB
+            <!-- Club Crest Badges with Hover Star Players Tooltips -->
+            <div class="space-y-3 font-mono text-xs">
+              
+              <!-- BVB Dortmund -->
+              <div class="group/bvb relative p-3 rounded-xl bg-[#fde100]/10 border border-[#fde100]/30 text-[#fde100] hover:border-[#fde100]/80 transition cursor-pointer">
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center gap-3">
+                    <div class="w-8 h-8 rounded-full bg-[#fde100] text-black font-extrabold flex items-center justify-center text-[11px] shadow-md border border-black/40">
+                      BVB
+                    </div>
+                    <div>
+                      <span class="font-bold block text-sm">Borussia Dortmund</span>
+                      <span class="text-[11px] text-amber-200/70">Bundesliga · Signal Iduna Park</span>
+                    </div>
                   </div>
-                  <div>
-                    <span class="font-bold block">Borussia Dortmund</span>
-                    <span class="text-[10px] text-amber-200/70">Bundesliga · Signal Iduna Park</span>
+                  <span class="text-[11px] px-2.5 py-0.5 rounded-full bg-[#fde100]/20 font-bold">09</span>
+                </div>
+
+                <!-- Hover Card Star Players -->
+                <div class="mt-2 pt-2 border-t border-[#fde100]/20 text-[11px] text-amber-200/90 hidden group-hover/bvb:block animate-fade-in">
+                  <span class="font-bold text-[#fde100]">⭐ Key Stars:</span>
+                  <div class="flex flex-wrap gap-1.5 mt-1">
+                    <span class="px-2 py-0.5 rounded bg-[#fde100]/20 border border-[#fde100]/40 text-[#fde100] font-bold">Jude Bellingham</span>
+                    <span class="px-2 py-0.5 rounded bg-[#fde100]/20 border border-[#fde100]/40 text-[#fde100] font-bold">Erling Haaland</span>
+                    <span class="px-2 py-0.5 rounded bg-[#fde100]/20 border border-[#fde100]/40 text-[#fde100] font-bold">Marco Reus</span>
                   </div>
                 </div>
-                <span class="text-[10px] px-2 py-0.5 rounded bg-[#fde100]/20 font-semibold">09</span>
               </div>
 
-              <!-- Arsenal -->
-              <div class="flex items-center justify-between p-2.5 rounded-lg bg-[#ef0107]/10 border border-[#ef0107]/30 text-red-300">
-                <div class="flex items-center gap-2.5">
-                  <div class="w-7 h-7 rounded-full bg-[#ef0107] text-white font-extrabold flex items-center justify-center text-[11px] shadow-md border border-red-400/40">
-                    🚀
+              <!-- Arsenal FC -->
+              <div class="group/gunners relative p-3 rounded-xl bg-[#ef0107]/10 border border-[#ef0107]/30 text-red-300 hover:border-[#ef0107]/80 transition cursor-pointer">
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center gap-3">
+                    <div class="w-8 h-8 rounded-full bg-[#ef0107] text-white font-extrabold flex items-center justify-center text-xs shadow-md border border-red-400/40">
+                      🚀
+                    </div>
+                    <div>
+                      <span class="font-bold block text-sm text-white">Arsenal FC (Gunners)</span>
+                      <span class="text-[11px] text-red-300/70">Premier League · Emirates</span>
+                    </div>
                   </div>
-                  <div>
-                    <span class="font-bold block">Arsenal FC (Gunners)</span>
-                    <span class="text-[10px] text-red-300/70">Premier League · Emirates</span>
+                  <span class="text-[11px] px-2.5 py-0.5 rounded-full bg-[#ef0107]/20 font-bold">AFC</span>
+                </div>
+
+                <!-- Hover Card Star Players -->
+                <div class="mt-2 pt-2 border-t border-[#ef0107]/20 text-[11px] text-red-200/90 hidden group-hover/gunners:block animate-fade-in">
+                  <span class="font-bold text-red-400">⭐ Key Stars:</span>
+                  <div class="flex flex-wrap gap-1.5 mt-1">
+                    <span class="px-2 py-0.5 rounded bg-[#ef0107]/20 border border-[#ef0107]/40 text-red-300 font-bold">Bukayo Saka</span>
+                    <span class="px-2 py-0.5 rounded bg-[#ef0107]/20 border border-[#ef0107]/40 text-red-300 font-bold">Declan Rice</span>
+                    <span class="px-2 py-0.5 rounded bg-[#ef0107]/20 border border-[#ef0107]/40 text-red-300 font-bold">Martin Ødegaard</span>
                   </div>
                 </div>
-                <span class="text-[10px] px-2 py-0.5 rounded bg-[#ef0107]/20 font-semibold">AFC</span>
               </div>
 
-              <!-- Man City -->
-              <div class="flex items-center justify-between p-2.5 rounded-lg bg-[#6cabdd]/10 border border-[#6cabdd]/30 text-cyan-300">
-                <div class="flex items-center gap-2.5">
-                  <div class="w-7 h-7 rounded-full bg-[#6cabdd] text-black font-extrabold flex items-center justify-center text-[11px] shadow-md border border-cyan-400/40">
-                    ⚽
+              <!-- Manchester City -->
+              <div class="group/mcfc relative p-3 rounded-xl bg-[#6cabdd]/10 border border-[#6cabdd]/30 text-cyan-300 hover:border-[#6cabdd]/80 transition cursor-pointer">
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center gap-3">
+                    <div class="w-8 h-8 rounded-full bg-[#6cabdd] text-black font-extrabold flex items-center justify-center text-xs shadow-md border border-cyan-400/40">
+                      ⚽
+                    </div>
+                    <div>
+                      <span class="font-bold block text-sm text-white">Manchester City</span>
+                      <span class="text-[11px] text-cyan-200/70">Premier League · Etihad</span>
+                    </div>
                   </div>
-                  <div>
-                    <span class="font-bold block">Manchester City</span>
-                    <span class="text-[10px] text-cyan-200/70">Premier League · Etihad</span>
+                  <span class="text-[11px] px-2.5 py-0.5 rounded-full bg-[#6cabdd]/20 font-bold">MCFC</span>
+                </div>
+
+                <!-- Hover Card Star Players -->
+                <div class="mt-2 pt-2 border-t border-[#6cabdd]/20 text-[11px] text-cyan-200/90 hidden group-hover/mcfc:block animate-fade-in">
+                  <span class="font-bold text-cyan-400">⭐ Key Stars:</span>
+                  <div class="flex flex-wrap gap-1.5 mt-1">
+                    <span class="px-2 py-0.5 rounded bg-[#6cabdd]/20 border border-[#6cabdd]/40 text-cyan-300 font-bold">Kevin De Bruyne</span>
+                    <span class="px-2 py-0.5 rounded bg-[#6cabdd]/20 border border-[#6cabdd]/40 text-cyan-300 font-bold">Erling Haaland</span>
+                    <span class="px-2 py-0.5 rounded bg-[#6cabdd]/20 border border-[#6cabdd]/40 text-cyan-300 font-bold">Eden Hazard (Icon)</span>
                   </div>
                 </div>
-                <span class="text-[10px] px-2 py-0.5 rounded bg-[#6cabdd]/20 font-semibold">MCFC</span>
               </div>
+
             </div>
           </div>
 
-          <!-- Music Artists Card -->
+          <!-- Music Artists Card with Interactive YouTube Music Tracklist Drawers -->
           <div class="p-5 rounded-xl bg-black/60 border border-emerald-500/30 backdrop-blur-md relative group hover:border-emerald-500/60 transition">
             <div class="flex items-center gap-3 mb-3">
               <span class="text-2xl p-2 rounded-lg bg-emerald-950/80 border border-emerald-500/30">🎵</span>
               <div>
                 <h3 class="text-base sm:text-lg font-bold text-white font-mono" data-i18n="cult_music_title">Music Groove (R&B & Soul)</h3>
-                <span class="text-[11px] text-purple-400/60">Rich Harmonies & Retro Groove</span>
+                <span class="text-[11px] text-purple-400/60">Click artist cards to open YouTube Music playlist</span>
               </div>
             </div>
 
@@ -148,49 +186,114 @@
               Enthusiast of R&B, Soul, and Funk music by Khalil Fong, David Tao, and Bruno Mars. Rich harmonies drive coding focus.
             </p>
 
-            <!-- Artist Vinyl Badges -->
-            <div class="space-y-2.5 font-mono text-xs">
-              <!-- Khalil Fong -->
-              <div class="flex items-center justify-between p-2.5 rounded-lg bg-purple-950/50 border border-purple-500/30 text-purple-300">
-                <div class="flex items-center gap-2.5">
-                  <div class="w-7 h-7 rounded-full bg-purple-900 text-purple-200 font-extrabold flex items-center justify-center text-xs animate-spin-slow shadow-md border border-purple-400/40">
-                    📻
+            <!-- Artist Vinyl Cards with YouTube Music Tracklist Drawers -->
+            <div class="space-y-3 font-mono text-xs">
+              
+              <!-- 1. Khalil Fong (方大同) -->
+              <div class="p-3 rounded-xl bg-purple-950/50 border border-purple-500/30 text-purple-300 hover:border-purple-400 transition cursor-pointer music-artist-card" data-target="khalil">
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center gap-3">
+                    <div class="w-8 h-8 rounded-full bg-purple-900 text-purple-200 font-extrabold flex items-center justify-center text-sm shadow-md border border-purple-400/40">
+                      📻
+                    </div>
+                    <div>
+                      <span class="font-bold block text-sm text-white">Khalil Fong (方大同)</span>
+                      <span class="text-[11px] text-purple-300/70">Mandarin R&B · Soulboy</span>
+                    </div>
                   </div>
-                  <div>
-                    <span class="font-bold block">Khalil Fong (方大同)</span>
-                    <span class="text-[10px] text-purple-300/70">Mandarin R&B · Soulboy</span>
-                  </div>
+                  <span class="text-[11px] px-2.5 py-0.5 rounded-full bg-purple-500/20 font-bold flex items-center gap-1">
+                    ▶ Playlist
+                  </span>
                 </div>
-                <span class="text-[10px] px-2 py-0.5 rounded bg-purple-500/20 font-semibold">SOUL</span>
+
+                <!-- YouTube Music Tracklist Drawer -->
+                <div id="playlist-khalil" class="mt-3 pt-3 border-t border-purple-500/20 hidden space-y-2">
+                  <div class="text-[10px] text-purple-400 uppercase tracking-wider font-bold">🎵 Featured Tracks (YouTube Music)</div>
+                  <a href="https://music.youtube.com/search?q=方大同+爱爱爱" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between p-2 rounded bg-purple-900/40 hover:bg-purple-800/60 transition text-purple-200">
+                    <span>1. 《爱爱爱》 (Love Love Love)</span>
+                    <span class="text-[10px] px-2 py-0.5 rounded bg-purple-500/30 text-purple-300">▶ Play</span>
+                  </a>
+                  <a href="https://music.youtube.com/search?q=方大同+三人游" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between p-2 rounded bg-purple-900/40 hover:bg-purple-800/60 transition text-purple-200">
+                    <span>2. 《三人游》 (Three of Us)</span>
+                    <span class="text-[10px] px-2 py-0.5 rounded bg-purple-500/30 text-purple-300">▶ Play</span>
+                  </a>
+                  <a href="https://music.youtube.com/search?q=方大同+特别的人" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between p-2 rounded bg-purple-900/40 hover:bg-purple-800/60 transition text-purple-200">
+                    <span>3. 《特别的人》 (Special Person)</span>
+                    <span class="text-[10px] px-2 py-0.5 rounded bg-purple-500/30 text-purple-300">▶ Play</span>
+                  </a>
+                </div>
               </div>
 
-              <!-- David Tao -->
-              <div class="flex items-center justify-between p-2.5 rounded-lg bg-blue-950/50 border border-blue-500/30 text-blue-300">
-                <div class="flex items-center gap-2.5">
-                  <div class="w-7 h-7 rounded-full bg-blue-900 text-blue-200 font-extrabold flex items-center justify-center text-xs shadow-md border border-blue-400/40">
-                    🎙️
+              <!-- 2. David Tao (陶喆) -->
+              <div class="p-3 rounded-xl bg-blue-950/50 border border-blue-500/30 text-blue-300 hover:border-blue-400 transition cursor-pointer music-artist-card" data-target="david">
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center gap-3">
+                    <div class="w-8 h-8 rounded-full bg-blue-900 text-blue-200 font-extrabold flex items-center justify-center text-sm shadow-md border border-blue-400/40">
+                      🎙️
+                    </div>
+                    <div>
+                      <span class="font-bold block text-sm text-white">David Tao (陶喆)</span>
+                      <span class="text-[11px] text-blue-300/70">R&B Godfather · Classic Harmonies</span>
+                    </div>
                   </div>
-                  <div>
-                    <span class="font-bold block">David Tao (陶喆)</span>
-                    <span class="text-[10px] text-blue-300/70">R&B Godfather · Classic Harmonies</span>
-                  </div>
+                  <span class="text-[11px] px-2.5 py-0.5 rounded-full bg-blue-500/20 font-bold flex items-center gap-1">
+                    ▶ Playlist
+                  </span>
                 </div>
-                <span class="text-[10px] px-2 py-0.5 rounded bg-blue-500/20 font-semibold">R&B</span>
+
+                <!-- YouTube Music Tracklist Drawer -->
+                <div id="playlist-david" class="mt-3 pt-3 border-t border-blue-500/20 hidden space-y-2">
+                  <div class="text-[10px] text-blue-400 uppercase tracking-wider font-bold">🎵 Featured Tracks (YouTube Music)</div>
+                  <a href="https://music.youtube.com/search?q=陶喆+爱很简单" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between p-2 rounded bg-blue-900/40 hover:bg-blue-800/60 transition text-blue-200">
+                    <span>1. 《爱很简单》 (I Love You)</span>
+                    <span class="text-[10px] px-2 py-0.5 rounded bg-blue-500/30 text-blue-300">▶ Play</span>
+                  </a>
+                  <a href="https://music.youtube.com/search?q=陶喆+普通朋友" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between p-2 rounded bg-blue-900/40 hover:bg-blue-800/60 transition text-blue-200">
+                    <span>2. 《普通朋友》 (Regular Friends)</span>
+                    <span class="text-[10px] px-2 py-0.5 rounded bg-blue-500/30 text-blue-300">▶ Play</span>
+                  </a>
+                  <a href="https://music.youtube.com/search?q=陶喆+黑色柳丁" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between p-2 rounded bg-blue-900/40 hover:bg-blue-800/60 transition text-blue-200">
+                    <span>3. 《黑色柳丁》 (Black Tangerine)</span>
+                    <span class="text-[10px] px-2 py-0.5 rounded bg-blue-500/30 text-blue-300">▶ Play</span>
+                  </a>
+                </div>
               </div>
 
-              <!-- Bruno Mars -->
-              <div class="flex items-center justify-between p-2.5 rounded-lg bg-amber-950/50 border border-amber-500/30 text-amber-300">
-                <div class="flex items-center gap-2.5">
-                  <div class="w-7 h-7 rounded-full bg-amber-900 text-amber-200 font-extrabold flex items-center justify-center text-xs shadow-md border border-amber-400/40">
-                    🎷
+              <!-- 3. Bruno Mars -->
+              <div class="p-3 rounded-xl bg-amber-950/50 border border-amber-500/30 text-amber-300 hover:border-amber-400 transition cursor-pointer music-artist-card" data-target="bruno">
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center gap-3">
+                    <div class="w-8 h-8 rounded-full bg-amber-900 text-amber-200 font-extrabold flex items-center justify-center text-sm shadow-md border border-amber-400/40">
+                      🎷
+                    </div>
+                    <div>
+                      <span class="font-bold block text-sm text-white">Bruno Mars</span>
+                      <span class="text-[11px] text-amber-300/70">Funk & Soul · 24K Magic</span>
+                    </div>
                   </div>
-                  <div>
-                    <span class="font-bold block">Bruno Mars</span>
-                    <span class="text-[10px] text-amber-300/70">Funk & Soul · 24K Magic</span>
-                  </div>
+                  <span class="text-[11px] px-2.5 py-0.5 rounded-full bg-amber-500/20 font-bold flex items-center gap-1">
+                    ▶ Playlist
+                  </span>
                 </div>
-                <span class="text-[10px] px-2 py-0.5 rounded bg-amber-500/20 font-semibold">FUNK</span>
+
+                <!-- YouTube Music Tracklist Drawer -->
+                <div id="playlist-bruno" class="mt-3 pt-3 border-t border-amber-500/20 hidden space-y-2">
+                  <div class="text-[10px] text-amber-400 uppercase tracking-wider font-bold">🎵 Featured Tracks (YouTube Music)</div>
+                  <a href="https://music.youtube.com/search?q=Bruno+Mars+Leave+The+Door+Open" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between p-2 rounded bg-amber-900/40 hover:bg-amber-800/60 transition text-amber-200">
+                    <span>1. Leave The Door Open</span>
+                    <span class="text-[10px] px-2 py-0.5 rounded bg-amber-500/30 text-amber-300">▶ Play</span>
+                  </a>
+                  <a href="https://music.youtube.com/search?q=Bruno+Mars+24K+Magic" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between p-2 rounded bg-amber-900/40 hover:bg-amber-800/60 transition text-amber-200">
+                    <span>2. 24K Magic</span>
+                    <span class="text-[10px] px-2 py-0.5 rounded bg-amber-500/30 text-amber-300">▶ Play</span>
+                  </a>
+                  <a href="https://music.youtube.com/search?q=Bruno+Mars+Uptown+Funk" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between p-2 rounded bg-amber-900/40 hover:bg-amber-800/60 transition text-amber-200">
+                    <span>3. Uptown Funk</span>
+                    <span class="text-[10px] px-2 py-0.5 rounded bg-amber-500/30 text-amber-300">▶ Play</span>
+                  </a>
+                </div>
               </div>
+
             </div>
           </div>
 
@@ -199,3 +302,20 @@
     </div>
   </div>
 </section>
+
+<script>
+  // Music Playlist Drawer Toggle
+  document.querySelectorAll('.music-artist-card').forEach(card => {
+    card.addEventListener('click', (e) => {
+      // Don't toggle if clicking on YouTube links inside drawer
+      if ((e.target as HTMLElement).closest('a')) return;
+
+      const target = card.getAttribute('data-target');
+      if (!target) return;
+      const drawer = document.getElementById(`playlist-${target}`);
+      if (drawer) {
+        drawer.classList.toggle('hidden');
+      }
+    });
+  });
+</script>
