@@ -1,0 +1,69 @@
+# Superpowers / internal planning artifacts
+superpower*/
+.superpower*/
+
+# Wrangler and other local deployment state
+.wrangler/
+wrangler.local.toml
+
+# Environment files and local variable overrides
+.env
+.env.*
+*.env
+*.env.*
+!.env.example
+!.env.template
+!.env.sample
+.dev.vars
+.dev.vars.*
+
+# Private personal documents
+*resume*
+
+# Credentials, tokens, and secret configuration
+**/credentials.json
+**/*credentials*.json
+**/*credential*.json
+**/secrets.json
+**/*secrets*.json
+**/*secret*.json
+**/*token*.json
+**/*password*
+**/*credential*
+**/*secret*
+**/*token*
+**/*apikey*.json
+**/*api-key*.json
+**/*service-account*.json
+**/client_secret*.json
+**/oauth*.json
+
+# Private keys and certificates
+*.pem
+*.key
+*.p12
+*.pfx
+*.jks
+*.keystore
+*.asc
+*.gpg
+*.crt
+*.cer
+*.der
+id_rsa*
+id_dsa*
+id_ecdsa*
+id_ed25519*
+
+# Local package-manager credentials
+.npmrc
+.pypirc
+.netrc
+netrc
+
+# Local databases, dumps, and logs
+*.db
+*.sqlite
+*.sqlite3
+*.dump
+*.log
