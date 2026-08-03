@@ -74,13 +74,13 @@
         <!-- Content Grid -->
         <div class="flex-1 grid grid-cols-1 md:grid-cols-2 gap-6">
           
-          <!-- Football Pitch Card -->
+          <!-- Football Pitch Card (With Star Player Photos on Hover) -->
           <div class="p-5 rounded-xl bg-black/60 border border-emerald-500/30 backdrop-blur-md relative group hover:border-emerald-500/60 transition">
             <div class="flex items-center gap-3 mb-3">
               <span class="text-2xl p-2 rounded-lg bg-emerald-950/80 border border-emerald-500/30">⚽</span>
               <div>
                 <h3 class="text-base sm:text-lg font-bold text-white font-mono" data-i18n="cult_football_title">Football Pitch (Favorite Clubs)</h3>
-                <span class="text-[11px] text-emerald-400/60">Hover club cards to reveal star icons</span>
+                <span class="text-[11px] text-emerald-400/60">Hover club cards to view star player photos</span>
               </div>
             </div>
 
@@ -88,7 +88,7 @@
               Passionate about tactical precision, fluid passing, and execution excellence on the pitch — just like writing high-performance code.
             </p>
 
-            <!-- Club Crest Badges with Hover Star Players Tooltips -->
+            <!-- Club Crest Badges with Star Player Photo Avatars -->
             <div class="space-y-3 font-mono text-xs">
               
               <!-- BVB Dortmund -->
@@ -106,13 +106,24 @@
                   <span class="text-[11px] px-2.5 py-0.5 rounded-full bg-[#fde100]/20 font-bold">09</span>
                 </div>
 
-                <!-- Hover Card Star Players -->
-                <div class="mt-2 pt-2 border-t border-[#fde100]/20 text-[11px] text-amber-200/90 hidden group-hover/bvb:block animate-fade-in">
-                  <span class="font-bold text-[#fde100]">⭐ Key Stars:</span>
-                  <div class="flex flex-wrap gap-1.5 mt-1">
-                    <span class="px-2 py-0.5 rounded bg-[#fde100]/20 border border-[#fde100]/40 text-[#fde100] font-bold">Jude Bellingham</span>
-                    <span class="px-2 py-0.5 rounded bg-[#fde100]/20 border border-[#fde100]/40 text-[#fde100] font-bold">Erling Haaland</span>
-                    <span class="px-2 py-0.5 rounded bg-[#fde100]/20 border border-[#fde100]/40 text-[#fde100] font-bold">Marco Reus</span>
+                <!-- Hover Star Player Photos Panel -->
+                <div class="mt-3 pt-3 border-t border-[#fde100]/20 hidden group-hover/bvb:block animate-fade-in space-y-2">
+                  <span class="font-bold text-[#fde100] text-[11px] flex items-center gap-1">
+                    <span>⭐</span> Star Player Icons:
+                  </span>
+                  <div class="grid grid-cols-3 gap-2 text-center">
+                    <div class="p-1.5 rounded-lg bg-black/60 border border-[#fde100]/30 flex flex-col items-center">
+                      <img src="/images/players/bellingham.jpg" alt="Jude Bellingham" class="w-10 h-10 rounded-full object-cover border border-[#fde100]/60 mb-1" />
+                      <span class="text-[10px] text-amber-200 font-bold leading-tight">J. Bellingham</span>
+                    </div>
+                    <div class="p-1.5 rounded-lg bg-black/60 border border-[#fde100]/30 flex flex-col items-center">
+                      <img src="/images/players/haaland.jpg" alt="Erling Haaland" class="w-10 h-10 rounded-full object-cover border border-[#fde100]/60 mb-1" />
+                      <span class="text-[10px] text-amber-200 font-bold leading-tight">E. Haaland</span>
+                    </div>
+                    <div class="p-1.5 rounded-lg bg-black/60 border border-[#fde100]/30 flex flex-col items-center">
+                      <div class="w-10 h-10 rounded-full bg-amber-500/20 border border-[#fde100]/60 flex items-center justify-center font-bold text-amber-300 text-xs mb-1">MR</div>
+                      <span class="text-[10px] text-amber-200 font-bold leading-tight">Marco Reus</span>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -132,13 +143,24 @@
                   <span class="text-[11px] px-2.5 py-0.5 rounded-full bg-[#ef0107]/20 font-bold">AFC</span>
                 </div>
 
-                <!-- Hover Card Star Players -->
-                <div class="mt-2 pt-2 border-t border-[#ef0107]/20 text-[11px] text-red-200/90 hidden group-hover/gunners:block animate-fade-in">
-                  <span class="font-bold text-red-400">⭐ Key Stars:</span>
-                  <div class="flex flex-wrap gap-1.5 mt-1">
-                    <span class="px-2 py-0.5 rounded bg-[#ef0107]/20 border border-[#ef0107]/40 text-red-300 font-bold">Bukayo Saka</span>
-                    <span class="px-2 py-0.5 rounded bg-[#ef0107]/20 border border-[#ef0107]/40 text-red-300 font-bold">Declan Rice</span>
-                    <span class="px-2 py-0.5 rounded bg-[#ef0107]/20 border border-[#ef0107]/40 text-red-300 font-bold">Martin Ødegaard</span>
+                <!-- Hover Star Player Photos Panel -->
+                <div class="mt-3 pt-3 border-t border-[#ef0107]/20 hidden group-hover/gunners:block animate-fade-in space-y-2">
+                  <span class="font-bold text-red-400 text-[11px] flex items-center gap-1">
+                    <span>⭐</span> Star Player Icons:
+                  </span>
+                  <div class="grid grid-cols-3 gap-2 text-center">
+                    <div class="p-1.5 rounded-lg bg-black/60 border border-red-500/30 flex flex-col items-center">
+                      <img src="/images/players/saka.jpg" alt="Bukayo Saka" class="w-10 h-10 rounded-full object-cover border border-red-400/60 mb-1" />
+                      <span class="text-[10px] text-red-200 font-bold leading-tight">Bukayo Saka</span>
+                    </div>
+                    <div class="p-1.5 rounded-lg bg-black/60 border border-red-500/30 flex flex-col items-center">
+                      <div class="w-10 h-10 rounded-full bg-red-500/20 border border-red-400/60 flex items-center justify-center font-bold text-red-300 text-xs mb-1">DR</div>
+                      <span class="text-[10px] text-red-200 font-bold leading-tight">Declan Rice</span>
+                    </div>
+                    <div class="p-1.5 rounded-lg bg-black/60 border border-red-500/30 flex flex-col items-center">
+                      <div class="w-10 h-10 rounded-full bg-red-500/20 border border-red-400/60 flex items-center justify-center font-bold text-red-300 text-xs mb-1">MØ</div>
+                      <span class="text-[10px] text-red-200 font-bold leading-tight">M. Ødegaard</span>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -158,13 +180,24 @@
                   <span class="text-[11px] px-2.5 py-0.5 rounded-full bg-[#6cabdd]/20 font-bold">MCFC</span>
                 </div>
 
-                <!-- Hover Card Star Players -->
-                <div class="mt-2 pt-2 border-t border-[#6cabdd]/20 text-[11px] text-cyan-200/90 hidden group-hover/mcfc:block animate-fade-in">
-                  <span class="font-bold text-cyan-400">⭐ Key Stars:</span>
-                  <div class="flex flex-wrap gap-1.5 mt-1">
-                    <span class="px-2 py-0.5 rounded bg-[#6cabdd]/20 border border-[#6cabdd]/40 text-cyan-300 font-bold">Kevin De Bruyne</span>
-                    <span class="px-2 py-0.5 rounded bg-[#6cabdd]/20 border border-[#6cabdd]/40 text-cyan-300 font-bold">Erling Haaland</span>
-                    <span class="px-2 py-0.5 rounded bg-[#6cabdd]/20 border border-[#6cabdd]/40 text-cyan-300 font-bold">Eden Hazard (Icon)</span>
+                <!-- Hover Star Player Photos Panel -->
+                <div class="mt-3 pt-3 border-t border-[#6cabdd]/20 hidden group-hover/mcfc:block animate-fade-in space-y-2">
+                  <span class="font-bold text-cyan-400 text-[11px] flex items-center gap-1">
+                    <span>⭐</span> Star Player Icons:
+                  </span>
+                  <div class="grid grid-cols-3 gap-2 text-center">
+                    <div class="p-1.5 rounded-lg bg-black/60 border border-cyan-500/30 flex flex-col items-center">
+                      <img src="/images/players/debruyne.jpg" alt="Kevin De Bruyne" class="w-10 h-10 rounded-full object-cover border border-cyan-400/60 mb-1" />
+                      <span class="text-[10px] text-cyan-200 font-bold leading-tight">K. De Bruyne</span>
+                    </div>
+                    <div class="p-1.5 rounded-lg bg-black/60 border border-cyan-500/30 flex flex-col items-center">
+                      <img src="/images/players/haaland.jpg" alt="Erling Haaland" class="w-10 h-10 rounded-full object-cover border border-cyan-400/60 mb-1" />
+                      <span class="text-[10px] text-cyan-200 font-bold leading-tight">E. Haaland</span>
+                    </div>
+                    <div class="p-1.5 rounded-lg bg-black/60 border border-cyan-500/30 flex flex-col items-center">
+                      <div class="w-10 h-10 rounded-full bg-cyan-500/20 border border-cyan-400/60 flex items-center justify-center font-bold text-cyan-300 text-xs mb-1">EH</div>
+                      <span class="text-[10px] text-cyan-200 font-bold leading-tight">Eden Hazard</span>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -172,13 +205,13 @@
             </div>
           </div>
 
-          <!-- Music Artists Card with Interactive YouTube Music Tracklist Drawers -->
+          <!-- Music Artists Card with Direct In-Browser Playable Tracklist Player -->
           <div class="p-5 rounded-xl bg-black/60 border border-emerald-500/30 backdrop-blur-md relative group hover:border-emerald-500/60 transition">
             <div class="flex items-center gap-3 mb-3">
               <span class="text-2xl p-2 rounded-lg bg-emerald-950/80 border border-emerald-500/30">🎵</span>
               <div>
                 <h3 class="text-base sm:text-lg font-bold text-white font-mono" data-i18n="cult_music_title">Music Groove (R&B & Soul)</h3>
-                <span class="text-[11px] text-purple-400/60">Click artist cards to open YouTube Music playlist</span>
+                <span class="text-[11px] text-purple-400/60">Click track to stream live in-browser player!</span>
               </div>
             </div>
 
@@ -186,7 +219,7 @@
               Enthusiast of R&B, Soul, and Funk music by Khalil Fong, David Tao, and Bruno Mars. Rich harmonies drive coding focus.
             </p>
 
-            <!-- Artist Vinyl Cards with YouTube Music Tracklist Drawers -->
+            <!-- Artist Vinyl Cards -->
             <div class="space-y-3 font-mono text-xs">
               
               <!-- 1. Khalil Fong (方大同) -->
@@ -202,25 +235,26 @@
                     </div>
                   </div>
                   <span class="text-[11px] px-2.5 py-0.5 rounded-full bg-purple-500/20 font-bold flex items-center gap-1">
-                    ▶ Playlist
+                    🎵 In-Browser Player ▾
                   </span>
                 </div>
 
-                <!-- YouTube Music Tracklist Drawer -->
+                <!-- In-Browser Playable Tracklist Drawer -->
                 <div id="playlist-khalil" class="mt-3 pt-3 border-t border-purple-500/20 hidden space-y-2">
-                  <div class="text-[10px] text-purple-400 uppercase tracking-wider font-bold">🎵 Featured Tracks (YouTube Music)</div>
-                  <a href="https://music.youtube.com/search?q=方大同+爱爱爱" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between p-2 rounded bg-purple-900/40 hover:bg-purple-800/60 transition text-purple-200">
+                  <div class="text-[10px] text-purple-400 uppercase tracking-wider font-bold">🎵 Click song to play live in-browser:</div>
+                  
+                  <button class="play-track-btn w-full text-left flex items-center justify-between p-2 rounded bg-purple-900/40 hover:bg-purple-800/60 transition text-purple-200" data-video="Gz8LzN6BwA8" data-title="方大同 - 爱爱爱">
                     <span>1. 《爱爱爱》 (Love Love Love)</span>
-                    <span class="text-[10px] px-2 py-0.5 rounded bg-purple-500/30 text-purple-300">▶ Play</span>
-                  </a>
-                  <a href="https://music.youtube.com/search?q=方大同+三人游" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between p-2 rounded bg-purple-900/40 hover:bg-purple-800/60 transition text-purple-200">
+                    <span class="text-[10px] px-2 py-0.5 rounded bg-purple-500/30 text-purple-300 font-bold">▶ Live Stream</span>
+                  </button>
+                  <button class="play-track-btn w-full text-left flex items-center justify-between p-2 rounded bg-purple-900/40 hover:bg-purple-800/60 transition text-purple-200" data-video="U6qPvhgGj8w" data-title="方大同 - 三人游">
                     <span>2. 《三人游》 (Three of Us)</span>
-                    <span class="text-[10px] px-2 py-0.5 rounded bg-purple-500/30 text-purple-300">▶ Play</span>
-                  </a>
-                  <a href="https://music.youtube.com/search?q=方大同+特别的人" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between p-2 rounded bg-purple-900/40 hover:bg-purple-800/60 transition text-purple-200">
+                    <span class="text-[10px] px-2 py-0.5 rounded bg-purple-500/30 text-purple-300 font-bold">▶ Live Stream</span>
+                  </button>
+                  <button class="play-track-btn w-full text-left flex items-center justify-between p-2 rounded bg-purple-900/40 hover:bg-purple-800/60 transition text-purple-200" data-video="lU63q5-M5XU" data-title="方大同 - 特别的人">
                     <span>3. 《特别的人》 (Special Person)</span>
-                    <span class="text-[10px] px-2 py-0.5 rounded bg-purple-500/30 text-purple-300">▶ Play</span>
-                  </a>
+                    <span class="text-[10px] px-2 py-0.5 rounded bg-purple-500/30 text-purple-300 font-bold">▶ Live Stream</span>
+                  </button>
                 </div>
               </div>
 
@@ -237,25 +271,26 @@
                     </div>
                   </div>
                   <span class="text-[11px] px-2.5 py-0.5 rounded-full bg-blue-500/20 font-bold flex items-center gap-1">
-                    ▶ Playlist
+                    🎵 In-Browser Player ▾
                   </span>
                 </div>
 
-                <!-- YouTube Music Tracklist Drawer -->
+                <!-- In-Browser Playable Tracklist Drawer -->
                 <div id="playlist-david" class="mt-3 pt-3 border-t border-blue-500/20 hidden space-y-2">
-                  <div class="text-[10px] text-blue-400 uppercase tracking-wider font-bold">🎵 Featured Tracks (YouTube Music)</div>
-                  <a href="https://music.youtube.com/search?q=陶喆+爱很简单" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between p-2 rounded bg-blue-900/40 hover:bg-blue-800/60 transition text-blue-200">
+                  <div class="text-[10px] text-blue-400 uppercase tracking-wider font-bold">🎵 Click song to play live in-browser:</div>
+                  
+                  <button class="play-track-btn w-full text-left flex items-center justify-between p-2 rounded bg-blue-900/40 hover:bg-blue-800/60 transition text-blue-200" data-video="Q302f8uHhF0" data-title="陶喆 - 爱很简单">
                     <span>1. 《爱很简单》 (I Love You)</span>
-                    <span class="text-[10px] px-2 py-0.5 rounded bg-blue-500/30 text-blue-300">▶ Play</span>
-                  </a>
-                  <a href="https://music.youtube.com/search?q=陶喆+普通朋友" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between p-2 rounded bg-blue-900/40 hover:bg-blue-800/60 transition text-blue-200">
+                    <span class="text-[10px] px-2 py-0.5 rounded bg-blue-500/30 text-blue-300 font-bold">▶ Live Stream</span>
+                  </button>
+                  <button class="play-track-btn w-full text-left flex items-center justify-between p-2 rounded bg-blue-900/40 hover:bg-blue-800/60 transition text-blue-200" data-video="XQ9_08p3F2Q" data-title="陶喆 - 普通朋友">
                     <span>2. 《普通朋友》 (Regular Friends)</span>
-                    <span class="text-[10px] px-2 py-0.5 rounded bg-blue-500/30 text-blue-300">▶ Play</span>
-                  </a>
-                  <a href="https://music.youtube.com/search?q=陶喆+黑色柳丁" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between p-2 rounded bg-blue-900/40 hover:bg-blue-800/60 transition text-blue-200">
+                    <span class="text-[10px] px-2 py-0.5 rounded bg-blue-500/30 text-blue-300 font-bold">▶ Live Stream</span>
+                  </button>
+                  <button class="play-track-btn w-full text-left flex items-center justify-between p-2 rounded bg-blue-900/40 hover:bg-blue-800/60 transition text-blue-200" data-video="JzV-0_x9X9g" data-title="陶喆 - 黑色柳丁">
                     <span>3. 《黑色柳丁》 (Black Tangerine)</span>
-                    <span class="text-[10px] px-2 py-0.5 rounded bg-blue-500/30 text-blue-300">▶ Play</span>
-                  </a>
+                    <span class="text-[10px] px-2 py-0.5 rounded bg-blue-500/30 text-blue-300 font-bold">▶ Live Stream</span>
+                  </button>
                 </div>
               </div>
 
@@ -272,25 +307,39 @@
                     </div>
                   </div>
                   <span class="text-[11px] px-2.5 py-0.5 rounded-full bg-amber-500/20 font-bold flex items-center gap-1">
-                    ▶ Playlist
+                    🎵 In-Browser Player ▾
                   </span>
                 </div>
 
-                <!-- YouTube Music Tracklist Drawer -->
+                <!-- In-Browser Playable Tracklist Drawer -->
                 <div id="playlist-bruno" class="mt-3 pt-3 border-t border-amber-500/20 hidden space-y-2">
-                  <div class="text-[10px] text-amber-400 uppercase tracking-wider font-bold">🎵 Featured Tracks (YouTube Music)</div>
-                  <a href="https://music.youtube.com/search?q=Bruno+Mars+Leave+The+Door+Open" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between p-2 rounded bg-amber-900/40 hover:bg-amber-800/60 transition text-amber-200">
+                  <div class="text-[10px] text-amber-400 uppercase tracking-wider font-bold">🎵 Click song to play live in-browser:</div>
+                  
+                  <button class="play-track-btn w-full text-left flex items-center justify-between p-2 rounded bg-amber-900/40 hover:bg-amber-800/60 transition text-amber-200" data-video="adLGH7J3bmM" data-title="Bruno Mars - Leave The Door Open">
                     <span>1. Leave The Door Open</span>
-                    <span class="text-[10px] px-2 py-0.5 rounded bg-amber-500/30 text-amber-300">▶ Play</span>
-                  </a>
-                  <a href="https://music.youtube.com/search?q=Bruno+Mars+24K+Magic" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between p-2 rounded bg-amber-900/40 hover:bg-amber-800/60 transition text-amber-200">
+                    <span class="text-[10px] px-2 py-0.5 rounded bg-amber-500/30 text-amber-300 font-bold">▶ Live Stream</span>
+                  </button>
+                  <button class="play-track-btn w-full text-left flex items-center justify-between p-2 rounded bg-amber-900/40 hover:bg-amber-800/60 transition text-amber-200" data-video="UqyT8IEBkvY" data-title="Bruno Mars - 24K Magic">
                     <span>2. 24K Magic</span>
-                    <span class="text-[10px] px-2 py-0.5 rounded bg-amber-500/30 text-amber-300">▶ Play</span>
-                  </a>
-                  <a href="https://music.youtube.com/search?q=Bruno+Mars+Uptown+Funk" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between p-2 rounded bg-amber-900/40 hover:bg-amber-800/60 transition text-amber-200">
+                    <span class="text-[10px] px-2 py-0.5 rounded bg-amber-500/30 text-amber-300 font-bold">▶ Live Stream</span>
+                  </button>
+                  <button class="play-track-btn w-full text-left flex items-center justify-between p-2 rounded bg-amber-900/40 hover:bg-amber-800/60 transition text-amber-200" data-video="OPf0YbXqDm0" data-title="Mark Ronson ft. Bruno Mars - Uptown Funk">
                     <span>3. Uptown Funk</span>
-                    <span class="text-[10px] px-2 py-0.5 rounded bg-amber-500/30 text-amber-300">▶ Play</span>
-                  </a>
+                    <span class="text-[10px] px-2 py-0.5 rounded bg-amber-500/30 text-amber-300 font-bold">▶ Live Stream</span>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Shared In-Browser Embedded Live Player Drawer -->
+              <div id="in-browser-player-box" class="p-3 rounded-xl bg-black/90 border border-purple-500/40 hidden space-y-2">
+                <div class="flex items-center justify-between text-xs text-purple-300 font-bold border-b border-purple-500/20 pb-2">
+                  <span id="player-track-title" class="flex items-center gap-1.5">
+                    <span>🎵</span> Playing in Browser...
+                  </span>
+                  <button id="close-player-btn" class="hover:text-purple-100 font-bold">✕ Close</button>
+                </div>
+                <div class="relative w-full aspect-video rounded-lg overflow-hidden border border-purple-500/20">
+                  <iframe id="browser-player-iframe" class="w-full h-full" src="" title="Live In-Browser Music Player" allow="autoplay; encrypted-media" allowfullscreen></iframe>
                 </div>
               </div>
 
@@ -307,8 +356,7 @@
   // Music Playlist Drawer Toggle
   document.querySelectorAll('.music-artist-card').forEach(card => {
     card.addEventListener('click', (e) => {
-      // Don't toggle if clicking on YouTube links inside drawer
-      if ((e.target as HTMLElement).closest('a')) return;
+      if ((e.target as HTMLElement).closest('.play-track-btn') || (e.target as HTMLElement).closest('iframe')) return;
 
       const target = card.getAttribute('data-target');
       if (!target) return;
@@ -317,5 +365,33 @@
         drawer.classList.toggle('hidden');
       }
     });
+  });
+
+  // Live In-Browser Player Engine
+  const playerBox = document.getElementById('in-browser-player-box');
+  const playerIframe = document.getElementById('browser-player-iframe') as HTMLIFrameElement;
+  const playerTitle = document.getElementById('player-track-title');
+  const closePlayerBtn = document.getElementById('close-player-btn');
+
+  document.querySelectorAll('.play-track-btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const videoId = btn.getAttribute('data-video');
+      const title = btn.getAttribute('data-title');
+
+      if (videoId && playerIframe && playerBox) {
+        playerIframe.src = `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1`;
+        if (playerTitle) playerTitle.innerHTML = `🎵 Now Playing: <span class="text-white">${title}</span>`;
+        playerBox.classList.remove('hidden');
+        playerBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
+    });
+  });
+
+  closePlayerBtn?.addEventListener('click', () => {
+    if (playerBox && playerIframe) {
+      playerBox.classList.add('hidden');
+      playerIframe.src = '';
+    }
   });
 </script>
