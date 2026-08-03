@@ -1,7 +1,7 @@
 /**
- * background-canvas.js - Authentic Pitch-Black & Matrix Green Canvas Engine
- * Renders 60fps continuous full-screen Matrix rain with 2-Layer Staggered Streams,
- * guaranteeing 100% continuous digital rain coverage from top to bottom at all times.
+ * background-canvas.js - Authentic Full-Viewport Matrix Rain Engine
+ * Employs a 3-Head Modulo Stream System to guarantee 100% continuous, full-height
+ * matrix rain coverage from the very top (0%) to the absolute bottom (100%) at all times.
  */
 
 export class BackgroundCanvas {
@@ -10,11 +10,10 @@ export class BackgroundCanvas {
     if (!this.canvas) return;
     
     this.ctx = this.canvas.getContext('2d');
-    this.width = window.innerWidth;
-    this.height = window.innerHeight;
+    this.width = Math.max(window.innerWidth, document.documentElement.clientWidth || 0);
+    this.height = Math.max(window.innerHeight, document.documentElement.clientHeight || 0, window.screen.height || 0);
     this.particles = [];
-    this.matrixDropsLayer1 = [];
-    this.matrixDropsLayer2 = [];
+    this.matrixDrops = [];
     this.frameIndex = 0;
     this.theme = document.documentElement.getAttribute('data-theme') || 'ide';
 
@@ -44,8 +43,8 @@ export class BackgroundCanvas {
   }
 
   resize() {
-    this.width = window.innerWidth;
-    this.height = window.innerHeight;
+    this.width = Math.max(window.innerWidth, document.documentElement.clientWidth || 0);
+    this.height = Math.max(window.innerHeight, document.documentElement.clientHeight || 0, window.screen.height || 0);
     this.canvas.width = this.width;
     this.canvas.height = this.height;
     this.createParticles();
@@ -71,16 +70,13 @@ export class BackgroundCanvas {
   initMatrixRain() {
     const fontSize = 18;
     const columns = Math.floor(this.width / fontSize);
-    const totalRows = Math.floor(this.height / fontSize);
+    const totalRows = Math.ceil(this.height / fontSize) + 5;
     
-    this.matrixDropsLayer1 = [];
-    this.matrixDropsLayer2 = [];
+    this.matrixDrops = [];
     
-    // Layer 1: Distributed across top-to-middle rows
-    // Layer 2: Distributed across middle-to-bottom rows (staggered offset)
+    // Initialize base drop row offset for each column
     for (let i = 0; i < columns; i++) {
-      this.matrixDropsLayer1[i] = Math.floor(Math.random() * (totalRows / 2));
-      this.matrixDropsLayer2[i] = Math.floor((totalRows / 2) + Math.random() * (totalRows / 2));
+      this.matrixDrops[i] = Math.floor(Math.random() * totalRows);
     }
   }
 
@@ -116,46 +112,47 @@ export class BackgroundCanvas {
 
   drawMatrixRain() {
     const fontSize = 18;
+    const totalRows = Math.ceil(this.height / fontSize) + 5;
 
-    // Pitch-black fade trail background (#000000 with 0.14 alpha for soft fade)
-    this.ctx.fillStyle = 'rgba(0, 0, 0, 0.14)';
+    // Pitch-black fade trail background (#000000 with 0.15 alpha)
+    this.ctx.fillStyle = 'rgba(0, 0, 0, 0.15)';
     this.ctx.fillRect(0, 0, this.width, this.height);
 
     this.ctx.font = '14px "JetBrains Mono", monospace';
     const chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZλπΣΩ<>{}[]/*=&$#@!';
 
-    const shouldStep = this.frameIndex % 3 === 0; // Relaxed 1/3 fall speed
+    const shouldStep = this.frameIndex % 3 === 0; // Relaxed fall speed
 
-    // Render Layer 1 & Layer 2 in parallel for 100% continuous full-height coverage
-    this.renderStreamLayer(this.matrixDropsLayer1, fontSize, chars, shouldStep);
-    this.renderStreamLayer(this.matrixDropsLayer2, fontSize, chars, shouldStep);
-  }
+    // Spacing offsets for 3 staggered heads per column (Top 1/3, Middle 1/3, Bottom 1/3)
+    const offsets = [0, Math.floor(totalRows / 3), Math.floor((totalRows * 2) / 3)];
 
-  renderStreamLayer(layerArray, fontSize, chars, shouldStep) {
-    for (let i = 0; i < layerArray.length; i++) {
-      const text = chars.charAt(Math.floor(Math.random() * chars.length));
+    for (let i = 0; i < this.matrixDrops.length; i++) {
       const x = i * fontSize;
-      const y = layerArray[i] * fontSize;
 
-      // Low-opacity subtle matrix green color palette
-      const rand = Math.random();
-      if (rand > 0.92) {
-        this.ctx.fillStyle = 'rgba(220, 255, 230, 0.35)'; // Soft leading head
-      } else if (rand > 0.5) {
-        this.ctx.fillStyle = 'rgba(0, 255, 102, 0.22)'; // Subtle matrix green
-      } else {
-        this.ctx.fillStyle = 'rgba(0, 180, 60, 0.12)'; // Faded tail green
+      // Draw 3 staggered heads in this column so the ENTIRE vertical height from 0% to 100% has rain!
+      for (let k = 0; k < offsets.length; k++) {
+        const headRow = (this.matrixDrops[i] + offsets[k]) % totalRows;
+        const headY = headRow * fontSize;
+
+        // Draw head character
+        const headText = chars.charAt(Math.floor(Math.random() * chars.length));
+        this.ctx.fillStyle = 'rgba(220, 255, 230, 0.35)'; // Subtle soft green head
+        this.ctx.fillText(headText, x, headY);
+
+        // Draw 4 fading tail characters behind head
+        for (let tail = 1; tail <= 4; tail++) {
+          const tailRow = (headRow - tail + totalRows) % totalRows;
+          const tailY = tailRow * fontSize;
+          const tailText = chars.charAt(Math.floor(Math.random() * chars.length));
+
+          const alpha = Math.max(0.05, 0.22 - tail * 0.04);
+          this.ctx.fillStyle = `rgba(0, 255, 102, ${alpha})`;
+          this.ctx.fillText(tailText, x, tailY);
+        }
       }
 
-      this.ctx.fillText(text, x, y);
-
-      // Continuous loop: Reset smoothly above screen when clearing bottom
       if (shouldStep) {
-        if (y > this.height) {
-          layerArray[i] = Math.floor(Math.random() * -6);
-        } else {
-          layerArray[i]++;
-        }
+        this.matrixDrops[i] = (this.matrixDrops[i] + 1) % totalRows;
       }
     }
   }
