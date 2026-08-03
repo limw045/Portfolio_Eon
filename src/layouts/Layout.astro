@@ -1,6 +1,7 @@
 ---
 import Navbar from '../components/Navbar.astro';
 import LetterGlitchCanvas from '../components/LetterGlitchCanvas.astro';
+import TerminalDrawer from '../components/TerminalDrawer.astro';
 import '../styles/global.css';
 
 interface Props {
@@ -15,7 +16,7 @@ const {
 ---
 
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth bg-black text-emerald-100">
+<html lang="en" class="scroll-smooth bg-black text-emerald-100 pb-10">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -33,8 +34,10 @@ const {
       <slot />
     </main>
 
-    <footer class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 text-center font-mono text-xs text-emerald-400/60 border-t border-emerald-500/20 mt-20">
+    <footer class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 text-center font-mono text-xs text-emerald-400/60 border-t border-emerald-500/20 mt-20 mb-8">
       <p data-i18n="copyright">© 2026 Lim Wei Jian. Built with Astro + TypeScript + Content Collections. Hosted on Cloudflare Pages.</p>
     </footer>
+
+    <TerminalDrawer />
   </body>
 </html>

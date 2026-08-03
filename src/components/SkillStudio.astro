@@ -1,12 +1,8 @@
 ---
-const cppCode = `#include <iostream>
-#include <vector>
+const initialCppCode = `#include <iostream>
 
 int main() {
-    std::cout << "========================================\\n";
-    std::cout << " Lim Wei Jian - Multi-Agent AI Pipeline\\n";
-    std::cout << "========================================\\n";
-    std::cout << "[+] Status: Full-Stack & AI Ready\\n";
+    std::cout << "Lim Wei Jian - Multi-Agent AI Pipeline\\n";
     return 0;
 }`;
 ---
@@ -18,20 +14,23 @@ int main() {
   </div>
 
   <div class="max-w-4xl mx-auto rounded-xl bg-black/80 border border-emerald-500/40 overflow-hidden shadow-2xl">
-    <div class="flex items-center justify-between px-4 py-3 bg-emerald-950/40 border-b border-emerald-500/20 font-mono text-xs">
+    <!-- File Tabs Header -->
+    <div class="flex items-center justify-between px-4 py-2 bg-emerald-950/60 border-b border-emerald-500/20 font-mono text-xs overflow-x-auto">
       <div class="flex items-center gap-2">
-        <span class="w-3 h-3 rounded-full bg-red-500/80"></span>
-        <span class="w-3 h-3 rounded-full bg-yellow-500/80"></span>
-        <span class="w-3 h-3 rounded-full bg-green-500/80"></span>
-        <span class="ml-2 text-emerald-400 font-bold">solution.cpp</span>
+        <button data-lang-tab="cpp" class="tab-btn active px-3 py-1.5 rounded-t bg-black border-t-2 border-emerald-400 text-emerald-400 font-bold">solution.cpp</button>
+        <button data-lang-tab="cs" class="tab-btn px-3 py-1.5 rounded-t hover:bg-emerald-950/40 text-emerald-300/70">solution.cs</button>
+        <button data-lang-tab="java" class="tab-btn px-3 py-1.5 rounded-t hover:bg-emerald-950/40 text-emerald-300/70">Solution.java</button>
+        <button data-lang-tab="py" class="tab-btn px-3 py-1.5 rounded-t hover:bg-emerald-950/40 text-emerald-300/70">solution.py</button>
       </div>
-      <button id="run-ide-btn" class="px-3 py-1 rounded bg-emerald-500 text-black font-bold hover:bg-emerald-400 transition" data-i18n="btn_run_code">
+      <button id="run-ide-btn" class="px-3 py-1.5 rounded bg-emerald-500 text-black font-bold hover:bg-emerald-400 transition" data-i18n="btn_run_code">
         ▶ Run Code
       </button>
     </div>
 
-    <pre class="p-4 font-mono text-xs sm:text-sm text-emerald-300 overflow-x-auto bg-black/90"><code>{cppCode}</code></pre>
+    <!-- Code Block Container -->
+    <pre class="p-4 font-mono text-xs sm:text-sm text-emerald-300 overflow-x-auto bg-black/95 min-h-[160px]"><code id="ide-code-display">{initialCppCode}</code></pre>
 
+    <!-- Terminal Console Output Box -->
     <div class="p-4 bg-emerald-950/60 border-t border-emerald-500/20 font-mono text-xs">
       <div class="text-emerald-400 font-bold mb-1">[Terminal Output]:</div>
       <div id="ide-console-output" class="text-emerald-200/80 font-mono">&gt; Ready. Click "Run Code" above to execute...</div>
@@ -40,21 +39,73 @@ int main() {
 </section>
 
 <script>
+  const codeSnippets: Record<string, { code: string; cmd: string; output: string[] }> = {
+    cpp: {
+      code: `#include <iostream>\n\nint main() {\n    std::cout << "Lim Wei Jian - Multi-Agent AI Pipeline\\n";\n    return 0;\n}`,
+      cmd: 'g++ solution.cpp -o solution && ./solution',
+      output: [
+        '========================================',
+        ' Lim Wei Jian - Multi-Agent AI Pipeline',
+        '========================================',
+        '[+] C++ High Performance Engine Ready',
+        '[+] Execution Finished (Exit Code: 0)'
+      ]
+    },
+    cs: {
+      code: `using System;\n\nclass Program {\n    static void Main() {\n        Console.WriteLine("Lim Wei Jian - C# Enterprise Systems");\n    }\n}`,
+      cmd: 'dotnet run --project Solution.csproj',
+      output: [
+        'Build succeeded.',
+        '[+] C# Enterprise Architecture Loaded',
+        '[+] Exit Code: 0'
+      ]
+    },
+    java: {
+      code: `public class Solution {\n    public static void main(String[] args) {\n        System.out.println("Lim Wei Jian - Java OOP Architect");\n    }\n}`,
+      cmd: 'javac Solution.java && java Solution',
+      output: [
+        'Compiled Solution.class successfully.',
+        '[+] Java Enterprise Stack Initialized',
+        '[+] Execution Complete'
+      ]
+    },
+    py: {
+      code: `import torch\nimport numpy as np\n\nprint("Lim Wei Jian - PyTorch & YOLO AI Vision Engine")`,
+      cmd: 'python solution.py',
+      output: [
+        '[+] CUDA Device: NVIDIA RTX Detected',
+        '[+] PyTorch 2.4.0 & YOLO Pipeline Active',
+        '[+] Output: AI Vision Grounding Passed'
+      ]
+    }
+  };
+
+  let activeLang = 'cpp';
+
+  document.querySelectorAll('[data-lang-tab]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      activeLang = btn.getAttribute('data-lang-tab') || 'cpp';
+
+      document.querySelectorAll('[data-lang-tab]').forEach(b => {
+        b.className = 'tab-btn px-3 py-1.5 rounded-t hover:bg-emerald-950/40 text-emerald-300/70';
+      });
+      btn.className = 'tab-btn active px-3 py-1.5 rounded-t bg-black border-t-2 border-emerald-400 text-emerald-400 font-bold';
+
+      const codeDisplay = document.getElementById('ide-code-display');
+      if (codeDisplay && codeSnippets[activeLang]) {
+        codeDisplay.textContent = codeSnippets[activeLang].code;
+      }
+    });
+  });
+
   document.getElementById('run-ide-btn')?.addEventListener('click', () => {
     const consoleOutput = document.getElementById('ide-console-output');
-    if (!consoleOutput) return;
+    if (!consoleOutput || !codeSnippets[activeLang]) return;
 
-    consoleOutput.innerHTML = '<span class="text-emerald-400">&gt; Executing g++ solution.cpp -o solution && ./solution...</span><br><br>';
-    const lines = [
-      '========================================',
-      ' Lim Wei Jian - Multi-Agent AI Pipeline',
-      '========================================',
-      '[+] Status: Full-Stack & AI Ready',
-      '[+] RAG Engine Grounding: 100% Passed',
-      '[+] Execution Finished (Exit Code: 0)'
-    ];
+    const snippet = codeSnippets[activeLang];
+    consoleOutput.innerHTML = `<span class="text-emerald-400">&gt; Executing ${snippet.cmd}...</span><br><br>`;
 
-    lines.forEach((line, idx) => {
+    snippet.output.forEach((line, idx) => {
       setTimeout(() => {
         consoleOutput.innerHTML += line + '<br>';
       }, (idx + 1) * 200);

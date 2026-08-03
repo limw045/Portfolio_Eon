@@ -24,19 +24,27 @@
       </button>
     </div>
 
-    <!-- Node diagram visualizer -->
-    <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6 font-mono text-xs text-center">
-      <div id="n8n-node-1" class="p-3 rounded-lg bg-emerald-950/40 border border-emerald-500/20 text-emerald-400 transition">
-        1. Webhook Trigger ⚡
+    <!-- Animated 5 Workflow Nodes Diagram -->
+    <div class="grid grid-cols-2 sm:grid-cols-5 gap-2 mb-6 font-mono text-xs text-center">
+      <div id="node-input" class="p-3 rounded-lg bg-emerald-950/40 border border-emerald-500/20 text-emerald-400 transition">
+        <div class="text-base mb-1">📥</div>
+        <div>User Input</div>
       </div>
-      <div id="n8n-node-2" class="p-3 rounded-lg bg-emerald-950/40 border border-emerald-500/20 text-emerald-400 transition">
-        2. Prompt Parser 🧠
+      <div id="node-n8n" class="p-3 rounded-lg bg-emerald-950/40 border border-emerald-500/20 text-emerald-400 transition">
+        <div class="text-base mb-1">⚡</div>
+        <div>n8n Webhook</div>
       </div>
-      <div id="n8n-node-3" class="p-3 rounded-lg bg-emerald-950/40 border border-emerald-500/20 text-emerald-400 transition">
-        3. Agent Router 🤖
+      <div id="node-classifier" class="p-3 rounded-lg bg-emerald-950/40 border border-emerald-500/20 text-emerald-400 transition">
+        <div class="text-base mb-1">🔍</div>
+        <div>Genre Classifier</div>
       </div>
-      <div id="n8n-node-4" class="p-3 rounded-lg bg-emerald-950/40 border border-emerald-500/20 text-emerald-400 transition">
-        4. Stream Output 📜
+      <div id="node-rag" class="p-3 rounded-lg bg-emerald-950/40 border border-emerald-500/20 text-emerald-400 transition">
+        <div class="text-base mb-1">📖</div>
+        <div>RAG Node</div>
+      </div>
+      <div id="node-llm" class="p-3 rounded-lg bg-emerald-950/40 border border-emerald-500/20 text-emerald-400 transition">
+        <div class="text-base mb-1">🪄</div>
+        <div>Story Agent</div>
       </div>
     </div>
 
@@ -58,8 +66,10 @@
     const prompt = input.value.trim() || 'A developer discovers a hidden AI node at midnight...';
     stream.innerHTML = '> Initializing n8n node pipeline...';
 
+    const nodeIds = ['node-input', 'node-n8n', 'node-classifier', 'node-rag', 'node-llm'];
+
     // Reset node highlights
-    ['n8n-node-1', 'n8n-node-2', 'n8n-node-3', 'n8n-node-4'].forEach(id => {
+    nodeIds.forEach(id => {
       const node = document.getElementById(id);
       if (node) {
         node.className = 'p-3 rounded-lg bg-emerald-950/40 border border-emerald-500/20 text-emerald-400 transition';

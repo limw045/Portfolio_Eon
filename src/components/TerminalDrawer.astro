@@ -1,0 +1,127 @@
+---
+---
+
+<!-- Integrated VS Code Terminal Drawer -->
+<div id="ide-terminal-drawer" class="fixed bottom-7 left-0 right-0 z-40 bg-black/95 border-t border-emerald-500/30 transition-all duration-300 transform translate-y-full max-h-[300px] flex flex-col shadow-2xl font-mono text-xs">
+  <!-- Tabs Row -->
+  <div class="flex items-center justify-between px-4 py-1.5 bg-emerald-950/60 border-b border-emerald-500/20">
+    <div class="flex items-center gap-3">
+      <button class="px-3 py-1 rounded bg-emerald-500 text-black font-bold">💻 TERMINAL</button>
+      <button class="px-3 py-1 rounded hover:bg-emerald-950/40 text-emerald-300/70">⚙️ OUTPUT</button>
+      <button class="px-3 py-1 rounded hover:bg-emerald-950/40 text-emerald-300/70">🔍 PROBLEMS (0)</button>
+      <button class="px-3 py-1 rounded hover:bg-emerald-950/40 text-emerald-300/70">🐛 DEBUG CONSOLE</button>
+    </div>
+    <div class="flex items-center gap-4 text-emerald-400/80">
+      <span>Type '<span class="text-emerald-300 font-bold">help</span>' or '<span class="text-emerald-300 font-bold">skills</span>'</span>
+      <span class="text-emerald-400">🟢 zsh</span>
+      <button id="close-terminal-btn" class="hover:text-emerald-200 text-base font-bold">✕</button>
+    </div>
+  </div>
+
+  <!-- CLI Terminal Output Log -->
+  <div id="terminal-cli-body" class="flex-1 p-4 overflow-y-auto font-mono text-xs space-y-1 text-emerald-300 bg-black/90">
+    <div>Welcome to Lim Wei Jian CLI Node v2026.8.3</div>
+    <div>Type '<span class="text-emerald-400 font-bold">help</span>' for commands or '<span class="text-emerald-400 font-bold">matrix</span>' for code rain.</div>
+  </div>
+
+  <!-- CLI Command Input Line -->
+  <div class="flex items-center px-4 py-2 bg-black border-t border-emerald-500/20">
+    <span class="text-emerald-400 font-bold mr-2">weijian@mmu-ai-node:~$</span>
+    <input
+      type="text"
+      id="terminal-cli-input"
+      placeholder="Type a command (e.g. help, skills, cat resume, matrix)..."
+      class="flex-1 bg-transparent border-none text-white font-mono text-xs focus:outline-none"
+      autocomplete="off"
+    />
+  </div>
+</div>
+
+<!-- Fixed VS Code Bottom Status Bar (Height 28px, z-index 50) -->
+<footer class="fixed bottom-0 left-0 right-0 z-50 h-7 bg-emerald-950 border-t border-emerald-500/30 flex items-center justify-between px-4 font-mono text-[11px] text-emerald-300">
+  <div class="flex items-center gap-4">
+    <button id="toggle-terminal-btn" class="flex items-center gap-1.5 px-2 py-0.5 rounded bg-blue-600/80 text-white font-bold hover:bg-blue-500 transition">
+      💻 Terminal
+    </button>
+    <span> main*</span>
+    <span class="text-emerald-400">🟢 0 Errors, 0 Warnings</span>
+  </div>
+  <div class="hidden sm:flex items-center gap-4 text-emerald-300/70">
+    <span>Ln 42, Col 1</span>
+    <span>Spaces: 2</span>
+    <span>UTF-8</span>
+    <span>Python 3.12</span>
+    <span>Prettier</span>
+  </div>
+</footer>
+
+<script>
+  const drawer = document.getElementById('ide-terminal-drawer');
+  const toggleBtn = document.getElementById('toggle-terminal-btn');
+  const closeBtn = document.getElementById('close-terminal-btn');
+  const cliInput = document.getElementById('terminal-cli-input') as HTMLInputElement;
+  const cliBody = document.getElementById('terminal-cli-body');
+
+  let isOpen = false;
+
+  function toggleTerminal() {
+    isOpen = !isOpen;
+    if (drawer) {
+      if (isOpen) {
+        drawer.classList.remove('translate-y-full');
+        cliInput?.focus();
+      } else {
+        drawer.classList.add('translate-y-full');
+      }
+    }
+  }
+
+  toggleBtn?.addEventListener('click', toggleTerminal);
+  closeBtn?.addEventListener('click', toggleTerminal);
+  document.getElementById('menu-toggle-terminal')?.addEventListener('click', toggleTerminal);
+
+  // CLI Command Engine
+  cliInput?.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+      const cmd = cliInput.value.trim().toLowerCase();
+      cliInput.value = '';
+      if (!cmd || !cliBody) return;
+
+      cliBody.innerHTML += `<div><span class="text-emerald-400 font-bold">weijian@mmu-ai-node:~$</span> ${cmd}</div>`;
+
+      if (cmd === 'help') {
+        cliBody.innerHTML += `
+          <div class="text-emerald-200/80">Available commands:</div>
+          <div class="pl-4 text-emerald-300">
+            • <span class="font-bold">skills</span> - Display AI & Full-Stack tech stack<br>
+            • <span class="font-bold">matrix</span> - Wake up, Neo... (Code rain easter egg)<br>
+            • <span class="font-bold">cat resume</span> - Print resume summary<br>
+            • <span class="font-bold">clear</span> - Clear terminal screen<br>
+            • <span class="font-bold">help</span> - Show this help menu
+          </div>`;
+      } else if (cmd === 'skills') {
+        cliBody.innerHTML += `
+          <div class="text-emerald-300">
+            [AI Stack]: Multi-Agent RAG, LangChain, LlamaIndex, YOLO, ResNet, PyTorch, Python<br>
+            [Full-Stack]: Astro, TypeScript, React, Tailwind CSS, C++, C#, Java, PHP, MySQL, Cloudflare Pages
+          </div>`;
+      } else if (cmd === 'matrix') {
+        cliBody.innerHTML += `<div class="text-emerald-400 font-bold">Wake up, Neo... The Matrix has you. 🐇</div>`;
+        window.dispatchEvent(new CustomEvent('matrixmode'));
+      } else if (cmd === 'cat resume') {
+        cliBody.innerHTML += `
+          <div class="text-emerald-300">
+            Lim Wei Jian | Senior AI Student @ MMU | CGPA 3.74<br>
+            Specialized in Multi-Agent RAG & Full-Stack Systems.<br>
+            Degree FYP: JKR-Compliant TIA Generator (+70% efficiency).
+          </div>`;
+      } else if (cmd === 'clear') {
+        cliBody.innerHTML = '';
+      } else {
+        cliBody.innerHTML += `<div class="text-red-400">Command not found: ${cmd}. Type 'help' for available commands.</div>`;
+      }
+
+      cliBody.scrollTop = cliBody.scrollHeight;
+    }
+  });
+</script>
