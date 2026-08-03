@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --glass-blur: 12px;
+    --card-radius: 12px;
+  }
+  body {
+    background-color: #000000;
+    color: #e0ffe8;
+  }
+}
