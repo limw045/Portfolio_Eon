@@ -1,6 +1,8 @@
 # Superpowers / internal planning artifacts
 superpower*/
 .superpower*/
+docs/
+*.md
 
 # Wrangler and other local deployment state
 .wrangler/
