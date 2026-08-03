@@ -1,6 +1,6 @@
 /**
- * background-canvas.js - Theme-Aware Dynamic HTML5 Background Canvas & Matrix Rain Engine
- * Renders 60fps interactive particle shaders & full-screen cascading matrix rain.
+ * background-canvas.js - Authentic Pitch-Black & Matrix Green Canvas Engine
+ * Renders 60fps continuous full-screen Matrix rain evenly distributed from top to bottom.
  */
 
 export class BackgroundCanvas {
@@ -12,7 +12,7 @@ export class BackgroundCanvas {
     this.width = window.innerWidth;
     this.height = window.innerHeight;
     this.particles = [];
-    this.matrixColumns = [];
+    this.matrixDrops = [];
     this.theme = document.documentElement.getAttribute('data-theme') || 'ide';
 
     this.init();
@@ -66,49 +66,34 @@ export class BackgroundCanvas {
   }
 
   initMatrixRain() {
-    const fontSize = 18;
+    const fontSize = 16;
     const columns = Math.floor(this.width / fontSize);
-    const chars = '01ABCDEFGHIJKLMNOPQRSTUVWXYZλπΣΩ<>{}[]/*=&$#@!';
+    this.matrixDrops = [];
     
-    this.matrixColumns = [];
-    
-    // Create matrix streams evenly distributed across the entire screen width & height
+    // Initialize drops randomly distributed across the FULL HEIGHT from top to bottom
+    const totalRows = Math.floor(this.height / fontSize);
     for (let i = 0; i < columns; i++) {
-      const streamLength = Math.floor(Math.random() * 12) + 8; // 8 to 20 chars long
-      const speed = Math.random() * 0.4 + 0.6; // Speed multiplier
-      
-      // Random characters for this stream
-      const streamChars = [];
-      for (let j = 0; j < streamLength; j++) {
-        streamChars.push(chars.charAt(Math.floor(Math.random() * chars.length)));
-      }
-
-      this.matrixColumns.push({
-        x: i * fontSize,
-        y: Math.random() * (this.height + 500) - 200, // Distributed across full screen
-        speed: speed,
-        chars: streamChars,
-        length: streamLength
-      });
+      this.matrixDrops[i] = Math.floor(Math.random() * totalRows);
     }
   }
 
   animate() {
-    // Clear canvas cleanly every frame (no solid black accumulation!)
-    this.ctx.clearRect(0, 0, this.width, this.height);
-
     // Render theme-specific background dynamics
     switch (this.theme) {
       case 'football':
+        this.ctx.clearRect(0, 0, this.width, this.height);
         this.drawFootballGrid();
         break;
       case 'cinema':
+        this.ctx.clearRect(0, 0, this.width, this.height);
         this.drawCinemaFlares();
         break;
       case 'swiss':
+        this.ctx.clearRect(0, 0, this.width, this.height);
         this.drawSwissGrid();
         break;
       case 'travel':
+        this.ctx.clearRect(0, 0, this.width, this.height);
         this.drawTravelConstellations();
         break;
       case 'ide':
@@ -121,45 +106,38 @@ export class BackgroundCanvas {
   }
 
   drawMatrixRain() {
-    const fontSize = 18;
-    this.ctx.font = '14px "JetBrains Mono", monospace';
+    const fontSize = 16;
 
-    const chars = '01ABCDEFGHIJKLMNOPQRSTUVWXYZλπΣΩ<>{}[]/*=&$#@!';
+    // Pitch Black background fade trail (#000000 with 0.08 alpha for authentic matrix trailing)
+    this.ctx.fillStyle = 'rgba(0, 0, 0, 0.08)';
+    this.ctx.fillRect(0, 0, this.width, this.height);
 
-    for (let i = 0; i < this.matrixColumns.length; i++) {
-      const stream = this.matrixColumns[i];
+    this.ctx.font = '15px "JetBrains Mono", monospace';
+    const chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZλπΣΩ<>{}[]/*=&$#@!';
 
-      for (let j = 0; j < stream.length; j++) {
-        const charY = stream.y - j * fontSize;
+    for (let i = 0; i < this.matrixDrops.length; i++) {
+      const text = chars.charAt(Math.floor(Math.random() * chars.length));
+      const x = i * fontSize;
+      const y = this.matrixDrops[i] * fontSize;
 
-        // Skip characters outside visible viewport
-        if (charY < -20 || charY > this.height + 20) continue;
-
-        // Head character (bright glowing cyan/green)
-        if (j === 0) {
-          this.ctx.fillStyle = '#a6e3a1'; // Bright green head
-        } else {
-          // Fading tail alpha
-          const alpha = Math.max(0.05, (1 - j / stream.length) * 0.7);
-          this.ctx.fillStyle = `rgba(137, 180, 250, ${alpha})`; // Catppuccin cyan tail
-        }
-
-        // Randomly mutate character occasionally
-        if (Math.random() < 0.02) {
-          stream.chars[j] = chars.charAt(Math.floor(Math.random() * chars.length));
-        }
-
-        this.ctx.fillText(stream.chars[j], stream.x, charY);
+      // Matrix Green Palette: White hot leading character, Neon Green body
+      const rand = Math.random();
+      if (rand > 0.88) {
+        this.ctx.fillStyle = '#ffffff'; // White leading head
+      } else if (rand > 0.45) {
+        this.ctx.fillStyle = '#00ff66'; // Neon Matrix Green
+      } else {
+        this.ctx.fillStyle = '#00cc44'; // Classic Matrix Green
       }
 
-      // Move stream down
-      stream.y += 2.5 * stream.speed;
+      this.ctx.fillText(text, x, y);
 
-      // Reset stream to top when tail clears bottom
-      if (stream.y - stream.length * fontSize > this.height) {
-        stream.y = Math.random() * -100;
-        stream.speed = Math.random() * 0.4 + 0.6;
+      // Reset drop when reaching screen bottom with random probability to maintain uniform density from top to bottom
+      if (y > this.height && Math.random() > 0.975) {
+        this.matrixDrops[i] = 0;
       }
+
+      this.matrixDrops[i]++;
     }
   }
 
