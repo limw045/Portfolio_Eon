@@ -42,16 +42,21 @@
 
       <!-- Navigation Links -->
       <ul class="nav-links">
-        <li><a href="#hero">起源故事</a></li>
-        <li><a href="#academic">读书生涯</a></li>
-        <li><a href="#culture">精神角落</a></li>
-        <li><a href="#skill-studio">技能实验室</a></li>
-        <li><a href="#micro-tools">炫技工具</a></li>
+        <li><a href="#hero" data-i18n="nav_story">起源故事</a></li>
+        <li><a href="#academic" data-i18n="nav_academic">读书生涯</a></li>
+        <li><a href="#culture" data-i18n="nav_culture">精神角落</a></li>
+        <li><a href="#skill-studio" data-i18n="nav_skills">技能实验室</a></li>
+        <li><a href="#micro-tools" data-i18n="nav_tools">炫技工具</a></li>
       </ul>
 
-      <!-- Floating Live Theme Control Bar -->
+      <!-- Floating Live Theme & Language Control Bar -->
       <div class="theme-control-bar" id="theme-switcher">
-        <span class="theme-label">主题:</span>
+        <!-- Language Switcher Button -->
+        <button class="lang-toggle-btn" id="lang-toggle" title="切换语言 (English / 中文)">
+          🌐 EN
+        </button>
+
+        <span class="theme-label" data-i18n="theme_label">主题:</span>
         <button class="theme-btn active" data-theme-target="ide" title="IDE Cyber Code (暗黑极客)">💻 IDE</button>
         <button class="theme-btn" data-theme-target="football" title="Green Pitch (足球战术)">⚽ 足球</button>
         <button class="theme-btn" data-theme-target="cinema" title="Cinema Noir (暗黑电影)">🎬 电影</button>
@@ -75,21 +80,21 @@
         <div class="hero-content">
           <div class="hero-badge">
             <span class="pulse-dot"></span>
-            <span>Final Year AI Student @ MMU | CGPA 3.74</span>
+            <span data-i18n="hero_badge">Final Year AI Student @ MMU | CGPA 3.74</span>
           </div>
 
-          <h1 class="hero-title">
+          <h1 class="hero-title" data-i18n="hero_title">
             探索代码与 AI 的<br>
             <span class="gradient-text">无限可能</span>
           </h1>
 
-          <p class="hero-description">
+          <p class="hero-description" data-i18n="hero_desc">
             我是<strong>林伟健 (Lim Wei Jian)</strong>，一名来自柔佛新山 (Johor Bahru) 的 AI 学士生。从早期被《刀剑神域》中虚拟与现实的交织所吸引，到如今深耕 Multi-Agent 多智能体架构与全栈开发，我立志用逻辑与代码构建改变现实的轻量高效工具。
           </p>
 
           <div class="hero-actions">
-            <a href="#skill-studio" class="btn btn-primary">体验技能实验室 🚀</a>
-            <a href="#n8n-studio" class="btn btn-secondary">尝试 AI 工作流 🤖</a>
+            <a href="#skill-studio" class="btn btn-primary" data-i18n="btn_exp_skills">体验技能实验室 🚀</a>
+            <a href="#n8n-studio" class="btn btn-secondary" data-i18n="btn_try_n8n">尝试 AI 工作流 🤖</a>
           </div>
 
           <!-- Quick Tech Stack Tags -->
@@ -143,7 +148,7 @@
                 </div>
               </div>
               <div class="card-footer-quote">
-                <em>"From Taman Kobena to AI Innovation — Code is the brush, Logic is the canvas."</em>
+                <em data-i18n="hero_quote">"From Taman Kobena to AI Innovation — Code is the brush, Logic is the canvas."</em>
               </div>
             </div>
           </div>
@@ -154,45 +159,45 @@
     <!-- SECTION 2: ACADEMIC JOURNEY TIMELINE -->
     <section id="academic" class="section-padding">
       <div class="section-header">
-        <h2 class="section-title">🎓 读书生涯与项目求索</h2>
-        <p class="section-subtitle">从 SPM 理工启蒙，到 Diploma 独立全栈全能队长，再到 Degree AI 课题的前沿突破</p>
+        <h2 class="section-title" data-i18n="section_acad_title">🎓 读书生涯与项目求索</h2>
+        <p class="section-subtitle" data-i18n="section_acad_subtitle">从 SPM 理工启蒙，到 Diploma 独立全栈全能队长，再到 Degree AI 课题的前沿突破</p>
       </div>
 
       <div class="timeline-container">
         <!-- Milestone 1 -->
         <div class="timeline-card tilt-card">
           <div class="timeline-badge">2024 - 2026</div>
-          <h3 class="timeline-role">Artificial Intelligence (B.S. Degree)</h3>
-          <h4 class="timeline-location">Multimedia University (Melaka Campus) — CGPA: 3.74</h4>
-          <p class="timeline-desc">
+          <h3 class="timeline-role" data-i18n="acad_degree_title">Artificial Intelligence (B.S. Degree)</h3>
+          <h4 class="timeline-location" data-i18n="acad_degree_loc">Multimedia University (Melaka Campus) — CGPA: 3.74</h4>
+          <p class="timeline-desc" data-i18n="acad_degree_desc">
             专注于 Generative AI, Multi-Agent 多智能体协同, RAG 检索增强生成与 Computer Vision (YOLO/ResNet)。
           </p>
           <div class="project-highlight-box">
-            <strong>🔥 毕业设计项目：JKR 交通影响评估 (TIA) 自动化生成系统</strong>
-            <p>基于 Multi-Agent 架构解构专门任务，结合 RAG 检索官方 JKR 规范文件，消除大模型幻觉，使提效超 70%！</p>
+            <strong data-i18n="acad_fyp_title">🔥 毕业设计项目：JKR 交通影响评估 (TIA) 自动化生成系统</strong>
+            <p data-i18n="acad_fyp_desc">基于 Multi-Agent 架构解构专门任务，结合 RAG 检索官方 JKR 规范文件，消除大模型幻觉，使提效超 70%！</p>
           </div>
         </div>
 
         <!-- Milestone 2 -->
         <div class="timeline-card tilt-card">
           <div class="timeline-badge">2022 - 2024</div>
-          <h3 class="timeline-role">Diploma in Information Technology</h3>
-          <h4 class="timeline-location">Multimedia University (Melaka Campus) — CGPA: 3.78</h4>
-          <p class="timeline-desc">
+          <h3 class="timeline-role" data-i18n="acad_diploma_title">Diploma in Information Technology</h3>
+          <h4 class="timeline-location" data-i18n="acad_diploma_loc">Multimedia University (Melaka Campus) — CGPA: 3.78</h4>
+          <p class="timeline-desc" data-i18n="acad_diploma_desc">
             掌握软件工程基础、算法结构与全栈 Web 开发，多次担任团队 Leader 带领组员攻克项目。
           </p>
           <div class="project-highlight-box">
-            <strong>💡 大专毕业项目：AI Toolbox 在线平台</strong>
-            <p>设计并搭建具备订阅制的多功能 AI 工具箱（含 AI 翻译、AI 聊天框、文本重写与 Text-to-Image）。担任 Team Leader，精通 HTML/CSS/JS/PHP/MySQL。</p>
+            <strong data-i18n="acad_dip_fyp_title">💡 大专毕业项目：AI Toolbox 在线平台</strong>
+            <p data-i18n="acad_dip_fyp_desc">设计并搭建具备订阅制的多功能 AI 工具箱（含 AI 翻译、AI 聊天框、文本重写与 Text-to-Image）。担任 Team Leader，精通 HTML/CSS/JS/PHP/MySQL。</p>
           </div>
         </div>
 
         <!-- Milestone 3 -->
         <div class="timeline-card tilt-card">
           <div class="timeline-badge">2017 - 2022</div>
-          <h3 class="timeline-role">Sijil Pelajaran Malaysia (SPM)</h3>
-          <h4 class="timeline-location">SMK Dato Abdul Rahman Yassin, Johor Bahru</h4>
-          <p class="timeline-desc">
+          <h3 class="timeline-role" data-i18n="acad_spm_title">Sijil Pelajaran Malaysia (SPM)</h3>
+          <h4 class="timeline-location" data-i18n="acad_spm_loc">SMK Dato Abdul Rahman Yassin, Johor Bahru</h4>
+          <p class="timeline-desc" data-i18n="acad_spm_desc">
             成绩优异（1 A+, 1 A, 1 A-），在校期间积极参与组织活动，培养了扎实的理科逻辑与良好的团队协调领导力。
           </p>
         </div>
@@ -202,39 +207,39 @@
     <!-- SECTION 3: CULTURAL & PERSONAL TASTES HUB -->
     <section id="culture" class="section-padding">
       <div class="section-header">
-        <h2 class="section-title">✨ 精神角落与文化品味</h2>
-        <p class="section-subtitle">代码之外的灵感源泉：绿茵狂热、律动 Groove、硬核科幻与战术竞技</p>
+        <h2 class="section-title" data-i18n="section_cult_title">✨ 精神角落与文化品味</h2>
+        <p class="section-subtitle" data-i18n="section_cult_subtitle">代码之外的灵感源泉：绿茵狂热、律动 Groove、硬核科幻与战术竞技</p>
       </div>
 
       <div class="culture-grid">
         <!-- Football Pitch Hub -->
         <div class="culture-card tilt-card theme-accent-card football-style">
           <div class="card-icon">⚽</div>
-          <h3>足球主队 (Football Pitch)</h3>
+          <h3 data-i18n="cult_football_title">足球主队 (Football Pitch)</h3>
           <div class="team-tags">
             <span class="team-tag bvb">多特蒙德 BVB (威斯特法伦黄黑狂热)</span>
             <span class="team-tag arsenal">阿森纳 Gunners (美丽传控)</span>
             <span class="team-tag mancity">曼城 Man City (极致蓝月战术)</span>
           </div>
-          <p>热衷于战术切磋、快速传控与赛场上的极致执行力，正如撰写优雅高效率的代码。</p>
+          <p data-i18n="cult_football_desc">热衷于战术切磋、快速传控与赛场上的极致执行力，正如撰写优雅高效率的代码。</p>
         </div>
 
         <!-- Music & Groove Hub -->
         <div class="culture-card tilt-card theme-accent-card music-style">
           <div class="card-icon">🎵</div>
-          <h3>音乐 Groove (R&B & Soul)</h3>
+          <h3 data-i18n="cult_music_title">音乐 Groove (R&B & Soul)</h3>
           <div class="artist-list">
             <span class="artist-pill">方大同 (Khalil Fong)</span>
             <span class="artist-pill">陶喆 (David Tao)</span>
             <span class="artist-pill">Bruno Mars</span>
           </div>
-          <p>偏爱富有律动感的华语 R&B、 Soul 与 Funk 音乐，细腻的和声与复古 Groove 是写代码时的最佳伴侣。</p>
+          <p data-i18n="cult_music_desc">偏爱富有律动感的华语 R&B、 Soul 与 Funk 音乐，细腻的和声与复古 Groove 是写代码时的最佳伴侣。</p>
         </div>
 
         <!-- Novels Hub -->
         <div class="culture-card tilt-card theme-accent-card novel-style">
           <div class="card-icon">📚</div>
-          <h3>小说与思想 (Novels)</h3>
+          <h3 data-i18n="cult_novel_title">小说与思想 (Novels)</h3>
           <ul>
             <li><strong>《刀剑神域 SAO》</strong> — 虚拟世界与 AI 技术的启蒙憧憬</li>
             <li><strong>《诡秘之主》</strong> — 严密庞大的世界观与逻辑构筑</li>
@@ -245,7 +250,7 @@
         <!-- Games & Movies Hub -->
         <div class="culture-card tilt-card theme-accent-card media-style">
           <div class="card-icon">🎬🎮</div>
-          <h3>游戏与电影 (Games & Movies)</h3>
+          <h3 data-i18n="cult_media_title">游戏与电影 (Games & Movies)</h3>
           <div class="media-tags">
             <span class="media-tag">🎮 瓦洛兰特 Valorant</span>
             <span class="media-tag">🎮 刺客信条</span>
@@ -262,8 +267,8 @@
     <!-- SECTION 4: IT SKILL STUDIO & WEB IDE TERMINAL -->
     <section id="skill-studio" class="section-padding">
       <div class="section-header">
-        <h2 class="section-title">💻 IT 技能实验室 & Web IDE</h2>
-        <p class="section-subtitle">切身演示 C++, C#, Java, Python 代码逻辑与控制台运行输出</p>
+        <h2 class="section-title" data-i18n="section_ide_title">💻 IT 技能实验室 & Web IDE</h2>
+        <p class="section-subtitle" data-i18n="section_ide_subtitle">切身演示 C++, C#, Java, Python 代码逻辑与控制台运行输出</p>
       </div>
 
       <div class="ide-container tilt-card">
@@ -275,7 +280,7 @@
             <button class="ide-tab" data-lang="java">TaskQueue.java</button>
             <button class="ide-tab" data-lang="python">rag_agent.py</button>
           </div>
-          <button class="btn-run" id="btn-run-code">▶ Run Code</button>
+          <button class="btn-run" id="btn-run-code" data-i18n="btn_run_code">▶ 运行代码 (Run Code)</button>
         </div>
 
         <!-- Editor Body -->
@@ -288,9 +293,9 @@
 
         <!-- Editor Console Output -->
         <div class="ide-console">
-          <div class="console-header">Terminal Output</div>
-          <div class="console-body" id="console-output">
-            > Ready for execution. Click "Run Code" above.
+          <div class="console-header" data-i18n="console_header">Terminal Output</div>
+          <div class="console-body" id="console-output" data-i18n="console_ready">
+            > 就绪。点击上方 "Run Code" 运行模拟控制台...
           </div>
         </div>
       </div>
@@ -299,14 +304,14 @@
     <!-- SECTION 4.5: INTERACTIVE n8n MULTI-AGENT STORY SIMULATOR -->
     <section id="n8n-studio" class="section-padding">
       <div class="section-header">
-        <h2 class="section-title">🤖 n8n AI 故事交互流程图</h2>
-        <p class="section-subtitle">输入一段想法，观察多智能体工作流节点如何将其转化为一段精彩故事</p>
+        <h2 class="section-title" data-i18n="section_n8n_title">🤖 n8n AI 故事交互流程图</h2>
+        <p class="section-subtitle" data-i18n="section_n8n_subtitle">输入一段想法，观察多智能体工作流节点如何将其转化为一段精彩故事</p>
       </div>
 
       <div class="n8n-container tilt-card">
         <div class="n8n-input-group">
-          <input type="text" id="n8n-prompt-input" class="n8n-input" placeholder="输入故事提示（如：新山的小镇程序员在深夜发现了一个秘密 AI 节点...）" value="新山的小镇程序员在深夜发现了一个秘密 AI 节点">
-          <button id="btn-trigger-n8n" class="btn btn-primary">生成故事工作流 ⚡</button>
+          <input type="text" id="n8n-prompt-input" class="n8n-input" data-i18n-placeholder="n8n_placeholder" placeholder="输入故事提示（如：新山的小镇程序员在深夜发现了一个秘密 AI 节点...）" value="新山的小镇程序员在深夜发现了一个秘密 AI 节点">
+          <button id="btn-trigger-n8n" class="btn btn-primary" data-i18n="btn_gen_workflow">生成故事工作流 ⚡</button>
         </div>
 
         <!-- Animated Workflow Nodes -->
@@ -339,8 +344,8 @@
 
         <!-- Generated Output Box -->
         <div class="story-output-box">
-          <div class="story-header">Generated Output Stream</div>
-          <div class="story-body" id="n8n-story-output">
+          <div class="story-header" data-i18n="n8n_stream_header">Generated Output Stream</div>
+          <div class="story-body" id="n8n-story-output" data-i18n="n8n_stream_ready">
             点击上方按钮，体验 n8n 节点实时调度与打字机输出效果...
           </div>
         </div>
@@ -350,39 +355,39 @@
     <!-- SECTION 5: EXTENSIBLE MICRO-TOOLS PLAYGROUND -->
     <section id="micro-tools" class="section-padding">
       <div class="section-header">
-        <h2 class="section-title">🛠️ 炫技微工具区 (Micro-Tools)</h2>
-        <p class="section-subtitle">可实时互动的轻量小工具 & 扩展插槽</p>
+        <h2 class="section-title" data-i18n="section_tools_title">🛠️ 炫技微工具区 (Micro-Tools)</h2>
+        <p class="section-subtitle" data-i18n="section_tools_subtitle">可实时互动的轻量小工具 & 扩展插槽</p>
       </div>
 
       <div class="tools-grid">
         <!-- Built-in Tool 1: Live CSS Variable Tweaker -->
         <div class="tool-card tilt-card">
-          <h3>🎨 Live CSS Variable Tweaker</h3>
-          <p>拖动滑块实时调节本站的圆角、玻璃模糊度与光晕强弱，并导出 CSS 代码！</p>
+          <h3 data-i18n="tool_tweaker_title">🎨 Live CSS Variable Tweaker</h3>
+          <p data-i18n="tool_tweaker_desc">拖动滑块实时调节本站的圆角、玻璃模糊度与光晕强弱，并导出 CSS 代码！</p>
 
           <div class="control-group">
-            <label>Glass Blur (玻璃模糊度): <span id="val-blur">12px</span></label>
+            <label><span data-i18n="label_blur">Glass Blur (玻璃模糊度):</span> <span id="val-blur">12px</span></label>
             <input type="range" id="slider-blur" min="0" max="30" value="12">
           </div>
 
           <div class="control-group">
-            <label>Border Radius (圆角大小): <span id="val-radius">16px</span></label>
+            <label><span data-i18n="label_radius">Border Radius (圆角大小):</span> <span id="val-radius">16px</span></label>
             <input type="range" id="slider-radius" min="0" max="32" value="16">
           </div>
 
           <div class="control-group">
-            <label>Glow Intensity (光晕强度): <span id="val-glow">0.6</span></label>
+            <label><span data-i18n="label_glow">Glow Intensity (光晕强度):</span> <span id="val-glow">0.6</span></label>
             <input type="range" id="slider-glow" min="0.1" max="1" step="0.05" value="0.6">
           </div>
 
-          <button id="btn-export-css" class="btn btn-secondary">导出 CSS 变量代码 📋</button>
+          <button id="btn-export-css" class="btn btn-secondary" data-i18n="btn_export_css">导出 CSS 变量代码 📋</button>
         </div>
 
         <!-- Slot Card 1 (Coming Soon) -->
         <div class="tool-card tilt-card slot-card">
-          <div class="slot-badge">Extensible Slot</div>
-          <h3>🔧 Micro-Tool Slot #2</h3>
-          <p>预留插槽：后续挂载你的算法可视化器或新 Web 小工具！</p>
+          <div class="slot-badge" data-i18n="slot_badge">Extensible Slot</div>
+          <h3 data-i18n="slot_title">🔧 Micro-Tool Slot #2</h3>
+          <p data-i18n="slot_desc">预留插槽：后续挂载你的算法可视化器或新 Web 小工具！</p>
           <div class="slot-placeholder">[ Coming Soon ]</div>
         </div>
       </div>
@@ -393,8 +398,8 @@
   <!-- FOOTER & CONTACT -->
   <footer class="footer-section">
     <div class="footer-content">
-      <h2>准备好一起构建下一个精彩项目了吗？</h2>
-      <p>目前开放寻求 AI 工程、Multi-Agent RAG 与全栈开发方向机会。</p>
+      <h2 data-i18n="footer_title">准备好一起构建下一个精彩项目了吗？</h2>
+      <p data-i18n="footer_subtitle">目前开放寻求 AI 工程、Multi-Agent RAG 与全栈开发方向机会。</p>
       
       <div class="contact-links">
         <a href="mailto:Limw045@gmail.com" class="contact-btn">📧 Limw045@gmail.com</a>
@@ -402,7 +407,7 @@
         <a href="tel:+60106661736" class="contact-btn">📞 +60 10-6661736</a>
       </div>
 
-      <p class="copyright">
+      <p class="copyright" data-i18n="copyright">
         © 2026 Lim Wei Jian (林伟健). Built with pure HTML/CSS/JS. Deployable on Cloudflare Pages.
       </p>
     </div>

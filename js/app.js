@@ -1,8 +1,9 @@
 /**
  * app.js - Main Application Entry Point
- * Initializes theme engine, IDE simulator, n8n workflow simulator, background canvas, CSS tweaker, and 3D tilt card physics.
+ * Initializes i18n, theme engine, IDE simulator, n8n workflow simulator, background canvas, CSS tweaker, and 3D tilt card physics.
  */
 
+import { I18nEngine } from './i18n.js';
 import { ThemeEngine } from './theme-engine.js';
 import { IDESimulator } from './ide-simulator.js';
 import { N8nSimulator } from './n8n-simulator.js';
@@ -11,6 +12,7 @@ import { CSSTweaker } from './css-tweaker.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   // Initialize Core Modules
+  const i18nEngine = new I18nEngine();
   const themeEngine = new ThemeEngine();
   const ideSimulator = new IDESimulator();
   const n8nSimulator = new N8nSimulator();
@@ -20,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Initialize 3D Tilt Mouse Physics for Cards
   init3DTiltPhysics();
 
-  console.log('🚀 Lim Wei Jian Portfolio initialized successfully. Theme Engine ready.');
+  console.log('🚀 Lim Wei Jian Portfolio initialized successfully with i18n support.');
 });
 
 /**

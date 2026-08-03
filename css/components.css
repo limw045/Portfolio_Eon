@@ -94,6 +94,24 @@
   box-shadow: 0 0 10px var(--accent-color);
 }
 
+.lang-toggle-btn {
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid var(--border-color);
+  color: var(--accent-color);
+  font-weight: 700;
+  padding: 0.3rem 0.65rem;
+  font-size: 0.8rem;
+  border-radius: 20px;
+  cursor: pointer;
+  margin-right: 0.4rem;
+  transition: all 0.2s ease;
+}
+
+.lang-toggle-btn:hover {
+  background: var(--accent-color);
+  color: #111;
+}
+
 .sound-toggle-btn {
   background: transparent;
   border: none;
