@@ -1,61 +1,239 @@
 ---
 ---
 
-<section id="micro-tools" class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-  <div class="text-center mb-12">
-    <h2 class="text-3xl font-bold font-mono text-white mb-3" data-i18n="section_tools_title">🛠️ Micro-Tools Playground</h2>
-    <p class="text-emerald-200/70 max-w-2xl mx-auto text-sm" data-i18n="section_tools_subtitle">Interactive micro-tools and extensible slots</p>
-  </div>
+<section id="micro-tools" class="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+  <!-- VS Code Workstation Outer Container (Double-Bezel) -->
+  <div class="w-full rounded-2xl bg-black/80 border border-emerald-500/30 p-2 shadow-[0_0_80px_rgba(16,185,129,0.15)] backdrop-blur-xl">
+    
+    <!-- VS Code Inner Editor Frame -->
+    <div class="w-full rounded-xl bg-[#0b0c13]/95 border border-emerald-500/20 overflow-hidden font-mono">
+      
+      <!-- Window Title Bar -->
+      <div class="px-4 py-2 bg-[#121420] border-b border-emerald-500/20 flex items-center justify-between text-xs text-emerald-300/80">
+        <div class="flex items-center gap-2">
+          <div class="flex items-center gap-1.5 mr-2">
+            <span class="w-3 h-3 rounded-full bg-red-500/80 inline-block"></span>
+            <span class="w-3 h-3 rounded-full bg-yellow-500/80 inline-block"></span>
+            <span class="w-3 h-3 rounded-full bg-green-500/80 inline-block"></span>
+          </div>
+          <span class="font-bold text-emerald-400">🛠️ 06_micro_tools.css</span>
+          <span class="text-[10px] text-emerald-500/60">— workspace/styles</span>
+        </div>
 
-  <div class="max-w-4xl mx-auto p-6 rounded-xl bg-black/80 border border-emerald-500/40 backdrop-blur-md shadow-2xl">
-    <div class="flex items-center gap-3 mb-4">
-      <span class="text-2xl">🎨</span>
-      <div>
-        <h3 class="text-lg font-bold font-mono text-white" data-i18n="tool_tweaker_title">Live CSS Variable Tweaker</h3>
-        <p class="text-xs text-emerald-200/70" data-i18n="tool_tweaker_desc">Adjust glass blur, border radius, and glow intensity live, then export clean CSS!</p>
+        <div class="hidden sm:flex items-center gap-4 text-[11px] text-emerald-400/60">
+          <span>Live CSS Compiler</span>
+          <span>DOM Mutator</span>
+          <span> main*</span>
+        </div>
       </div>
+
+      <!-- File Tabs Header -->
+      <div class="flex items-center gap-1 px-3 pt-2 bg-[#0e101a] border-b border-emerald-500/20 text-xs overflow-x-auto">
+        <a href="#n8n-studio" class="px-3 py-1.5 rounded-t text-emerald-300/60 hover:bg-[#121420] transition flex items-center gap-2">
+          <span class="text-purple-400">🤖</span> 05_n8n_workflow.py
+        </a>
+        <div class="px-3 py-1.5 rounded-t bg-[#0b0c13] border-t-2 border-emerald-400 text-emerald-300 font-bold flex items-center gap-2">
+          <span>🛠️</span> 06_micro_tools.css <span class="text-[10px] opacity-60">✕</span>
+        </div>
+      </div>
+
+      <!-- Section Title Inside IDE Comment -->
+      <div class="p-6 pb-2 text-center sm:text-left border-b border-emerald-500/10 bg-[#0c0d16]">
+        <h2 class="text-xl sm:text-2xl font-bold text-white mb-1 flex items-center gap-2 justify-center sm:justify-start" data-i18n="section_tools_title">
+          <span class="text-emerald-400">//</span> 🛠️ Micro-Tools Playground
+        </h2>
+        <p class="text-xs sm:text-sm text-emerald-400/70" data-i18n="section_tools_subtitle">
+          Interactive micro-tools &amp; real-time CSS variable compiler targeting this live webpage
+        </p>
+      </div>
+
+      <!-- Editor Body: Tools Grid -->
+      <div class="p-4 sm:p-8 grid grid-cols-1 md:grid-cols-2 gap-6">
+        
+        <!-- Built-in Tool 1: Live Real-Time Page CSS Compiler -->
+        <div class="p-5 rounded-xl bg-[#0e101b] border border-emerald-500/30 font-mono text-xs space-y-4">
+          <div class="flex items-center justify-between">
+            <span class="font-bold text-emerald-300 text-sm flex items-center gap-1.5">
+              <span>🎨</span> 1. Live CSS Variable Tweaker
+            </span>
+            <span class="text-[10px] px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
+              Live DOM Target: :root
+            </span>
+          </div>
+
+          <p class="text-[11px] text-emerald-200/70 font-sans leading-relaxed">
+            Drag the sliders below to <strong class="text-emerald-400">compiles and mutates CSS custom properties live on this webpage</strong> in real time!
+          </p>
+
+          <!-- Slider Controls -->
+          <div class="space-y-3 pt-1">
+            <!-- Slider 1: Blur -->
+            <div>
+              <div class="flex justify-between mb-1 text-emerald-300">
+                <span>--glass-blur:</span>
+                <span id="val-blur" class="text-emerald-400 font-bold">12px</span>
+              </div>
+              <input type="range" id="slider-blur" min="0" max="30" value="12" class="w-full accent-emerald-400 bg-black/60 rounded h-1.5 cursor-pointer" />
+            </div>
+
+            <!-- Slider 2: Radius -->
+            <div>
+              <div class="flex justify-between mb-1 text-emerald-300">
+                <span>--card-radius:</span>
+                <span id="val-radius" class="text-emerald-400 font-bold">16px</span>
+              </div>
+              <input type="range" id="slider-radius" min="4" max="32" value="16" class="w-full accent-emerald-400 bg-black/60 rounded h-1.5 cursor-pointer" />
+            </div>
+
+            <!-- Slider 3: Glow Intensity -->
+            <div>
+              <div class="flex justify-between mb-1 text-emerald-300">
+                <span>--glow-opacity:</span>
+                <span id="val-glow" class="text-emerald-400 font-bold">0.6</span>
+              </div>
+              <input type="range" id="slider-glow" min="0.1" max="1" step="0.05" value="0.6" class="w-full accent-emerald-400 bg-black/60 rounded h-1.5 cursor-pointer" />
+            </div>
+
+            <!-- Slider 4: Accent Hue -->
+            <div>
+              <div class="flex justify-between mb-1 text-emerald-300">
+                <span>--accent-hue (Hue Spectrum):</span>
+                <span id="val-hue" class="text-emerald-400 font-bold">150°</span>
+              </div>
+              <input type="range" id="slider-hue" min="0" max="360" value="150" class="w-full accent-emerald-400 bg-black/60 rounded h-1.5 cursor-pointer" />
+            </div>
+          </div>
+
+          <div class="pt-2 flex items-center justify-between gap-3">
+            <button id="export-css-btn" class="px-4 py-2 rounded-lg bg-emerald-500 text-black font-bold text-xs hover:bg-emerald-400 transition flex items-center gap-1.5 shadow-lg shadow-emerald-500/20" data-i18n="btn_export_css">
+              <span>📋</span> Export Clean CSS Snippet
+            </button>
+            <button id="reset-css-btn" class="px-3 py-2 rounded-lg bg-emerald-950/60 border border-emerald-500/30 text-emerald-300/80 hover:text-emerald-200 transition text-[11px]">
+              ↺ Reset
+            </button>
+          </div>
+        </div>
+
+        <!-- Built-in Tool 2: Matrix Code Rain Speed & Density Controls -->
+        <div class="p-5 rounded-xl bg-[#0e101b] border border-emerald-500/30 font-mono text-xs space-y-4">
+          <div class="flex items-center justify-between">
+            <span class="font-bold text-amber-300 text-sm flex items-center gap-1.5">
+              <span>🟢</span> 2. Matrix Rain Engine Live Tweaker
+            </span>
+            <span class="text-[10px] px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 border border-amber-500/30">
+              Live Canvas Target
+            </span>
+          </div>
+
+          <p class="text-[11px] text-emerald-200/70 font-sans leading-relaxed">
+            Interactively adjust the falling speed and stream opacity of the background letter glitch rain live!
+          </p>
+
+          <div class="space-y-3 pt-1">
+            <div>
+              <div class="flex justify-between mb-1 text-amber-300">
+                <span>Rain Speed Multiplier:</span>
+                <span id="val-matrix-speed" class="text-amber-400 font-bold">1.0x</span>
+              </div>
+              <input type="range" id="slider-matrix-speed" min="0.2" max="3.0" step="0.1" value="1.0" class="w-full accent-amber-400 bg-black/60 rounded h-1.5 cursor-pointer" />
+            </div>
+
+            <div>
+              <div class="flex justify-between mb-1 text-amber-300">
+                <span>Stream Opacity:</span>
+                <span id="val-matrix-opacity" class="text-amber-400 font-bold">0.35</span>
+              </div>
+              <input type="range" id="slider-matrix-opacity" min="0.05" max="0.9" step="0.05" value="0.35" class="w-full accent-amber-400 bg-black/60 rounded h-1.5 cursor-pointer" />
+            </div>
+          </div>
+
+          <!-- Quick Toast Notification Box -->
+          <div id="toast-notify" class="p-3 rounded-lg bg-emerald-950/80 border border-emerald-500/40 text-emerald-300 text-[11px] hidden animate-fade-in font-mono">
+            ✨ Changes applied live to DOM!
+          </div>
+        </div>
+
+      </div>
+
     </div>
-
-    <div class="space-y-4 font-mono text-xs mb-6">
-      <div>
-        <label class="block text-emerald-300 mb-1" data-i18n="label_blur">Glass Blur (10px - 30px): <span id="val-blur" class="text-emerald-400">12px</span></label>
-        <input type="range" id="slider-blur" min="4" max="30" value="12" class="w-full accent-emerald-400" />
-      </div>
-      <div>
-        <label class="block text-emerald-300 mb-1" data-i18n="label_radius">Border Radius (4px - 24px): <span id="val-radius" class="text-emerald-400">12px</span></label>
-        <input type="range" id="slider-radius" min="4" max="24" value="12" class="w-full accent-emerald-400" />
-      </div>
-    </div>
-
-    <button id="export-css-btn" class="px-4 py-2 rounded bg-emerald-500 text-black font-mono font-bold text-xs hover:bg-emerald-400 transition" data-i18n="btn_export_css">
-      Export CSS Variables 📋
-    </button>
   </div>
 </section>
 
 <script>
   const sliderBlur = document.getElementById('slider-blur') as HTMLInputElement;
   const sliderRadius = document.getElementById('slider-radius') as HTMLInputElement;
+  const sliderGlow = document.getElementById('slider-glow') as HTMLInputElement;
+  const sliderHue = document.getElementById('slider-hue') as HTMLInputElement;
+
+  const valBlur = document.getElementById('val-blur');
+  const valRadius = document.getElementById('val-radius');
+  const valGlow = document.getElementById('val-glow');
+  const valHue = document.getElementById('val-hue');
+
+  function showToast(msg: string) {
+    const toast = document.getElementById('toast-notify');
+    if (toast) {
+      toast.innerText = msg;
+      toast.classList.remove('hidden');
+      setTimeout(() => toast.classList.add('hidden'), 2500);
+    }
+  }
 
   sliderBlur?.addEventListener('input', (e) => {
     const val = (e.target as HTMLInputElement).value + 'px';
-    const disp = document.getElementById('val-blur');
-    if (disp) disp.innerText = val;
+    if (valBlur) valBlur.innerText = val;
     document.documentElement.style.setProperty('--glass-blur', val);
+    showToast(`--glass-blur set to ${val}`);
   });
 
   sliderRadius?.addEventListener('input', (e) => {
     const val = (e.target as HTMLInputElement).value + 'px';
-    const disp = document.getElementById('val-radius');
-    if (disp) disp.innerText = val;
+    if (valRadius) valRadius.innerText = val;
     document.documentElement.style.setProperty('--card-radius', val);
+    showToast(`--card-radius set to ${val}`);
+  });
+
+  sliderGlow?.addEventListener('input', (e) => {
+    const val = (e.target as HTMLInputElement).value;
+    if (valGlow) valGlow.innerText = val;
+    document.documentElement.style.setProperty('--glow-opacity', val);
+    showToast(`--glow-opacity set to ${val}`);
+  });
+
+  sliderHue?.addEventListener('input', (e) => {
+    const val = (e.target as HTMLInputElement).value + 'deg';
+    if (valHue) valHue.innerText = val;
+    document.documentElement.style.setProperty('--theme-hue', val);
+    showToast(`--theme-hue set to ${val}`);
+  });
+
+  document.getElementById('reset-css-btn')?.addEventListener('click', () => {
+    document.documentElement.style.removeProperty('--glass-blur');
+    document.documentElement.style.removeProperty('--card-radius');
+    document.documentElement.style.removeProperty('--glow-opacity');
+    document.documentElement.style.removeProperty('--theme-hue');
+
+    if (sliderBlur) sliderBlur.value = '12';
+    if (sliderRadius) sliderRadius.value = '16';
+    if (sliderGlow) sliderGlow.value = '0.6';
+    if (sliderHue) sliderHue.value = '150';
+
+    if (valBlur) valBlur.innerText = '12px';
+    if (valRadius) valRadius.innerText = '16px';
+    if (valGlow) valGlow.innerText = '0.6';
+    if (valHue) valHue.innerText = '150°';
+
+    showToast('↺ Live DOM styling reset to default!');
   });
 
   document.getElementById('export-css-btn')?.addEventListener('click', () => {
     const blur = sliderBlur?.value || '12';
-    const radius = sliderRadius?.value || '12';
-    const code = `:root {\n  --glass-blur: ${blur}px;\n  --card-radius: ${radius}px;\n}`;
+    const radius = sliderRadius?.value || '16';
+    const glow = sliderGlow?.value || '0.6';
+    const hue = sliderHue?.value || '150';
+
+    const code = `:root {\n  --glass-blur: ${blur}px;\n  --card-radius: ${radius}px;\n  --glow-opacity: ${glow};\n  --theme-hue: ${hue}deg;\n}`;
     navigator.clipboard.writeText(code);
-    alert('CSS copied to clipboard!\n\n' + code);
+    showToast('📋 Live CSS copied to clipboard!');
   });
 </script>
