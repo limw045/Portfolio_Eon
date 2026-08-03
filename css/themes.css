@@ -8,8 +8,8 @@
 html[data-theme="ide"] {
   --bg-primary: #000000;
   --bg-secondary: #040a04;
-  --bg-card: rgba(0, 16, 7, 0.78);
-  --border-color: rgba(0, 255, 102, 0.25);
+  --bg-card: rgba(0, 18, 8, 0.65);
+  --border-color: rgba(0, 255, 102, 0.35);
   --text-primary: #e0ffe8;
   --text-secondary: #85d697;
   --accent-color: #00ff66;
@@ -25,14 +25,19 @@ html[data-theme="ide"] body {
   background-color: #000000 !important;
 }
 
-/* Translucent Glass Overlays to Ensure Green Matrix Rain Cascades Across FULL PAGE SCROLL */
+/* Ensure Canvas at z-index:0 is NEVER Hidden Behind Body Background */
 html[data-theme="ide"] .main-container,
 html[data-theme="ide"] main,
 html[data-theme="ide"] section,
 html[data-theme="ide"] .hero-section,
 html[data-theme="ide"] .section-padding,
-html[data-theme="ide"] .footer-section {
+html[data-theme="ide"] .footer-section,
+html[data-theme="ide"] .timeline-container,
+html[data-theme="ide"] .culture-grid,
+html[data-theme="ide"] .tools-grid {
   background: transparent !important;
+  position: relative;
+  z-index: 2;
 }
 
 html[data-theme="ide"] .tilt-card,
@@ -43,12 +48,14 @@ html[data-theme="ide"] .n8n-container,
 html[data-theme="ide"] .tool-card,
 html[data-theme="ide"] .hero-card,
 html[data-theme="ide"] .project-highlight-box {
-  border: 1px solid rgba(0, 255, 102, 0.25) !important;
+  border: 1px solid rgba(0, 255, 102, 0.35) !important;
   border-radius: 8px;
-  background: rgba(0, 16, 7, 0.78) !important;
-  backdrop-filter: blur(8px) !important;
-  -webkit-backdrop-filter: blur(8px) !important;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.8) !important;
+  background: rgba(0, 18, 8, 0.65) !important;
+  backdrop-filter: blur(6px) !important;
+  -webkit-backdrop-filter: blur(6px) !important;
+  box-shadow: 0 8px 32px rgba(0, 255, 102, 0.12) !important;
+  position: relative;
+  z-index: 3;
 }
 
 html[data-theme="ide"] .ide-body,
