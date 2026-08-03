@@ -1,40 +1,40 @@
 ---
 ---
 
-<!-- High-End Floating Glass Pill Navbar (Linear / Apple Tier) -->
+<!-- High-End Balanced Floating Glass Pill Navbar (Linear / Apple Tier) -->
 <header class="sticky top-4 z-50 max-w-5xl mx-auto px-4 w-full">
-  <div class="rounded-full bg-[#0a0b12]/80 backdrop-blur-2xl border border-emerald-500/30 px-5 py-2.5 shadow-[0_10px_35px_rgba(0,0,0,0.8)] flex items-center justify-between font-mono text-xs text-emerald-300 transition duration-300 hover:border-emerald-500/50">
+  <div class="rounded-full bg-[#0a0b12]/85 backdrop-blur-2xl border border-emerald-500/30 px-6 py-2.5 shadow-[0_10px_35px_rgba(0,0,0,0.8)] flex items-center justify-between font-mono text-xs text-emerald-300 transition duration-300 hover:border-emerald-500/50">
     
     <!-- Left: Brand Logo Pill -->
-    <a href="#" class="font-bold text-emerald-400 hover:text-emerald-300 transition flex items-center gap-2 text-sm">
-      <span class="w-6 h-6 rounded-full bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 font-extrabold text-[11px] flex items-center justify-center">⚡</span>
+    <a href="#" class="font-bold text-emerald-400 hover:text-emerald-300 transition flex items-center gap-2 text-sm flex-shrink-0">
+      <span class="w-7 h-7 rounded-full bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 font-extrabold text-xs flex items-center justify-center shadow-inner">⚡</span>
       <span>Lim Wei Jian</span>
     </a>
 
-    <!-- Center: Navigation Links -->
-    <nav class="hidden md:flex items-center gap-5 text-xs">
-      <a href="#hero" class="text-emerald-200/80 hover:text-emerald-400 transition" data-i18n="nav_story">Origin Story</a>
-      <a href="#academic" class="text-emerald-200/80 hover:text-emerald-400 transition" data-i18n="nav_academic">Academic Journey</a>
-      <a href="#culture" class="text-emerald-200/80 hover:text-emerald-400 transition" data-i18n="nav_culture">Cultural Hub</a>
-      <a href="#skill-studio" class="text-emerald-200/80 hover:text-emerald-400 transition" data-i18n="nav_skills">Skill Studio</a>
-      <a href="#micro-tools" class="text-emerald-200/80 hover:text-emerald-400 transition" data-i18n="nav_tools">Micro-Tools</a>
+    <!-- Center: Balanced Navigation Links -->
+    <nav class="hidden lg:flex items-center gap-2 text-xs">
+      <a href="#hero" class="px-3 py-1 rounded-full text-emerald-200/80 hover:text-emerald-300 hover:bg-emerald-500/10 transition" data-i18n="nav_story">Origin Story</a>
+      <a href="#academic" class="px-3 py-1 rounded-full text-emerald-200/80 hover:text-emerald-300 hover:bg-emerald-500/10 transition" data-i18n="nav_academic">Academic Journey</a>
+      <a href="#culture" class="px-3 py-1 rounded-full text-emerald-200/80 hover:text-emerald-300 hover:bg-emerald-500/10 transition" data-i18n="nav_culture">Cultural Hub</a>
+      <a href="#skill-studio" class="px-3 py-1 rounded-full text-emerald-200/80 hover:text-emerald-300 hover:bg-emerald-500/10 transition" data-i18n="nav_skills">Skill Studio</a>
+      <a href="#micro-tools" class="px-3 py-1 rounded-full text-emerald-200/80 hover:text-emerald-300 hover:bg-emerald-500/10 transition" data-i18n="nav_tools">Micro-Tools</a>
     </nav>
 
-    <!-- Right: Theme, Matrix Rain, Language Toggle Pill -->
-    <div class="flex items-center gap-2 text-xs">
+    <!-- Right: Uniform Control Pill Group -->
+    <div class="flex items-center gap-2 text-xs flex-shrink-0">
       
       <!-- Quick Matrix Rain Toggle Button -->
-      <button id="quick-matrix-btn" class="px-2.5 py-1 rounded-full bg-emerald-950/80 border border-emerald-500/30 text-emerald-400 hover:bg-emerald-900/60 transition text-[11px] flex items-center gap-1 font-bold">
+      <button id="quick-matrix-btn" class="h-8 px-3 rounded-full bg-emerald-950/80 border border-emerald-500/30 text-emerald-400 hover:bg-emerald-900/60 transition text-[11px] flex items-center gap-1.5 font-bold">
         <span>🟢</span> <span class="hidden sm:inline">Rain</span>
       </button>
 
       <!-- 5 Themes Selector Dropdown -->
       <div class="relative group">
-        <button class="px-3 py-1 rounded-full bg-emerald-950/80 border border-emerald-500/30 text-emerald-300 hover:bg-emerald-900/60 transition text-[11px] flex items-center gap-1 font-bold">
+        <button class="h-8 px-3.5 rounded-full bg-emerald-950/80 border border-emerald-500/30 text-emerald-300 hover:bg-emerald-900/60 transition text-[11px] flex items-center gap-1 font-bold">
           🎨 Theme ▾
         </button>
-        <div class="absolute right-0 mt-2 w-48 py-2 rounded-xl bg-[#090a10]/95 border border-emerald-500/40 shadow-2xl opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto transition duration-200 z-50 backdrop-blur-xl">
-          <div class="px-4 py-1 text-[10px] font-bold text-emerald-400/60 uppercase">🎨 5 Master Themes</div>
+        <div class="absolute right-0 mt-2 w-48 py-2 rounded-2xl bg-[#090a10]/95 border border-emerald-500/40 shadow-2xl opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto transition duration-200 z-50 backdrop-blur-xl">
+          <div class="px-4 py-1 text-[10px] font-bold text-emerald-400/60 uppercase tracking-wider">🎨 5 Master Themes</div>
           <button data-theme-target="ide" class="w-full text-left px-4 py-1.5 hover:bg-emerald-950 text-emerald-300 transition">💻 IDE Cyber Code</button>
           <button data-theme-target="football" class="w-full text-left px-4 py-1.5 hover:bg-emerald-950 text-amber-300 transition">⚽ Football Pitch</button>
           <button data-theme-target="cinema" class="w-full text-left px-4 py-1.5 hover:bg-emerald-950 text-yellow-400 transition">🎬 Cinema Noir</button>
@@ -44,12 +44,12 @@
       </div>
 
       <!-- Language Toggle -->
-      <button id="lang-btn" class="px-3 py-1 rounded-full bg-emerald-950/80 border border-emerald-500/30 text-emerald-300 hover:bg-emerald-900/60 transition text-[11px] font-bold">
+      <button id="lang-btn" class="h-8 px-3.5 rounded-full bg-emerald-950/80 border border-emerald-500/30 text-emerald-300 hover:bg-emerald-900/60 transition text-[11px] font-bold">
         🌐 EN / 中文
       </button>
 
       <!-- Sidebar Toggle -->
-      <button id="sidebar-pill-btn" class="px-2.5 py-1 rounded-full bg-emerald-950/80 border border-emerald-500/30 text-emerald-300 hover:bg-emerald-900/60 transition text-[11px] font-bold">
+      <button id="sidebar-pill-btn" class="h-8 w-8 rounded-full bg-emerald-950/80 border border-emerald-500/30 text-emerald-300 hover:bg-emerald-900/60 transition text-xs flex items-center justify-center font-bold">
         📂
       </button>
     </div>

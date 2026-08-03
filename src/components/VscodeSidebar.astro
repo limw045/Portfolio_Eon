@@ -1,53 +1,99 @@
 ---
 ---
 
-<!-- Collapsible IDE File Explorer Sidebar -->
-<aside id="ide-sidebar" class="fixed top-14 left-0 bottom-7 w-64 bg-black/95 border-r border-emerald-500/30 z-40 transition-transform duration-300 transform -translate-x-full shadow-2xl font-mono text-xs text-emerald-300">
-  <div class="flex items-center justify-between px-4 py-2 bg-emerald-950/60 border-b border-emerald-500/20 font-bold text-emerald-400">
-    <span>EXPLORER: PORTFOLIO</span>
-    <button id="sidebar-close-btn" class="hover:text-emerald-200 font-bold">✕</button>
+<!-- Authentic VS Code Explorer Sidebar with Tree Indent Guides & File Icons -->
+<aside id="ide-sidebar" class="fixed top-16 left-4 bottom-10 w-64 bg-[#0d0e17]/95 border border-emerald-500/30 rounded-2xl z-40 transition-transform duration-300 transform -translate-x-[110%] shadow-2xl backdrop-blur-2xl font-mono text-xs text-emerald-300 overflow-hidden">
+  
+  <!-- Sidebar Window Header -->
+  <div class="flex items-center justify-between px-4 py-2.5 bg-[#131522] border-b border-emerald-500/20 text-xs font-bold text-emerald-400">
+    <span class="flex items-center gap-1.5">
+      <span class="text-emerald-400">📂</span> EXPLORER: PORTFOLIO
+    </span>
+    <button id="sidebar-close-btn" class="hover:text-emerald-200 font-bold p-1 rounded hover:bg-emerald-950/60 transition">✕</button>
   </div>
   
+  <!-- Tree Explorer View -->
   <div class="p-3">
-    <div class="font-bold text-emerald-400 mb-2 flex items-center gap-1">
-      <span>📁</span> src/workspace/
+    <!-- Folder Row -->
+    <div class="font-bold text-emerald-300/90 mb-2 flex items-center gap-1.5 text-xs select-none">
+      <span class="text-[10px] text-emerald-500/60">▼</span>
+      <span>📁</span>
+      <span class="text-emerald-400">src/workspace/</span>
     </div>
-    <ul class="pl-4 space-y-2 text-emerald-200/80">
-      <li class="hover:text-emerald-400 transition"><a href="#hero" class="block py-1">📄 01_origin_story.md</a></li>
-      <li class="hover:text-emerald-400 transition"><a href="#academic" class="block py-1">📄 02_academic_journey.json</a></li>
-      <li class="hover:text-emerald-400 transition"><a href="#culture" class="block py-1">📄 03_culture_hub.config</a></li>
-      <li class="hover:text-emerald-400 transition"><a href="#skill-studio" class="block py-1">📄 04_skill_studio.cpp</a></li>
-      <li class="hover:text-emerald-400 transition"><a href="#n8n-studio" class="block py-1">📄 05_n8n_workflow.py</a></li>
-      <li class="hover:text-emerald-400 transition"><a href="#micro-tools" class="block py-1">📄 06_micro_tools.css</a></li>
+
+    <!-- Tree File List with Indent Guide Lines -->
+    <ul class="ml-4 pl-3.5 border-l border-emerald-500/20 space-y-1 text-xs">
+      <li>
+        <a href="#hero" class="sidebar-item flex items-center gap-2 px-2 py-1.5 rounded hover:bg-emerald-500/10 transition group text-emerald-200/90">
+          <span class="text-blue-400 text-xs">📝</span>
+          <span class="group-hover:text-emerald-300">01_origin_story.md</span>
+        </a>
+      </li>
+      <li>
+        <a href="#academic" class="sidebar-item flex items-center gap-2 px-2 py-1.5 rounded hover:bg-emerald-500/10 transition group text-emerald-200/90">
+          <span class="text-amber-400 text-xs">⚙️</span>
+          <span class="group-hover:text-emerald-300">02_academic_journey.json</span>
+        </a>
+      </li>
+      <li>
+        <a href="#culture" class="sidebar-item flex items-center gap-2 px-2 py-1.5 rounded hover:bg-emerald-500/10 transition group text-emerald-200/90">
+          <span class="text-teal-400 text-xs">✨</span>
+          <span class="group-hover:text-emerald-300">03_culture_hub.config</span>
+        </a>
+      </li>
+      <li>
+        <a href="#skill-studio" class="sidebar-item flex items-center gap-2 px-2 py-1.5 rounded hover:bg-emerald-500/10 transition group text-emerald-200/90">
+          <span class="text-cyan-400 text-xs">⚡</span>
+          <span class="group-hover:text-emerald-300">04_skill_studio.cpp</span>
+        </a>
+      </li>
+      <li>
+        <a href="#n8n-studio" class="sidebar-item flex items-center gap-2 px-2 py-1.5 rounded hover:bg-emerald-500/10 transition group text-emerald-200/90">
+          <span class="text-purple-400 text-xs">🐍</span>
+          <span class="group-hover:text-emerald-300">05_n8n_workflow.py</span>
+        </a>
+      </li>
+      <li>
+        <a href="#micro-tools" class="sidebar-item flex items-center gap-2 px-2 py-1.5 rounded hover:bg-emerald-500/10 transition group text-emerald-200/90">
+          <span class="text-pink-400 text-xs">🛠️</span>
+          <span class="group-hover:text-emerald-300">06_micro_tools.css</span>
+        </a>
+      </li>
     </ul>
+  </div>
+
+  <!-- Sidebar Footer Note -->
+  <div class="absolute bottom-0 left-0 right-0 p-3 bg-[#0a0b12] border-t border-emerald-500/20 text-[10px] text-emerald-500/60 font-mono text-center">
+    Press <kbd class="px-1 py-0.5 rounded bg-emerald-950 border border-emerald-500/30 text-emerald-300">Ctrl+B</kbd> to toggle
   </div>
 </aside>
 
 <script>
   const sidebar = document.getElementById('ide-sidebar');
   const closeBtn = document.getElementById('sidebar-close-btn');
-  const toggleBtn = document.getElementById('menu-toggle-sidebar');
-
-  let isSidebarOpen = false;
 
   function toggleSidebar() {
-    isSidebarOpen = !isSidebarOpen;
     if (sidebar) {
-      if (isSidebarOpen) {
-        sidebar.classList.remove('-translate-x-full');
-      } else {
-        sidebar.classList.add('-translate-x-full');
-      }
+      sidebar.classList.toggle('-translate-x-[110%]');
     }
   }
 
   closeBtn?.addEventListener('click', toggleSidebar);
-  toggleBtn?.addEventListener('click', toggleSidebar);
 
   document.addEventListener('keydown', (e) => {
     if (e.ctrlKey && e.key.toLowerCase() === 'b') {
       e.preventDefault();
       toggleSidebar();
     }
+  });
+
+  // Highlight active file on click
+  document.querySelectorAll('.sidebar-item').forEach(item => {
+    item.addEventListener('click', () => {
+      document.querySelectorAll('.sidebar-item').forEach(el => {
+        el.classList.remove('bg-emerald-500/20', 'border-l-2', 'border-emerald-400', 'text-emerald-300', 'font-bold');
+      });
+      item.classList.add('bg-emerald-500/20', 'border-l-2', 'border-emerald-400', 'text-emerald-300', 'font-bold');
+    });
   });
 </script>

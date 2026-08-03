@@ -1,20 +1,20 @@
 ---
 ---
 
-<!-- Integrated VS Code Terminal Drawer -->
-<div id="ide-terminal-drawer" class="fixed bottom-7 left-0 right-0 z-40 bg-black/95 border-t border-emerald-500/30 transition-all duration-300 transform translate-y-full max-h-[300px] flex flex-col shadow-2xl font-mono text-xs">
+<!-- Integrated VS Code Terminal Drawer (Collapsible) -->
+<div id="ide-terminal-drawer" class="fixed bottom-7 left-0 right-0 z-40 bg-[#0c0d15]/95 border-t border-emerald-500/30 transition-all duration-300 transform translate-y-full max-h-[300px] flex flex-col shadow-2xl backdrop-blur-2xl font-mono text-xs">
   <!-- Tabs Row -->
-  <div class="flex items-center justify-between px-4 py-1.5 bg-emerald-950/60 border-b border-emerald-500/20">
-    <div class="flex items-center gap-3">
-      <button class="px-3 py-1 rounded bg-emerald-500 text-black font-bold">💻 TERMINAL</button>
-      <button class="px-3 py-1 rounded hover:bg-emerald-950/40 text-emerald-300/70">⚙️ OUTPUT</button>
-      <button class="px-3 py-1 rounded hover:bg-emerald-950/40 text-emerald-300/70">🔍 PROBLEMS (0)</button>
-      <button class="px-3 py-1 rounded hover:bg-emerald-950/40 text-emerald-300/70">🐛 DEBUG CONSOLE</button>
+  <div class="flex items-center justify-between px-4 py-1.5 bg-[#121420] border-b border-emerald-500/20">
+    <div class="flex items-center gap-2">
+      <button class="px-3 py-1 rounded bg-blue-600 text-white font-bold shadow-md">💻 TERMINAL</button>
+      <button class="px-3 py-1 rounded hover:bg-emerald-950/40 text-emerald-300/70 transition">⚙️ OUTPUT</button>
+      <button class="px-3 py-1 rounded hover:bg-emerald-950/40 text-emerald-300/70 transition">🔍 PROBLEMS (0)</button>
+      <button class="px-3 py-1 rounded hover:bg-emerald-950/40 text-emerald-300/70 transition">🐛 DEBUG CONSOLE</button>
     </div>
     <div class="flex items-center gap-4 text-emerald-400/80">
       <span>Type '<span class="text-emerald-300 font-bold">help</span>' or '<span class="text-emerald-300 font-bold">skills</span>'</span>
       <span class="text-emerald-400">🟢 zsh</span>
-      <button id="close-terminal-btn" class="hover:text-emerald-200 text-base font-bold">✕</button>
+      <button id="close-terminal-btn" class="hover:text-emerald-200 text-base font-bold p-1 rounded hover:bg-emerald-950/60 transition">✕</button>
     </div>
   </div>
 
@@ -37,21 +37,25 @@
   </div>
 </div>
 
-<!-- Fixed VS Code Bottom Status Bar (Height 28px, z-index 50) -->
-<footer class="fixed bottom-0 left-0 right-0 z-50 h-7 bg-emerald-950 border-t border-emerald-500/30 flex items-center justify-between px-4 font-mono text-[11px] text-emerald-300">
-  <div class="flex items-center gap-4">
-    <button id="toggle-terminal-btn" class="flex items-center gap-1.5 px-2 py-0.5 rounded bg-blue-600/80 text-white font-bold hover:bg-blue-500 transition">
+<!-- Refined Fixed VS Code Bottom Status Bar (Height 28px, z-index 50) -->
+<footer class="fixed bottom-0 left-0 right-0 z-50 h-7 bg-[#11121c] border-t border-emerald-500/20 flex items-center justify-between px-4 font-mono text-[11px] text-emerald-300/80 selection:bg-emerald-500 selection:text-black">
+  <div class="flex items-center gap-3">
+    <button id="toggle-terminal-btn" class="flex items-center gap-1.5 px-2.5 py-0.5 rounded bg-blue-600/90 text-white font-bold hover:bg-blue-500 transition text-[11px] shadow-sm">
       💻 Terminal
     </button>
-    <span> main*</span>
-    <span class="text-emerald-400">🟢 0 Errors, 0 Warnings</span>
+    <span class="text-emerald-400 font-bold"> main*</span>
+    <span class="text-emerald-400/90 flex items-center gap-1">
+      <span class="w-2 h-2 rounded-full bg-emerald-400 inline-block animate-pulse"></span>
+      0 Errors, 0 Warnings
+    </span>
   </div>
-  <div class="hidden sm:flex items-center gap-4 text-emerald-300/70">
+
+  <div class="hidden sm:flex items-center gap-4 text-emerald-400/60 text-[11px]">
     <span>Ln 42, Col 1</span>
     <span>Spaces: 2</span>
     <span>UTF-8</span>
     <span>Python 3.12</span>
-    <span>Prettier</span>
+    <span class="text-emerald-300 font-bold">Prettier</span>
   </div>
 </footer>
 
@@ -78,7 +82,6 @@
 
   toggleBtn?.addEventListener('click', toggleTerminal);
   closeBtn?.addEventListener('click', toggleTerminal);
-  document.getElementById('menu-toggle-terminal')?.addEventListener('click', toggleTerminal);
 
   // CLI Command Engine
   cliInput?.addEventListener('keydown', (e) => {
