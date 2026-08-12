@@ -29,6 +29,9 @@ const {
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Outfit:wght@300;400;600;700&family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap" rel="stylesheet" />
   </head>
   <body class="relative min-h-screen font-sans bg-black antialiased selection:bg-emerald-500 selection:text-black">
+    <div class="scroll-progress" aria-hidden="true">
+      <span data-scroll-progress></span>
+    </div>
     <LetterGlitchCanvas />
     <Navbar />
     <VscodeSidebar />
@@ -41,5 +44,8 @@ const {
     </footer>
 
     <TerminalDrawer />
+    <script>
+      import '../scripts/scroll-motion';
+    </script>
   </body>
 </html>
