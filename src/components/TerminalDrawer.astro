@@ -2,7 +2,7 @@
 ---
 
 <!-- Integrated VS Code Terminal Drawer (Bottom Dock) -->
-<div id="ide-terminal-drawer" class="fixed bottom-7 left-0 right-0 z-40 bg-[#090a10]/95 border-t border-emerald-500/30 transition-all duration-300 transform translate-y-full max-h-[300px] flex flex-col shadow-[0_-10px_40px_rgba(0,0,0,0.9)] font-mono text-xs backdrop-blur-2xl">
+<div id="ide-terminal-drawer" class="terminal-drawer fixed bottom-7 left-0 right-0 z-40 bg-[#090a10]/95 border-t border-emerald-500/30 transition-all duration-300 transform translate-y-full max-h-[300px] flex flex-col shadow-[0_-10px_40px_rgba(0,0,0,0.9)] font-mono text-xs backdrop-blur-2xl" aria-hidden="true" role="dialog" aria-label="Portfolio terminal" inert>
   <!-- Terminal Header Bar -->
   <div class="flex items-center justify-between px-4 py-2 bg-[#10121d] border-b border-emerald-500/20 text-xs">
     <div class="flex items-center gap-2 sm:gap-3 overflow-x-auto">
@@ -47,7 +47,7 @@
 </div>
 
 <!-- Fixed VS Code Bottom Status Bar (Height 28px, z-index 50) -->
-<footer class="fixed bottom-0 left-0 right-0 z-50 h-7 bg-[#08090f] border-t border-emerald-500/30 flex items-center justify-between px-4 font-mono text-[11px] text-emerald-300 backdrop-blur-md">
+<footer class="desktop-status-bar fixed bottom-0 left-0 right-0 z-50 h-7 bg-[#08090f] border-t border-emerald-500/30 flex items-center justify-between px-4 font-mono text-[11px] text-emerald-300 backdrop-blur-md">
   <div class="flex items-center gap-3 sm:gap-5">
     <button id="toggle-terminal-btn" class="flex items-center gap-1.5 px-2.5 py-0.5 rounded bg-emerald-600/90 text-white font-bold hover:bg-emerald-500 transition shadow">
       <span>💻</span> Terminal
@@ -81,6 +81,9 @@
   function toggleTerminal() {
     isOpen = !isOpen;
     if (drawer) {
+      drawer.setAttribute('aria-hidden', String(!isOpen));
+      drawer.toggleAttribute('inert', !isOpen);
+      document.getElementById('command-terminal-btn')?.setAttribute('aria-expanded', String(isOpen));
       if (isOpen) {
         drawer.classList.remove('translate-y-full');
         cliInput?.focus();
@@ -92,6 +95,10 @@
 
   toggleBtn?.addEventListener('click', toggleTerminal);
   closeBtn?.addEventListener('click', toggleTerminal);
+  window.addEventListener('terminaltoggle', toggleTerminal);
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && isOpen) toggleTerminal();
+  });
 
   // CLI Command Engine
   cliInput?.addEventListener('keydown', (e) => {

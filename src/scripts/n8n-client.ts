@@ -21,7 +21,7 @@ export async function generateStoryWorkflow(
         body: JSON.stringify({ prompt })
       });
       const data = await response.json();
-      onNodeActive('n8n-node-4');
+      onNodeActive('node-llm');
       onOutputChunk(data.story || JSON.stringify(data));
     } catch (err) {
       onOutputChunk(`\n[n8n Webhook Error]: ${err}`);
@@ -30,7 +30,7 @@ export async function generateStoryWorkflow(
   }
 
   // Simulated node execution sequence
-  const nodes = ['n8n-node-1', 'n8n-node-2', 'n8n-node-3', 'n8n-node-4'];
+  const nodes = ['node-input', 'node-n8n', 'node-classifier', 'node-rag', 'node-llm'];
   for (let i = 0; i < nodes.length; i++) {
     onNodeActive(nodes[i]);
     await new Promise(res => setTimeout(res, 500));

@@ -86,16 +86,16 @@ function initScrollMotion() {
         if (frame && index > 0) {
           gsap.fromTo(
             frame,
-            { y: desktop ? 54 : 24, scale: desktop ? 0.965 : 0.985 },
+            { y: desktop ? 24 : 12, autoAlpha: 0.76 },
             {
-              y: desktop ? -18 : -6,
-              scale: 1,
+              y: 0,
+              autoAlpha: 1,
               ease: 'none',
               scrollTrigger: {
                 trigger: section,
                 start: 'top bottom',
-                end: 'center 42%',
-                scrub: 0.9,
+                end: 'top 55%',
+                scrub: 0.65,
               },
             },
           );

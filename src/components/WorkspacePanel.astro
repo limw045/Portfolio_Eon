@@ -1,0 +1,31 @@
+---
+import type { WorkspaceFile } from '../data/workspace';
+
+interface Props {
+  file: WorkspaceFile;
+  hero?: boolean;
+}
+
+const { file, hero = false } = Astro.props;
+---
+
+<div class:list={['workspace-panel', { 'workspace-panel--hero': hero }]} data-workspace-panel={file.id}>
+  <div class="workspace-panel__editor">
+    <header class="workspace-panel__bar">
+      <div class="workspace-panel__identity">
+        {hero && (
+          <span class="workspace-panel__lights" aria-hidden="true">
+            <i></i><i></i><i></i>
+          </span>
+        )}
+        <span class:list={['workspace-file-icon', `workspace-file-icon--${file.semanticAccent}`]} aria-hidden="true">{file.icon}</span>
+        <strong>{file.filename}</strong>
+        <span class="workspace-panel__path">workspace/{file.workspacePath}</span>
+      </div>
+      <div class="workspace-panel__meta" aria-label={`File type ${file.fileType}`}>
+        <span>{file.fileType}</span><span>UTF-8</span><span aria-hidden="true"> main*</span>
+      </div>
+    </header>
+    <slot />
+  </div>
+</div>

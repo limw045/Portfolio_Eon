@@ -18,7 +18,8 @@ export class BackgroundCanvas {
     this.glitchSpeed = 60; // ms per glitch tick
     this.smooth = true;
     this.characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$&*()-_+=/[]{};:<>.,0123456789';
-    this.subtleOpacity = 0.35; // Subtle background opacity
+    this.subtleOpacity = 0.16; // Atmospheric layer; content remains the visual priority
+    this.matrixEnhanced = false;
 
     this.fontSize = 16;
     this.charWidth = 14;
@@ -48,6 +49,8 @@ export class BackgroundCanvas {
     window.addEventListener('matrixmode', () => {
       this.theme = 'ide';
       document.documentElement.setAttribute('data-theme', 'ide');
+      this.matrixEnhanced = !this.matrixEnhanced;
+      this.subtleOpacity = this.matrixEnhanced ? 0.34 : 0.16;
       this.resize();
     });
 

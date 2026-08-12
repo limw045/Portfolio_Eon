@@ -2,7 +2,7 @@
 ---
 
 <!-- Authentic VS Code Integrated Sidebar with Activity Bar -->
-<aside id="ide-sidebar" class="fixed top-20 left-4 bottom-10 w-72 bg-[#090a10]/95 backdrop-blur-2xl border border-emerald-500/30 rounded-2xl z-40 transition-transform duration-300 transform -translate-x-[calc(100%+2rem)] shadow-[0_20px_50px_rgba(0,0,0,0.9)] font-mono text-xs text-emerald-300 overflow-hidden flex">
+<aside id="ide-sidebar" class="fixed top-20 left-4 bottom-10 w-72 bg-[#090a10]/95 backdrop-blur-2xl border border-emerald-500/30 rounded-xl z-40 transition-transform duration-300 transform -translate-x-[calc(100%+2rem)] shadow-[0_20px_50px_rgba(0,0,0,0.9)] font-mono text-xs text-emerald-300 overflow-hidden flex" aria-label="Workspace explorer" aria-hidden="true" inert>
   
   <!-- Activity Bar (Far Left 48px) -->
   <div class="w-12 bg-[#06070a] border-r border-emerald-500/20 flex flex-col items-center py-4 justify-between text-base">
@@ -53,15 +53,37 @@
 <script>
   const sidebar = document.getElementById('ide-sidebar');
   const closeBtn = document.getElementById('sidebar-close-btn');
+  const sidebarTrigger = document.getElementById('sidebar-pill-btn');
+
+  function setExplorer(open: boolean) {
+    sidebar?.classList.toggle('-translate-x-[calc(100%+2rem)]', !open);
+    sidebar?.setAttribute('aria-hidden', String(!open));
+    sidebar?.toggleAttribute('inert', !open);
+    sidebarTrigger?.setAttribute('aria-expanded', String(open));
+    if (open) closeBtn?.focus();
+    else sidebarTrigger?.focus();
+  }
 
   closeBtn?.addEventListener('click', () => {
-    sidebar?.classList.add('-translate-x-[calc(100%+2rem)]');
+    setExplorer(false);
   });
+  window.addEventListener('explorertoggle', () => setExplorer(sidebar?.getAttribute('aria-hidden') === 'true'));
+  sidebar?.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => {
+    setExplorer(false);
+    const target = document.querySelector<HTMLElement>(link.getAttribute('href') || '');
+    window.setTimeout(() => {
+      const heading = target?.querySelector<HTMLElement>('h1, h2');
+      if (!heading) return;
+      heading.setAttribute('tabindex', '-1');
+      heading.focus({ preventScroll: true });
+    }, 350);
+  }));
 
   document.addEventListener('keydown', (e) => {
     if (e.ctrlKey && e.key.toLowerCase() === 'b') {
       e.preventDefault();
-      sidebar?.classList.toggle('-translate-x-[calc(100%+2rem)]');
+      setExplorer(sidebar?.getAttribute('aria-hidden') === 'true');
     }
+    if (e.key === 'Escape' && sidebar?.getAttribute('aria-hidden') === 'false') setExplorer(false);
   });
 </script>

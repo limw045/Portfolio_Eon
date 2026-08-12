@@ -1,12 +1,15 @@
 ---
+import WorkspacePanel from './WorkspacePanel.astro';
+import { workspaceFiles } from '../data/workspace';
+const file = workspaceFiles[3];
 ---
 
 <section id="skill-studio" class="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
   <!-- VS Code Workstation Outer Container (Double-Bezel) -->
-  <div class="w-full rounded-2xl bg-black/80 border border-blue-500/30 p-2 shadow-[0_0_80px_rgba(59,130,246,0.15)] backdrop-blur-xl">
+  <WorkspacePanel file={file}>
     
     <!-- VS Code Inner Editor Frame -->
-    <div class="w-full rounded-xl bg-[#0b0c13]/95 border border-blue-500/20 overflow-hidden font-mono">
+    <div class="legacy-workspace-content font-mono">
       
       <!-- Window Title Bar -->
       <div class="px-4 py-2 bg-[#121420] border-b border-blue-500/20 flex items-center justify-between text-xs text-blue-300/80">
@@ -131,7 +134,7 @@
           </div>
 
           <!-- Code Viewport Panel -->
-          <div class="p-4 rounded-xl bg-[#08090f] border border-blue-500/20 relative font-mono text-xs overflow-x-auto no-scrollbar min-h-[220px]">
+          <div class="p-4 rounded-xl bg-[#08090f] border border-blue-500/20 relative font-mono text-xs overflow-x-auto min-h-[220px]" tabindex="0" role="region" aria-label="Scrollable code editor">
             
             <!-- C++ Snippet -->
             <pre id="code-cpp" class="code-snippet text-blue-200/90 leading-relaxed">
@@ -223,7 +226,7 @@ pipeline = VisionPipeline()</pre>
       </div>
 
     </div>
-  </div>
+  </WorkspacePanel>
 </section>
 
 <script>

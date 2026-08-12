@@ -1,0 +1,75 @@
+---
+import { contactDetails } from '../data/workspace';
+---
+
+<div id="contact-panel" class="contact-panel" hidden>
+  <button class="contact-panel__backdrop" type="button" data-contact-close aria-label="Close contact panel"></button>
+  <section class="contact-panel__dialog" role="dialog" aria-modal="true" aria-labelledby="contact-title" tabindex="-1">
+    <header>
+      <div>
+        <span class="contact-panel__eyebrow">~/portfolio/contact.json</span>
+        <h2 id="contact-title" data-i18n="contact_title">Let’s build something useful.</h2>
+      </div>
+      <button type="button" class="icon-button" data-contact-close aria-label="Close contact panel">✕</button>
+    </header>
+    <p data-i18n="contact_intro">For roles, collaborations, or a quick technical conversation, choose a channel below.</p>
+    <div class="contact-panel__links">
+      <a href={`mailto:${contactDetails.email}`}>
+        <span aria-hidden="true">✉</span><span><small>Email</small><strong>{contactDetails.email}</strong></span>
+      </a>
+      <a href={contactDetails.github} target="_blank" rel="noopener noreferrer">
+        <span aria-hidden="true">⌘</span><span><small>GitHub</small><strong>github.com/limw045</strong></span>
+      </a>
+      <div class="contact-panel__phone">
+        <span aria-hidden="true">☎</span>
+        <span><small data-i18n="contact_phone">Phone</small><strong id="phone-value" hidden>{contactDetails.phoneDisplay}</strong></span>
+        <button id="reveal-phone" type="button" data-phone-href={contactDetails.phoneHref} data-i18n="reveal_phone">Reveal number</button>
+      </div>
+    </div>
+  </section>
+</div>
+
+<script>
+  const panel = document.getElementById('contact-panel');
+  const dialog = panel?.querySelector<HTMLElement>('[role="dialog"]');
+  const phoneValue = document.getElementById('phone-value');
+  const revealPhone = document.getElementById('reveal-phone') as HTMLButtonElement | null;
+  let contactTrigger: HTMLElement | null = null;
+
+  function openContact(trigger?: HTMLElement | null) {
+    if (!panel) return;
+    contactTrigger = trigger || document.activeElement as HTMLElement;
+    panel.hidden = false;
+    document.body.classList.add('overlay-open');
+    requestAnimationFrame(() => {
+      panel.classList.add('is-open');
+      dialog?.focus();
+    });
+  }
+
+  function closeContact() {
+    if (!panel) return;
+    panel.classList.remove('is-open');
+    document.body.classList.remove('overlay-open');
+    window.setTimeout(() => { panel.hidden = true; }, 180);
+    contactTrigger?.focus();
+  }
+
+  document.querySelectorAll<HTMLElement>('[data-contact-open]').forEach((button) => {
+    button.addEventListener('click', () => openContact(button));
+  });
+  panel?.querySelectorAll<HTMLElement>('[data-contact-close]').forEach((button) => button.addEventListener('click', closeContact));
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && panel && !panel.hidden) closeContact();
+  });
+  revealPhone?.addEventListener('click', () => {
+    if (!phoneValue || !revealPhone) return;
+    phoneValue.hidden = false;
+    const link = document.createElement('a');
+    link.href = revealPhone.dataset.phoneHref || '#';
+    link.className = 'contact-panel__call';
+    link.textContent = phoneValue.textContent || '';
+    phoneValue.replaceWith(link);
+    revealPhone.remove();
+  });
+</script>

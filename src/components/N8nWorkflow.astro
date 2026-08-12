@@ -1,12 +1,15 @@
 ---
+import WorkspacePanel from './WorkspacePanel.astro';
+import { workspaceFiles } from '../data/workspace';
+const file = workspaceFiles[4];
 ---
 
 <section id="n8n-studio" class="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
   <!-- VS Code Workstation Outer Container (Double-Bezel) -->
-  <div class="w-full rounded-2xl bg-black/80 border border-purple-500/30 p-2 shadow-[0_0_80px_rgba(168,85,247,0.15)] backdrop-blur-xl">
+  <WorkspacePanel file={file}>
     
     <!-- VS Code Inner Editor Frame -->
-    <div class="w-full rounded-xl bg-[#0b0c13]/95 border border-purple-500/20 overflow-hidden font-mono">
+    <div class="legacy-workspace-content font-mono">
       
       <!-- Window Title Bar -->
       <div class="px-4 py-2 bg-[#121420] border-b border-purple-500/20 flex items-center justify-between text-xs text-purple-300/80">
@@ -161,7 +164,7 @@
       </div>
 
     </div>
-  </div>
+  </WorkspacePanel>
 </section>
 
 <script>

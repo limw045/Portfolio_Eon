@@ -3,6 +3,7 @@ import Navbar from '../components/Navbar.astro';
 import VscodeSidebar from '../components/VscodeSidebar.astro';
 import LetterGlitchCanvas from '../components/LetterGlitchCanvas.astro';
 import TerminalDrawer from '../components/TerminalDrawer.astro';
+import ContactPanel from '../components/ContactPanel.astro';
 import '../styles/global.css';
 
 interface Props {
@@ -11,13 +12,13 @@ interface Props {
 }
 
 const {
-  title = "Lim Wei Jian | Senior AI Student & Full-Stack Developer",
-  description = "Personal Portfolio of Lim Wei Jian. Senior AI Student @ MMU, specializing in Multi-Agent RAG Architectures and Full-Stack Systems."
+      title = "Lim Wei Jian | AI Graduate & Full-Stack Developer",
+      description = "Portfolio of Lim Wei Jian, an MMU AI graduate building full-stack products and intelligent systems with C++, Python, and TypeScript."
 } = Astro.props;
 ---
 
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth bg-black text-emerald-100 pb-10">
+<html lang="en" data-theme="ide" class="scroll-smooth bg-black text-emerald-100">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -33,6 +34,7 @@ const {
       <span data-scroll-progress></span>
     </div>
     <LetterGlitchCanvas />
+    <div class="content-veil" aria-hidden="true"></div>
     <Navbar />
     <VscodeSidebar />
     <main>
@@ -44,6 +46,7 @@ const {
     </footer>
 
     <TerminalDrawer />
+    <ContactPanel />
     <script>
       import '../scripts/scroll-motion';
     </script>

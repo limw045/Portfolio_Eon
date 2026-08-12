@@ -1,166 +1,137 @@
 ---
+import { workspaceFiles } from '../data/workspace';
 ---
 
-<!-- High-End Windows Taskbar / macOS Dock Style Floating Navbar -->
-<header class="sticky top-4 z-50 max-w-4xl mx-auto px-4 w-full">
-  <div class="rounded-full bg-[#0a0b12]/85 backdrop-blur-2xl border border-emerald-500/35 px-4 py-2 shadow-[0_12px_40px_rgba(0,0,0,0.85)] flex items-center justify-between font-mono text-xs text-emerald-300 transition duration-300 hover:border-emerald-500/60">
-    
-    <!-- Left: Brand Icon Pill -->
-    <a href="#hero" class="group relative flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-950/80 border border-emerald-500/40 text-emerald-400 font-bold hover:bg-emerald-900/60 transition">
-      <span class="text-sm">⚡</span>
-      <span class="hidden sm:inline text-xs font-mono">Lim Wei Jian</span>
-      <!-- Tooltip -->
-      <span class="absolute -bottom-8 left-1/2 -translate-x-1/2 px-2 py-0.5 rounded bg-black/90 text-emerald-300 text-[10px] opacity-0 group-hover:opacity-100 pointer-events-none transition whitespace-nowrap border border-emerald-500/30">
-        Origin Story
-      </span>
+<header class="command-bar-wrap">
+  <div class="command-bar" role="navigation" aria-label="Portfolio workspace">
+    <a href="#hero" class="command-bar__brand" aria-label="Lim Wei Jian, go to introduction">
+      <span aria-hidden="true">⚡</span><strong>Lim Wei Jian</strong>
     </a>
 
-    <!-- Center: Windows Taskbar / Dock Icon App Buttons -->
-    <nav class="flex items-center gap-1 sm:gap-2">
-      <!-- 1. Origin Story -->
-      <a href="#hero" class="group relative p-2 rounded-full hover:bg-emerald-500/20 text-emerald-300/80 hover:text-emerald-400 transition flex items-center justify-center">
-        <span class="text-base sm:text-lg">📄</span>
-        <span class="absolute -bottom-8 left-1/2 -translate-x-1/2 px-2 py-0.5 rounded bg-black/90 text-emerald-300 text-[10px] opacity-0 group-hover:opacity-100 pointer-events-none transition whitespace-nowrap border border-emerald-500/30">
-          01_origin_story.md
-        </span>
-      </a>
-
-      <!-- 2. Academic Journey -->
-      <a href="#academic" class="group relative p-2 rounded-full hover:bg-amber-500/20 text-amber-300/80 hover:text-amber-400 transition flex items-center justify-center">
-        <span class="text-base sm:text-lg">🎓</span>
-        <span class="absolute -bottom-8 left-1/2 -translate-x-1/2 px-2 py-0.5 rounded bg-black/90 text-amber-300 text-[10px] opacity-0 group-hover:opacity-100 pointer-events-none transition whitespace-nowrap border border-amber-500/30">
-          02_academic.json
-        </span>
-      </a>
-
-      <!-- 3. Cultural Hub -->
-      <a href="#culture" class="group relative p-2 rounded-full hover:bg-teal-500/20 text-teal-300/80 hover:text-teal-400 transition flex items-center justify-center">
-        <span class="text-base sm:text-lg">✨</span>
-        <span class="absolute -bottom-8 left-1/2 -translate-x-1/2 px-2 py-0.5 rounded bg-black/90 text-teal-300 text-[10px] opacity-0 group-hover:opacity-100 pointer-events-none transition whitespace-nowrap border border-teal-500/30">
-          03_culture.config
-        </span>
-      </a>
-
-      <!-- 4. Skill Studio -->
-      <a href="#skill-studio" class="group relative p-2 rounded-full hover:bg-blue-500/20 text-blue-300/80 hover:text-blue-400 transition flex items-center justify-center">
-        <span class="text-base sm:text-lg">⚡</span>
-        <span class="absolute -bottom-8 left-1/2 -translate-x-1/2 px-2 py-0.5 rounded bg-black/90 text-blue-300 text-[10px] opacity-0 group-hover:opacity-100 pointer-events-none transition whitespace-nowrap border border-blue-500/30">
-          04_skills.cpp
-        </span>
-      </a>
-
-      <!-- 5. n8n AI Story -->
-      <a href="#n8n-studio" class="group relative p-2 rounded-full hover:bg-purple-500/20 text-purple-300/80 hover:text-purple-400 transition flex items-center justify-center">
-        <span class="text-base sm:text-lg">🤖</span>
-        <span class="absolute -bottom-8 left-1/2 -translate-x-1/2 px-2 py-0.5 rounded bg-black/90 text-purple-300 text-[10px] opacity-0 group-hover:opacity-100 pointer-events-none transition whitespace-nowrap border border-purple-500/30">
-          05_n8n_flow.py
-        </span>
-      </a>
-
-      <!-- 6. Micro-Tools -->
-      <a href="#micro-tools" class="group relative p-2 rounded-full hover:bg-emerald-500/20 text-emerald-300/80 hover:text-emerald-400 transition flex items-center justify-center">
-        <span class="text-base sm:text-lg">🛠️</span>
-        <span class="absolute -bottom-8 left-1/2 -translate-x-1/2 px-2 py-0.5 rounded bg-black/90 text-emerald-300 text-[10px] opacity-0 group-hover:opacity-100 pointer-events-none transition whitespace-nowrap border border-emerald-500/30">
-          06_tools.css
-        </span>
-      </a>
-    </nav>
-
-    <!-- Taskbar Divider -->
-    <div class="h-5 w-px bg-emerald-500/30 mx-1"></div>
-
-    <!-- Right Controls: Matrix, Theme, Language, Sidebar -->
-    <div class="flex items-center gap-1.5 text-xs">
-      
-      <!-- Quick Matrix Rain Toggle Button -->
-      <button id="quick-matrix-btn" class="group relative p-2 rounded-full bg-emerald-950/80 border border-emerald-500/30 text-emerald-400 hover:bg-emerald-900/80 transition flex items-center justify-center">
-        <span class="text-sm">🟢</span>
-        <span class="absolute -bottom-8 left-1/2 -translate-x-1/2 px-2 py-0.5 rounded bg-black/90 text-emerald-300 text-[10px] opacity-0 group-hover:opacity-100 pointer-events-none transition whitespace-nowrap border border-emerald-500/30">
-          Toggle Code Rain
-        </span>
+    <div class="command-bar__files">
+      <button id="file-menu-trigger" class="command-bar__current" type="button" aria-expanded="false" aria-controls="file-menu">
+        <span id="current-file-icon" aria-hidden="true">📝</span>
+        <span id="current-file-name" class="current-file-long">01_origin_story.md</span>
+        <span id="current-file-short" class="current-file-short">origin.md</span>
+        <span aria-hidden="true">⌄</span>
       </button>
+      <div id="file-menu" class="command-menu command-menu--files" hidden>
+        <div class="command-menu__label">OPEN FILE</div>
+        {workspaceFiles.map((file) => (
+          <a href={`#${file.id}`} data-workspace-link={file.id}>
+            <span aria-hidden="true">{file.icon}</span>
+            <span><strong>{file.filename}</strong><small>workspace/{file.workspacePath} · {file.fileType}</small></span>
+          </a>
+        ))}
+      </div>
+    </div>
 
-      <!-- 5 Themes Selector Dropdown -->
-      <div class="relative group">
-        <button class="p-2 rounded-full bg-emerald-950/80 border border-emerald-500/30 text-emerald-300 hover:bg-emerald-900/80 transition flex items-center justify-center">
-          <span class="text-sm">🎨</span>
-        </button>
-        <div class="absolute right-0 mt-2 w-48 py-2 rounded-2xl bg-[#090a10]/95 border border-emerald-500/40 shadow-2xl opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto transition duration-200 z-50 backdrop-blur-xl">
-          <div class="px-4 py-1 text-[10px] font-bold text-emerald-400/60 uppercase">🎨 5 Master Themes</div>
-          <button data-theme-target="ide" class="w-full text-left px-4 py-1.5 hover:bg-emerald-950 text-emerald-300 transition">💻 IDE Cyber Code</button>
-          <button data-theme-target="football" class="w-full text-left px-4 py-1.5 hover:bg-emerald-950 text-amber-300 transition">⚽ Football Pitch</button>
-          <button data-theme-target="cinema" class="w-full text-left px-4 py-1.5 hover:bg-emerald-950 text-yellow-400 transition">🎬 Cinema Noir</button>
-          <button data-theme-target="swiss" class="w-full text-left px-4 py-1.5 hover:bg-emerald-950 text-red-400 transition">📜 Swiss Editorial</button>
-          <button data-theme-target="travel" class="w-full text-left px-4 py-1.5 hover:bg-emerald-950 text-orange-300 transition">✈️ Travel Story Log</button>
+    <div class="command-bar__actions">
+      <button class="command-action command-action--contact" type="button" data-contact-open aria-label="Open contact panel">
+        <span aria-hidden="true">✉</span><span>Contact</span>
+      </button>
+      <button id="lang-btn" class="command-action" type="button" aria-label="Switch language">🌐 <span>EN</span></button>
+      <div class="command-bar__theme">
+        <button id="theme-menu-trigger" class="command-action command-action--icon" type="button" aria-label="Choose theme" aria-expanded="false" aria-controls="theme-menu">🎨</button>
+        <div id="theme-menu" class="command-menu command-menu--themes" hidden>
+          <div class="command-menu__label">COLOR THEME</div>
+          <button data-theme-target="ide"><span>💻 IDE Cyber Code</span><small class="theme-ready">Ready</small></button>
+          <button data-theme-target="football"><span>⚽ Football Pitch</span><small>Preview / WIP</small></button>
+          <button data-theme-target="cinema"><span>🎬 Cinema Noir</span><small>Preview / WIP</small></button>
+          <button data-theme-target="swiss"><span>📜 Swiss Editorial</span><small>Preview / WIP</small></button>
+          <button data-theme-target="travel"><span>✈️ Travel Story Log</span><small>Preview / WIP</small></button>
+          <div class="command-menu__note">IDE is the polished experience. Other themes are early previews.</div>
         </div>
       </div>
-
-      <!-- Language Toggle -->
-      <button id="lang-btn" class="px-3 py-1 rounded-full bg-emerald-950/80 border border-emerald-500/30 text-emerald-300 hover:bg-emerald-900/80 transition text-[11px] font-bold">
-        🌐 EN
-      </button>
-
-      <!-- Sidebar Toggle -->
-      <button id="sidebar-pill-btn" class="p-2 rounded-full bg-emerald-950/80 border border-emerald-500/30 text-emerald-300 hover:bg-emerald-900/80 transition flex items-center justify-center">
-        <span class="text-sm">📂</span>
-      </button>
+      <button id="quick-matrix-btn" class="command-action command-action--icon command-action--desktop" type="button" aria-label="Toggle code rain">◉</button>
+      <button id="command-terminal-btn" class="command-action command-action--icon" type="button" aria-label="Open terminal" aria-expanded="false">›_</button>
+      <button id="sidebar-pill-btn" class="command-action command-action--icon" type="button" aria-label="Open workspace explorer" aria-expanded="false">☷</button>
     </div>
   </div>
 </header>
 
 <script>
   import { dictionaries, type Language } from '../scripts/i18n';
+  import { workspaceFiles } from '../data/workspace';
 
   let currentLang: Language = 'en';
+  const fileTrigger = document.getElementById('file-menu-trigger');
+  const fileMenu = document.getElementById('file-menu');
+  const themeTrigger = document.getElementById('theme-menu-trigger');
+  const themeMenu = document.getElementById('theme-menu');
+
+  function toggleMenu(trigger: HTMLElement | null, menu: HTMLElement | null, force?: boolean) {
+    if (!trigger || !menu) return;
+    const open = force ?? menu.hidden;
+    menu.hidden = !open;
+    trigger.setAttribute('aria-expanded', String(open));
+  }
+
+  fileTrigger?.addEventListener('click', () => {
+    toggleMenu(fileTrigger, fileMenu);
+    toggleMenu(themeTrigger, themeMenu, false);
+  });
+  themeTrigger?.addEventListener('click', () => {
+    toggleMenu(themeTrigger, themeMenu);
+    toggleMenu(fileTrigger, fileMenu, false);
+  });
+  fileMenu?.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => toggleMenu(fileTrigger, fileMenu, false)));
+
+  document.addEventListener('click', (event) => {
+    const target = event.target as Node;
+    if (!fileTrigger?.contains(target) && !fileMenu?.contains(target)) toggleMenu(fileTrigger, fileMenu, false);
+    if (!themeTrigger?.contains(target) && !themeMenu?.contains(target)) toggleMenu(themeTrigger, themeMenu, false);
+  });
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') {
+      toggleMenu(fileTrigger, fileMenu, false);
+      toggleMenu(themeTrigger, themeMenu, false);
+    }
+  });
 
   function updateLanguage(lang: Language) {
     currentLang = lang;
     document.documentElement.lang = lang;
     const dict = dictionaries[lang];
-
-    const langBtn = document.getElementById('lang-btn');
-    if (langBtn) {
-      langBtn.innerText = lang === 'en' ? '🌐 EN' : '🌐 中文';
-    }
-
-    document.querySelectorAll('[data-i18n]').forEach(el => {
-      const key = el.getAttribute('data-i18n') as keyof typeof dict;
-      if (key && dict[key]) {
-        el.innerHTML = dict[key];
-      }
+    const label = document.querySelector('#lang-btn span');
+    if (label) label.textContent = lang === 'en' ? 'EN' : '中';
+    document.querySelectorAll('[data-i18n]').forEach((element) => {
+      const key = element.getAttribute('data-i18n') as keyof typeof dict;
+      if (key && dict[key]) element.innerHTML = dict[key];
     });
   }
+  document.getElementById('lang-btn')?.addEventListener('click', () => updateLanguage(currentLang === 'en' ? 'zh' : 'en'));
 
-  document.getElementById('lang-btn')?.addEventListener('click', () => {
-    updateLanguage(currentLang === 'en' ? 'zh' : 'en');
-  });
-
-  // 5 Theme Switching Listener
-  document.querySelectorAll('[data-theme-target]').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const theme = btn.getAttribute('data-theme-target');
-      if (theme) {
-        document.documentElement.setAttribute('data-theme', theme);
-        localStorage.setItem('weijian_portfolio_theme', theme);
-        window.dispatchEvent(new CustomEvent('themechange', { detail: { theme } }));
-      }
+  document.querySelectorAll<HTMLElement>('[data-theme-target]').forEach((button) => {
+    button.addEventListener('click', () => {
+      const theme = button.dataset.themeTarget;
+      if (!theme) return;
+      document.documentElement.dataset.theme = theme;
+      localStorage.setItem('weijian_portfolio_theme', theme);
+      window.dispatchEvent(new CustomEvent('themechange', { detail: { theme } }));
+      toggleMenu(themeTrigger, themeMenu, false);
     });
   });
-
-  // Quick Matrix Rain Toggle
-  document.getElementById('quick-matrix-btn')?.addEventListener('click', () => {
-    window.dispatchEvent(new CustomEvent('matrixmode'));
-  });
-
-  // Sidebar Toggle
-  document.getElementById('sidebar-pill-btn')?.addEventListener('click', () => {
-    const sidebar = document.getElementById('ide-sidebar');
-    if (sidebar) {
-      sidebar.classList.toggle('-translate-x-full');
-    }
-  });
-
-  // Restore saved theme on load
   const savedTheme = localStorage.getItem('weijian_portfolio_theme') || 'ide';
-  document.documentElement.setAttribute('data-theme', savedTheme);
+  document.documentElement.dataset.theme = savedTheme;
+
+  document.getElementById('quick-matrix-btn')?.addEventListener('click', () => window.dispatchEvent(new CustomEvent('matrixmode')));
+  document.getElementById('command-terminal-btn')?.addEventListener('click', () => window.dispatchEvent(new CustomEvent('terminaltoggle')));
+  document.getElementById('sidebar-pill-btn')?.addEventListener('click', () => window.dispatchEvent(new CustomEvent('explorertoggle')));
+
+  const currentName = document.getElementById('current-file-name');
+  const currentShort = document.getElementById('current-file-short');
+  const currentIcon = document.getElementById('current-file-icon');
+  const sections = workspaceFiles.map((file) => ({ file, element: document.getElementById(file.id) })).filter((item) => item.element);
+  const observer = new IntersectionObserver((entries) => {
+    const visible = entries.filter((entry) => entry.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+    if (!visible) return;
+    const file = workspaceFiles.find((item) => item.id === visible.target.id);
+    if (!file) return;
+    if (currentName) currentName.textContent = file.filename;
+    if (currentShort) currentShort.textContent = file.shortFilename;
+    if (currentIcon) currentIcon.textContent = file.icon;
+    document.querySelectorAll('[data-workspace-link]').forEach((link) => link.toggleAttribute('aria-current', link.getAttribute('data-workspace-link') === file.id));
+  }, { rootMargin: '-25% 0px -55% 0px', threshold: [0, 0.1, 0.35] });
+  sections.forEach(({ element }) => element && observer.observe(element));
 </script>

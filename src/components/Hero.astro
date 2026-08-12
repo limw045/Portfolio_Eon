@@ -1,54 +1,14 @@
 ---
+import WorkspacePanel from './WorkspacePanel.astro';
+import { workspaceFiles } from '../data/workspace';
+
+const file = workspaceFiles[0];
 ---
 
 <section id="hero" class="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-16 flex flex-col items-center">
   
-  <!-- IDE Workstation Outer Container (Double-Bezel Architecture) -->
-  <div class="w-full rounded-2xl bg-black/80 border border-emerald-500/30 p-2 shadow-[0_0_80px_rgba(16,185,129,0.12)] backdrop-blur-xl">
-    
-    <!-- VS Code Inner Frame -->
-    <div id="vp-container" class="relative w-full rounded-xl bg-[#0b0c13]/95 border border-emerald-500/20 overflow-hidden font-mono">
-      
-      <!-- VS Code Window Title Bar -->
-      <div class="px-4 py-2 bg-[#121420] border-b border-emerald-500/20 flex items-center justify-between text-xs text-emerald-300/80">
-        <div class="flex items-center gap-2">
-          <div class="flex items-center gap-1.5 mr-2">
-            <span class="w-3 h-3 rounded-full bg-red-500/80 inline-block"></span>
-            <span class="w-3 h-3 rounded-full bg-yellow-500/80 inline-block"></span>
-            <span class="w-3 h-3 rounded-full bg-green-500/80 inline-block"></span>
-          </div>
-          <span class="font-bold text-emerald-400">📄 01_origin_story.md</span>
-          <span class="text-[10px] text-emerald-500/60">— workspace/portfolio</span>
-        </div>
-
-        <div class="hidden sm:flex items-center gap-4 text-[11px] text-emerald-400/60">
-          <span>UTF-8</span>
-          <span>Markdown</span>
-          <span> main*</span>
-        </div>
-      </div>
-
-      <!-- COMPLETE 6-FILE WORKSPACE TABS HEADER -->
-      <div class="flex items-center gap-1 px-3 pt-2 bg-[#0e101a] border-b border-emerald-500/20 text-xs overflow-x-auto no-scrollbar">
-        <div class="px-3 py-1.5 rounded-t bg-[#0b0c13] border-t-2 border-emerald-400 text-emerald-300 font-bold flex items-center gap-2 flex-shrink-0">
-          <span class="text-emerald-400">📝</span> 01_origin_story.md <span class="text-[10px] opacity-60">✕</span>
-        </div>
-        <a href="#academic" class="px-3 py-1.5 rounded-t text-emerald-300/60 hover:bg-[#121420] transition flex items-center gap-2 flex-shrink-0">
-          <span class="text-amber-400">⚙️</span> 02_academic_journey.json
-        </a>
-        <a href="#culture" class="px-3 py-1.5 rounded-t text-emerald-300/60 hover:bg-[#121420] transition flex items-center gap-2 flex-shrink-0">
-          <span class="text-teal-400">✨</span> 03_culture_hub.config
-        </a>
-        <a href="#skill-studio" class="px-3 py-1.5 rounded-t text-emerald-300/60 hover:bg-[#121420] transition flex items-center gap-2 flex-shrink-0">
-          <span class="text-blue-400">⚡</span> 04_skill_studio.cpp
-        </a>
-        <a href="#n8n-studio" class="px-3 py-1.5 rounded-t text-emerald-300/60 hover:bg-[#121420] transition flex items-center gap-2 flex-shrink-0">
-          <span class="text-purple-400">🤖</span> 05_n8n_workflow.py
-        </a>
-        <a href="#micro-tools" class="px-3 py-1.5 rounded-t text-emerald-300/60 hover:bg-[#121420] transition flex items-center gap-2 flex-shrink-0">
-          <span class="text-emerald-400">🛠️</span> 06_micro_tools.css
-        </a>
-      </div>
+  <WorkspacePanel file={file} hero>
+    <div id="vp-container" class="relative font-mono">
 
       <!-- Editor Content Body with Line Numbers -->
       <div class="p-6 sm:p-10 flex gap-4 sm:gap-6 text-left">
@@ -71,6 +31,7 @@
           </div>
 
           <!-- Line 2 & 3: H1 VariableProximity Title -->
+          <p class="hero-name">Lim Wei Jian</p>
           <h1 class="text-2xl sm:text-4xl lg:text-5xl font-bold tracking-tight mb-6 leading-tight select-none cursor-default font-['Roboto_Flex']">
             <span class="text-emerald-500 font-mono font-normal mr-2 text-xl sm:text-3xl">#</span>
             <span class="vp-word text-white inline-block whitespace-nowrap" data-word="Full-Stack">Full-Stack</span>{" "}
@@ -87,23 +48,23 @@
           <!-- Line 4 & 5: Quote / Desc Block -->
           <div class="border-l-2 border-emerald-500/40 pl-4 py-1 mb-8 text-emerald-200/90 text-sm sm:text-base font-sans leading-relaxed">
             <p data-i18n="hero_desc">
-              I'm <strong class="text-emerald-400 font-mono">Lim Wei Jian</strong>, an AI Graduate from MMU (CGPA 3.74) with a deep passion for full-stack engineering. Whether it's C++, Python, or TypeScript, I just enjoy turning ideas into smooth, useful software. Take a look around!
+              AI Graduate from MMU building useful full-stack products and intelligent systems with C++, Python, and TypeScript.
             </p>
           </div>
 
           <!-- Line 6: Interactive IDE Actions -->
           <div class="flex flex-wrap items-center gap-4 font-mono text-xs sm:text-sm pt-2">
-            <a href="#skill-studio" class="px-5 py-2.5 rounded-lg bg-emerald-500 text-black font-bold hover:bg-emerald-400 transition shadow-lg shadow-emerald-500/20 flex items-center gap-2" data-i18n="btn_skills">
-              ▶ Explore Skill Studio (C++/Py)
-            </a>
-            <a href="#n8n-studio" class="px-5 py-2.5 rounded-lg bg-emerald-950/80 border border-emerald-500/40 text-emerald-300 font-bold hover:bg-emerald-900/60 transition flex items-center gap-2" data-i18n="btn_workflow">
-              ⚡ Trigger AI Workflow Node
+            <button type="button" class="primary-button" data-contact-open data-i18n="btn_contact">
+              ✉ Contact Me
+            </button>
+            <a href="#skill-studio" class="secondary-button" data-i18n="btn_skills">
+              ▶ Explore Skill Studio
             </a>
           </div>
         </div>
       </div>
     </div>
-  </div>
+  </WorkspacePanel>
 </section>
 
 <script>
