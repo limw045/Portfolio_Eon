@@ -1,0 +1,28 @@
+---
+import { sectionLinks } from '../data/portfolio';
+---
+
+<header class="cinema-nav" data-cinema-nav>
+  <a class="cinema-nav__brand" href="#cinema-hero" data-stage-link="hero">Lim Wei Jian <span>Private Screening</span></a>
+  <nav aria-label="Cinema programme">
+    {sectionLinks.slice(1).map((item, index) => (
+      <a href={`#${item.cinemaId}`} data-stage-link={item.key}><span>0{index + 1}</span>{item.label}</a>
+    ))}
+  </nav>
+  <div class="cinema-nav__actions">
+    <button type="button" data-sound-toggle aria-pressed="false">Sound Off</button>
+    <button type="button" data-contact-open>Contact</button>
+    <div class="cinema-theme-control">
+      <button type="button" data-theme-menu-toggle aria-expanded="false">Themes</button>
+      <div class="cinema-theme-menu" data-cinema-theme-menu hidden>
+        <p>Available</p>
+        <button type="button" data-theme-target="ide"><span>IDE Cyber Code</span><small>Available</small></button>
+        <button type="button" data-theme-target="cinema"><span>Cinema Noir</span><small>Available</small></button>
+        <p>In development</p>
+        <button type="button" data-theme-target="football"><span>Football Pitch</span><small>WIP</small></button>
+        <button type="button" data-theme-target="swiss"><span>Swiss Editorial</span><small>WIP</small></button>
+        <button type="button" data-theme-target="travel"><span>Travel Story Log</span><small>WIP</small></button>
+      </div>
+    </div>
+  </div>
+</header>

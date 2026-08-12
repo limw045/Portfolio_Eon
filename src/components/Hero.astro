@@ -5,7 +5,7 @@ import { workspaceFiles } from '../data/workspace';
 const file = workspaceFiles[0];
 ---
 
-<section id="hero" class="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-16 flex flex-col items-center">
+<section id="hero" data-section-key="hero" class="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-16 flex flex-col items-center">
   
   <WorkspacePanel file={file} hero>
     <div id="vp-container" class="relative font-mono">
@@ -27,7 +27,7 @@ const file = workspaceFiles[0];
         <div class="flex-1 min-w-0">
           <!-- Line 1: Status Badge comment -->
           <div class="text-xs sm:text-sm text-emerald-500/70 mb-3 font-mono">
-            <span class="text-emerald-400 font-bold">// STATUS:</span> <span class="px-2 py-0.5 rounded bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 inline-block" data-i18n="badge_status">AI Graduate @ MMU | CGPA 3.74</span>
+            <span class="text-emerald-400 font-bold">// STATUS:</span> <span class="px-2 py-0.5 rounded bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 inline-block">AI Graduate @ MMU | CGPA 3.74</span>
           </div>
 
           <!-- Line 2 & 3: H1 VariableProximity Title -->
@@ -47,17 +47,17 @@ const file = workspaceFiles[0];
 
           <!-- Line 4 & 5: Quote / Desc Block -->
           <div class="border-l-2 border-emerald-500/40 pl-4 py-1 mb-8 text-emerald-200/90 text-sm sm:text-base font-sans leading-relaxed">
-            <p data-i18n="hero_desc">
+            <p>
               AI Graduate from MMU building useful full-stack products and intelligent systems with C++, Python, and TypeScript.
             </p>
           </div>
 
           <!-- Line 6: Interactive IDE Actions -->
           <div class="flex flex-wrap items-center gap-4 font-mono text-xs sm:text-sm pt-2">
-            <button type="button" class="primary-button" data-contact-open data-i18n="btn_contact">
+            <button type="button" class="primary-button" data-contact-open>
               ✉ Contact Me
             </button>
-            <a href="#skill-studio" class="secondary-button" data-i18n="btn_skills">
+            <a href="#skill-studio" class="secondary-button">
               ▶ Explore Skill Studio
             </a>
           </div>

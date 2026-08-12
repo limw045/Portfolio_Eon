@@ -30,17 +30,16 @@ import { workspaceFiles } from '../data/workspace';
       <button class="command-action command-action--contact" type="button" data-contact-open aria-label="Open contact panel">
         <span aria-hidden="true">✉</span><span>Contact</span>
       </button>
-      <button id="lang-btn" class="command-action" type="button" aria-label="Switch language">🌐 <span>EN</span></button>
       <div class="command-bar__theme">
         <button id="theme-menu-trigger" class="command-action command-action--icon" type="button" aria-label="Choose theme" aria-expanded="false" aria-controls="theme-menu">🎨</button>
         <div id="theme-menu" class="command-menu command-menu--themes" hidden>
           <div class="command-menu__label">COLOR THEME</div>
-          <button data-theme-target="ide"><span>💻 IDE Cyber Code</span><small class="theme-ready">Ready</small></button>
+          <button data-theme-target="ide"><span>IDE Cyber Code</span><small class="theme-ready">Available</small></button>
           <button data-theme-target="football"><span>⚽ Football Pitch</span><small>Preview / WIP</small></button>
-          <button data-theme-target="cinema"><span>🎬 Cinema Noir</span><small>Preview / WIP</small></button>
+          <button data-theme-target="cinema"><span>Cinema Noir</span><small class="theme-ready">Available</small></button>
           <button data-theme-target="swiss"><span>📜 Swiss Editorial</span><small>Preview / WIP</small></button>
           <button data-theme-target="travel"><span>✈️ Travel Story Log</span><small>Preview / WIP</small></button>
-          <div class="command-menu__note">IDE is the polished experience. Other themes are early previews.</div>
+          <div class="command-menu__note">IDE and Cinema are complete stages. Other themes remain visual previews.</div>
         </div>
       </div>
       <button id="quick-matrix-btn" class="command-action command-action--icon command-action--desktop" type="button" aria-label="Toggle code rain">◉</button>
@@ -51,10 +50,8 @@ import { workspaceFiles } from '../data/workspace';
 </header>
 
 <script>
-  import { dictionaries, type Language } from '../scripts/i18n';
   import { workspaceFiles } from '../data/workspace';
 
-  let currentLang: Language = 'en';
   const fileTrigger = document.getElementById('file-menu-trigger');
   const fileMenu = document.getElementById('file-menu');
   const themeTrigger = document.getElementById('theme-menu-trigger');
@@ -89,31 +86,7 @@ import { workspaceFiles } from '../data/workspace';
     }
   });
 
-  function updateLanguage(lang: Language) {
-    currentLang = lang;
-    document.documentElement.lang = lang;
-    const dict = dictionaries[lang];
-    const label = document.querySelector('#lang-btn span');
-    if (label) label.textContent = lang === 'en' ? 'EN' : '中';
-    document.querySelectorAll('[data-i18n]').forEach((element) => {
-      const key = element.getAttribute('data-i18n') as keyof typeof dict;
-      if (key && dict[key]) element.innerHTML = dict[key];
-    });
-  }
-  document.getElementById('lang-btn')?.addEventListener('click', () => updateLanguage(currentLang === 'en' ? 'zh' : 'en'));
-
-  document.querySelectorAll<HTMLElement>('[data-theme-target]').forEach((button) => {
-    button.addEventListener('click', () => {
-      const theme = button.dataset.themeTarget;
-      if (!theme) return;
-      document.documentElement.dataset.theme = theme;
-      localStorage.setItem('weijian_portfolio_theme', theme);
-      window.dispatchEvent(new CustomEvent('themechange', { detail: { theme } }));
-      toggleMenu(themeTrigger, themeMenu, false);
-    });
-  });
-  const savedTheme = localStorage.getItem('weijian_portfolio_theme') || 'ide';
-  document.documentElement.dataset.theme = savedTheme;
+  themeMenu?.querySelectorAll('[data-theme-target]').forEach((button) => button.addEventListener('click', () => toggleMenu(themeTrigger, themeMenu, false)));
 
   document.getElementById('quick-matrix-btn')?.addEventListener('click', () => window.dispatchEvent(new CustomEvent('matrixmode')));
   document.getElementById('command-terminal-btn')?.addEventListener('click', () => window.dispatchEvent(new CustomEvent('terminaltoggle')));

@@ -8,11 +8,11 @@ import { contactDetails } from '../data/workspace';
     <header>
       <div>
         <span class="contact-panel__eyebrow">~/portfolio/contact.json</span>
-        <h2 id="contact-title" data-i18n="contact_title">Let’s build something useful.</h2>
+        <h2 id="contact-title">Let’s build something useful.</h2>
       </div>
       <button type="button" class="icon-button" data-contact-close aria-label="Close contact panel">✕</button>
     </header>
-    <p data-i18n="contact_intro">For roles, collaborations, or a quick technical conversation, choose a channel below.</p>
+    <p>For roles, collaborations, or a quick technical conversation, choose a channel below.</p>
     <div class="contact-panel__links">
       <a href={`mailto:${contactDetails.email}`}>
         <span aria-hidden="true">✉</span><span><small>Email</small><strong>{contactDetails.email}</strong></span>
@@ -22,8 +22,8 @@ import { contactDetails } from '../data/workspace';
       </a>
       <div class="contact-panel__phone">
         <span aria-hidden="true">☎</span>
-        <span><small data-i18n="contact_phone">Phone</small><strong id="phone-value" hidden>{contactDetails.phoneDisplay}</strong></span>
-        <button id="reveal-phone" type="button" data-phone-href={contactDetails.phoneHref} data-i18n="reveal_phone">Reveal number</button>
+        <span><small>Phone</small><strong id="phone-value" hidden>{contactDetails.phoneDisplay}</strong></span>
+        <button id="reveal-phone" type="button" data-phone-href={contactDetails.phoneHref}>Reveal number</button>
       </div>
     </div>
   </section>

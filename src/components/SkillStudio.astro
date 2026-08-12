@@ -4,7 +4,7 @@ import { workspaceFiles } from '../data/workspace';
 const file = workspaceFiles[3];
 ---
 
-<section id="skill-studio" class="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+<section id="skill-studio" data-section-key="skills" class="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
   <!-- VS Code Workstation Outer Container (Double-Bezel) -->
   <WorkspacePanel file={file}>
     
@@ -54,10 +54,10 @@ const file = workspaceFiles[3];
 
       <!-- Section Title Inside IDE Comment -->
       <div class="p-6 pb-2 text-center sm:text-left border-b border-blue-500/10 bg-[#0c0d16]">
-        <h2 class="text-xl sm:text-2xl font-bold text-white mb-1 flex items-center gap-2 justify-center sm:justify-start" data-i18n="section_skills_title">
+        <h2 class="text-xl sm:text-2xl font-bold text-white mb-1 flex items-center gap-2 justify-center sm:justify-start">
           <span class="text-blue-400">//</span> ⚡ IT Skill Studio & Live Web IDE
         </h2>
-        <p class="text-xs sm:text-sm text-blue-300/70" data-i18n="section_skills_subtitle">
+        <p class="text-xs sm:text-sm text-blue-300/70">
           Interactive IDE Playground: Switch language tabs and execute multi-threaded C++/PyTorch code live
         </p>
       </div>

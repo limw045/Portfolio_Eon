@@ -4,7 +4,7 @@ import { workspaceFiles } from '../data/workspace';
 const file = workspaceFiles[5];
 ---
 
-<section id="micro-tools" class="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+<section id="micro-tools" data-section-key="tools" class="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
   <!-- VS Code Workstation Outer Container (Double-Bezel) -->
   <WorkspacePanel file={file}>
     
@@ -54,10 +54,10 @@ const file = workspaceFiles[5];
 
       <!-- Section Title Inside IDE Comment -->
       <div class="p-6 pb-2 text-center sm:text-left border-b border-emerald-500/10 bg-[#0c0d16]">
-        <h2 class="text-xl sm:text-2xl font-bold text-white mb-1 flex items-center gap-2 justify-center sm:justify-start" data-i18n="section_tools_title">
+        <h2 class="text-xl sm:text-2xl font-bold text-white mb-1 flex items-center gap-2 justify-center sm:justify-start">
           <span class="text-emerald-400">//</span> 🛠️ Micro-Tools Playground
         </h2>
-        <p class="text-xs sm:text-sm text-emerald-400/70" data-i18n="section_tools_subtitle">
+        <p class="text-xs sm:text-sm text-emerald-400/70">
           Interactive micro-tools &amp; real-time CSS variable compiler targeting this live webpage
         </p>
       </div>
@@ -120,7 +120,7 @@ const file = workspaceFiles[5];
           </div>
 
           <div class="pt-2 flex items-center justify-between gap-3">
-            <button id="export-css-btn" class="px-4 py-2 rounded-lg bg-emerald-500 text-black font-bold text-xs hover:bg-emerald-400 transition flex items-center gap-1.5 shadow-lg shadow-emerald-500/20" data-i18n="btn_export_css">
+            <button id="export-css-btn" class="px-4 py-2 rounded-lg bg-emerald-500 text-black font-bold text-xs hover:bg-emerald-400 transition flex items-center gap-1.5 shadow-lg shadow-emerald-500/20">
               <span>📋</span> Export Clean CSS Snippet
             </button>
             <button id="reset-css-btn" class="px-3 py-2 rounded-lg bg-emerald-950/60 border border-emerald-500/30 text-emerald-300/80 hover:text-emerald-200 transition text-[11px]">

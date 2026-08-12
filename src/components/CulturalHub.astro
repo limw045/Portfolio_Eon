@@ -4,15 +4,15 @@ import { workspaceFiles } from '../data/workspace';
 const file = workspaceFiles[2];
 ---
 
-<section id="culture" class="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+<section id="culture" data-section-key="culture" class="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
   <WorkspacePanel file={file}>
 
       <!-- Section Header -->
       <div class="p-6 pb-2 text-center sm:text-left border-b border-emerald-500/10 bg-[#0c0d16]">
-        <h2 class="text-xl sm:text-2xl font-bold text-white mb-1 flex items-center gap-2 justify-center sm:justify-start" data-i18n="section_cult_title">
+        <h2 class="text-xl sm:text-2xl font-bold text-white mb-1 flex items-center gap-2 justify-center sm:justify-start">
           <span class="text-teal-400">//</span> ✨ Cultural Tastes & Inspirations
         </h2>
-        <p class="text-xs sm:text-sm text-emerald-400/70" data-i18n="section_cult_subtitle">
+        <p class="text-xs sm:text-sm text-emerald-400/70">
           Inspirations beyond code: Football tactics, R&B Groove, Sci-Fi, and competitive gaming
         </p>
       </div>
@@ -37,12 +37,12 @@ const file = workspaceFiles[2];
             <div class="flex items-center gap-3 mb-3">
               <span class="text-2xl p-2 rounded-lg bg-emerald-950/80 border border-emerald-500/30">⚽</span>
               <div>
-                <h3 class="text-base sm:text-lg font-bold text-white font-mono" data-i18n="cult_football_title">Football Pitch (Favorite Clubs)</h3>
+                <h3 class="text-base sm:text-lg font-bold text-white font-mono">Football Pitch (Favorite Clubs)</h3>
                 <span class="text-[11px] text-emerald-400/60">Hover club cards to view star player photos</span>
               </div>
             </div>
 
-            <p class="text-xs sm:text-sm text-emerald-200/80 mb-5 leading-relaxed font-sans" data-i18n="cult_football_desc">
+            <p class="text-xs sm:text-sm text-emerald-200/80 mb-5 leading-relaxed font-sans">
               Passionate about tactical precision, fluid passing, and execution excellence on the pitch — just like writing high-performance code.
             </p>
 
@@ -168,19 +168,19 @@ const file = workspaceFiles[2];
             <div class="flex items-center gap-3 mb-3">
               <span class="text-2xl p-2 rounded-lg bg-emerald-950/80 border border-emerald-500/30">🎵</span>
               <div>
-                <h3 class="text-base sm:text-lg font-bold text-white font-mono" data-i18n="cult_music_title">Music Groove (R&B & Soul)</h3>
+                <h3 class="text-base sm:text-lg font-bold text-white font-mono">Music Groove (R&B & Soul)</h3>
                 <span class="text-[11px] text-purple-400/60">Click artist cards to view & stream songs</span>
               </div>
             </div>
 
-            <p class="text-xs sm:text-sm text-emerald-200/80 mb-5 leading-relaxed font-sans" data-i18n="cult_music_desc">
+            <p class="text-xs sm:text-sm text-emerald-200/80 mb-5 leading-relaxed font-sans">
               Enthusiast of R&B, Soul, and Funk music by Khalil Fong, David Tao, and Bruno Mars. Rich harmonies drive coding focus.
             </p>
 
             <!-- Artist Vinyl Cards -->
             <div class="space-y-3 font-mono text-xs">
               
-              <!-- 1. Khalil Fong (方大同) -->
+              <!-- 1. Khalil Fong -->
               <div class="p-3 rounded-xl bg-purple-950/50 border border-purple-500/30 text-purple-300 hover:border-purple-400 transition cursor-pointer music-artist-card" data-target="khalil">
                 <div class="flex items-center justify-between">
                   <div class="flex items-center gap-3">
@@ -188,7 +188,7 @@ const file = workspaceFiles[2];
                       📻
                     </div>
                     <div>
-                      <span class="font-bold block text-sm text-white">Khalil Fong (方大同)</span>
+                      <span class="font-bold block text-sm text-white">Khalil Fong</span>
                       <span class="text-[11px] text-purple-300/70">Mandarin R&B · Soulboy</span>
                     </div>
                   </div>
@@ -202,32 +202,32 @@ const file = workspaceFiles[2];
                   <div class="text-[10px] text-purple-400 uppercase tracking-wider font-bold">🎵 Featured Tracks:</div>
                   
                   <div class="flex items-center justify-between p-2 rounded bg-purple-900/40 text-purple-200">
-                    <span>1. 《爱爱爱》 (Love Love Love)</span>
+                    <span>1. Love Love Love</span>
                     <div class="flex items-center gap-2">
-                      <button class="play-track-btn px-2 py-0.5 rounded bg-purple-500/30 text-purple-300 hover:bg-purple-500/50 transition font-bold" data-video="Gz8LzN6BwA8" data-search="方大同 爱爱爱" data-title="方大同 - 爱爱爱">▶ Play Embed</button>
-                      <a href="https://music.youtube.com/search?q=方大同+爱爱爱" target="_blank" rel="noopener noreferrer" class="px-2 py-0.5 rounded bg-purple-950 border border-purple-500/40 text-purple-300 hover:text-white transition text-[10px]">🌐 YT Music</a>
+                      <button class="play-track-btn px-2 py-0.5 rounded bg-purple-500/30 text-purple-300 hover:bg-purple-500/50 transition font-bold" data-video="Gz8LzN6BwA8" data-search="Khalil Fong Love Love Love" data-title="Khalil Fong - Love Love Love">▶ Play Embed</button>
+                      <a href="https://music.youtube.com/search?q=Khalil+Fong+Love+Love+Love" target="_blank" rel="noopener noreferrer" class="px-2 py-0.5 rounded bg-purple-950 border border-purple-500/40 text-purple-300 hover:text-white transition text-[10px]">YT Music</a>
                     </div>
                   </div>
 
                   <div class="flex items-center justify-between p-2 rounded bg-purple-900/40 text-purple-200">
-                    <span>2. 《三人游》 (Three of Us)</span>
+                    <span>2. Three of Us</span>
                     <div class="flex items-center gap-2">
-                      <button class="play-track-btn px-2 py-0.5 rounded bg-purple-500/30 text-purple-300 hover:bg-purple-500/50 transition font-bold" data-video="U6qPvhgGj8w" data-search="方大同 三人游" data-title="方大同 - 三人游">▶ Play Embed</button>
-                      <a href="https://music.youtube.com/search?q=方大同+三人游" target="_blank" rel="noopener noreferrer" class="px-2 py-0.5 rounded bg-purple-950 border border-purple-500/40 text-purple-300 hover:text-white transition text-[10px]">🌐 YT Music</a>
+                      <button class="play-track-btn px-2 py-0.5 rounded bg-purple-500/30 text-purple-300 hover:bg-purple-500/50 transition font-bold" data-video="U6qPvhgGj8w" data-search="Khalil Fong Three of Us" data-title="Khalil Fong - Three of Us">▶ Play Embed</button>
+                      <a href="https://music.youtube.com/search?q=Khalil+Fong+Three+of+Us" target="_blank" rel="noopener noreferrer" class="px-2 py-0.5 rounded bg-purple-950 border border-purple-500/40 text-purple-300 hover:text-white transition text-[10px]">YT Music</a>
                     </div>
                   </div>
 
                   <div class="flex items-center justify-between p-2 rounded bg-purple-900/40 text-purple-200">
-                    <span>3. 《特别的人》 (Special Person)</span>
+                    <span>3. Special Person</span>
                     <div class="flex items-center gap-2">
-                      <button class="play-track-btn px-2 py-0.5 rounded bg-purple-500/30 text-purple-300 hover:bg-purple-500/50 transition font-bold" data-video="lU63q5-M5XU" data-search="方大同 特别的人" data-title="方大同 - 特别的人">▶ Play Embed</button>
-                      <a href="https://music.youtube.com/search?q=方大同+特别的人" target="_blank" rel="noopener noreferrer" class="px-2 py-0.5 rounded bg-purple-950 border border-purple-500/40 text-purple-300 hover:text-white transition text-[10px]">🌐 YT Music</a>
+                      <button class="play-track-btn px-2 py-0.5 rounded bg-purple-500/30 text-purple-300 hover:bg-purple-500/50 transition font-bold" data-video="lU63q5-M5XU" data-search="Khalil Fong Special Person" data-title="Khalil Fong - Special Person">▶ Play Embed</button>
+                      <a href="https://music.youtube.com/search?q=Khalil+Fong+Special+Person" target="_blank" rel="noopener noreferrer" class="px-2 py-0.5 rounded bg-purple-950 border border-purple-500/40 text-purple-300 hover:text-white transition text-[10px]">YT Music</a>
                     </div>
                   </div>
                 </div>
               </div>
 
-              <!-- 2. David Tao (陶喆) -->
+              <!-- 2. David Tao -->
               <div class="p-3 rounded-xl bg-blue-950/50 border border-blue-500/30 text-blue-300 hover:border-blue-400 transition cursor-pointer music-artist-card" data-target="david">
                 <div class="flex items-center justify-between">
                   <div class="flex items-center gap-3">
@@ -235,7 +235,7 @@ const file = workspaceFiles[2];
                       🎙️
                     </div>
                     <div>
-                      <span class="font-bold block text-sm text-white">David Tao (陶喆)</span>
+                      <span class="font-bold block text-sm text-white">David Tao</span>
                       <span class="text-[11px] text-blue-300/70">R&B Godfather · Classic Harmonies</span>
                     </div>
                   </div>
@@ -249,26 +249,26 @@ const file = workspaceFiles[2];
                   <div class="text-[10px] text-blue-400 uppercase tracking-wider font-bold">🎵 Featured Tracks:</div>
                   
                   <div class="flex items-center justify-between p-2 rounded bg-blue-900/40 text-blue-200">
-                    <span>1. 《爱很简单》 (I Love You)</span>
+                    <span>1. I Love You</span>
                     <div class="flex items-center gap-2">
-                      <button class="play-track-btn px-2 py-0.5 rounded bg-blue-500/30 text-blue-300 hover:bg-blue-500/50 transition font-bold" data-video="Q302f8uHhF0" data-search="陶喆 爱很简单" data-title="陶喆 - 爱很简单">▶ Play Embed</button>
-                      <a href="https://music.youtube.com/search?q=陶喆+爱很简单" target="_blank" rel="noopener noreferrer" class="px-2 py-0.5 rounded bg-blue-950 border border-blue-500/40 text-blue-300 hover:text-white transition text-[10px]">🌐 YT Music</a>
+                      <button class="play-track-btn px-2 py-0.5 rounded bg-blue-500/30 text-blue-300 hover:bg-blue-500/50 transition font-bold" data-video="Q302f8uHhF0" data-search="David Tao I Love You" data-title="David Tao - I Love You">▶ Play Embed</button>
+                      <a href="https://music.youtube.com/search?q=David+Tao+I+Love+You" target="_blank" rel="noopener noreferrer" class="px-2 py-0.5 rounded bg-blue-950 border border-blue-500/40 text-blue-300 hover:text-white transition text-[10px]">YT Music</a>
                     </div>
                   </div>
 
                   <div class="flex items-center justify-between p-2 rounded bg-blue-900/40 text-blue-200">
-                    <span>2. 《普通朋友》 (Regular Friends)</span>
+                    <span>2. Regular Friends</span>
                     <div class="flex items-center gap-2">
-                      <button class="play-track-btn px-2 py-0.5 rounded bg-blue-500/30 text-blue-300 hover:bg-blue-500/50 transition font-bold" data-video="XQ9_08p3F2Q" data-search="陶喆 普通朋友" data-title="陶喆 - 普通朋友">▶ Play Embed</button>
-                      <a href="https://music.youtube.com/search?q=陶喆+普通朋友" target="_blank" rel="noopener noreferrer" class="px-2 py-0.5 rounded bg-blue-950 border border-blue-500/40 text-blue-300 hover:text-white transition text-[10px]">🌐 YT Music</a>
+                      <button class="play-track-btn px-2 py-0.5 rounded bg-blue-500/30 text-blue-300 hover:bg-blue-500/50 transition font-bold" data-video="XQ9_08p3F2Q" data-search="David Tao Regular Friends" data-title="David Tao - Regular Friends">▶ Play Embed</button>
+                      <a href="https://music.youtube.com/search?q=David+Tao+Regular+Friends" target="_blank" rel="noopener noreferrer" class="px-2 py-0.5 rounded bg-blue-950 border border-blue-500/40 text-blue-300 hover:text-white transition text-[10px]">YT Music</a>
                     </div>
                   </div>
 
                   <div class="flex items-center justify-between p-2 rounded bg-blue-900/40 text-blue-200">
-                    <span>3. 《黑色柳丁》 (Black Tangerine)</span>
+                    <span>3. Black Tangerine</span>
                     <div class="flex items-center gap-2">
-                      <button class="play-track-btn px-2 py-0.5 rounded bg-blue-500/30 text-blue-300 hover:bg-blue-500/50 transition font-bold" data-video="JzV-0_x9X9g" data-search="陶喆 黑色柳丁" data-title="陶喆 - 黑色柳丁">▶ Play Embed</button>
-                      <a href="https://music.youtube.com/search?q=陶喆+黑色柳丁" target="_blank" rel="noopener noreferrer" class="px-2 py-0.5 rounded bg-blue-950 border border-blue-500/40 text-blue-300 hover:text-white transition text-[10px]">🌐 YT Music</a>
+                      <button class="play-track-btn px-2 py-0.5 rounded bg-blue-500/30 text-blue-300 hover:bg-blue-500/50 transition font-bold" data-video="JzV-0_x9X9g" data-search="David Tao Black Tangerine" data-title="David Tao - Black Tangerine">▶ Play Embed</button>
+                      <a href="https://music.youtube.com/search?q=David+Tao+Black+Tangerine" target="_blank" rel="noopener noreferrer" class="px-2 py-0.5 rounded bg-blue-950 border border-blue-500/40 text-blue-300 hover:text-white transition text-[10px]">YT Music</a>
                     </div>
                   </div>
                 </div>

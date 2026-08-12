@@ -4,6 +4,7 @@ import VscodeSidebar from '../components/VscodeSidebar.astro';
 import LetterGlitchCanvas from '../components/LetterGlitchCanvas.astro';
 import TerminalDrawer from '../components/TerminalDrawer.astro';
 import ContactPanel from '../components/ContactPanel.astro';
+import CinemaStage from '../components/CinemaStage.astro';
 import '../styles/global.css';
 
 interface Props {
@@ -18,7 +19,7 @@ const {
 ---
 
 <!DOCTYPE html>
-<html lang="en" data-theme="ide" class="scroll-smooth bg-black text-emerald-100">
+<html lang="en" data-theme="ide" data-stage="ide" class="scroll-smooth bg-black text-emerald-100">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -27,27 +28,41 @@ const {
     <meta name="description" content={description} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Outfit:wght@300;400;600;700&family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Narrow:wght@400;600;700&family=JetBrains+Mono:wght@400;500;700&family=Outfit:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,600;1,600&family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap" rel="stylesheet" />
+    <script is:inline>
+      (() => {
+        const known = ['ide', 'cinema', 'football', 'swiss', 'travel'];
+        const saved = localStorage.getItem('weijian_portfolio_theme');
+        const theme = saved && known.includes(saved) ? saved : 'ide';
+        document.documentElement.dataset.theme = theme;
+        document.documentElement.dataset.stage = theme === 'cinema' ? 'cinema' : 'ide';
+      })();
+    </script>
   </head>
   <body class="relative min-h-screen font-sans bg-black antialiased selection:bg-emerald-500 selection:text-black">
+    <div class="stage-curtain" aria-hidden="true"><span>Changing programme</span></div>
     <div class="scroll-progress" aria-hidden="true">
       <span data-scroll-progress></span>
     </div>
-    <LetterGlitchCanvas />
-    <div class="content-veil" aria-hidden="true"></div>
-    <Navbar />
-    <VscodeSidebar />
-    <main>
-      <slot />
-    </main>
+    <div id="ide-stage" data-stage="ide">
+      <LetterGlitchCanvas />
+      <div class="content-veil" aria-hidden="true"></div>
+      <Navbar />
+      <VscodeSidebar />
+      <main>
+        <slot />
+      </main>
 
-    <footer class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 text-center font-mono text-xs text-emerald-400/60 border-t border-emerald-500/20 mt-20 mb-8">
-      <p data-i18n="copyright">© 2026 Lim Wei Jian. Built with Astro + TypeScript + Content Collections. Hosted on Cloudflare Pages.</p>
-    </footer>
-
-    <TerminalDrawer />
+      <footer class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 text-center font-mono text-xs text-emerald-400/60 border-t border-emerald-500/20 mt-20 mb-8">
+        <p>© 2026 Lim Wei Jian. Built with Astro + TypeScript + Content Collections. Hosted on Cloudflare Pages.</p>
+      </footer>
+      <TerminalDrawer />
+    </div>
+    <CinemaStage />
     <ContactPanel />
     <script>
+      import '../scripts/stage-controller';
+      import '../scripts/cinema-interactions';
       import '../scripts/scroll-motion';
     </script>
   </body>

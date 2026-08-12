@@ -4,7 +4,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 gsap.registerPlugin(ScrollTrigger);
 
 const SELECTORS = {
-  sections: 'main > section',
+  sections: '#ide-stage main > section, #cinema-stage main > section',
   title: 'h1, h2',
   subtitle: 'h1 + *, h2 + p',
   images: 'main img',
@@ -35,13 +35,14 @@ function initScrollMotion() {
       }
 
       sections.forEach((section, index) => {
+        if (section.closest('[hidden]')) return;
         section.classList.add('scroll-scene');
 
         const frame = section.firstElementChild as HTMLElement | null;
         const title = section.querySelector<HTMLElement>(SELECTORS.title);
         const subtitle = section.querySelector<HTMLElement>(SELECTORS.subtitle);
         const layers = gsap.utils.toArray<HTMLElement>(
-          section.querySelectorAll(':scope h1 .vp-word, :scope h2 > span, :scope [data-i18n]'),
+          section.querySelectorAll(':scope h1 .vp-word, :scope h2 > span'),
         ).filter((element) => element !== title && element !== subtitle);
 
         const intro = gsap.timeline({
@@ -102,7 +103,7 @@ function initScrollMotion() {
         }
       });
 
-      gsap.utils.toArray<HTMLImageElement>(SELECTORS.images).forEach((image) => {
+      gsap.utils.toArray<HTMLImageElement>(SELECTORS.images).filter((image) => !image.closest('[hidden]')).forEach((image) => {
         gsap.fromTo(
           image,
           { scale: 1.28, yPercent: 7 },
@@ -139,8 +140,12 @@ function initScrollMotion() {
       const refresh = () => ScrollTrigger.refresh();
       document.fonts?.ready.then(refresh);
       window.addEventListener('load', refresh, { once: true });
+      window.addEventListener('stagechange', refresh);
 
-      return () => window.removeEventListener('load', refresh);
+      return () => {
+        window.removeEventListener('load', refresh);
+        window.removeEventListener('stagechange', refresh);
+      };
     },
   );
 

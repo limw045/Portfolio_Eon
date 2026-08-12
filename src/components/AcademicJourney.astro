@@ -8,15 +8,15 @@ const sortedAcademic = academicEntries.sort((a, b) => a.data.order - b.data.orde
 const file = workspaceFiles[1];
 ---
 
-<section id="academic" class="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+<section id="academic" data-section-key="academic" class="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
   <WorkspacePanel file={file}>
 
       <!-- Section Title Inside IDE Comment -->
       <div class="p-6 pb-2 text-center sm:text-left border-b border-emerald-500/10 bg-[#0c0d16]">
-        <h2 class="text-xl sm:text-2xl font-bold text-white mb-1 flex items-center gap-2 justify-center sm:justify-start" data-i18n="section_acad_title">
+        <h2 class="text-xl sm:text-2xl font-bold text-white mb-1 flex items-center gap-2 justify-center sm:justify-start">
           <span class="text-amber-400">//</span> 🎓 Academic Journey & Project Research
         </h2>
-        <p class="text-xs sm:text-sm text-emerald-400/70" data-i18n="section_acad_subtitle">
+        <p class="text-xs sm:text-sm text-emerald-400/70">
           From STEM foundation to Diploma Full-Stack Team Lead and Degree AI breakthroughs
         </p>
       </div>

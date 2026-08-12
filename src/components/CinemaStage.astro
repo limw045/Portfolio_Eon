@@ -1,0 +1,145 @@
+---
+import { getCollection } from 'astro:content';
+import CinemaNav from './CinemaNav.astro';
+import { codeScenes, skills, soundtrack } from '../data/portfolio';
+
+const academicEntries = (await getCollection('academic')).sort((a, b) => a.data.order - b.data.order);
+---
+
+<div id="cinema-stage" class="cinema-stage" data-stage="cinema" hidden inert>
+  <CinemaNav />
+  <main class="cinema-main">
+    <section id="cinema-hero" class="cinema-hero" data-section-key="hero" aria-labelledby="cinema-hero-title">
+      <img src="/assets/images/noir/noir-hero.webp" alt="" width="1920" height="803" fetchpriority="high" />
+      <div class="cinema-hero__shade" aria-hidden="true"></div>
+      <div class="cinema-beam" aria-hidden="true"></div>
+      <div class="cinema-copy cinema-copy--hero">
+        <p class="cinema-kicker">A film about building useful systems · MMXXVI</p>
+        <h1 id="cinema-hero-title">Full-Stack<br /><em>After Dark.</em></h1>
+        <p class="cinema-lead">AI Graduate from MMU building useful full-stack products and intelligent systems with C++, Python, and TypeScript.</p>
+        <div class="cinema-actions">
+          <button class="cinema-button cinema-button--red" type="button" data-contact-open>Start a conversation</button>
+          <a class="cinema-button" href="#cinema-academic" data-stage-link="academic">Enter screening</a>
+        </div>
+      </div>
+      <p class="cinema-frame-label">Frame 001 · Kuala Lumpur</p>
+    </section>
+
+    <section id="cinema-academic" class="cinema-reel cinema-reel--academic" data-section-key="academic" aria-labelledby="cinema-academic-title">
+      <img src="/assets/images/noir/noir-education.webp" alt="" width="1919" height="820" loading="lazy" />
+      <div class="cinema-reel__shade" aria-hidden="true"></div>
+      <div class="cinema-section-heading">
+        <p class="cinema-kicker">Reel One · The Origin</p>
+        <h2 id="cinema-academic-title">Training the eye.<br />Building the mind.</h2>
+      </div>
+      <div class="cinema-timeline">
+        {academicEntries.map((entry, index) => (
+          <article>
+            <div class="cinema-act"><span>ACT 0{index + 1}</span><time>{entry.data.period}</time></div>
+            <h3>{entry.data.title}</h3>
+            <p>{entry.data.institution}</p>
+            {entry.data.cgpa && <strong>CGPA {entry.data.cgpa}</strong>}
+            {entry.data.fypTitle && <small>{entry.data.fypTitle.replace(/[🔥💡]/gu, '').trim()}</small>}
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section id="cinema-culture" class="cinema-intermission" data-section-key="culture" aria-labelledby="cinema-culture-title">
+      <img src="/assets/images/noir/noir-intermission.webp" alt="" width="1920" height="800" loading="lazy" />
+      <div class="cinema-intermission__wash" aria-hidden="true"></div>
+      <div class="cinema-section-heading">
+        <p class="cinema-kicker">Intermission · Cultural Signals</p>
+        <h2 id="cinema-culture-title">What shapes<br />the work.</h2>
+        <p>Football tactics, R&amp;B groove, science fiction and competitive play sharpen the instincts behind the systems.</p>
+      </div>
+      <div class="cinema-programme">
+        <article><span>01</span><h3>Football Tactics</h3><p>Arsenal · Manchester City</p></article>
+        <article><span>02</span><h3>Soundtrack Room</h3><p>R&amp;B · Soul · Funk</p></article>
+        <article><span>03</span><h3>Science Fiction</h3><p>Systems · Futures · Consequence</p></article>
+        <article><span>04</span><h3>Competitive Play</h3><p>Tempo · Decisions · Execution</p></article>
+      </div>
+      <div class="cinema-soundtrack" aria-label="Selected soundtrack">
+        {soundtrack.map((item) => (
+          <button type="button" data-cinema-track={item.video} data-track-title={`${item.artist} — ${item.track}`}>
+            <span>{item.artist}</span><strong>{item.track}</strong><small>Play</small>
+          </button>
+        ))}
+      </div>
+      <div class="cinema-player" data-cinema-player hidden>
+        <div><span data-cinema-player-title>Soundtrack</span><button type="button" data-cinema-player-close>Close</button></div>
+        <iframe data-cinema-player-frame title="Soundtrack player" allow="autoplay; encrypted-media" loading="lazy"></iframe>
+      </div>
+    </section>
+
+    <section id="cinema-skills" class="cinema-console" data-section-key="skills" aria-labelledby="cinema-skills-title">
+      <div class="cinema-section-heading">
+        <p class="cinema-kicker">Reel Two · The Craft</p>
+        <h2 id="cinema-skills-title">Projection Console</h2>
+        <p>Languages, vision systems and infrastructure—kept readable, operable and ready for the next scene.</p>
+      </div>
+      <div class="projection-console">
+        <aside>
+          {Object.entries(skills).map(([group, items]) => (
+            <section><h3>{group}</h3><p>{items.join(' · ')}</p></section>
+          ))}
+        </aside>
+        <div class="projection-screen">
+          <div class="projection-tabs" role="tablist" aria-label="Code scene">
+            {Object.entries(codeScenes).map(([key, scene], index) => (
+              <button type="button" role="tab" aria-selected={index === 0 ? 'true' : 'false'} data-cinema-code-tab={key}>{scene.label}</button>
+            ))}
+            <button class="projection-run" type="button" data-cinema-code-run>Run scene</button>
+          </div>
+          <p class="projection-filename" data-cinema-code-filename>{codeScenes.cpp.filename}</p>
+          <pre data-cinema-code-source>{codeScenes.cpp.source}</pre>
+          <div class="projection-output" aria-live="polite" data-cinema-code-output>Console ready. Select a language and run the scene.</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="cinema-workflow" class="cinema-workflow" data-section-key="workflow" aria-labelledby="cinema-workflow-title">
+      <img src="/assets/images/noir/noir-systems.webp" alt="" width="1916" height="821" loading="lazy" />
+      <div class="cinema-reel__shade" aria-hidden="true"></div>
+      <div class="cinema-workflow__intro">
+        <p class="cinema-kicker">Reel Three · System Direction</p>
+        <h2 id="cinema-workflow-title">Every node<br />hits its cue.</h2>
+        <label for="cinema-workflow-prompt">Story premise</label>
+        <textarea id="cinema-workflow-prompt" data-shared-workflow-prompt rows="3">A developer discovers a hidden AI node at midnight...</textarea>
+        <button class="cinema-button cinema-button--red" type="button" data-cinema-workflow-run>Direct sequence</button>
+      </div>
+      <div class="cue-sheet" aria-live="polite">
+        {['Script Intake', 'Story Agent', 'Context Pass', 'Visual Pass', 'Verifier', 'Final Cut'].map((label, index) => (
+          <article data-cinema-node><span>0{index + 1}</span><h3>{label}</h3><small>Standing by</small></article>
+        ))}
+        <div class="cue-output" data-cinema-workflow-output>Sequence waiting for direction.</div>
+      </div>
+    </section>
+
+    <section id="cinema-tools" class="cinema-credits" data-section-key="tools" aria-labelledby="cinema-tools-title">
+      <div class="cinema-section-heading">
+        <p class="cinema-kicker">End Credits · Micro Tools</p>
+        <h2 id="cinema-tools-title">Built in<br />the dark.</h2>
+      </div>
+      <div class="cinema-controls">
+        <label>Grain <output data-cinema-tool-output="grain">18%</output><input type="range" min="0" max="35" value="18" data-cinema-tool="grain" /></label>
+        <label>Vignette <output data-cinema-tool-output="vignette">62%</output><input type="range" min="20" max="85" value="62" data-cinema-tool="vignette" /></label>
+        <label>Projector beam <output data-cinema-tool-output="beam">42%</output><input type="range" min="0" max="70" value="42" data-cinema-tool="beam" /></label>
+        <button type="button" data-cinema-tools-reset>Reset final grade</button>
+      </div>
+      <div class="cinema-credit-roll">
+        <p><span>Direction</span> Lim Wei Jian</p>
+        <p><span>AI Systems</span> Multi-Agent RAG · PyTorch · Computer Vision</p>
+        <p><span>Full Stack</span> Astro · TypeScript · React · Cloudflare</p>
+        <p><span>Languages</span> C++ · Python · Java · C#</p>
+        <p><span>Production</span> Accessible · Responsive · Static-first</p>
+      </div>
+      <div class="cinema-post-credits">
+        <p class="cinema-kicker">One more scene?</p>
+        <h3>Let’s build something useful.</h3>
+        <button class="cinema-button cinema-button--red" type="button" data-contact-open>Open contact</button>
+      </div>
+    </section>
+  </main>
+</div>
+
