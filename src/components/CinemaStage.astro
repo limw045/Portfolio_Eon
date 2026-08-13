@@ -11,8 +11,14 @@ const academicEntries = (await getCollection('academic')).sort((a, b) => a.data.
   <div class="cinema-damage" aria-hidden="true"></div>
   <div class="cinema-flicker" aria-hidden="true"></div>
   <div class="cinema-leader" data-cinema-leader hidden aria-hidden="true">
-    <div class="cinema-leader__ring" aria-hidden="true"></div>
-    <div class="cinema-leader__count" data-cinema-leader-count>3</div>
+    <div class="cinema-leader__meta cinema-leader__meta--top">PICTURE START · 24 FPS</div>
+    <div class="cinema-leader__frame">
+      <div class="cinema-leader__ring">
+        <div class="cinema-leader__sweep" aria-hidden="true"></div>
+        <div class="cinema-leader__count" data-cinema-leader-count>3</div>
+      </div>
+    </div>
+    <div class="cinema-leader__meta cinema-leader__meta--bottom">REEL 01 · PRIVATE SCREENING</div>
   </div>
   <main class="cinema-main">
     <section id="cinema-hero" class="cinema-hero" data-section-key="hero" aria-labelledby="cinema-hero-title">

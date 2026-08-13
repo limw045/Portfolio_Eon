@@ -125,7 +125,12 @@ function playLeader() {
     leader.hidden = false;
     requestAnimationFrame(() => leader.classList.add('is-playing'));
     [3, 2, 1].forEach((n, i) => {
-      window.setTimeout(() => { count.textContent = String(n); }, i * 420);
+      window.setTimeout(() => {
+        count.textContent = String(n);
+        count.classList.remove('is-changing');
+        void count.offsetWidth;
+        count.classList.add('is-changing');
+      }, i * 420);
     });
     window.setTimeout(() => {
       leader.classList.remove('is-playing');
