@@ -310,10 +310,94 @@ html[data-stage="cinema"] .contact-panel__dialog { border-radius: 0; border-colo
   .cinema-nav { grid-template-columns: 1fr auto; }.cinema-nav nav { display: none; }.cinema-reel--academic,.cinema-intermission,.cinema-workflow,.cinema-credits { grid-template-columns: 1fr; }.cinema-timeline,.cinema-programme,.cinema-soundtrack,.cinema-player,.cue-sheet,.cinema-controls,.cinema-credit-roll,.cinema-post-credits { grid-column: 1; }.cinema-reel--academic .cinema-section-heading { max-width: 650px; }.cinema-intermission { gap: 35px; }.cinema-soundtrack { grid-template-columns: repeat(3,1fr); }.cinema-workflow { align-content: center; }.cinema-credits { gap: 35px; }
 }
 @media (max-width: 700px) {
-  .cinema-nav { min-height: 52px; padding: 0 14px; }.cinema-nav__brand span,.cinema-nav__actions > button:first-child { display: none; }.cinema-nav__actions { gap: 0; }.cinema-nav__actions > button,.cinema-theme-control > button { padding: 8px 7px; }.cinema-main > section { scroll-margin-top: 52px; }.cinema-hero { min-height: calc(100dvh - 52px) !important; padding: 60px 20px; }.cinema-copy--hero { width: 100%; }.cinema-copy h1 { font-size: clamp(52px,17vw,82px); }.cinema-beam { left: 65%; width: 38vw; }.cinema-reel--academic,.cinema-intermission,.cinema-console,.cinema-workflow,.cinema-credits { min-height: auto !important; padding: 78px 20px; }.cinema-section-heading h2,.cinema-workflow h2 { font-size: clamp(46px,14vw,70px); }.cinema-timeline article { grid-template-columns: 72px 1fr; padding: 18px 14px; }.cinema-timeline strong { grid-column: 2; }.cinema-programme { grid-template-columns: 1fr 1fr; }.cinema-programme article { min-height: 115px; }.cinema-programme h3 { font-size: 21px; }.cinema-soundtrack { grid-template-columns: 1fr; }.cinema-soundtrack button { border-right: 0; border-bottom: 1px solid #71695d; }.projection-console { grid-template-columns: 1fr; }.projection-console aside { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; padding: 13px; }.projection-console aside section { border: 0; padding: 5px; }.projection-console aside p { font-size: 10px; }.projection-tabs { overflow-x: auto; }.projection-screen { padding: 13px; }.projection-screen pre { min-height: 220px; }.cue-sheet { grid-template-columns: 1fr 1fr; gap: 9px; }.cue-sheet article:nth-child(2),.cue-sheet article:nth-child(5) { transform: none; }.cinema-credit-roll p { grid-template-columns: 90px 1fr; }.cinema-theme-menu { position: fixed; top: 60px; right: 10px; width: calc(100vw - 20px); }
+  .cinema-nav { min-height: 52px; padding: 0 14px; }.cinema-nav__brand span,.cinema-nav__actions [data-sound-toggle],.cinema-status { display: none; }.cinema-nav__actions { gap: 0; }.cinema-nav__actions > button,.cinema-theme-control > button { padding: 8px 7px; }.cinema-main > section { scroll-margin-top: 52px; }.cinema-hero { min-height: calc(100dvh - 52px) !important; padding: 60px 20px; }.cinema-copy--hero { width: 100%; }.cinema-copy h1 { font-size: clamp(52px,17vw,82px); }.cinema-beam { left: 65%; width: 38vw; }.cinema-reel--academic,.cinema-intermission,.cinema-console,.cinema-workflow,.cinema-credits { min-height: auto !important; padding: 78px 20px; }.cinema-section-heading h2,.cinema-workflow h2 { font-size: clamp(46px,14vw,70px); }.cinema-timeline article { grid-template-columns: 72px 1fr; padding: 18px 14px; }.cinema-timeline strong { grid-column: 2; }.cinema-programme { grid-template-columns: 1fr 1fr; }.cinema-programme article { min-height: 115px; }.cinema-programme h3 { font-size: 21px; }.cinema-soundtrack { grid-template-columns: 1fr; }.cinema-soundtrack button { border-right: 0; border-bottom: 1px solid #71695d; }.projection-console { grid-template-columns: 1fr; }.projection-console aside { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; padding: 13px; }.projection-console aside section { border: 0; padding: 5px; }.projection-console aside p { font-size: 10px; }.projection-tabs { overflow-x: auto; }.projection-screen { padding: 13px; }.projection-screen pre { min-height: 220px; }.cue-sheet { grid-template-columns: 1fr 1fr; gap: 9px; }.cue-sheet article:nth-child(2),.cue-sheet article:nth-child(5) { transform: none; }.cinema-credit-roll p { grid-template-columns: 90px 1fr; }.cinema-theme-menu { position: fixed; top: 60px; right: 10px; width: calc(100vw - 20px); }
 }
 @media (pointer: coarse) { .cinema-beam { animation: none; } }
 @media (prefers-reduced-motion: reduce) { .stage-curtain { display: none; }.cinema-beam { animation: none; }.cinema-main img { transform: none !important; } }
+
+/* ==========================================================================
+   CINEMA NOIR — FILM TEXTURE & NARRATIVE POLISH
+   ========================================================================== */
+html[data-theme="cinema"] { --font-label: 'Archivo Narrow', sans-serif; }
+
+/* Animated grain (24fps flicker) */
+.cinema-stage::after { animation: cinema-grain-flicker .16s steps(1, end) infinite; }
+@keyframes cinema-grain-flicker {
+  0%, 100% { opacity: var(--cinema-grain); }
+  50% { opacity: calc(var(--cinema-grain) * .72); }
+}
+
+/* Generated film-damage overlay (scratches / dust / hair) */
+.cinema-damage {
+  position: fixed; inset: -24px; z-index: 81; pointer-events: none;
+  background: url('/assets/images/noir/noir-damage.webp') center / cover no-repeat;
+  mix-blend-mode: screen; opacity: .12;
+  animation: cinema-damage-weave .9s steps(3) infinite;
+  will-change: transform;
+}
+@keyframes cinema-damage-weave {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  33% { transform: translate3d(-2px, 1px, 0); }
+  66% { transform: translate3d(2px, -1px, 0); }
+}
+
+/* 24fps projector shutter flutter (global luminance) */
+.cinema-flicker {
+  position: fixed; inset: 0; z-index: 82; pointer-events: none;
+  background: #000; opacity: 0;
+  animation: cinema-shutter .2s steps(2) infinite;
+}
+@keyframes cinema-shutter {
+  0% { opacity: 0; }
+  50% { opacity: .035; }
+  100% { opacity: 0; }
+}
+
+/* Venetian-blind shadows cast across the hero */
+.cinema-blinds {
+  position: absolute; inset: 0; z-index: 1; pointer-events: none;
+  background: repeating-linear-gradient(100deg, transparent 0 22px, rgba(0,0,0,.46) 22px 58px);
+  mix-blend-mode: multiply; opacity: .55; filter: blur(2px);
+  animation: cinema-blinds-drift 16s ease-in-out infinite alternate;
+}
+@keyframes cinema-blinds-drift {
+  from { background-position: 0 0; }
+  to { background-position: 96px 0; }
+}
+
+/* Nav status lamp + running timecode */
+.cinema-status { display: inline-flex; align-items: center; gap: 8px; color: #a49c8f; font: 600 10px 'Archivo Narrow', sans-serif; letter-spacing: .16em; text-transform: uppercase; }
+.cinema-status__lamp { width: 7px; height: 7px; border-radius: 50%; background: #c8473d; box-shadow: 0 0 8px #c8473d; animation: cinema-rec-pulse 1.6s ease-in-out infinite; }
+@keyframes cinema-rec-pulse { 0%, 100% { opacity: 1; } 50% { opacity: .25; } }
+.cinema-timecode { color: #e9e4d8; font-variant-numeric: tabular-nums; letter-spacing: .08em; }
+
+/* Vertical scrolling end credits */
+.cinema-credit-roll { height: 250px; overflow: hidden; }
+.cinema-credit-roll__track { animation: cinema-credits-roll 26s linear infinite; }
+.cinema-credit-roll:hover .cinema-credit-roll__track { animation-play-state: paused; }
+@keyframes cinema-credits-roll { from { transform: translateY(0); } to { transform: translateY(-50%); } }
+
+/* Academy leader countdown */
+.cinema-leader { position: fixed; inset: 0; z-index: 320; display: grid; place-items: center; background: #080807; color: #e9e4d8; opacity: 0; pointer-events: none; transition: opacity .18s ease; }
+.cinema-leader.is-playing { opacity: 1; }
+.cinema-leader__count { font: 600 clamp(96px,20vw,220px)/1 'Playfair Display', serif; letter-spacing: -.04em; }
+.cinema-leader__ring { position: absolute; width: 36vmin; height: 36vmin; border: 1px solid #4b463e; border-top-color: #a9332b; border-radius: 50%; animation: cinema-leader-sweep 1s linear infinite; }
+@keyframes cinema-leader-sweep { to { transform: rotate(360deg); } }
+
+/* AA contrast overrides for small labels on dark ground */
+.cinema-frame-label { color: #a49c8f; }
+.cinema-theme-menu small { color: #c8473d; }
+.cinema-nav nav a span { color: #c34a3f; }
+.cinema-kicker { color: #c8473d; }
+.cinema-act time { color: #9a9286; }
+.cinema-intermission .cinema-frame-label { color: #4a4339; }
+
+/* Film texture off under reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .cinema-stage::after, .cinema-damage, .cinema-flicker, .cinema-blinds, .cinema-credit-roll__track, .cinema-leader__ring { animation: none !important; }
+  .cinema-flicker { display: none; }
+  .cinema-status__lamp { animation: none; }
+}
 
 /* --------------------------------------------------------------------------
    THEME 4: Swiss Editorial Paper (data-theme="swiss")

@@ -10,6 +10,11 @@ import { sectionLinks } from '../data/portfolio';
     ))}
   </nav>
   <div class="cinema-nav__actions">
+    <div class="cinema-status" aria-hidden="true">
+      <span class="cinema-status__lamp"></span>
+      <span>REC</span>
+      <time class="cinema-timecode" data-cinema-timecode>00:00:00:00</time>
+    </div>
     <button type="button" data-sound-toggle aria-pressed="false">Sound Off</button>
     <button type="button" data-contact-open>Contact</button>
     <div class="cinema-theme-control">

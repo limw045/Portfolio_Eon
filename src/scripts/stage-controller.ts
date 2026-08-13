@@ -113,5 +113,29 @@ document.addEventListener('keydown', (event) => {
   }
 });
 
-setStage(stageFor((root.dataset.theme as ThemeName) || 'ide'));
+let leaderTimer = 0;
+function playLeader() {
+  const leader = document.querySelector<HTMLElement>('[data-cinema-leader]');
+  const count = document.querySelector<HTMLElement>('[data-cinema-leader-count]');
+  if (!leader || !count) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if (window.matchMedia('(pointer: coarse)').matches) return;
+  window.clearTimeout(leaderTimer);
+  leaderTimer = window.setTimeout(() => {
+    leader.hidden = false;
+    requestAnimationFrame(() => leader.classList.add('is-playing'));
+    [3, 2, 1].forEach((n, i) => {
+      window.setTimeout(() => { count.textContent = String(n); }, i * 420);
+    });
+    window.setTimeout(() => {
+      leader.classList.remove('is-playing');
+      window.setTimeout(() => { leader.hidden = true; }, 200);
+    }, 3 * 420 + 320);
+  }, 260);
+}
 
+window.addEventListener('stagechange', ((event: CustomEvent<{ stage: string }>) => {
+  if (event.detail.stage === 'cinema') playLeader();
+}) as EventListener);
+
+setStage(stageFor((root.dataset.theme as ThemeName) || 'ide'));

@@ -8,11 +8,18 @@ const academicEntries = (await getCollection('academic')).sort((a, b) => a.data.
 
 <div id="cinema-stage" class="cinema-stage" data-stage="cinema" hidden inert>
   <CinemaNav />
+  <div class="cinema-damage" aria-hidden="true"></div>
+  <div class="cinema-flicker" aria-hidden="true"></div>
+  <div class="cinema-leader" data-cinema-leader hidden aria-hidden="true">
+    <div class="cinema-leader__ring" aria-hidden="true"></div>
+    <div class="cinema-leader__count" data-cinema-leader-count>3</div>
+  </div>
   <main class="cinema-main">
     <section id="cinema-hero" class="cinema-hero" data-section-key="hero" aria-labelledby="cinema-hero-title">
       <img src="/assets/images/noir/noir-hero.webp" alt="" width="1920" height="803" fetchpriority="high" />
       <div class="cinema-hero__shade" aria-hidden="true"></div>
       <div class="cinema-beam" aria-hidden="true"></div>
+      <div class="cinema-blinds" aria-hidden="true"></div>
       <div class="cinema-copy cinema-copy--hero">
         <p class="cinema-kicker">A film about building useful systems · MMXXVI</p>
         <h1 id="cinema-hero-title">Full-Stack<br /><em>After Dark.</em></h1>
@@ -43,6 +50,7 @@ const academicEntries = (await getCollection('academic')).sort((a, b) => a.data.
           </article>
         ))}
       </div>
+      <p class="cinema-frame-label">Frame 002 · Reel One</p>
     </section>
 
     <section id="cinema-culture" class="cinema-intermission" data-section-key="culture" aria-labelledby="cinema-culture-title">
@@ -70,6 +78,7 @@ const academicEntries = (await getCollection('academic')).sort((a, b) => a.data.
         <div><span data-cinema-player-title>Soundtrack</span><button type="button" data-cinema-player-close>Close</button></div>
         <iframe data-cinema-player-frame title="Soundtrack player" allow="autoplay; encrypted-media" loading="lazy"></iframe>
       </div>
+      <p class="cinema-frame-label">Frame 003 · Intermission</p>
     </section>
 
     <section id="cinema-skills" class="cinema-console" data-section-key="skills" aria-labelledby="cinema-skills-title">
@@ -96,6 +105,7 @@ const academicEntries = (await getCollection('academic')).sort((a, b) => a.data.
           <div class="projection-output" aria-live="polite" data-cinema-code-output>Console ready. Select a language and run the scene.</div>
         </div>
       </div>
+      <p class="cinema-frame-label">Frame 004 · Projection Console</p>
     </section>
 
     <section id="cinema-workflow" class="cinema-workflow" data-section-key="workflow" aria-labelledby="cinema-workflow-title">
@@ -114,6 +124,7 @@ const academicEntries = (await getCollection('academic')).sort((a, b) => a.data.
         ))}
         <div class="cue-output" data-cinema-workflow-output>Sequence waiting for direction.</div>
       </div>
+      <p class="cinema-frame-label">Frame 005 · System Direction</p>
     </section>
 
     <section id="cinema-tools" class="cinema-credits" data-section-key="tools" aria-labelledby="cinema-tools-title">
@@ -128,18 +139,29 @@ const academicEntries = (await getCollection('academic')).sort((a, b) => a.data.
         <button type="button" data-cinema-tools-reset>Reset final grade</button>
       </div>
       <div class="cinema-credit-roll">
-        <p><span>Direction</span> Lim Wei Jian</p>
-        <p><span>AI Systems</span> Multi-Agent RAG · PyTorch · Computer Vision</p>
-        <p><span>Full Stack</span> Astro · TypeScript · React · Cloudflare</p>
-        <p><span>Languages</span> C++ · Python · Java · C#</p>
-        <p><span>Production</span> Accessible · Responsive · Static-first</p>
+        <div class="cinema-credit-roll__track">
+          <div class="cinema-credit-roll__group">
+            <p><span>Direction</span> Lim Wei Jian</p>
+            <p><span>AI Systems</span> Multi-Agent RAG · PyTorch · Computer Vision</p>
+            <p><span>Full Stack</span> Astro · TypeScript · React · Cloudflare</p>
+            <p><span>Languages</span> C++ · Python · Java · C#</p>
+            <p><span>Production</span> Accessible · Responsive · Static-first</p>
+          </div>
+          <div class="cinema-credit-roll__group" aria-hidden="true">
+            <p><span>Direction</span> Lim Wei Jian</p>
+            <p><span>AI Systems</span> Multi-Agent RAG · PyTorch · Computer Vision</p>
+            <p><span>Full Stack</span> Astro · TypeScript · React · Cloudflare</p>
+            <p><span>Languages</span> C++ · Python · Java · C#</p>
+            <p><span>Production</span> Accessible · Responsive · Static-first</p>
+          </div>
+        </div>
       </div>
       <div class="cinema-post-credits">
         <p class="cinema-kicker">One more scene?</p>
         <h3>Let’s build something useful.</h3>
         <button class="cinema-button cinema-button--red" type="button" data-contact-open>Open contact</button>
       </div>
+      <p class="cinema-frame-label">Frame 006 · End Credits</p>
     </section>
   </main>
 </div>
-
